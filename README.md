@@ -2,7 +2,7 @@ VIP (Vip) is a universal 3rd generation cryptocurrency that combines the best fe
 in order to create an excellent new digital payment asset.
 
 Milli-Second-Transactions with HyperSend.
-Network stability with masternodes, each is secured with a collateral of 4.000 Vip. 100% Governance.
+Network stability with masternodes, each is secured with a collateral of 4.000 VIP. 100% Governance.
 
 For further information visit us at [vip.org](https://vip.org/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org)
 
