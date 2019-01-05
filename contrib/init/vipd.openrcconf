@@ -1,0 +1,26 @@
+# /etc/conf.d/vipd: config file for /etc/init.d/vipd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/vip/vip.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/vipd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/vipd.pid"
+
+# Where to write vipd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/vipd"
+
+# User and group to own vipd process
+#BITCOIND_USER="vip"
+#BITCOIND_GROUP="vip"
+
+# Path to vipd executable
+#BITCOIND_BIN="/usr/bin/vipd"
+
+# Nice value to run vipd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
