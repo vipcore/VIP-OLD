@@ -1,4 +1,4 @@
-Vip (Vip) is a universal 3rd generation cryptocurrency that combines the best features of different coins
+VIP (Vip) is a universal 3rd generation cryptocurrency that combines the best features of different coins
 in order to create an excellent new digital payment asset.
 
 Milli-Second-Transactions with HyperSend.
@@ -8,10 +8,10 @@ For further information visit us at [vip.org](https://vip.org/) or visit our ANN
 
 # Coin Specs
 
-• Coin Name: VIP 
+• Coin Name: VIP (PoS & Masternode Coin)
 • Ticker: VIP  
-• PoW Algorithm: Quark  
-• Premine: (#1 Block) 80,001 VIP
+• Algorithm: Quark  
+• Premine: (#1 Block) 80,000 VIP
 • Block Time: 60 Seconds  
 • Max Coin Output/Supply: 1,000,000  
 • Masternode Requirements: 4,000 VIP  
