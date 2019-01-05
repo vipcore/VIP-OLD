@@ -1,0 +1,20 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/vip_bg.qm</file>
+        <file alias="de">locale/vip_de.qm</file>
+        <file alias="en">locale/vip_en.qm</file>
+        <file alias="es">locale/vip_es.qm</file>
+        <file alias="fi">locale/vip_fi.qm</file>
+        <file alias="fr">locale/vip_fr.qm</file>
+        <file alias="it">locale/vip_it.qm</file>
+        <file alias="ja">locale/vip_ja.qm</file>
+        <file alias="pl">locale/vip_pl.qm</file>
+        <file alias="pt">locale/vip_pt.qm</file>
+        <file alias="ru">locale/vip_ru.qm</file>
+        <file alias="sk">locale/vip_sk.qm</file>
+        <file alias="sv">locale/vip_sv.qm</file>
+        <file alias="vi">locale/vip_vi.qm</file>
+        <file alias="zh_CN">locale/vip_zh_CN.qm</file>
+        <file alias="zh_TW">locale/vip_zh_TW.qm</file>
+    </qresource>
+</RCC>
