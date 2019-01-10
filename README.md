@@ -4,7 +4,7 @@ in order to create an excellent new digital payment asset.
 Milli-Second-Transactions with HyperSend.
 Network stability with masternodes, each is secured with a collateral of 4.000 VIP. 100% Governance.
 
-For further information visit us at [vip-core.online](https://vip-core.online/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org)
+For further information visit us at [vip-core.online](https://vip-core.online/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org) or Twitter Official [Twitter](https://twitter.com/core_vip) or [Community-Discord](https://discord.gg/xKPXvyw)
 
 # Coin Specs
 <br>• Coin Name: VIP (PoS & Masternode Coin)</br>
