@@ -12,6 +12,7 @@ For further information visit us at [vip-core.online](https://vip-core.online/) 
 <br>• Algorithm: Quark  </br>
 <br>• Premine: (#1 Block) 80,000 VIP</br>
 <br>• Block Time: 60 Seconds  </br>
+<br>• Block Rewards 1 VIP : 70% Masternode, 20% PoS, 10% Dev Funds (Will be deviden to VIP Holders)</brUpdate
 <br>• Max Coin Output/Supply: 1,000,000 VIP </br>
 <br>• Masternode Requirements: 4,000 VIP  </br>
 <br>• Maturity: 11 Confirmations  </br>
