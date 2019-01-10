@@ -7,24 +7,14 @@ Network stability with masternodes, each is secured with a collateral of 4.000 V
 For further information visit us at [vip-core.online](https://vip-core.online/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org)
 
 # Coin Specs
-
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Coin Name: VIP (PoS & Masternode Coin)</br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Ticker: VIP  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Algorithm: Quark  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Premine: (#1 Block) 80,000 VIP</br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Block Time: 60 Seconds  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Max Coin Output/Supply: 1,000,000  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Masternode Requirements: 4,000 VIP  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Maturity: 11 Confirmations  </br>
-<br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
-• Prefix: Vip adresses start with the capital letter "V"  </br>
+<br>• Coin Name: VIP (PoS & Masternode Coin)</br>
+<br>• Ticker: VIP  </br>
+<br>• Algorithm: Quark  </br>
+<br>• Premine: (#1 Block) 80,000 VIP</br>
+<br>• Block Time: 60 Seconds  </br
+<br>• Max Coin Output/Supply: 1,000,000  </br>
+<br>• Masternode Requirements: 4,000 VIP  </br>
+<br>• Maturity: 11 Confirmations  </br>
+<br>• Prefix: Vip adresses start with the capital letter "V"  </br>
 <br>• [Block-Explorer](http://168.235.85.54:3001/)</br>
 
