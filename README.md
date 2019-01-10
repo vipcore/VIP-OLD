@@ -4,7 +4,7 @@ in order to create an excellent new digital payment asset.
 Milli-Second-Transactions with HyperSend.
 Network stability with masternodes, each is secured with a collateral of 4.000 VIP. 100% Governance.
 
-For further information visit us at [vip.org](https://vip.org/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org)
+For further information visit us at [vip-core.online](https://vip-core.online/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org)
 
 # Coin Specs
 
