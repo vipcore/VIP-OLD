@@ -12,7 +12,7 @@ For further information visit us at [vip-core.online](https://vip-core.online/) 
 <br>• Algorithm: Quark  </br>
 <br>• Premine: (#1 Block) 80,000 VIP</br>
 <br>• Block Time: 60 Seconds  </br>
-<br>• Max Coin Output/Supply: 1,000,000  </br>
+<br>• Max Coin Output/Supply: 1,000,000 VIP </br>
 <br>• Masternode Requirements: 4,000 VIP  </br>
 <br>• Maturity: 11 Confirmations  </br>
 <br>• Prefix: Vip adresses start with the capital letter "V"  </br>
