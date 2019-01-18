@@ -1278,18 +1278,18 @@ bool AcceptToMemoryPool(CTxMemPool& pool, CValidationState& state, const CTransa
 
 bool AcceptableInputs(CTxMemPool& pool, CValidationState& state, const CTransaction& tx, bool fLimitFree, bool* pfMissingInputs, bool fRejectInsaneFee, bool isDSTX)
 {
-	//AAAA
+    //AAAA
     AssertLockHeld(cs_main);
     if (pfMissingInputs)
         *pfMissingInputs = false;
-	//if (txin.prevout == COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0))
+    //if (txin.prevout == COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0))
     /*
-	BOOST_FOREACH (const CTxIn& txin, tx.vin) {
+    BOOST_FOREACH (const CTxIn& txin, tx.vin) {
     if (!CheckTransaction(tx, state) && (txin.prevout != COutPoint(uint256("0xac087308fa106f388e559321641d7b6c66d8813ede54ebbdbe09a664eeba272e"), 0)))
         return error("AcceptableInputs: : CheckTransaction failed");
-	}
-	*/
-	if (!CheckTransaction(tx, state))
+    }
+    */
+    if (!CheckTransaction(tx, state))
        return error("AcceptableInputs: : CheckTransaction failed");
     // Coinbase is only valid in a block, not as a loose transaction
     if (tx.IsCoinBase())
@@ -1625,33 +1625,35 @@ int64_t GetBlockValue(int nHeight)
         if (nHeight < 200 && nHeight > 0)
             return 250000 * COIN;
     }
-	
-	if (nHeight == 0) return 80000 * COIN;
-		
-	int64_t nSubsidy; //int64_t nSubsidy = 1 * COIN;
-	
-	if(nHeight <= 1 && nHeight > 0) {
+    
+    if (nHeight == 0) return 80000 * COIN;
+        
+    int64_t nSubsidy; //int64_t nSubsidy = 1 * COIN;
+    
+    if(nHeight <= 1 && nHeight > 0) {
         nSubsidy = 1 * COIN;
-	} else if (nHeight > 1 && nHeight <= 151200) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 151200 && nHeight <= 302400) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 302400 && nHeight <= 345600) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 345600 && nHeight <= 388800) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 388800 && nHeight <= 475200) { // 475200 => LAST POW BLOCK
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 475200 && nHeight <= 518400) { // 475201 => FIRST POS BLOCK
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 518400 && nHeight <= 561600) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 561600 && nHeight <= 604800) {
-		nSubsidy = 1 * COIN;
-	} else if (nHeight > 604800) {
-		nSubsidy = 0.5 * COIN;
-	}
-	
+    } else if (nHeight > 1 && nHeight <= 100000) {
+        nSubsidy = 1 * COIN;
+    } else if (nHeight > 100000 && nHeight <= 200000) {
+        nSubsidy = 0.8 * COIN;
+    } else if (nHeight > 200000 && nHeight <= 300000) {
+        nSubsidy = 0.64 * COIN;
+    } else if (nHeight > 300000 && nHeight <= 400000) {
+        nSubsidy = 0.512 * COIN;
+    } else if (nHeight > 400000 && nHeight <= 500000) {    
+        nSubsidy = 0.4 * COIN;
+    } else if (nHeight > 500000 && nHeight <= 600000) {
+        nSubsidy = 0.32 * COIN;
+    } else if (nHeight > 600000 && nHeight <= 700000) {
+        nSubsidy = 0.256 * COIN;
+    } else if (nHeight > 700000 && nHeight <= 800000) {
+        nSubsidy = 0.2 * COIN;    
+    } else if (nHeight > 800000 && nHeight <= 900000) {
+        nSubsidy = 0.15 * COIN;  
+    } else if (nHeight > 900000) {
+        nSubsidy = 0.1 * COIN;
+    }
+    
     return nSubsidy;
 
 }
@@ -1664,59 +1666,53 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         if (nHeight < 200)
             return 0;
     }
-	
-	int64_t ret = 0;
-	
-	if(nHeight <= 20 && nHeight > 0) {
+    
+    int64_t ret = 0;
+    
+    if(nHeight <= 20 && nHeight > 0) {
         ret = blockValue / 100 * 70;
-	} else if (nHeight > 20 && nHeight <= 151200) {
+    } else if (nHeight > 20 && nHeight <= 5000000) {
         ret = blockValue / 100 * 70;
-	} else if (nHeight > 151200 && nHeight <= 152500) {
-        ret = blockValue / 100 * 70;
-	} else if (nHeight > 152500 && nHeight <= 225000) {
-        ret = blockValue / 100 * 60;
-	} else if (nHeight > 225000 && nHeight <= 475200) {
-        ret = blockValue / 100 * 60;
-	} else if (nHeight > 475200) {
-		
-		int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-		
-		if(nMasternodeCount < 1) {
-			nMasternodeCount = mnodeman.stable_size();
-		}
-		
-		int64_t mNodeCoins = nMasternodeCount * 10000 * COIN;
-		
-		if (mNodeCoins == 0) {
+    } else if (nHeight > 5000000) {
+        
+        int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
+        
+        if(nMasternodeCount < 1) {
+            nMasternodeCount = mnodeman.stable_size();
+        }
+        
+        int64_t mNodeCoins = nMasternodeCount * 10000 * COIN;
+        
+        if (mNodeCoins == 0) {
             ret = 0;
-		} else {
-			double lockedCoinValue = mNodeCoins / nMoneySupply;
-			
-			
-			double masternodeMultiplier = 1 - lockedCoinValue;
-			
-			if(masternodeMultiplier < .1) {
-				masternodeMultiplier = .1;
-			} else if(masternodeMultiplier > .9) {
-				masternodeMultiplier = .9;
-			}
-			
-			LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked Vip) and %d Vip supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
-			LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier*100);
-			LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier)*100);
-			
-			ret = blockValue * masternodeMultiplier;
-		}
-		
-	}
-	
-	return ret;
+        } else {
+            double lockedCoinValue = mNodeCoins / nMoneySupply;
+            
+            
+            double masternodeMultiplier = 1 - lockedCoinValue;
+            
+            if(masternodeMultiplier < .1) {
+                masternodeMultiplier = .1;
+            } else if(masternodeMultiplier > .9) {
+                masternodeMultiplier = .9;
+            }
+            
+            LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked Vip) and %d Vip supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue*100, nMoneySupply, GetTime());
+            LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier*100);
+            LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier)*100);
+            
+            ret = blockValue * masternodeMultiplier;
+        }
+        
+    }
+    
+    return ret;
 }
 
 bool IsInitialBlockDownload()
 {
     return false;
-	LOCK(cs_main);
+    LOCK(cs_main);
     if (fImporting || fReindex || chainActive.Height() < Checkpoints::GetTotalBlocksEstimate())
         return true;
     static bool lockIBDState = false;
@@ -3103,15 +3099,15 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     // redundant with the call in AcceptBlockHeader.
 
     if(block.IsProofOfWork()){
-		if (!CheckBlockHeader(block, state, fCheckPOW))
-			return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
-				REJECT_INVALID, "bad-header", true);
-	}
-			/*
-			    if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
-					return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
-					REJECT_INVALID, "bad-header", true);
-			*/
+        if (!CheckBlockHeader(block, state, fCheckPOW))
+            return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+                REJECT_INVALID, "bad-header", true);
+    }
+            /*
+                if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
+                    return state.DoS(100, error("CheckBlock() : CheckBlockHeader failed"),
+                    REJECT_INVALID, "bad-header", true);
+            */
     // Check timestamp
     LogPrint("debug", "%s: block=%s  is proof of stake=%d\n", __func__, block.GetHash().ToString().c_str(), block.IsProofOfStake());
     if (block.GetBlockTime() > GetAdjustedTime() + (block.IsProofOfStake() ? 180 : 7200)) // 3 minute future drift for PoS
@@ -3134,7 +3130,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             return state.DoS(100, error("CheckBlock() : duplicate transaction"),
                 REJECT_INVALID, "bad-txns-duplicate", true);
     }
-			
+            
     // All potential-corruption validation must be done before we do any
     // transaction validation, as otherwise we may mark the header as invalid
     // because we receive the wrong transactions for it.
@@ -3247,7 +3243,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 */
-	
+    
     if (block.nBits != nBitsRequired)
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
 
@@ -3323,16 +3319,16 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
         if (!IsFinalTx(tx, nHeight, block.GetBlockTime())) {
             return state.DoS(10, error("%s : contains a non-final transaction", __func__), REJECT_INVALID, "bad-txns-nonfinal");
         }
-	
-	//Script expect = CScript() << nHeight;
-	//AAAA
+    
+    //Script expect = CScript() << nHeight;
+    //AAAA
     // Enforce block.nVersion=2 rule that the coinbase starts with serialized block height
     // if 750 of the last 1,000 blocks are version 2 or greater (51/100 if testnet):
     if (block.nVersion >= 2 &&
         CBlockIndex::IsSuperMajority(2, pindexPrev, Params().EnforceBlockUpgradeMajority())) {
         CScript expect = CScript() << nHeight;
         if (block.vtx[0].vin[0].scriptSig.size() < expect.size() || !std::equal(expect.begin(), expect.end(), block.vtx[0].vin[0].scriptSig.begin())) {
-		//	LogPrintf("SuperMajorityCheck(): Script size %d, except size %d,block.vtx[0].vin[0].scriptSig.size(), expect.size() );
+        //  LogPrintf("SuperMajorityCheck(): Script size %d, except size %d,block.vtx[0].vin[0].scriptSig.size(), expect.size() );
            return state.DoS(100, error("%s : block height mismatch in coinbase", __func__), REJECT_INVALID, "bad-cb-height");
         }
     }
@@ -3596,11 +3592,11 @@ bool TestBlockValidity(CValidationState& state, const CBlock& block, CBlockIndex
         return false;
     if (!CheckBlock(block, state, fCheckPOW, fCheckMerkleRoot))
         return false;
-	///AAAA
-	if( pindexPrev->nHeight +1 > Params().LAST_POW_BLOCK()){
+    ///AAAA
+    if( pindexPrev->nHeight +1 > Params().LAST_POW_BLOCK()){
     if (!ContextualCheckBlock(block, state, pindexPrev))
         return false;
-	}
+    }
     if (!ConnectBlock(block, state, &indexDummy, viewNew, true))
         return false;
     assert(state.IsValid());
