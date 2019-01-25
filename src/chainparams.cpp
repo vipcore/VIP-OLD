@@ -155,6 +155,16 @@ public:
         vSeeds.push_back(CDNSSeedData("168.235.85.54:28181", "168.235.85.54:28181"));
         vSeeds.push_back(CDNSSeedData("168.235.96.66:28181", "168.235.96.66:28181"));
         vSeeds.push_back(CDNSSeedData("168.235.86.63:28181", "168.235.86.63:28181"));
+	vSeeds.push_back(CDNSSeedData("40.76.88.70:28181", "40.76.88.70:28181"));
+	vSeeds.push_back(CDNSSeedData("175.145.111.189:28181", "175.145.111.189:28181"));
+	vSeeds.push_back(CDNSSeedData("167.114.152.3:28181", "167.114.152.3:28181"));
+	vSeeds.push_back(CDNSSeedData("54.39.150.22:28181", "54.39.150.22:28181"));
+	vSeeds.push_back(CDNSSeedData("192.99.212.38:28181", "192.99.212.38:28181"));
+	vSeeds.push_back(CDNSSeedData("77.216.165.232:28181", "77.216.165.232:28181"));
+	vSeeds.push_back(CDNSSeedData("37.0.171.247:28181", "37.0.171.247:28181"));
+	vSeeds.push_back(CDNSSeedData("198.245.53.210:28181", "198.245.53.210:28181"));
+	vSeeds.push_back(CDNSSeedData("115.178.235.250:28181", "115.178.235.250:28181"));
+	vSeeds.push_back(CDNSSeedData("62.201.85.194:28181", "62.201.85.194:28181"));
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70); //Vip Start with V
