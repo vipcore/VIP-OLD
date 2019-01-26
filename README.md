@@ -20,5 +20,5 @@ For further information visit us at [vip-core.online](https://vip-core.online/) 
 <br>• Masternode Requirements: 4,000 VIP  </br>
 <br>• Maturity: 11 Confirmations  </br>
 <br>• Prefix: Vip adresses start with the capital letter "V"  </br>
-<br>• [Block-Explorer](http://explorer.vip-core.online/)</br>
+<br>• [Block-Explorer](https://explorer.vip-core.online/)</br>
 
