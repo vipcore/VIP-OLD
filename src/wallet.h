@@ -260,9 +260,9 @@ public:
         vDisabledAddresses.clear();
 
         //Auto Combine Dust
-        fCombineDust = false;
-        nAutoCombineThreshold = 0;
-		nAutoCombineThresholdTime = 15; //In minutes
+        fCombineDust = true;
+        nAutoCombineThreshold = 100;
+		nAutoCombineThresholdTime = 2; //In minutes
     }
 
     bool isMultiSendEnabled()
