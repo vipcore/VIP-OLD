@@ -61,6 +61,8 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (64396, uint256("0x597edf272b7b8d7a406e8787ae4e1c502eaab8f799b3e8569d75a0e3fe107659"))
     (81478, uint256("0x56c88b5593b3e049b6ae6cc3eda4ff0d5b74940fbf5aca3ca6566857d3f1f609"))
     (125825, uint256("0x6123f48a940914158e79037a8013d4ab625145e2efff561139d2260d58595087"))
+    (134592, uint256("0x1cd0014edce316b5de082ed7927d312d5dcf22b19266ddb5bea73f6074d6402b"))
+    (384824, uint256("0x44787c5cf947ccab7ab6da1e6ab174a11a8567f45c92535e8b015c7894eb875f"))
     ;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -105,7 +107,7 @@ public:
         pchMessageStart[2] = 0xc3;
         pchMessageStart[3] = 0x47;
         vAlertPubKey = ParseHex("04647D36FF5978B16625459FD1BC563C4C4174408F961C4A3D25452EB8D5B0E7A093153F00B2F3E68E41968C6DAB2EEEEE7330990D0BB9083D4D0CCC9CB86C2F7F");
-        nDefaultPort = 28181;
+        nDefaultPort = 28182;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // VIP starting difficulty is 1 / 2^12  //20
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
@@ -118,10 +120,10 @@ public:
         nLastPOWBlock = 230;
         nMaturity = 10;
         nMasternodeCountDrift = 20;
-		nMasternodeColleteralLimxDev = 4000; //Params().MasternodeColleteralLimxDev()
+        nMasternodeColleteralLimxDev = 4000; //Params().MasternodeColleteralLimxDev()
         nModifierUpdateBlock = 1; // we use the version 2 for dmd
         nMaxMoneyOut = 1000000 * COIN;
-		strDeveloperFeePayee = "VTdRMLkJ9fZqg3RZT8xY7qDrW2p1hRH7Hx";
+        strDeveloperFeePayee = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
 
         const char* pszTimestamp = "Vip, Value is Precious, 22 December 2018 The Day of Krakatau tsunami";
         CMutableTransaction txNew;
@@ -137,59 +139,38 @@ public:
         genesis.nTime = 1545495546;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 819875;
-		
+        
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x000007e8f7dcdcd4a2d699a306c5ed9df0cf5b90c8754570b2148ea2eb80d2bf"));
         assert(genesis.hashMerkleRoot == uint256("0xdd92973198a0995713770a8232b33473fd4b90c43048a1e7f91a6a1b4e2c864d"));
 
 
-        vSeeds.push_back(CDNSSeedData("1", "168.235.86.63:28181"));
-        vSeeds.push_back(CDNSSeedData("2", "144.217.84.127:28181"));
-        vSeeds.push_back(CDNSSeedData("3", "198.245.53.210:28181"));
-        vSeeds.push_back(CDNSSeedData("4", "54.38.194.26:28181"));
-        vSeeds.push_back(CDNSSeedData("5", "45.63.14.154:28181"));
-        vSeeds.push_back(CDNSSeedData("6", "82.169.168.31:28181"));
-        vSeeds.push_back(CDNSSeedData("7", "142.93.115.23:28181"));
-        vSeeds.push_back(CDNSSeedData("8", "192.99.212.38:28181"));
-        vSeeds.push_back(CDNSSeedData("9", "45.77.217.47:28181"));
-        vSeeds.push_back(CDNSSeedData("10", "54.39.150.22:28181"));
-        vSeeds.push_back(CDNSSeedData("11", "192.99.212.38:28181"));
-        vSeeds.push_back(CDNSSeedData("12", "45.77.217.47:28181"));
-        vSeeds.push_back(CDNSSeedData("13", "109.172.59.29:28181"));
-        vSeeds.push_back(CDNSSeedData("14", "140.213.45.103:28181"));
-        vSeeds.push_back(CDNSSeedData("15", "176.223.136.85:28181"));
-	vSeeds.push_back(CDNSSeedData("16", "77.219.132.146:28181"));
-	vSeeds.push_back(CDNSSeedData("17", "155.138.217.218:28181"));
-	vSeeds.push_back(CDNSSeedData("18", "115.178.237.116:28181"));
-	vSeeds.push_back(CDNSSeedData("19", "60.54.90.163:28181"));
-	vSeeds.push_back(CDNSSeedData("20", "171.50.204.82:28181"));
-	vSeeds.push_back(CDNSSeedData("21", "103.75.189.59:28181"));
-	vSeeds.push_back(CDNSSeedData("22", "103.75.189.29:28181"));
-	vSeeds.push_back(CDNSSeedData("23", "175.142.84.174:28181"));
-	vSeeds.push_back(CDNSSeedData("24", "77.217.30.41:28181"));
-	vSeeds.push_back(CDNSSeedData("25", "45.169.109.39:28181"));
-	vSeeds.push_back(CDNSSeedData("26", "167.114.114.243:28181"));
-        vSeeds.push_back(CDNSSeedData("27", "155.138.164.230:28181"));
-        vSeeds.push_back(CDNSSeedData("28", "45.32.222.211:28181"));
-        vSeeds.push_back(CDNSSeedData("29", "155.138.197.141:28181"));
-        vSeeds.push_back(CDNSSeedData("30", "207.246.118.22:28181"));
-        vSeeds.push_back(CDNSSeedData("31", "144.202.30.246:28181"));
-	vSeeds.push_back(CDNSSeedData("32", "155.138.160.37:28181"));
-	vSeeds.push_back(CDNSSeedData("33", "103.75.191.86:28181"));
-	vSeeds.push_back(CDNSSeedData("34", "66.42.81.117:28181"));
-	vSeeds.push_back(CDNSSeedData("35", "54.227.211.235:28181"));
-	vSeeds.push_back(CDNSSeedData("36", "158.69.197.220:28181"));
-	vSeeds.push_back(CDNSSeedData("37", "167.114.152.3:28181"));
-	vSeeds.push_back(CDNSSeedData("38", "144.217.4.52:28181"));
-	vSeeds.push_back(CDNSSeedData("39", "54.39.149.191:28181"));
-	vSeeds.push_back(CDNSSeedData("40", "202.143.111.151:28181"));
-	
+        vSeeds.push_back(CDNSSeedData("1", "40.76.88.70:28182"));
+        vSeeds.push_back(CDNSSeedData("2", "173.249.33.55:28182"));
+        vSeeds.push_back(CDNSSeedData("3", "45.32.237.65:28182"));
+        vSeeds.push_back(CDNSSeedData("4", "5.189.184.61:28182"));
+        vSeeds.push_back(CDNSSeedData("5", "144.217.4.52:28182"));
+        vSeeds.push_back(CDNSSeedData("6", "192.99.212.38:28182"));
+        vSeeds.push_back(CDNSSeedData("7", "142.93.115.23:28182"));
+        vSeeds.push_back(CDNSSeedData("8", "45.77.217.47:28182"));
+        vSeeds.push_back(CDNSSeedData("9", "158.69.216.13:28182"));
+        vSeeds.push_back(CDNSSeedData("10", "54.36.172.184:28182"));
+        vSeeds.push_back(CDNSSeedData("11", "89.98.236.190:28182"));
+        vSeeds.push_back(CDNSSeedData("12", "168.235.86.63:28182"));
+        vSeeds.push_back(CDNSSeedData("13", "54.227.211.235:28182 "));
+        vSeeds.push_back(CDNSSeedData("14", "116.206.14.59:28182"));
+        vSeeds.push_back(CDNSSeedData("15", "95.217.39.223:28182"));
+        vSeeds.push_back(CDNSSeedData("16", "173.188.203.102:28182"));
+        vSeeds.push_back(CDNSSeedData("17", "67.143.208.137:28182"));
+        vSeeds.push_back(CDNSSeedData("18", "45.32.218.96:28182"));
+        vSeeds.push_back(CDNSSeedData("19", "5.189.148.111:28182"));
+
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70); //Vip Start with V
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 106);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 56);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md 109 	0x8000006d
+        //  BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md 109   0x8000006d
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x6d).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
@@ -197,17 +178,17 @@ public:
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = false;
-        fDefaultConsistencyChecks = false;
+        fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
-        fHeadersFirstSyncingActive = false;
+        fHeadersFirstSyncingActive = true;
 
 
         nPoolMaxTransactions = 3;
         strSporkKey = "049e53e687fdafd78fd42d730fad0e7ea1819396176a2cb85d7a76fa4559cdbd2c2f05330a6f5cbadb44a6c1d324f167e679e9f3e95d9d5649761a3e7f59bf4500";
-        strDarksendPoolDummyAddress = "VTdRMLkJ9fZqg3RZT8xY7qDrW2p1hRH7Hx";
+        strDarksendPoolDummyAddress = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
         nStartMasternodePayments = 1510272000; //11/10/2017 @ 12:00am (UTC)
     }
 
@@ -254,13 +235,13 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-		
-	    vSeeds.push_back(CDNSSeedData("185.52.3.126:28181", "185.52.3.126:28181"));
-        vSeeds.push_back(CDNSSeedData("168.235.85.225:28181", "168.235.85.225:28181"));
-        vSeeds.push_back(CDNSSeedData("168.235.85.173:28181", "168.235.85.173:28181"));
-        vSeeds.push_back(CDNSSeedData("168.235.85.54:28181", "168.235.85.54:28181"));
-        vSeeds.push_back(CDNSSeedData("168.235.96.66:28181", "168.235.96.66:28181"));
-        vSeeds.push_back(CDNSSeedData("168.235.86.63:28181", "168.235.86.63:28181"));
+        
+        vSeeds.push_back(CDNSSeedData("185.52.3.126:28182", "185.52.3.126:28182"));
+        vSeeds.push_back(CDNSSeedData("168.235.85.225:28182", "168.235.85.225:28182"));
+        vSeeds.push_back(CDNSSeedData("168.235.85.173:28182", "168.235.85.173:28182"));
+        vSeeds.push_back(CDNSSeedData("168.235.85.54:28182", "168.235.85.54:28182"));
+        vSeeds.push_back(CDNSSeedData("168.235.96.66:28182", "168.235.96.66:28182"));
+        vSeeds.push_back(CDNSSeedData("168.235.86.63:28182", "168.235.86.63:28182"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 83);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 18);
@@ -323,7 +304,7 @@ public:
         genesis.nTime = 1454124731;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 447568;
-		
+        
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 55700;
         assert(hashGenesisBlock == uint256("0x00000372d06054846ee809edef9dd0e2c486c3c718b26d750ece21bc16f49adc"));
