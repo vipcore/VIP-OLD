@@ -1090,8 +1090,8 @@ Address: %4
     <name>ClientModel</name>
     <message>
         <location filename="../clientmodel.cpp" line="+74"/>
-        <source>Total: %1 (OBF compatible: %2 / Enabled: %3)</source>
-        <translation>Total: %1 (OBF compatible: %2 / Enabled: %3)</translation>
+        <source>Total: %1 (MASTERNODE compatible: %2 / Enabled: %3)</source>
+        <translation>Total: %1 (MASTERNODE compatible: %2 / Enabled: %3)</translation>
     </message>
     <message>
         <location line="+107"/>

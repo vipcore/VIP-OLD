@@ -594,8 +594,8 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <source>Total: %1 (OBF compatible: %2 / Enabled: %3)</source>
-        <translation>Общо: %1 (OBF съвместими: %2 / Позволени: %3)</translation>
+        <source>Total: %1 (MASTERNODE compatible: %2 / Enabled: %3)</source>
+        <translation>Общо: %1 (MASTERNODE съвместими: %2 / Позволени: %3)</translation>
     </message>
     <message>
         <source>Network Alert</source>
@@ -669,8 +669,8 @@ Address: %4
         <translation>Получени с адрес</translation>
     </message>
     <message>
-        <source>OBF Rounds</source>
-        <translation>OBF цикли</translation>
+        <source>MASTERNODE Rounds</source>
+        <translation>MASTERNODE цикли</translation>
     </message>
     <message>
         <source>Date</source>

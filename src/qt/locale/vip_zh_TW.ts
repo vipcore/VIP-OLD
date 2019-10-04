@@ -665,7 +665,7 @@ Address: %4
         <translation>收款位址</translation>
     </message>
     <message>
-        <source>OBF Rounds</source>
+        <source>MASTERNODE Rounds</source>
         <translation>匿名發送循環</translation>
     </message>
     <message>

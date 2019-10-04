@@ -594,8 +594,8 @@ Address: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <source>Total: %1 (OBF compatible: %2 / Enabled: %3)</source>
-        <translation>Всего: %1 (Совместимых с OBF: %2 / Активных: %3)</translation>
+        <source>Total: %1 (MASTERNODE compatible: %2 / Enabled: %3)</source>
+        <translation>Всего: %1 (Совместимых с MASTERNODE: %2 / Активных: %3)</translation>
     </message>
     <message>
         <source>Network Alert</source>

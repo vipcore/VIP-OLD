@@ -594,8 +594,8 @@ Dirección: %4
 <context>
     <name>ClientModel</name>
     <message>
-        <source>Total: %1 (OBF compatible: %2 / Enabled: %3)</source>
-        <translation>Total: %1 (Compatibles con OBF: %2 / Habilitados: %3)</translation>
+        <source>Total: %1 (MASTERNODE compatible: %2 / Enabled: %3)</source>
+        <translation>Total: %1 (Compatibles con MASTERNODE: %2 / Habilitados: %3)</translation>
     </message>
     <message>
         <source>Network Alert</source>
@@ -669,8 +669,8 @@ Dirección: %4
         <translation>Recibido con la dirección</translation>
     </message>
     <message>
-        <source>OBF Rounds</source>
-        <translation>Rondas de OBF</translation>
+        <source>MASTERNODE Rounds</source>
+        <translation>Rondas de MASTERNODE</translation>
     </message>
     <message>
         <source>Date</source>
