@@ -64,6 +64,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (134592, uint256("0x1cd0014edce316b5de082ed7927d312d5dcf22b19266ddb5bea73f6074d6402b"))
     (384824, uint256("0x44787c5cf947ccab7ab6da1e6ab174a11a8567f45c92535e8b015c7894eb875f"))
     (394431, uint256("0x5a33fe4a8902042a0a5094e07eac5a221ac20df5d2ee646b4aec8f2427870756"))
+    (395000, uint256("0x73a9012fe0525984c03f0cd9a69a444f2c719f63d7b17f1064a38a62a89aa323"))
     ;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -118,7 +119,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // VIP: 1 day
         nTargetSpacing = 1 * 60;  // VIP: 1 minute
-        nLastPOWBlock = 394473;
+        nLastPOWBlock = 395034;
         nMaturity = 10;
         nMasternodeCountDrift = 20;
         nMasternodeColleteralLimxDev = 4000; //Params().MasternodeColleteralLimxDev()
