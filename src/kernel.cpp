@@ -1,6 +1,5 @@
 /* @flow */
 // Copyright (c) 2012-2013 The PPCoin developers
-// Copyright (c) 2015-2017 The PIVX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,6 +12,7 @@
 #include "timedata.h"
 #include "util.h"
 
+
 using namespace std;
 
 bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
@@ -20,7 +20,7 @@ bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
 unsigned int nModifierInterval;
-int nStakeTargetSpacing = 60;
+int nStakeTargetSpacing = 300;
 unsigned int getIntervalVersion(bool fTestNet)
 {
     if (fTestNet)
@@ -274,7 +274,7 @@ bool GetKernelStakeModifier(uint256 hashBlockFrom, uint64_t& nStakeModifier, int
 
 uint256 stakeHash(unsigned int nTimeTx, CDataStream ss, unsigned int prevoutIndex, uint256 prevoutHash, unsigned int nTimeBlockFrom)
 {
-    // BuzzexCoin will hash in the transaction hash and the index number in order to make sure each hash is unique
+    //Vip will hash in the transaction hash and the index number in order to make sure each hash is unique
     ss << nTimeBlockFrom << prevoutIndex << prevoutHash << nTimeTx;
     return Hash(ss.begin(), ss.end());
 }
@@ -299,8 +299,8 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
     if (nTimeTx < nTimeBlockFrom) // Transaction timestamp violation
         return error("CheckStakeKernelHash() : nTime violation");
 
-    // if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
-    //     return error("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d", nTimeBlockFrom, nStakeMinAge, nTimeTx);
+    if (nTimeBlockFrom + nStakeMinAge > nTimeTx) // Min age requirement
+        return error("CheckStakeKernelHash() : min age violation - nTimeBlockFrom=%d nStakeMinAge=%d nTimeTx=%d", nTimeBlockFrom, nStakeMinAge, nTimeTx);
 
     //grab difficulty
     uint256 bnTargetPerCoinDay;
@@ -328,13 +328,8 @@ bool CheckStakeKernelHash(unsigned int nBits, const CBlock blockFrom, const CTra
     bool fSuccess = false;
     unsigned int nTryTime = 0;
     unsigned int i;
-    int nHeightStart = chainActive.Height();
     for (i = 0; i < (nHashDrift); i++) //iterate the hashing
     {
-        //new block came in, move on
-        if (chainActive.Height() != nHeightStart)
-            break;
-
         //hash this iteration
         nTryTime = nTimeTx + nHashDrift - i;
         hashProofOfStake = stakeHash(nTryTime, ss, prevout.n, prevout.hash, nTimeBlockFrom);

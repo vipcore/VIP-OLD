@@ -1229,8 +1229,14 @@ bool AppInit2(boost::thread_group& threadGroup)
                 delete pcoinscatcher;
                 delete pblocktree;
 
-                uiInterface.InitMessage(_("Loading block index..."));
-                string strBlockIndexError = "";
+                pblocktree = new CBlockTreeDB(nBlockTreeDBCache, false, fReindex);
+                pcoinsdbview = new CCoinsViewDB(nCoinDBCache, false, fReindex);
+                pcoinscatcher = new CCoinsViewErrorCatcher(pcoinsdbview);
+                pcoinsTip = new CCoinsViewCache(pcoinscatcher);
+
+                if (fReindex)
+                    pblocktree->WriteReindexing(true);
+
                 if (!LoadBlockIndex()) {
                     strLoadError = _("Error loading block database");
                     break;
