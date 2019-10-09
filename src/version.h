@@ -21,7 +21,7 @@ static const int INIT_PROTO_VERSION = 210;
 static const int GETHEADERS_VERSION = 70720;
 
 //! disconnect from peers older than this proto version
-static const int MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT = 70719;
+static const int MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT = 70718;
 static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 70719;
 
 //! nTime field added to CAddress, starting with this version;

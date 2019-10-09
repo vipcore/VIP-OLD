@@ -69,7 +69,7 @@ enum WalletFeature {
     FEATURE_WALLETCRYPT = 40000, // wallet encryption
     FEATURE_COMPRPUBKEY = 60000, // compressed public keys
 
-    FEATURE_LATEST = 62000
+    FEATURE_LATEST = 61000
 };
 
 enum AvailableCoinsType {
@@ -260,9 +260,9 @@ public:
         vDisabledAddresses.clear();
 
         //Auto Combine Dust
-        fCombineDust = true;
-        nAutoCombineThreshold = 100;
-		nAutoCombineThresholdTime = 2; //In minutes
+        fCombineDust = false;
+        nAutoCombineThreshold = 0;
+		nAutoCombineThresholdTime = 15; //In minutes
     }
 
     bool isMultiSendEnabled()

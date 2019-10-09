@@ -63,7 +63,7 @@ CConditionVariable cvBlockChange;
 int nScriptCheckThreads = 0;
 bool fImporting = false;
 bool fReindex = false;
-bool fTxIndex = false;
+bool fTxIndex = true;
 bool fIsBareMultisigStd = true;
 bool fCheckBlockIndex = false;
 unsigned int nCoinCacheSize = 5000;
@@ -78,6 +78,7 @@ int64_t nReserveBalance = 0;
  */
 //CFeeRate minRelayTxFee = CFeeRate(250000);
 CFeeRate minRelayTxFee = CFeeRate(10000);
+
 // maps any spent outputs in the past maxreorgdepth blocks to the height it was spent
 // this means for incoming blocks, we can check that their stake output was not spent before
 // the incoming block tried to use it as a staking input. We can also prevent block spam
@@ -96,6 +97,7 @@ struct COrphanTx {
 map<uint256, COrphanTx> mapOrphanTransactions;
 map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 map<uint256, int64_t> mapRejectedBlocks;
+
 
 void EraseOrphansFor(NodeId peer);
 
@@ -2060,8 +2062,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                 if (coins->vout.size() < out.n + 1)
                     coins->vout.resize(out.n + 1);
                 coins->vout[out.n] = undo.txout;
-
-                 // erase the spent input
+                // erase the spent input
                 mapStakeSpent.erase(out);
             }
         }
@@ -2249,21 +2250,16 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
     }
 
-    // track money supply and mint amount info
     CAmount nMoneySupplyPrev = pindex->pprev ? pindex->pprev->nMoneySupply : 0;
+    pindex->nMint = nValueOut - nValueIn + nFees;
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
-    pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
-    //PoW phase redistributed fees to miner. PoS stage destroys fees.
     CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
-    if (block.IsProofOfWork())
-        nExpectedMint += nFees;
-
-    //Check that the block does not overmint
-    if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
-        return state.DoS(100, error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
-                                    FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
-                         REJECT_INVALID, "bad-cb-amount");
+    if (pindex->pprev->nHeight > 4200 && !IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
+        return state.DoS(100,
+            error("ConnectBlock() : reward pays too much (actual=%s vs limit=%s)",
+                FormatMoney(pindex->nMint), FormatMoney(nExpectedMint)),
+            REJECT_INVALID, "bad-cb-amount");
     }
 
     if (!pblocktree->WriteBlockIndex(CDiskBlockIndex(pindex)))
@@ -2274,12 +2270,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     if (!control.Wait())
-        return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
+        return state.DoS(100, false);
     int64_t nTime2 = GetTimeMicros();
     nTimeVerify += nTime2 - nTimeStart;
     LogPrint("bench", "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs]\n", nInputs - 1, 0.001 * (nTime2 - nTimeStart), nInputs <= 1 ? 0 : 0.001 * (nTime2 - nTimeStart) / (nInputs - 1), nTimeVerify * 0.000001);
 
-    //IMPORTANT NOTE: Nothing before this point should actually store to disk (or even memory)
     if (fJustCheck)
         return true;
 
@@ -2310,22 +2305,21 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         if (tx.IsCoinBase())
             continue;
         for (const CTxIn in: tx.vin) {
-            LogPrint("map", "mapStakeSpent: Insert %s | %u\n", in.prevout.ToString(), pindex->nHeight);
+            LogPrintf("mapStakeSpent: Insert %s | %u\n", in.prevout.ToString(), pindex->nHeight);
             mapStakeSpent.insert(std::make_pair(in.prevout, pindex->nHeight));
         }
     }
 
 
-    // delete old entries
+     // delete old entries
     for (auto it = mapStakeSpent.begin(); it != mapStakeSpent.end();) {
         if (it->second < pindex->nHeight - Params().MaxReorganizationDepth()) {
-            LogPrint("map", "mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
+            LogPrintf("mapStakeSpent: Erase %s | %u\n", it->first.ToString(), it->second);
             it = mapStakeSpent.erase(it);
         }else{
             it++;
         }
     }
-    
 
     // add this block to the view's block chain
     view.SetBestBlock(pindex->GetBlockHash());
@@ -3464,19 +3458,19 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
 
     int nHeight = pindex->nHeight;
 
-     if (block.IsProofOfStake()) {
+    if (block.IsProofOfStake()) {
         LOCK(cs_main);
 
-        CCoinsViewCache coins(pcoinsTip);
+         CCoinsViewCache coins(pcoinsTip);
 
-        if (!coins.HaveInputs(block.vtx[1])) {
+         if (!coins.HaveInputs(block.vtx[1])) {
             // the inputs are spent at the chain tip so we should look at the recently spent outputs
 
-            for (CTxIn in : block.vtx[1].vin) {
+             for (CTxIn in : block.vtx[1].vin) {
                 auto it = mapStakeSpent.find(in.prevout);
                 if (it == mapStakeSpent.end()) {
 
-                    return false;
+                     return false;
                 }
                 if (it->second <= pindexPrev->nHeight) {
                     return false;
@@ -3484,12 +3478,12 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             }
         }
 
-        // if this is on a fork
+         // if this is on a fork
         if (!chainActive.Contains(pindexPrev) && pindexPrev != NULL) {
             // start at the block we're adding on to
             CBlockIndex *last = pindexPrev;
 
-            // while that block is not on the main chain
+             // while that block is not on the main chain
             while (!chainActive.Contains(last) && pindexPrev != NULL) {
                 CBlock bl;
                 ReadBlockFromDisk(bl, last);
@@ -3508,11 +3502,12 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                     }
                 }
 
-                // go to the parent block
+                 // go to the parent block
                 last = pindexPrev->pprev;
             }
         }
     }
+
 
     // Write block to history file
     try {
@@ -3630,41 +3625,25 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         if (!checked) {
             return error("%s : CheckBlock FAILED", __func__);
         }
-        
+
         // Store to disk
         CBlockIndex* pindex = NULL;
-        bool ret = AcceptBlock (*pblock, state, &pindex, dbp, checked);
+        bool ret = AcceptBlock(*pblock, state, &pindex, dbp);
         if (pindex && pfrom) {
-            mapBlockSource[pindex->GetBlockHash ()] = pfrom->GetId ();
+            mapBlockSource[pindex->GetBlockHash()] = pfrom->GetId();
         }
-        CheckBlockIndex ();
-        if (!ret) {
-            // Check spamming
-            if(GetBoolArg("-blockspamfilter", DEFAULT_BLOCK_SPAM_FILTER)) {
-                CNodeState *nodestate = State(pfrom->GetId());
-                nodestate->nodeBlocks.onBlockReceived(pindex->nHeight);
-                bool nodeStatus = true;
-                // UpdateState will return false if the node is attacking us or update the score and return true.
-                nodeStatus = nodestate->nodeBlocks.updateState(state, nodeStatus);
-                int nDoS = 0;
-                if (state.IsInvalid(nDoS)) {
-                    if (nDoS > 0)
-                        Misbehaving(pfrom->GetId(), nDoS);
-                    nodeStatus = false;
-                }
-                if(!nodeStatus)
-                    return error("%s : AcceptBlock FAILED - block spam protection", __func__);
-            }
+        CheckBlockIndex();
+        if (!ret)
             return error("%s : AcceptBlock FAILED", __func__);
-        }
+        break;
     }
 
-    if (!ActivateBestChain(state, pblock, checked))
+    if (!ActivateBestChain(state, pblock))
         return error("%s : ActivateBestChain failed", __func__);
 
     if (!fLiteMode) {
         if (masternodeSync.RequestedMasternodeAssets > MASTERNODE_SYNC_LIST) {
-            obfuScationPool.NewBlock();
+            DarKsendPool.NewBlock();
             masternodePayments.ProcessBlock(GetHeight() + 10);
             budget.NewBlock();
         }
@@ -3675,13 +3654,12 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
         if (pwalletMain->isMultiSendEnabled())
             pwalletMain->MultiSend();
 
-        // If turned on Auto Combine will scan wallet for dust to combine
+        //If turned on Auto Combine will scan wallet for dust to combine
         if (pwalletMain->fCombineDust)
             pwalletMain->AutoCombineDust();
     }
 
-    LogPrintf("%s : ACCEPTED Block %ld in %ld milliseconds with size=%d\n", __func__, GetHeight(), GetTimeMillis() - nStartTime,
-              pblock->GetSerializeSize(SER_DISK, CLIENT_VERSION));
+    LogPrintf("%s : ACCEPTED\n", __func__);
 
     return true;
 }
@@ -4751,7 +4729,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand))
             return false;
 
-        if (pfrom->nVersion == 2201)
+        if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
         if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
