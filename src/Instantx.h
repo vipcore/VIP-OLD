@@ -34,7 +34,7 @@ class CConsensusVote;
 class CTransaction;
 class CTransactionLock;
 
-static const int MIN_INSTANTX_PROTO_VERSION = 70105;
+static const int MIN_INSTANTX_PROTO_VERSION = 70103;
 
 extern map<uint256, CTransaction> mapTxLockReq;
 extern map<uint256, CTransaction> mapTxLockReqRejected;
