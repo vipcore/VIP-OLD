@@ -109,7 +109,7 @@ static const unsigned int MAX_REJECT_MESSAGE_LENGTH = 111;
 /** Default for -blockspamfilter, use header spam filter */
 static const bool DEFAULT_BLOCK_SPAM_FILTER = true;
 /** Default for -blockspamfiltermaxsize, maximum size of the list of indexes in the block spam filter */
-static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = COINBASE_MATURITY;
+static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_SIZE = 10;
 /** Default for -blockspamfiltermaxavg, maximum average size of an index occurrence in the block spam filter */
 static const unsigned int DEFAULT_BLOCK_SPAM_FILTER_MAX_AVG = 10;
 
