@@ -1,11 +1,11 @@
 ---
-name: "vip-osx-2.3"
+name: "vip-osx-3.2"
 enable_cache: true
 suites:
 - "trusty"
 architectures:
 - "amd64"
-packages: 
+packages:
 - "ca-certificates"
 - "curl"
 - "g++"
@@ -28,7 +28,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/VipCRYPTO/Vip.git"
+- "url": "https://github.com/vip-project/vip.git"
   "dir": "vip"
 files:
 - "MacOSX10.11.sdk.tar.gz"

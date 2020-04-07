@@ -19,14 +19,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Vip"
-            VALUE "FileDescription",    "Vip Core (OSS GUI client for Vip)"
+            VALUE "CompanyName",        "VIP"
+            VALUE "FileDescription",    "VIP Core (OSS GUI client for VIP)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "vip-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "vip-qt.exe"
-            VALUE "ProductName",        "Vip Core"
+            VALUE "ProductName",        "VIP Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

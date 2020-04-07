@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2018-2019 The Vip developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,18 +20,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(Vip);
-    unitlist.append(mVip);
-    unitlist.append(uVip);
+    unitlist.append(VIP);
+    unitlist.append(mVIP);
+    unitlist.append(uVIP);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case Vip:
-    case mVip:
-    case uVip:
+    case VIP:
+    case mVIP:
+    case uVIP:
         return true;
     default:
         return false;
@@ -41,12 +41,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case Vip:
-        return QString("VIP");
-    case mVip:
-        return QString("mVIP");
-    case uVip:
-        return QString::fromUtf8("uVIP");
+    case VIP:
+        return QString("vip");
+    case mVIP:
+        return QString("mvip");
+    case uVIP:
+        return QString::fromUtf8("uvip");
     default:
         return QString("???");
     }
@@ -56,22 +56,22 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Vip:
+        case VIP:
             return QString("VIP");
-        case mVip:
+        case mVIP:
             return QString("mVIP");
-        case uVip:
+        case uVIP:
             return QString::fromUtf8("μVIP");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Vip:
+        case VIP:
             return QString("tVIP");
-        case mVip:
+        case mVIP:
             return QString("mtVIP");
-        case uVip:
+        case uVIP:
             return QString::fromUtf8("μtVIP");
         default:
             return QString("???");
@@ -83,23 +83,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case Vip:
+        case VIP:
             return QString("VIP");
-        case mVip:
-            return QString("Milli-Vip (1 / 1" THIN_SP_UTF8 "000)");
-        case uVip:
-            return QString("Micro-Vip (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case mVIP:
+            return QString("Milli-VIP (1 / 1" THIN_SP_UTF8 "000)");
+        case uVIP:
+            return QString("Micro-VIP (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case Vip:
-            return QString("TestVips");
-        case mVip:
-            return QString("Milli-TestVip (1 / 1" THIN_SP_UTF8 "000)");
-        case uVip:
-            return QString("Micro-TestVip (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case VIP:
+            return QString("TestVIPs");
+        case mVIP:
+            return QString("Milli-TestVIP (1 / 1" THIN_SP_UTF8 "000)");
+        case uVIP:
+            return QString("Micro-TestVIP (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -109,11 +109,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case Vip:
+    case VIP:
         return 100000000;
-    case mVip:
+    case mVIP:
         return 100000;
-    case uVip:
+    case uVIP:
         return 100;
     default:
         return 100000000;
@@ -123,11 +123,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case Vip:
+    case VIP:
         return 8;
-    case mVip:
+    case mVIP:
         return 5;
-    case uVip:
+    case uVIP:
         return 2;
     default:
         return 0;
