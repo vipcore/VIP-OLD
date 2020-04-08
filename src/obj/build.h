@@ -1,1 +1,2 @@
-// No build information available
+#define BUILD_SUFFIX 02fd093-dirty
+#define BUILD_DATE "2020-04-08 12:59:04 +0700"
