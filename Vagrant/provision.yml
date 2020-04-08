@@ -1,0 +1,81 @@
+---
+- hosts: all
+  become: true
+  gather_facts: false
+  pre_tasks:
+    - name: Install Python 2.x
+      raw: test -e /usr/bin/python || (apt update && apt install -y python-simplejson)
+      register: test
+      changed_when: test.stdout
+    - name: Gathering Facts
+      setup:
+
+  tasks:
+
+# Build Dependencies
+  - name: install essential packages
+    apt:
+      name: "{{ item }}"
+    with_items:
+      - build-essential
+      - libtool
+      - autotools-dev
+      - automake
+      - autoconf
+      - pkg-config
+      - libssl-dev
+      - libevent-dev
+      - libboost-all-dev # Ubuntu 12.04 and later; Debian 7 and later
+
+# Berkeley DB
+  - name: add bitcoin repository
+    apt_repository:
+      repo: ppa:bitcoin/bitcoin
+
+  - name: install correct berkeleydb packgges
+    apt:
+      name: "{{ item }}"
+    with_items: 
+      - libdb4.8-dev
+      - libdb4.8++-dev
+
+
+# GUI dependencies
+  - name: install gui dependencies
+    apt:
+      name: "{{ item }}"
+    with_items:
+      - libqt5gui5
+      - libqt5core5a
+      - libqt5dbus5
+      - qttools5-dev
+      - qttools5-dev-tools
+      - libprotobuf-dev
+      - protobuf-compiler
+
+# Git Checkout
+  - name: place vip repo
+    git:
+      repo: https://github.com/VIPCRYPTO/VIP.git
+      dest: "{{ shared_folder_remote }}"
+
+
+# Build
+  - name: configure vip
+    shell: "{{ item }}"
+    args:
+      chdir: "{{ shared_folder_remote }}"
+    with_items:
+      - ./autogen.sh
+      - ./configure
+    register: configure
+
+  - debug: msg="{{ configure }}"
+
+  - name: compile vip
+    make:
+      chdir: "{{ shared_folder_remote }}"
+    register: make
+
+  - debug: msg="{{ make }}"
+
