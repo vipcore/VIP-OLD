@@ -2267,7 +2267,7 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos to pačio nominalo
     </message>
     <message>
         <source>zVIP Control</source>
-        <translation>zXlq Kontrolė</translation>
+        <translation>zVip Kontrolė</translation>
     </message>
     <message>
         <source>zVIP Selected:</source>
@@ -3449,7 +3449,7 @@ Nesubrendusios: patvirtintos, bet mažiau nei 1 konvertacijos tos pačio nominal
     </message>
     </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

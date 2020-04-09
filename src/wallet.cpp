@@ -2143,7 +2143,7 @@ bool CWallet::SelectStakeCoins(std::list<std::unique_ptr<CStakeInput> >& listInp
             if (meta.nVersion < CZerocoinMint::STAKABLE_VERSION)
                 continue;
             if (meta.nHeight < chainActive.Height() - Params().Zerocoin_RequiredStakeDepth()) {
-                std::unique_ptr<CZXlqStake> input(new CZXlqStake(meta.denom, meta.hashStake));
+                std::unique_ptr<CZVipStake> input(new CZVipStake(meta.denom, meta.hashStake));
                 listInputs.emplace_back(std::move(input));
             }
         }
@@ -3045,7 +3045,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
             //Mark mints as spent
             if (stakeInput->IsZVIP()) {
-                CZXlqStake* z = (CZXlqStake*)stakeInput.get();
+                CZVipStake* z = (CZVipStake*)stakeInput.get();
                 if (!z->MarkSpent(this, txNew.GetHash()))
                     return error("%s: failed to mark mint as used\n", __func__);
             }
@@ -5068,7 +5068,7 @@ string CWallet::GetUniqueWalletBackupName(bool fzVIPAuto) const
     return strprintf("wallet%s.dat%s", fzVIPAuto ? "-autozVIPbackup" : "", DateTimeStrFormat(".%Y-%m-%d-%H-%M", GetTime()));
 }
 
-void CWallet::ZXlqBackupWallet()
+void CWallet::ZVipBackupWallet()
 {
     filesystem::path backupDir = GetDataDir() / "backups";
     filesystem::path backupPath;
@@ -5186,7 +5186,7 @@ string CWallet::MintZerocoin(CAmount nValue, CWalletTx& wtxNew, vector<CDetermin
 
     //Create a backup of the wallet
     if (fBackupMints)
-        ZXlqBackupWallet();
+        ZVipBackupWallet();
 
     return "";
 }
@@ -5208,7 +5208,7 @@ bool CWallet::SpendZerocoin(CAmount nAmount, int nSecurityLevel, CWalletTx& wtxN
     }
 
     if (fMintChange && fBackupMints)
-        ZXlqBackupWallet();
+        ZVipBackupWallet();
 
     CWalletDB walletdb(pwalletMain->strWalletFile);
     if (!CommitTransaction(wtxNew, reserveKey)) {

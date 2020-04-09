@@ -303,19 +303,19 @@ void PrivacyDialog::on_pushButtonSpendzVIP_clicked()
     sendzVIP();
 }
 
-void PrivacyDialog::on_pushButtonZXlqControl_clicked()
+void PrivacyDialog::on_pushButtonZVipControl_clicked()
 {
     if (!walletModel || !walletModel->getOptionsModel())
         return;
 
-    ZXlqControlDialog* zXlqControl = new ZXlqControlDialog(this);
-    zXlqControl->setModel(walletModel);
-    zXlqControl->exec();
+    ZVipControlDialog* zVipControl = new ZVipControlDialog(this);
+    zVipControl->setModel(walletModel);
+    zVipControl->exec();
 }
 
-void PrivacyDialog::setZXlqControlLabels(int64_t nAmount, int nQuantity)
+void PrivacyDialog::setZVipControlLabels(int64_t nAmount, int nQuantity)
 {
-    ui->labelzXlqSelected_int->setText(QString::number(nAmount));
+    ui->labelzVipSelected_int->setText(QString::number(nAmount));
     ui->labelQuantitySelected_int->setText(QString::number(nQuantity));
 }
 
@@ -424,8 +424,8 @@ void PrivacyDialog::sendzVIP()
     // use mints from zVIP selector if applicable
     vector<CMintMeta> vMintsToFetch;
     vector<CZerocoinMint> vMintsSelected;
-    if (!ZXlqControlDialog::setSelectedMints.empty()) {
-        vMintsToFetch = ZXlqControlDialog::GetSelectedMints();
+    if (!ZVipControlDialog::setSelectedMints.empty()) {
+        vMintsToFetch = ZVipControlDialog::GetSelectedMints();
 
         for (auto& meta : vMintsToFetch) {
             if (meta.nVersion < libzerocoin::PrivateCoin::PUBKEY_VERSION) {
@@ -497,8 +497,8 @@ void PrivacyDialog::sendzVIP()
     }
 
     // Clear zVIP selector in case it was used
-    ZXlqControlDialog::setSelectedMints.clear();
-    ui->labelzXlqSelected_int->setText(QString("0"));
+    ZVipControlDialog::setSelectedMints.clear();
+    ui->labelzVipSelected_int->setText(QString("0"));
     ui->labelQuantitySelected_int->setText(QString("0"));
 
     // Some statistics for entertainment

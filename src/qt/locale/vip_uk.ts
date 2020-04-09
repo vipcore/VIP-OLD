@@ -373,7 +373,7 @@
     </message>
     </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     </context>
 <context>
     <name>vip-core</name>

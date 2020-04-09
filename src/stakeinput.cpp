@@ -10,7 +10,7 @@
 #include "stakeinput.h"
 #include "wallet.h"
 
-CZXlqStake::CZXlqStake(const libzerocoin::CoinSpend& spend)
+CZVipStake::CZVipStake(const libzerocoin::CoinSpend& spend)
 {
     this->nChecksum = spend.getAccumulatorChecksum();
     this->denom = spend.getDenomination();
@@ -20,7 +20,7 @@ CZXlqStake::CZXlqStake(const libzerocoin::CoinSpend& spend)
     fMint = false;
 }
 
-int CZXlqStake::GetChecksumHeightFromMint()
+int CZVipStake::GetChecksumHeightFromMint()
 {
     int nHeightChecksum = chainActive.Height() - Params().Zerocoin_RequiredStakeDepth();
 
@@ -31,12 +31,12 @@ int CZXlqStake::GetChecksumHeightFromMint()
     return GetChecksumHeight(nChecksum, denom);
 }
 
-int CZXlqStake::GetChecksumHeightFromSpend()
+int CZVipStake::GetChecksumHeightFromSpend()
 {
     return GetChecksumHeight(nChecksum, denom);
 }
 
-uint32_t CZXlqStake::GetChecksum()
+uint32_t CZVipStake::GetChecksum()
 {
     return nChecksum;
 }
@@ -44,7 +44,7 @@ uint32_t CZXlqStake::GetChecksum()
 // The zVIP block index is the first appearance of the accumulator checksum that was used in the spend
 // note that this also means when staking that this checksum should be from a block that is beyond 60 minutes old and
 // 100 blocks deep.
-CBlockIndex* CZXlqStake::GetIndexFrom()
+CBlockIndex* CZVipStake::GetIndexFrom()
 {
     if (pindexFrom)
         return pindexFrom;
@@ -66,13 +66,13 @@ CBlockIndex* CZXlqStake::GetIndexFrom()
     return pindexFrom;
 }
 
-CAmount CZXlqStake::GetValue()
+CAmount CZVipStake::GetValue()
 {
     return denom * COIN;
 }
 
 //Use the first accumulator checkpoint that occurs 60 minutes after the block being staked from
-bool CZXlqStake::GetModifier(uint64_t& nStakeModifier)
+bool CZVipStake::GetModifier(uint64_t& nStakeModifier)
 {
     CBlockIndex* pindex = GetIndexFrom();
     if (!pindex)
@@ -92,7 +92,7 @@ bool CZXlqStake::GetModifier(uint64_t& nStakeModifier)
     }
 }
 
-CDataStream CZXlqStake::GetUniqueness()
+CDataStream CZVipStake::GetUniqueness()
 {
     //The unique identifier for a zVIP is a hash of the serial
     CDataStream ss(SER_GETHASH, 0);
@@ -100,7 +100,7 @@ CDataStream CZXlqStake::GetUniqueness()
     return ss;
 }
 
-bool CZXlqStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
+bool CZVipStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
 {
     CBlockIndex* pindexCheckpoint = GetIndexFrom();
     if (!pindexCheckpoint)
@@ -121,7 +121,7 @@ bool CZXlqStake::CreateTxIn(CWallet* pwallet, CTxIn& txIn, uint256 hashTxOut)
     return true;
 }
 
-bool CZXlqStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal)
+bool CZVipStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nTotal)
 {
     //Create an output returning the zVIP that was staked
     CTxOut outReward;
@@ -149,12 +149,12 @@ bool CZXlqStake::CreateTxOuts(CWallet* pwallet, vector<CTxOut>& vout, CAmount nT
     return true;
 }
 
-bool CZXlqStake::GetTxFrom(CTransaction& tx)
+bool CZVipStake::GetTxFrom(CTransaction& tx)
 {
     return false;
 }
 
-bool CZXlqStake::MarkSpent(CWallet *pwallet, const uint256& txid)
+bool CZVipStake::MarkSpent(CWallet *pwallet, const uint256& txid)
 {
     CzVIPTracker* zVIPTracker = pwallet->zVIPTracker.get();
     CMintMeta meta;

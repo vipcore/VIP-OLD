@@ -4858,7 +4858,7 @@ Either mint higher denominations (so fewer inputs are needed) or reduce the amou
     </message>
 </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>Select zVIP to Spend</source>
         <translation>사용할 zVIP 선택</translation>

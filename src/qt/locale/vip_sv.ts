@@ -4773,7 +4773,7 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     </message>
 </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>Select zVIP to Spend</source>
         <translation>Välj zVIP att Spendera</translation>

@@ -1670,8 +1670,8 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
         //Inititalize zVIPWallet
         uiInterface.InitMessage(_("Syncing zVIP wallet..."));
 
-        bool fEnableZXlqBackups = GetBoolArg("-backupzVIP", true);
-        pwalletMain->setZXlqAutoBackups(fEnableZXlqBackups);
+        bool fEnableZVipBackups = GetBoolArg("-backupzVIP", true);
+        pwalletMain->setZVipAutoBackups(fEnableZVipBackups);
 
         //Load zerocoin mint hashes to memory
         pwalletMain->zVIPTracker->Init();

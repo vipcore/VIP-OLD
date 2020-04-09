@@ -729,21 +729,21 @@
                          <number>0</number>
                         </property>
                         <item>
-                         <widget class="QPushButton" name="pushButtonZXlqControl">
+                         <widget class="QPushButton" name="pushButtonZVipControl">
                           <property name="text">
                            <string>zVIP Control</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzXlqSelected">
+                         <widget class="QLabel" name="labelzVipSelected">
                           <property name="text">
                            <string>zVIP Selected:</string>
                           </property>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QLabel" name="labelzXlqSelected_int">
+                         <widget class="QLabel" name="labelzVipSelected_int">
                           <property name="text">
                            <string>0</string>
                           </property>

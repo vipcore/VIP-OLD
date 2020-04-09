@@ -4848,7 +4848,7 @@ Präge entweder höhere Stückelungen (damit weniger Eingaben benötigt werdenn)
     </message>
 </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>Select zVIP to Spend</source>
         <translation>Wählen Sie die zVIP aus, die Sie ausgeben möchten</translation>

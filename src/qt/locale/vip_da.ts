@@ -2442,7 +2442,7 @@ For at aktivere AutoMint-ændring 'enablezeromint = 0' til 'enablezeromint = 1' 
     </message>
     <message>
         <source>Enter an amount of VIP to convert to zVIP</source>
-        <translation>Indtast en mængde VIP for at konvertere til zXlq</translation>
+        <translation>Indtast en mængde VIP for at konvertere til zVip</translation>
     </message>
     <message>
         <source>zVIP Control</source>
@@ -4553,11 +4553,11 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
     <message>
         <source>Spent zVIP</source>
-        <translation>Brugt zXlq</translation>
+        <translation>Brugt zVip</translation>
     </message>
     <message>
         <source>Received VIP from zVIP</source>
-        <translation>Modtaget VIP fra zXlq</translation>
+        <translation>Modtaget VIP fra zVip</translation>
     </message>
     <message>
         <source>Minted Change as zVIP from zVIP Spend</source>
@@ -4784,7 +4784,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
     <message>
         <source>Received VIP from zVIP</source>
-        <translation>Modtaget VIP fra zXlq</translation>
+        <translation>Modtaget VIP fra zVip</translation>
     </message>
     <message>
         <source>Zerocoin Spend, Change in zVIP</source>
@@ -4856,7 +4856,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
 </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>Select zVIP to Spend</source>
         <translation>Vælg zVIP for at bruge</translation>
@@ -4939,7 +4939,7 @@ Enten mint højere nomineringer (så færre input er nødvendige) eller reducere
     </message>
     <message>
         <source>Enable automatic wallet backups triggered after each zVIP minting (0-1, default: %u)</source>
-        <translation>Aktivér automatiske wallet-sikkerhedskopier udløst efter hver zXlq-mintning (0-1, standard: %u)</translation>
+        <translation>Aktivér automatiske wallet-sikkerhedskopier udløst efter hver zVip-mintning (0-1, standard: %u)</translation>
     </message>
     <message>
         <source>Enable or disable staking functionality for VIP inputs (0-1, default: %u)</source>

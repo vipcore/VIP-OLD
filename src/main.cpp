@@ -2832,7 +2832,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
     pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
-//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zXlqSpent: %s\n",
+//    LogPrintf("XX69----------> ConnectBlock(): nValueOut: %s, nValueIn: %s, nFees: %s, nMint: %s zVipSpent: %s\n",
 //              FormatMoney(nValueOut), FormatMoney(nValueIn),
 //              FormatMoney(nFees), FormatMoney(pindex->nMint), FormatMoney(nAmountZerocoinSpent));
 
@@ -4108,7 +4108,7 @@ bool ContextualCheckZerocoinStake(int nHeight, CStakeInput* stake)
     if (nHeight < Params().Zerocoin_Block_V2_Start())
         return error("%s: zVIP stake block is less than allowed start height", __func__);
 
-    if (CZXlqStake* zVIP = dynamic_cast<CZXlqStake*>(stake)) {
+    if (CZVipStake* zVIP = dynamic_cast<CZVipStake*>(stake)) {
         CBlockIndex* pindexFrom = zVIP->GetIndexFrom();
         if (!pindexFrom)
             return error("%s: failed to get index associated with zVIP stake checksum", __func__);

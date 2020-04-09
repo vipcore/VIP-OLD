@@ -1345,7 +1345,7 @@
     </message>
     </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

@@ -1556,7 +1556,7 @@ QDialog#CoinControlDialog .CoinControlTreeWidget#treeWidget::indicator { /* Coin
 
 }
 
-QDialog#ZXlqControlDialog .QTreeWidget#treeWidget { /* zVIP Control Widget Container */
+QDialog#ZVipControlDialog .QTreeWidget#treeWidget { /* zVIP Control Widget Container */
 outline:0;
 background-color:#ffffff;
 border:1px solid #333;

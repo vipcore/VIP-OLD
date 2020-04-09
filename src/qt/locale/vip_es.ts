@@ -2443,7 +2443,7 @@ Para habilitar AutoMint cambie 'enablezeromint = 0' a 'enablezeromint = 1' en vi
     </message>
     <message>
         <source>Enter an amount of VIP to convert to zVIP</source>
-        <translation>Introduzca la cantidad de VIP que desea convertir a zXlq</translation>
+        <translation>Introduzca la cantidad de VIP que desea convertir a zVip</translation>
     </message>
     <message>
         <source>zVIP Control</source>
@@ -4857,7 +4857,7 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
     </message>
 </context>
 <context>
-    <name>ZXlqControlDialog</name>
+    <name>ZVipControlDialog</name>
     <message>
         <source>Select zVIP to Spend</source>
         <translation>Selecciona zVIP para Gastar</translation>

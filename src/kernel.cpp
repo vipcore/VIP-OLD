@@ -22,7 +22,7 @@ bool fTestNet = false; //Params().NetworkID() == CBaseChainParams::TESTNET;
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 3-hour for production network and 20-minute for test network
 unsigned int nModifierInterval;
-int nStakeTargetSpacing = 60;
+int nStakeTargetSpacing = 300;
 unsigned int getIntervalVersion(bool fTestNet)
 {
     if (fTestNet)
@@ -359,7 +359,7 @@ bool CheckProofOfStake(const CBlock block, uint256& hashProofOfStake, std::uniqu
         if (spend.getSpendType() != libzerocoin::SpendType::STAKE)
             return error("%s: spend is using the wrong SpendType (%d)", __func__, (int)spend.getSpendType());
 
-        stake = std::unique_ptr<CStakeInput>(new CZXlqStake(spend));
+        stake = std::unique_ptr<CStakeInput>(new CZVipStake(spend));
     } else {
         // First try finding the previous transaction in database
         uint256 hashBlock;
