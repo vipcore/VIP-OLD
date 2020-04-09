@@ -1,2 +1,2 @@
-#define BUILD_SUFFIX Alpha
-#define BUILD_DATE "2020-04-09 20:00:00 +0700"
+#define BUILD_SUFFIX 4c3b0db-dirty
+#define BUILD_DATE "2020-04-09 22:50:05 +0700"
