@@ -141,7 +141,7 @@ public:
 		strDeveloperFeePayee = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
 		
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 652625;
+        nLastPOWBlock = 395200;
         nModifierUpdateBlock = 615800;
         nZerocoinStartHeight = 100000;
         nZerocoinStartTime = 1577836800;
