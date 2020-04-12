@@ -137,6 +137,7 @@ public:
         nTargetSpacing = 1 * 60;  // VIP: 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 10;
+        nMasternodeCollateralAmt = 4000;
         nMaxMoneyOut = 1000000 * COIN;
 		strDeveloperFeePayee = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
 		
