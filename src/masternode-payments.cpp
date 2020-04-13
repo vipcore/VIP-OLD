@@ -316,8 +316,8 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, int64_t nFe
 
 	double devfeePercent = pindexPrev->nHeight + 1 >= DEV_FEE_BLOCK_ACTIVATION ? 0.1 : 0.00;
 	
-    CAmount blockValue = GetBlockValue(pindexPrev->nHeight);
-    CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight, blockValue, 0, fZVIPStake);
+    CAmount blockValue = GetBlockValue(pindexPrev->nHeight+1);
+    CAmount masternodePayment = GetMasternodePayment(pindexPrev->nHeight+1, blockValue, 0, fZVIPStake);
 	CAmount developerfeePayment = blockValue * devfeePercent;
 
 	CBitcoinAddress developerfeeaddress(Params().GetDeveloperFeePayee());
@@ -601,10 +601,11 @@ bool CMasternodeBlockPayees::IsTransactionValid(const CTransaction& txNew)
     BOOST_FOREACH (CMasternodePayee& payee, vecPayments) {
         BOOST_FOREACH (CTxOut out, txNew.vout) {
             if (payee.scriptPubKey == out.scriptPubKey) {
-                if(out.nValue >= requiredMasternodePayment)
+                if(out.nValue == requiredMasternodePayment)
                     foundMasternodePayment = true;
                 else
-                    LogPrint("masternode","Masternode payment is out of drift range. Paid=%s Min=%s\n", FormatMoney(out.nValue).c_str(), FormatMoney(requiredMasternodePayment).c_str());
+                    LogPrintf("%s : Masternode payment value (%s) different from required value (%s).\n",
+                        __func__, FormatMoney(out.nValue).c_str(), FormatMoney(requiredMasternodePayment).c_str());
             }
         }
 

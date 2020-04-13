@@ -16,6 +16,8 @@
 
 #include <boost/assign/list_of.hpp>
 
+#define NEVER 2035454400
+
 using namespace std;
 using namespace boost::assign;
 
@@ -143,19 +145,21 @@ public:
 		
         /** Height or Time Based Activations **/
         nLastPOWBlock = 395200;
+        nBlockTimeChange = 670000;
         nModifierUpdateBlock = 615800;
-        nZerocoinStartHeight = 100000;
-        nZerocoinStartTime = 1577836800;
-        nBlockEnforceSerialRange = 100000; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 100000; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 100000; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 100000; //Last valid accumulator checkpoint
-        nBlockEnforceInvalidUTXO = 100000; //Start enforcing the invalid UTXO's
+        nBadPosStartBlockTime = 1546603519; //01/04/2019 @ 12:05pm (UTC)
+        nBadPosStartBlocknBits = 0x1e015636;
+        nZerocoinStartHeight = NEVER;
+        nZerocoinStartTime = NEVER;
+        nBlockEnforceSerialRange = NEVER;       //Enforce serial range starting this block
+        nBlockRecalculateAccumulators = NEVER; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = NEVER;          //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = NEVER; //Last valid accumulator checkpoint
+        nBlockEnforceInvalidUTXO = NEVER; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = 100000; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockZerocoinV2 = NEVER; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
 		
-        nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
-        nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
+
 
         const char* pszTimestamp = "Vip, Value is Precious, 22 December 2018 The Day of Krakatau tsunami";
         CMutableTransaction txNew;
@@ -242,6 +246,7 @@ public:
         nPoolMaxTransactions = 3;
         nEnforceNewSporkKey = 1566748666; //!> Sporks signed after 08/25/2019 @ 3:57pm (UTC) must use the new spork key
         nRejectOldSporkKey = 1568073600;  //!> Fully reject old spork key after 09/10/2019 @ 12:00am (UTC)
+
         strSporkKey = "02b233adf70ac36e778015ae2eb8cf7d9092183c3334e98fad0e2aea5723ef271d";
         strSporkKeyOld = "049e53e687fdafd78fd42d730fad0e7ea1819396176a2cb85d7a76fa4559cdbd2c2f05330a6f5cbadb44a6c1d324f167e679e9f3e95d9d5649761a3e7f59bf4500";
         strObfuscationPoolDummyAddress = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
@@ -294,6 +299,7 @@ public:
         nTargetTimespan = 1 * 60; // VIP: 1 day
         nTargetSpacing = 1 * 60;  // VIP: 1 minute
         nLastPOWBlock = 200;
+        nBlockTimeChange = 670000;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT

@@ -116,8 +116,8 @@ bool fLiteMode = false;
 bool fEnableHyperSend = true;
 int nHyperSendDepth = 5;
 // Automatic Zerocoin minting
-bool fEnableZeromint = true;
-int nZeromintPercentage = 10;
+bool fEnableZeromint = false;
+int nZeromintPercentage = 0;
 int nPreferredDenom = 0;
 const int64_t AUTOMINT_DELAY = (60 * 5); // Wait at least 5 minutes until Automint starts
 
@@ -516,7 +516,21 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL)
             fclose(configFile);
-        return; // Nothing to read, so just return
+        {
+            std::string strHeader =
+                "# VIP Configuration File!\n"
+                "addnode=51.79.51.168:28181\n"
+                "addnode=45.32.218.96:28181\n"
+                "addnode=45.63.76.96:28181\n"
+                "addnode=140.82.44.86:28181\n"
+                "addnode=144.202.63.34:28181\n"
+                "addnode=98.214.20.153:28181\n"
+                "addnode=207.148.9.97:28181\n";
+            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+            fclose(configFile);
+            streamConfig.open(GetConfigFile());
+        }
+        //return; // Nothing to read, so just return
     }
 
     set<string> setOptions;

@@ -1823,6 +1823,7 @@ int64_t GetBlockValue(int nHeight)
 	if (nHeight == 0) return 80000 * COIN;
         
     int64_t nSubsidy; 
+	nHeight--;
     if(nHeight <= 1 && nHeight > 0) {
         nSubsidy = 1 * COIN;
     } else if (nHeight > 1 && nHeight <= 100000) {
@@ -1850,7 +1851,15 @@ int64_t GetBlockValue(int nHeight)
     } else if (nHeight > 900000) {
         nSubsidy = 0.1 * COIN;
     }
-    
+
+    // Check if we reached the coin max supply.
+    int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
+
+    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
+        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
+    if (nMoneySupply >= Params().MaxMoneyOut())
+        nSubsidy = 0;
+
     return nSubsidy;
 }
 
@@ -2874,9 +2883,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
+    CAmount nExpectedMint = GetBlockValue(pindex->nHeight);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
+
+	if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
+        LogPrintf("ConnectBlock(): You took too much man, too much, too much but also Ignoring overmint / Bad pos start at block %d\n", pindex->nHeight);
+        nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
+    }
 
     //Check that the block does not overmint
     if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
@@ -6199,14 +6213,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    // SPORK_14 is used for 70913 (v3.1.0+)
-    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
+    if (IsSporkActive(SPORK_17_NEW_PROTOCOL_ENFORCEMENT_3))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
-
-    // SPORK_15 was used for 70912 (v3.0.5+), commented out now.
-    //if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
-    //        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
-
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 }
 
