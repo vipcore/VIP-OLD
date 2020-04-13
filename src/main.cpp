@@ -4131,10 +4131,12 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     ActivateBestChain(statePrev);
                     return true;
                 }
-            }
-
+            } 
             return state.DoS(100, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
+        } else if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
+            LogPrint("masternode", "IsBlockValueValid() : Turn the goddam music up! My heart feels like an alligator! Accepting block for from bad POS Start.\n");
+            return true;
         }
 
     }
