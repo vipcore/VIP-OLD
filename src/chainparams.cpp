@@ -149,7 +149,7 @@ public:
         nModifierUpdateBlock = 615800;
         nBadPosStartBlockTime = 1546603519; //01/04/2019 @ 12:05pm (UTC)
         nBadPosStartBlocknBits = 0x1e015636;
-        nZerocoinStartHeight = NEVER;
+        nZerocoinStartHeight = 0;
         nZerocoinStartTime = NEVER;
         nBlockEnforceSerialRange = NEVER;       //Enforce serial range starting this block
         nBlockRecalculateAccumulators = NEVER; //Trigger a recalculation of accumulators
