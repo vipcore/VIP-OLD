@@ -147,8 +147,8 @@ public:
         nLastPOWBlock = 395200;
         nBlockTimeChange = 670000;
         nModifierUpdateBlock = 615800;
-        nBadPosStartBlockTime = 1546603519; //01/04/2019 @ 12:05pm (UTC)
-        nBadPosStartBlocknBits = 0x1e015636;
+        nBadPosStartBlockTime = 1546604168; //01/04/2019 @ 12:16pm (UTC)
+        nBadPosStartBlocknBits = 0x1e014d1f;
         nZerocoinStartHeight = NEVER;
         nZerocoinStartTime = NEVER;
         nBlockEnforceSerialRange = NEVER;       //Enforce serial range starting this block
