@@ -149,7 +149,7 @@ public:
         nModifierUpdateBlock = 615800;
         nBadPosStartBlockTime = 1546603519; //01/04/2019 @ 12:05pm (UTC)
         nBadPosStartBlocknBits = 0x1e015636;
-        nZerocoinStartHeight = 0;
+        nZerocoinStartHeight = NEVER;
         nZerocoinStartTime = NEVER;
         nBlockEnforceSerialRange = NEVER;       //Enforce serial range starting this block
         nBlockRecalculateAccumulators = NEVER; //Trigger a recalculation of accumulators
@@ -239,9 +239,9 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fSkipProofOfWorkCheck = true; //false
+        fSkipProofOfWorkCheck = false;
         fTestnetToBeDeprecatedFieldRPC = false;
-        fHeadersFirstSyncingActive = true; //false
+        fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
         nEnforceNewSporkKey = 1566748666; //!> Sporks signed after 08/25/2019 @ 3:57pm (UTC) must use the new spork key
@@ -263,7 +263,7 @@ public:
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = 1; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zVIP to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
