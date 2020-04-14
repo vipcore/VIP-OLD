@@ -4201,7 +4201,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             }
             return state.DoS(100, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
-        } else if (nHeight == 230 || 231 || 232){
+        } else if (pindexPrev->nHeight == 230 || pindexPrev->nHeight == 231 || pindexPrev->nHeight 232) {
 		//else if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
             LogPrint("masternode", "IsBlockValueValid() : Turn the goddam music up! My heart feels like an alligator! Accepting block for from bad POS Start.\n");
             return true;
