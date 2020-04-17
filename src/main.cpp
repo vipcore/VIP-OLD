@@ -2693,7 +2693,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
 
     if (pindex->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") ||
-        pindex->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e")) {
+        pindex->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
+        pindex->nHeight == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
         LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
         return true;
     } else if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake()) {
@@ -3965,7 +3966,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
     }
 
 	if (nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") || 
-		nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e")) {
+		nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
+        nHeight == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
         LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", nHeight);
         return true;
     }
@@ -4276,7 +4278,8 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
     }
 
 	if (pindexPrev->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") ||
-		pindexPrev->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e")) {
+		pindexPrev->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
+        pindexPrev->nHeight == 232 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
         LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
         return true;
     }
@@ -5424,18 +5427,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
                 if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
-        if (!vRecv.empty()) {
-            vRecv >> LIMITED_STRING(pfrom->strSubVer, 256);
-            pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
-        }
-        // broken releases with wrong blockchain data
-        if (pfrom->cleanSubVer == "/VIP Core:2.1.1.4 /" ||
-            pfrom->cleanSubVer == "/VIP Core:2.2.0.1 /" ||
-            pfrom->cleanSubVer == "/VIP Core:2.2.1.3 /") { 
-            LOCK(cs_main);
-            Misbehaving(pfrom->GetId(), 100); // instantly ban them because they have bad block data
-            return false;
-        }
 
         if (!vRecv.empty()) {
             vRecv >> LIMITED_STRING(pfrom->strSubVer, 256);
