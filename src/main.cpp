@@ -2693,12 +2693,13 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
 
     if (pindex->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") ||
-             pindex->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e"))
+        pindex->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e")) {
         LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
         return true;
-    else if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake())
+    } else if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake()) {
         return state.DoS(100, error("ConnectBlock() : PoS period not active"),
             REJECT_INVALID, "PoS-early");
+    }
     
 
     if (pindex->nHeight > Params().LAST_POW_BLOCK() && block.IsProofOfWork())
