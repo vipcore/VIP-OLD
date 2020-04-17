@@ -5419,10 +5419,21 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand))
             return false;
 
-        if (pfrom->nVersion == 10300)
-            pfrom->nVersion = 300;
-        if (!vRecv.empty())
+                if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
+        if (!vRecv.empty()) {
+            vRecv >> LIMITED_STRING(pfrom->strSubVer, 256);
+            pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
+        }
+        // broken releases with wrong blockchain data
+        if (pfrom->cleanSubVer == "/VIP Core:2.1.1.4 /" ||
+            pfrom->cleanSubVer == "/VIP Core:2.2.0.1 /" ||
+            pfrom->cleanSubVer == "/VIP Core:2.2.1.3 /") { 
+            LOCK(cs_main);
+            Misbehaving(pfrom->GetId(), 100); // instantly ban them because they have bad block data
+            return false;
+        }
+
         if (!vRecv.empty()) {
             vRecv >> LIMITED_STRING(pfrom->strSubVer, 256);
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
