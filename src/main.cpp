@@ -3824,7 +3824,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     return true;
 }
 
-bool CheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
+bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     // These are checks that are independent of context.
 
@@ -3960,7 +3960,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* pinde
         }
     }
 
-	if (pindex->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d")) {
+	if (nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d")) {
         LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
         return true;
     }
