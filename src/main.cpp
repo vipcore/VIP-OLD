@@ -4002,7 +4002,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     }
 
     if (nHeight == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
-        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
+        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", nHeight);
         return true;
     } else if (block.nBits != nBitsRequired) {
     
