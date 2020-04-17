@@ -2887,10 +2887,15 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
-	if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
+	if (pindex->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d")) {
+        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
+        return true;
+	}
+
+	/*if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
         LogPrintf("ConnectBlock(): You took too much man, too much, too much but also Ignoring overmint / Bad pos start at block %d\n", pindex->nHeight);
         nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
-    }
+    }*/
 
     //Check that the block does not overmint
     if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
