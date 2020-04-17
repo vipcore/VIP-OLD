@@ -3824,7 +3824,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
     return true;
 }
 
-bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
+bool CheckBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckSig)
 {
     // These are checks that are independent of context.
 
