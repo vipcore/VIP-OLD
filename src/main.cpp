@@ -4001,13 +4001,13 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 
-    if (block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
-        return true;
-    } else if (block.nBits != nBitsRequired) {
-    
+	if (block.nBits != nBitsRequired)     
     return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+
+	if (pindexPrev->nHeight + 1 <= 100000) {
+            return true;
 	}
-    return true;
+
 }
 
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
