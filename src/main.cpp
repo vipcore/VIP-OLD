@@ -4001,12 +4001,12 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 
-	if (block.nBits != nBitsRequired)     
-    return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+	if (pindexPrev->nHeight <= 100000) {
+        return true;
+    }else if (block.nBits != nBitsRequired) {
+        return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
+    }
 
-	if (pindexPrev->nHeight + 1 <= 100000) {
-            return true;
-	}
 
 }
 
