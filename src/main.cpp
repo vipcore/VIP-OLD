@@ -4001,7 +4001,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 
-    if (pindexPrev->nHeight + 1 == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
+    if (block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
         return true;
     } else if (block.nBits != nBitsRequired) {
     
