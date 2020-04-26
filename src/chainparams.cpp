@@ -16,8 +16,6 @@
 
 #include <boost/assign/list_of.hpp>
 
-#define NEVER 2035454400
-
 using namespace std;
 using namespace boost::assign;
 
@@ -56,10 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000007e8f7dcdcd4a2d699a306c5ed9df0cf5b90c8754570b2148ea2eb80d2bf")) 
-	//(230, uint256("0x0000010e75d8aa6ed150c2c37d2f7412bdd34c0e8b37cc817e14b0e5f53bceef"))
-	//(231, uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d"))	
-	//(232, uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e"))
+    (0, uint256("0x000007e8f7dcdcd4a2d699a306c5ed9df0cf5b90c8754570b2148ea2eb80d2bf"))
     (17664, uint256("0xe6bb541553bd7cffbe9bf45fbe4559881a9e3fb748ee4a1c53dc74e496140dbe"))
     (29739, uint256("0x5d03b8ad6b1ab5d8295e032c4bef9da90418c204341cf3e68bffff629c1af68f"))
     (64396, uint256("0x597edf272b7b8d7a406e8787ae4e1c502eaab8f799b3e8569d75a0e3fe107659"))
@@ -142,27 +137,24 @@ public:
         nTargetSpacing = 1 * 60;  // VIP: 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 10;
-        nMasternodeCollateralAmt = 4000;
         nMaxMoneyOut = 1000000 * COIN;
 		strDeveloperFeePayee = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
 		
         /** Height or Time Based Activations **/
         nLastPOWBlock = 395200;
-        nBlockTimeChange = 670000;
         nModifierUpdateBlock = 615800;
-        nBadPosStartBlockTime = 1546604168; //01/04/2019 @ 12:16pm (UTC)
-        nBadPosStartBlocknBits = 0x1e014d1f;
-        nZerocoinStartHeight = NEVER;
-        nZerocoinStartTime = NEVER;
-        nBlockEnforceSerialRange = NEVER;       //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = NEVER; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = NEVER;          //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = NEVER; //Last valid accumulator checkpoint
-        nBlockEnforceInvalidUTXO = NEVER; //Start enforcing the invalid UTXO's
+        nZerocoinStartHeight = 100000;
+        nZerocoinStartTime = 1577836800;
+        nBlockEnforceSerialRange = 100000; //Enforce serial range starting this block
+        nBlockRecalculateAccumulators = 100000; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = 100000; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = 100000; //Last valid accumulator checkpoint
+        nBlockEnforceInvalidUTXO = 100000; //Start enforcing the invalid UTXO's
         nInvalidAmountFiltered = 0*COIN; //Amount of invalid coins filtered through exchanges, that should be considered valid
-        nBlockZerocoinV2 = NEVER; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
+        nBlockZerocoinV2 = 100000; //!> The block that zerocoin v2 becomes active - roughly Tuesday, May 8, 2018 4:00:00 AM GMT
 		
-
+        nEnforceNewSporkKey = 1525158000; //!> Sporks signed after (GMT): Tuesday, May 1, 2018 7:00:00 AM GMT must use the new spork key
+        nRejectOldSporkKey = 1527811200; //!> Fully reject old spork key after (GMT): Friday, June 1, 2018 12:00:00 AM
 
         const char* pszTimestamp = "Vip, Value is Precious, 22 December 2018 The Day of Krakatau tsunami";
         CMutableTransaction txNew;
@@ -242,14 +234,13 @@ public:
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
-        fSkipProofOfWorkCheck = true;
+        fSkipProofOfWorkCheck = true; //false
         fTestnetToBeDeprecatedFieldRPC = false;
-        fHeadersFirstSyncingActive = false;
+        fHeadersFirstSyncingActive = true; //false
 
         nPoolMaxTransactions = 3;
         nEnforceNewSporkKey = 1566748666; //!> Sporks signed after 08/25/2019 @ 3:57pm (UTC) must use the new spork key
         nRejectOldSporkKey = 1568073600;  //!> Fully reject old spork key after 09/10/2019 @ 12:00am (UTC)
-
         strSporkKey = "02b233adf70ac36e778015ae2eb8cf7d9092183c3334e98fad0e2aea5723ef271d";
         strSporkKeyOld = "049e53e687fdafd78fd42d730fad0e7ea1819396176a2cb85d7a76fa4559cdbd2c2f05330a6f5cbadb44a6c1d324f167e679e9f3e95d9d5649761a3e7f59bf4500";
         strObfuscationPoolDummyAddress = "VBkHCDZSf3znuDPtZJck6dmSXhPzzAzF5E";
@@ -266,7 +257,7 @@ public:
         nMintRequiredConfirmations = 20; //the maximum amount of confirmations until accumulated in 19
         nRequiredAccumulation = 1;
         nDefaultSecurityLevel = 100; //full security level for accumulators
-        nZerocoinHeaderVersion = 4; //Block headers must be this version once zerocoin is active
+        nZerocoinHeaderVersion = 1; //Block headers must be this version once zerocoin is active
         nZerocoinRequiredStakeDepth = 200; //The required confirmations for a zVIP to be stakable
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
@@ -302,7 +293,6 @@ public:
         nTargetTimespan = 1 * 60; // VIP: 1 day
         nTargetSpacing = 1 * 60;  // VIP: 1 minute
         nLastPOWBlock = 200;
-        nBlockTimeChange = 670000;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
