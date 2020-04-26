@@ -1786,10 +1786,6 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
     return true;
 }
 
-CAmount GetCurrentCollateral()
-{
-        return Params().MasternodeCollateralAmt();
-}
 
 double ConvertBitsToDouble(unsigned int nBits)
 {
@@ -1810,9 +1806,6 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-CBitcoinAddress addressExp1("DQZzqnSR6PXxagep1byLiRg9ZurCZ5KieQ");
-CBitcoinAddress addressExp2("DTQYdnNqKuEHXyNeeYhPQGGGdqHbXYwjpj");
-
 int64_t GetBlockValue(int nHeight)
 {
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
@@ -1823,7 +1816,6 @@ int64_t GetBlockValue(int nHeight)
 	if (nHeight == 0) return 80000 * COIN;
         
     int64_t nSubsidy; 
-	nHeight--;
     if(nHeight <= 1 && nHeight > 0) {
         nSubsidy = 1 * COIN;
     } else if (nHeight > 1 && nHeight <= 100000) {
@@ -1851,62 +1843,25 @@ int64_t GetBlockValue(int nHeight)
     } else if (nHeight > 900000) {
         nSubsidy = 0.1 * COIN;
     }
-
-    // Check if we reached the coin max supply.
-    int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-
-    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
-        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
-    if (nMoneySupply >= Params().MaxMoneyOut())
-        nSubsidy = 0;
-
+    
     return nSubsidy;
 }
 
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount, bool isZVIPStake)
 {
-    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+	if (Params().NetworkID() == CBaseChainParams::TESTNET) {
         if (nHeight < 200)
             return 0;
     }
-
-    int64_t ret = 0;
-
-    if (nHeight <= 20 && nHeight > 0) {
+	
+  int64_t ret = 0;
+    
+    if(nHeight <= 20 && nHeight > 0) {
         ret = blockValue / 100 * 70;
     } else if (nHeight > 20 && nHeight <= 5000000) {
         ret = blockValue / 100 * 70;
-    } else if (nHeight > 5000000) {
-        int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-
-        if (nMasternodeCount < 1) {
-            nMasternodeCount = mnodeman.stable_size();
-        }
-
-        int64_t mNodeCoins = nMasternodeCount * 4000 * COIN;
-
-        if (mNodeCoins == 0) {
-            ret = 0;
-        } else {
-            double lockedCoinValue = mNodeCoins / nMoneySupply;
-
-
-            double masternodeMultiplier = 1 - lockedCoinValue;
-
-            if (masternodeMultiplier < .1) {
-                masternodeMultiplier = .1;
-            } else if (masternodeMultiplier > .9) {
-                masternodeMultiplier = .9;
-            }
-
-            LogPrintf("[LIBRA] Adjusting Libra at height %d with %d masternodes (%d % locked Vip) and %d Vip supply at %ld\n", nHeight, nMasternodeCount, lockedCoinValue * 100, nMoneySupply, GetTime());
-            LogPrintf("[LIBRA] Masternode: %d\n", masternodeMultiplier * 100);
-            LogPrintf("[LIBRA] Staker: %d\n", (1 - masternodeMultiplier) * 100);
-
-            ret = blockValue * masternodeMultiplier;
-        }
-    }
-
+    } else if (nHeight > 5000000) 
+	
     return ret;
 }
 
@@ -2076,6 +2031,9 @@ bool CScriptCheck::operator()()
     }
     return true;
 }
+
+CBitcoinAddress addressExp1("DQZzqnSR6PXxagep1byLiRg9ZurCZ5KieQ");
+CBitcoinAddress addressExp2("DTQYdnNqKuEHXyNeeYhPQGGGdqHbXYwjpj");
 
 map<COutPoint, COutPoint> mapInvalidOutPoints;
 map<CBigNum, CAmount> mapInvalidSerials;
@@ -2691,17 +2649,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return true;
     }
 
-
-    if (pindex->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") ||
-        pindex->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
-        pindex->nHeight == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
-        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
-        return true;
-    } else if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake()) {
+    if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake())
         return state.DoS(100, error("ConnectBlock() : PoS period not active"),
             REJECT_INVALID, "PoS-early");
-    }
-    
 
     if (pindex->nHeight > Params().LAST_POW_BLOCK() && block.IsProofOfWork())
         return state.DoS(100, error("ConnectBlock() : PoW period ended"),
@@ -2891,16 +2841,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->nHeight);
+    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
-
-
-
-	/*if ((block.nTime == Params().BadPosStartBlockTime()) && (block.nBits == Params().BadPosStartBlocknBits())) {
-        LogPrintf("ConnectBlock(): You took too much man, too much, too much but also Ignoring overmint / Bad pos start at block %d\n", pindex->nHeight);
-        nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
-    }*/
 
     //Check that the block does not overmint
     if (!IsBlockValueValid(block, nExpectedMint, pindex->nMint)) {
@@ -3815,7 +3758,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
             REJECT_INVALID, "high-hash");
 
     // Version 4 header must be used after Params().Zerocoin_StartHeight(). And never before.
-    /*if (block.GetBlockTime() > Params().Zerocoin_StartTime()) {
+    if (block.GetBlockTime() > Params().Zerocoin_StartTime()) {
         if(block.nVersion < Params().Zerocoin_HeaderVersion())
             return state.DoS(50, error("CheckBlockHeader() : block version must be above 6 after ZerocoinStartHeight"),
             REJECT_INVALID, "block-version");
@@ -3823,8 +3766,7 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool f
         if (block.nVersion >= Params().Zerocoin_HeaderVersion())
             return state.DoS(50, error("CheckBlockHeader() : block version must be below 6 before ZerocoinStartHeight"),
             REJECT_INVALID, "block-version");
-    }*/
-	//Zero will not be used in this chain and will be removed over time
+    }
 
     return true;
 }
@@ -3965,12 +3907,6 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
         }
     }
 
-	if (nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") || 
-		nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
-        nHeight == 233 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
-        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", nHeight);
-        return true;
-    }
 
     unsigned int nSigOps = 0;
     BOOST_FOREACH (const CTransaction& tx, block.vtx) {
@@ -4001,13 +3937,10 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
         return true;
     }
 
-	if (pindexPrev->nHeight <= 100000) {
-        return true;
-    } else if (pindexPrev->nHeight > 100000 && block.nBits != nBitsRequired) {
+    if (block.nBits != nBitsRequired)
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);
-    }
 
-
+    return true;
 }
 
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, CBlockIndex* const pindexPrev)
@@ -4150,7 +4083,8 @@ bool AcceptBlockHeader(const CBlock& block, CValidationState& state, CBlockIndex
                     ActivateBestChain(statePrev);
                     return true;
                 }
-            } 
+            }
+
             return state.DoS(100, error("%s : prev block height=%d hash=%s is invalid, unable to add block %s", __func__, pindexPrev->nHeight, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
                              REJECT_INVALID, "bad-prevblk");
         }
@@ -4219,7 +4153,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
                 }
             }
             return state.DoS(100, error("%s : prev block %s is invalid, unable to add block %s", __func__, block.hashPrevBlock.GetHex(), block.GetHash().GetHex()),
-                REJECT_INVALID, "bad-prevblk");
+                             REJECT_INVALID, "bad-prevblk");
         }
     }
 
@@ -4278,13 +4212,6 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
             return error("AcceptBlock() : ReceivedBlockTransactions failed");
     } catch (std::runtime_error& e) {
         return state.Abort(std::string("System error: ") + e.what());
-    }
-
-	if (pindexPrev->nHeight == 231 && block.GetHash() == uint256("0x038071108137ede7d6f31adbd2e113b85850600cb703cf35b94fa83d898d2d8d") ||
-		pindexPrev->nHeight == 232 && block.GetHash() == uint256("0xfbec0d8bb8c17b2152703d13dba2d9a2fa4200465824e462403efeeff7edab7e") ||
-        pindexPrev->nHeight == 232 && block.GetHash() == uint256("0xd311a1397c7bfb5008b38d957df7c5c2661ce9e189def1373381cf6e5fc4e586")) {
-        LogPrintf("ConnectBlock(): No more of that talk or I'll put the fucking leeches on you, understand? Get in. Bad pos start at block %d\n", pindex->nHeight);
-        return true;
     }
 
     return true;
@@ -5428,9 +5355,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pfrom->DisconnectOldProtocol(ActiveProtocol(), strCommand))
             return false;
 
-                if (!vRecv.empty())
+        if (pfrom->nVersion == 10300)
+            pfrom->nVersion = 300;
+        if (!vRecv.empty())
             vRecv >> addrFrom >> nNonce;
-
         if (!vRecv.empty()) {
             vRecv >> LIMITED_STRING(pfrom->strSubVer, 256);
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
@@ -6238,8 +6166,14 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 //       it was the one which was commented out
 int ActiveProtocol()
 {
-    if (IsSporkActive(SPORK_17_NEW_PROTOCOL_ENFORCEMENT_3))
+    // SPORK_14 is used for 70913 (v3.1.0+)
+    if (IsSporkActive(SPORK_14_NEW_PROTOCOL_ENFORCEMENT))
             return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+
+    // SPORK_15 was used for 70912 (v3.0.5+), commented out now.
+    //if (IsSporkActive(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2))
+    //        return MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT;
+
     return MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT;
 }
 
