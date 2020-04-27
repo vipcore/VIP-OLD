@@ -1955,13 +1955,13 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
                 bool found = false;
                 if (nCoinType == ONLY_DENOMINATED) {
                     found = IsDenominatedAmount(pcoin->vout[i].nValue);
-                } else if (nCoinType == ONLY_NOT4000IFMN) {
+                } else if (nCoinType == ONLY_NOT10000IFMN) {
                     found = !(fMasterNode && pcoin->vout[i].nValue == 4000 * COIN);
-                } else if (nCoinType == ONLY_NONDENOMINATED_NOT4000IFMN) {
+                } else if (nCoinType == ONLY_NONDENOMINATED_NOT10000IFMN) {
                     if (IsCollateralAmount(pcoin->vout[i].nValue)) continue; // do not use collateral amounts
                     found = !IsDenominatedAmount(pcoin->vout[i].nValue);
                     if (found && fMasterNode) found = pcoin->vout[i].nValue != 4000 * COIN; // do not use Hot MN funds
-                } else if (nCoinType == ONLY_4000) {
+                } else if (nCoinType == ONLY_10000) {
                     found = pcoin->vout[i].nValue == 4000 * COIN;
                 } else {
                     found = true;
@@ -1985,7 +1985,7 @@ void CWallet::AvailableCoins(vector<COutput>& vCoins, bool fOnlyConfirmed, const
                 if (mine == ISMINE_WATCH_ONLY && nWatchonlyConfig == 1)
                     continue;
 
-                if (IsLockedCoin((*it).first, i) && nCoinType != ONLY_4000)
+                if (IsLockedCoin((*it).first, i) && nCoinType != ONLY_10000)
                     continue;
                 if (pcoin->vout[i].nValue <= 0 && !fIncludeZeroValue)
                     continue;
@@ -2374,7 +2374,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
     std::random_shuffle(vCoins.rbegin(), vCoins.rend());
 
     //keep track of each denomination that we have
-    bool fFound4000 = false;
+    bool fFound10000 = false;
     bool fFound1000 = false;
     bool fFound100 = false;
     bool fFound10 = false;
@@ -2382,7 +2382,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
     bool fFoundDot1 = false;
 
     //Check to see if any of the denomination are off, in that case mark them as fulfilled
-    if (!(nDenom & (1 << 0))) fFound4000 = true;
+    if (!(nDenom & (1 << 0))) fFound10000 = true;
     if (!(nDenom & (1 << 1))) fFound1000 = true;
     if (!(nDenom & (1 << 2))) fFound100 = true;
     if (!(nDenom & (1 << 3))) fFound10 = true;
@@ -2397,7 +2397,7 @@ bool CWallet::SelectCoinsByDenominations(int nDenom, CAmount nValueMin, CAmount 
 
             // Function returns as follows:
             //
-            // bit 0 - 4000 VIP+1 ( bit on if present )
+            // bit 0 - 10000 VIP+1 ( bit on if present )
             // bit 1 - 1000 VIP+1
             // bit 2 - 100 VIP+1
             // bit 3 - 10 VIP+1
