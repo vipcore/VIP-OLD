@@ -8,6 +8,7 @@
 #ifndef BITCOIN_CHAIN_H
 #define BITCOIN_CHAIN_H
 
+#include "chainparams.h"
 #include "pow.h"
 #include "primitives/block.h"
 #include "tinyformat.h"
@@ -167,6 +168,7 @@ public:
     uint256 hashProofOfStake;
     int64_t nMint;
     int64_t nMoneySupply;
+    uint256 nStakeModifierV2;
 
     //! block header
     int nVersion;
@@ -202,6 +204,7 @@ public:
         nMoneySupply = 0;
         nFlags = 0;
         nStakeModifier = 0;
+        nStakeModifierV2 = uint256();
         nStakeModifierChecksum = 0;
         prevoutStake.SetNull();
         nStakeTime = 0;
@@ -224,7 +227,7 @@ public:
         SetNull();
     }
 
-    CBlockIndex(const CBlock& block)
+   /* CBlockIndex(const CBlock& block)
     {
         SetNull();
 
@@ -253,7 +256,27 @@ public:
             prevoutStake.SetNull();
             nStakeTime = 0;
         }
+    }*/
+
+    CBlockIndex(const CBlock& block)
+    {
+        SetNull();
+
+        nVersion = block.nVersion;
+        hashMerkleRoot = block.hashMerkleRoot;
+        nTime = block.nTime;
+        nBits = block.nBits;
+        nNonce = block.nNonce;
+        if(block.nVersion > 3)
+            nAccumulatorCheckpoint = block.nAccumulatorCheckpoint;
+
+        if (block.IsProofOfStake()) {
+            SetProofOfStake();
+            prevoutStake = block.vtx[1].vin[0].prevout;
+            nStakeTime = block.nTime;
+        }
     }
+
     
 
     CDiskBlockPos GetBlockPos() const
@@ -460,7 +483,14 @@ public:
         READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
-        READWRITE(nStakeModifier);
+
+        // v1/v2 modifier selection.
+        if (!Params().IsStakeModifierV2(nHeight)) {
+            READWRITE(nStakeModifier);
+        } else {
+            READWRITE(nStakeModifierV2);
+        }
+
         if (IsProofOfStake()) {
             READWRITE(prevoutStake);
             READWRITE(nStakeTime);

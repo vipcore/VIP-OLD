@@ -1813,34 +1813,26 @@ int64_t GetBlockValue(int nHeight)
             return 250000 * COIN;
     }
 	
-	if (nHeight == 0) return 80000 * COIN;
+	if (nHeight == 0) return 485000 * COIN;
         
     int64_t nSubsidy; 
     if(nHeight <= 1 && nHeight > 0) {
         nSubsidy = 1 * COIN;
-    } else if (nHeight > 1 && nHeight <= 100000) {
-        nSubsidy = 1 * COIN;
-    } else if (nHeight > 100000 && nHeight <= 142500) {
-        nSubsidy = 0.8 * COIN;
-    } else if (nHeight > 142500 && nHeight <= 142503) {
-        nSubsidy = 1 * COIN;
-    } else if (nHeight > 142503 && nHeight <= 200000) {
-        nSubsidy = 0.8 * COIN;
-    } else if (nHeight > 200000 && nHeight <= 300000) {
-        nSubsidy = 0.64 * COIN;
-    } else if (nHeight > 300000 && nHeight <= 400000) {
-        nSubsidy = 0.512 * COIN;
-    } else if (nHeight > 400000 && nHeight <= 500000) {    
+    } else if (nHeight > 1 && nHeight <= 100) {
+        nSubsidy = 0.5 * COIN;
+    } else if (nHeight > 100 && nHeight <= 100000) {
+        nSubsidy = 0.45 * COIN;
+    } else if (nHeight > 100000 && nHeight <= 200000) {    
         nSubsidy = 0.4 * COIN;
-    } else if (nHeight > 500000 && nHeight <= 600000) {
+    } else if (nHeight > 200000 && nHeight <= 300000) {
         nSubsidy = 0.32 * COIN;
-    } else if (nHeight > 600000 && nHeight <= 700000) {
+    } else if (nHeight > 300000 && nHeight <= 400000) {
         nSubsidy = 0.256 * COIN;
-    } else if (nHeight > 700000 && nHeight <= 800000) {
+    } else if (nHeight > 400000 && nHeight <= 500000) {
         nSubsidy = 0.2 * COIN;    
-    } else if (nHeight > 800000 && nHeight <= 900000) {
+    } else if (nHeight > 500000 && nHeight <= 600000) {
         nSubsidy = 0.15 * COIN;  
-    } else if (nHeight > 900000) {
+    } else if (nHeight > 600000) {
         nSubsidy = 0.1 * COIN;
     }
     
@@ -1861,9 +1853,9 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
     } else if (nHeight > 20 && nHeight <= 5000000) {
         ret = blockValue / 100 * 70;
     } else if (nHeight > 5000000) 
-	
     return ret;
 }
+
 
 bool IsInitialBlockDownload()
 {

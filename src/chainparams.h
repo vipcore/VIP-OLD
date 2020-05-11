@@ -76,7 +76,12 @@ public:
     int64_t TargetTimespan() const { return nTargetTimespan; }
     int64_t TargetSpacing() const { return nTargetSpacing; }
     int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
+
     int COINBASE_MATURITY() const { return nMaturity; }
+
+    int COINSTAKE_MIN_DEPTH() const { return nStakeMinDepth; }
+    bool HasStakeMinAgeOrDepth(const int contextHeight, const uint32_t contextTime, const int utxoFromBlockHeight, const uint32_t utxoFromBlockTime) const;
+
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodeCountDrift() const { return nMasternodeCountDrift; }
@@ -91,6 +96,7 @@ public:
     const std::vector<CAddress>& FixedSeeds() const { return vFixedSeeds; }
     virtual const Checkpoints::CCheckpointData& Checkpoints() const = 0;
     int PoolMaxTransactions() const { return nPoolMaxTransactions; }
+    bool IsStakeModifierV2(const int nHeight) const { return nHeight >= nBlockStakeModifierlV2; }
 
     /** Spork key and Masternode Handling **/
     std::string SporkKey() const { return strSporkKey; }
@@ -148,6 +154,7 @@ protected:
     int nLastPOWBlock;
     int nMasternodeCountDrift;
     int nMaturity;
+    int nStakeMinDepth;
     int nModifierUpdateBlock;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
@@ -191,6 +198,7 @@ protected:
     int nBlockLastGoodCheckpoint;
     int nBlockEnforceInvalidUTXO;
     int nBlockZerocoinV2;
+    int nBlockStakeModifierlV2;
 	
 	std::string strDeveloperFeePayee;
 };

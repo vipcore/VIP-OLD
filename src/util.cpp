@@ -116,8 +116,8 @@ bool fLiteMode = false;
 bool fEnableHyperSend = true;
 int nHyperSendDepth = 5;
 // Automatic Zerocoin minting
-bool fEnableZeromint = true;
-int nZeromintPercentage = 10;
+bool fEnableZeromint = false;
+int nZeromintPercentage = 0;
 int nPreferredDenom = 0;
 const int64_t AUTOMINT_DELAY = (60 * 5); // Wait at least 5 minutes until Automint starts
 
@@ -428,7 +428,7 @@ boost::filesystem::path GetDefaultDataDir()
 // Windows < Vista: C:\Documents and Settings\Username\Application Data\VIP
 // Windows >= Vista: C:\Users\Username\AppData\Roaming\VIP
 // Mac: ~/Library/Application Support/VIP
-// Unix: ~/.vip
+// Unix: ~/.VIP
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "VIP";
@@ -446,7 +446,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "VIP";
 #else
     // Unix
-    return pathRet / ".vip";
+    return pathRet / ".VIP";
 #endif
 #endif
 }
