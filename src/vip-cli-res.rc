@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "VIP"
-            VALUE "FileDescription",    "VIP-cli (OSS RPC client for VIP)"
+            VALUE "CompanyName",        "Vip"
+            VALUE "FileDescription",    "Vip-cli (OSS RPC client for Vip)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "vip-cli"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "vip-cli.exe"
-            VALUE "ProductName",        "VIP-cli"
+            VALUE "ProductName",        "Vip-cli"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

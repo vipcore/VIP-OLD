@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  vipd The VIP core server.
+#  vipd The Vip core server.
 #
 #
 # chkconfig: 345 80 20

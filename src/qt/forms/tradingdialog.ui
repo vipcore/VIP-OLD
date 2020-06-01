@@ -181,7 +181,7 @@
       <string>Asks</string>
      </property>
     </widget>
-    <widget class="QLabel" name="VIPSupply">
+    <widget class="QLabel" name="VipSupply">
      <property name="geometry">
       <rect>
        <x>540</x>
@@ -197,7 +197,7 @@
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="VIPDemand">
+    <widget class="QLabel" name="VipDemand">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -432,7 +432,7 @@
     <attribute name="title">
      <string>Buy</string>
     </attribute>
-    <widget class="QPushButton" name="BuyVIP">
+    <widget class="QPushButton" name="BuyVip">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -442,7 +442,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Buy VIP</string>
+      <string>Buy Vip</string>
      </property>
      <property name="icon">
       <iconset resource="../vip.qrc">
@@ -512,7 +512,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>VIP</string>
+      <string>Vip</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_5">
@@ -1704,10 +1704,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>VIP</string>
+      <string>Vip</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="UnitsInputVIP">
+    <widget class="QLineEdit" name="UnitsInputVip">
      <property name="geometry">
       <rect>
        <x>310</x>
@@ -1741,7 +1741,7 @@
       </font>
      </property>
     </widget>
-    <widget class="QPushButton" name="SellVIPBTN">
+    <widget class="QPushButton" name="SellVipBTN">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1751,7 +1751,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Sell VIP</string>
+      <string>Sell Vip</string>
      </property>
      <property name="icon">
       <iconset resource="../vip">
@@ -1777,12 +1777,12 @@
          </font>
         </property>
         <property name="text">
-         <string>VIP Available:</string>
+         <string>Vip Available:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="VIPAvailableLabel">
+       <widget class="QLabel" name="VipAvailableLabel">
         <property name="palette">
          <palette>
           <active>
@@ -2213,7 +2213,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="labelVIP">
+       <widget class="QLabel" name="labelVip">
         <property name="font">
          <font>
           <weight>75</weight>
@@ -2221,7 +2221,7 @@
          </font>
         </property>
         <property name="text">
-         <string>VIP</string>
+         <string>Vip</string>
         </property>
        </widget>
       </item>
@@ -2733,7 +2733,7 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QLabel" name="VIPBalanceLabel">
+    <widget class="QLabel" name="VipBalanceLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2762,7 +2762,7 @@
       </font>
      </property>
      <property name="text">
-      <string>VIP Balance:</string>
+      <string>Vip Balance:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -2784,7 +2784,7 @@
       <string>BTC Balance:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="VIPAvailableLabel_2">
+    <widget class="QLabel" name="VipAvailableLabel_2">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2813,7 +2813,7 @@
       </font>
      </property>
      <property name="text">
-      <string>VIP Available:</string>
+      <string>Vip Available:</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">
@@ -2832,10 +2832,10 @@
       </font>
      </property>
      <property name="text">
-      <string>VIP Pending:</string>
+      <string>Vip Pending:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="VIPPendingLabel">
+    <widget class="QLabel" name="VipPendingLabel">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -2928,7 +2928,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Bittrex VIP Deposit Address:</string>
+      <string>Bittrex Vip Deposit Address:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="GenDepositBTN">
@@ -2941,7 +2941,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate VIP Deposit Address</string>
+      <string>Generate Vip Deposit Address</string>
      </property>
      <property name="icon">
       <iconset resource="../vip.qrc">
@@ -3155,7 +3155,7 @@
        <string notr="true">border: 1px solid #61696c;margin-left:4px;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnConvertVIP">
+     <widget class="QPushButton" name="btnConvertVip">
       <property name="geometry">
        <rect>
         <x>260</x>

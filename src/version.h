@@ -1,7 +1,7 @@
 // Copyright (c) 2012-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018-2019 The Vip developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,24 +12,25 @@
  * network protocol versioning
  */
 
-static const int PROTOCOL_VERSION = 70731;
+static const int PROTOCOL_VERSION = 70740;
 
 //! initial proto version, to be increased after version/verack negotiation
-static const int INIT_PROTO_VERSION = 209;
+static const int INIT_PROTO_VERSION = 210;
 
 //! In this version, 'getheaders' was introduced.
-static const int GETHEADERS_VERSION = 70077;
+static const int GETHEADERS_VERSION = 70740;
 
 //! disconnect from peers older than this proto version
-static const int MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT = 70730;
-static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 70731;
-
-//! masternodes older than this proto version use old strMessage format for mnannounce
-static const int MIN_PEER_MNANNOUNCE = 70913;
+static const int MIN_PEER_PROTO_VERSION_BEFORE_ENFORCEMENT = 70740;
+static const int MIN_PEER_PROTO_VERSION_AFTER_ENFORCEMENT = 70740;
 
 //! nTime field added to CAddress, starting with this version;
 //! if possible, avoid requesting addresses nodes older than this
 static const int CADDR_TIME_VERSION = 31402;
+
+//! only request blocks from nodes outside this range of versions
+static const int NOBLKS_VERSION_START = 32000;
+static const int NOBLKS_VERSION_END = 32400;
 
 //! BIP 0031, pong message, is enabled for all versions AFTER this one
 static const int BIP0031_VERSION = 60000;

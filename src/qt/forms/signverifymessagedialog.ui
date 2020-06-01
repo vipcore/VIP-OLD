@@ -42,15 +42,18 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_1_SM">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_SM">
            <property name="toolTip">
-            <string>The VIP address to sign the message with</string>
+            <string>The Vip address to sign the message with</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="addressBookButton_SM">
+          <widget class="QPushButton" name="addressBookButton_SM">
            <property name="toolTip">
             <string>Choose previously used address</string>
            </property>
@@ -64,10 +67,13 @@
            <property name="shortcut">
             <string>Alt+A</string>
            </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="pasteButton_SM">
+          <widget class="QPushButton" name="pasteButton_SM">
            <property name="toolTip">
             <string>Paste address from clipboard</string>
            </property>
@@ -80,6 +86,9 @@
            </property>
            <property name="shortcut">
             <string>Alt+P</string>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -104,6 +113,9 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2_SM">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QLineEdit" name="signatureOut_SM">
            <property name="font">
@@ -117,7 +129,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="copySignatureButton_SM">
+          <widget class="QPushButton" name="copySignatureButton_SM">
            <property name="toolTip">
             <string>Copy the current signature to the system clipboard</string>
            </property>
@@ -128,6 +140,9 @@
             <iconset resource="../vip.qrc">
              <normaloff>:/icons/editcopy</normaloff>:/icons/editcopy</iconset>
            </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
           </widget>
          </item>
         </layout>
@@ -137,7 +152,7 @@
          <item>
           <widget class="QPushButton" name="signMessageButton_SM">
            <property name="toolTip">
-            <string>Sign the message to prove you own this VIP address</string>
+            <string>Sign the message to prove you own this Vip address</string>
            </property>
            <property name="text">
             <string>Sign &amp;Message</string>
@@ -237,15 +252,18 @@
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_1_VM">
+         <property name="spacing">
+          <number>0</number>
+         </property>
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_VM">
            <property name="toolTip">
-            <string>The VIP address the message was signed with</string>
+            <string>The Vip address the message was signed with</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="addressBookButton_VM">
+          <widget class="QPushButton" name="addressBookButton_VM">
            <property name="toolTip">
             <string>Choose previously used address</string>
            </property>
@@ -258,6 +276,9 @@
            </property>
            <property name="shortcut">
             <string>Alt+A</string>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -274,7 +295,7 @@
          <item>
           <widget class="QPushButton" name="verifyMessageButton_VM">
            <property name="toolTip">
-            <string>Verify the message to ensure it was signed with the specified VIP address</string>
+            <string>Verify the message to ensure it was signed with the specified Vip address</string>
            </property>
            <property name="text">
             <string>Verify &amp;Message</string>

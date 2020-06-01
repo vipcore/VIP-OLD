@@ -1,11 +1,11 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build VIP in Unix.
+Some notes on how to build Vip in Unix.
 
 Note
 ---------------------
 Always use absolute paths to configure and compile vip and the dependencies,
-for example, when specifying the path of the dependency:
+for example, when specifying the the path of the dependency:
 
 	../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
 
@@ -33,7 +33,6 @@ These dependencies are required:
  ------------|------------------|----------------------
  libssl      | SSL Support      | Secure communications
  libboost    | Boost            | C++ Library
- libevent    | Events           | Asynchronous event notification
 
 Optional dependencies:
 
@@ -44,7 +43,6 @@ Optional dependencies:
  qt          | GUI              | GUI toolkit (only needed when GUI enabled)
  protobuf    | Payments in GUI  | Data interchange format used for payment protocol (only needed when GUI enabled)
  libqrencode | QR codes in GUI  | Optional for generating QR codes (only needed when GUI enabled)
- univalue    | Utility          | JSON parsing and encoding (bundled version will be used unless --with-system-univalue passed to configure)
 
 For the versions used in the release, see [release-process.md](release-process.md) under *Fetch and build inputs*.
 
@@ -52,14 +50,14 @@ System requirements
 --------------------
 
 C++ compilers are memory-hungry. It is recommended to have at least 1 GB of
-memory available when compiling VIP Core. With 512MB of memory or less
+memory available when compiling Vip Core. With 512MB of memory or less
 compilation will take much longer due to swap thrashing.
 
 Dependency Build Instructions: Ubuntu & Debian
 ----------------------------------------------
 Build requirements:
 
-	sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
+	sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev
 
 For Ubuntu 12.04 and later or Debian 7 and later libboost-all-dev has to be installed:
 
@@ -85,7 +83,7 @@ Optional:
 Dependencies for the GUI: Ubuntu & Debian
 -----------------------------------------
 
-If you want to build VIP-Qt, make sure that the required packages for Qt development
+If you want to build Vip-Qt, make sure that the required packages for Qt development
 are installed. Qt 5 is necessary to build the GUI.
 If both Qt 4 and Qt 5 are installed, Qt 5 will be used.
 To build without GUI pass `--without-gui`.
@@ -132,10 +130,10 @@ Berkeley DB
 It is recommended to use Berkeley DB 4.8. If you have to build it yourself:
 
 ```bash
-VIP_ROOT=$(pwd)
+Vip_ROOT=$(pwd)
 
 # Pick some path to install BDB to, here we create a directory within the vip directory
-BDB_PREFIX="${VIP_ROOT}/db4"
+BDB_PREFIX="${Vip_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
@@ -150,8 +148,8 @@ cd db-4.8.30.NC/build_unix/
 ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX
 make install
 
-# Configure VIP Core to use our own-built instance of BDB
-cd $VIP_ROOT
+# Configure Vip Core to use our own-built instance of BDB
+cd $Vip_ROOT
 ./configure (other args...) LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"
 ```
 
@@ -168,7 +166,7 @@ If you need to build Boost yourself:
 
 Security
 --------
-To help make your VIP installation more secure by making certain attacks impossible to
+To help make your Vip installation more secure by making certain attacks impossible to
 exploit even if a vulnerability is found, binaries are hardened by default.
 This can be disabled with:
 

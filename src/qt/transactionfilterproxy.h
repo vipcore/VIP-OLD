@@ -1,7 +1,5 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
-// Distributed under the MIT software license, see the accompanying
+// Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_TRANSACTIONFILTERPROXY_H
@@ -26,8 +24,8 @@ public:
     static const QDateTime MAX_DATE;
     /** Type filter bit field (all types) */
     static const quint32 ALL_TYPES = 0xFFFFFFFF;
-    /** Type filter bit field (all types but Obfuscation-SPAM ... enum 0-14 are common) */
-    static const quint32 COMMON_TYPES = 0x0005FFFF;
+    /** Type filter bit field (all types but Darksend-SPAM) */
+    static const quint32 COMMON_TYPES = 4479;
 
     static quint32 TYPE(int type) { return 1 << type; }
 
