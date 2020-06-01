@@ -134,30 +134,6 @@ public:
         genesis.nNonce = 1859864;
         
         hashGenesisBlock = genesis.GetHash();
-        /*if(genesis.GetHash() != uint256("0x"))
-        {
-        printf("MSearching for genesis block...\n");
-        uint256 hashTarget;
-        hashTarget.SetCompact(genesis.nBits);
-        while(uint256(genesis.GetHash()) > uint256(hashTarget))
-        {
-            ++genesis.nNonce;
-            if (genesis.nNonce == 0)
-            {
-                printf("Mainnet NONCE WRAPPED, incrementing time");
-                std::cout << std::string("Mainnet NONCE WRAPPED, incrementing time:\n");
-                ++genesis.nTime;
-            }
-            if (genesis.nNonce % 10000 == 0)
-            {
-               printf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
-            }
-        }
-        printf("Mainnet block.nTime = %u \n", genesis.nTime);
-        printf("Mainnet block.nNonce = %u \n", genesis.nNonce);
-        printf("Mainnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("Mainnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        }*/
         assert(hashGenesisBlock == uint256("0x000004589d9a041118abe6aaf5c22ff30d5f1bca5835ad39d8fe35e88b95afc9"));
         assert(genesis.hashMerkleRoot == uint256("0x8b7c3f00d6c414dce8892df35a72053ecbaa9fb99211451b370693e31290de09"));
 
@@ -247,30 +223,6 @@ public:
         genesis.nNonce = 2352558;
         
         hashGenesisBlock = genesis.GetHash();
-        /*if(genesis.GetHash() != uint256("0x"))
-        {
-        printf("MSearching for genesis block...\n");
-        uint256 hashTarget;
-        hashTarget.SetCompact(genesis.nBits);
-        while(uint256(genesis.GetHash()) > uint256(hashTarget))
-        {
-            ++genesis.nNonce;
-            if (genesis.nNonce == 0)
-            {
-                printf("Testnet NONCE WRAPPED, incrementing time");
-                std::cout << std::string("Testnet NONCE WRAPPED, incrementing time:\n");
-                ++genesis.nTime;
-            }
-            if (genesis.nNonce % 10000 == 0)
-            {
-               printf("Testnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
-            }
-        }
-        printf("Testnet block.nTime = %u \n", genesis.nTime);
-        printf("Testnet block.nNonce = %u \n", genesis.nNonce);
-        printf("Testnet block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("Testnet block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        }*/
         assert(hashGenesisBlock == uint256("0x000001c99ad9325fd6a1ab85127706c188cbf625f999cf8a182265e8810188b2"));
 
         vFixedSeeds.clear();
@@ -358,30 +310,6 @@ public:
         
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 55700;
-        /*if(genesis.GetHash() != uint256("0x"))
-        {
-        printf("MSearching for genesis block...\n");
-        uint256 hashTarget;
-        hashTarget.SetCompact(genesis.nBits);
-        while(uint256(genesis.GetHash()) > uint256(hashTarget))
-        {
-            ++genesis.nNonce;
-            if (genesis.nNonce == 0)
-            {
-                printf("Regtest NONCE WRAPPED, incrementing time");
-                std::cout << std::string("Regtest NONCE WRAPPED, incrementing time:\n");
-                ++genesis.nTime;
-            }
-            if (genesis.nNonce % 10000 == 0)
-            {
-               printf("Regtest: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
-            }
-        }
-        printf("Regtest block.nTime = %u \n", genesis.nTime);
-        printf("Regtest block.nNonce = %u \n", genesis.nNonce);
-        printf("Regtest block.hashMerkleRoot: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("Regtest block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        }*/
         assert(hashGenesisBlock == uint256("0x00000ff05aa1f65b42cb37fd1808f9ee1aef03552d59b72f542558f8ded9723c"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
