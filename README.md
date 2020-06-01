@@ -19,6 +19,6 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>• Max Coin Output/Supply: 1,000,000 VIP </br>
 <br>• Masternode Requirements: 4,000 VIP  </br>
 <br>• Maturity: 11 Confirmations  </br>
-<br>• Prefix: Vip adresses start with the capital letter "V"  </br>
+<br>• Prefix: Vip adresses start with the capital letter "W"  </br>
 <br>• [Block-Explorer](http://explorer.vipcore.vip/)</br>
 
