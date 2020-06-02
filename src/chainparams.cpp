@@ -112,7 +112,7 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // VIP: 1 day
         nTargetSpacing = 2 * 60;  // VIP: 2 minute
-        nLastPOWBlock = 100;
+        nLastPOWBlock = 250;
         nMaturity = 20;
         nMasternodeCountDrift = 20;
         nMasternodeColleteral = 4000; //Collateral Amount
