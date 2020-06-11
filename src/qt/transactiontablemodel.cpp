@@ -1,4 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
+// Copyright (c) 2014-2016 The Dash developers
+// Copyright (c) 2016-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -334,28 +337,17 @@ QString TransactionTableModel::formatTxType(const TransactionRecord* wtx) const
         return tr("Masternode Reward");
     case TransactionRecord::RecvFromOther:
         return tr("Received from");
-    case TransactionRecord::RecvWithDarksend:
-        return tr("Received via Darksend");
+    case TransactionRecord::RecvWithObfuscation:
+        return tr("Received via Obfuscation");
     case TransactionRecord::SendToAddress:
     case TransactionRecord::SendToOther:
         return tr("Sent to");
     case TransactionRecord::SendToSelf:
         return tr("Payment to yourself");
     case TransactionRecord::StakeMint:
-        return tr("Minted");
-    case TransactionRecord::Generated:
-        return tr("Mined");
-    case TransactionRecord::DarksendDenominate:
-        return tr("Darksend Denominate");
-    case TransactionRecord::DarksendCollateralPayment:
-        return tr("Darksend Collateral Payment");
-    case TransactionRecord::DarksendMakeCollaterals:
-        return tr("Darksend Make Collateral Inputs");
-    case TransactionRecord::DarksendCreateDenominations:
-        return tr("Darksend Create Denominations");
-    case TransactionRecord::Obfuscated:
-        return tr("Obfuscated");
-
+        return tr("VIP Stake");
+    //case TransactionRecord::YouTube:
+    //    return tr("YouTube Mining");
     default:
         return QString();
     }
@@ -366,10 +358,10 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord* wtx
     switch (wtx->type) {
     case TransactionRecord::Generated:
     case TransactionRecord::StakeMint:
-        return QIcon(":/icons/tx_mined");
+    //case TransactionRecord::YouTube:
     case TransactionRecord::MNReward:
-        return QIcon(":/icons/tx_mn");
-    case TransactionRecord::RecvWithDarksend:
+        return QIcon(":/icons/tx_mined");
+    case TransactionRecord::RecvWithObfuscation:
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::RecvFromOther:
         return QIcon(":/icons/tx_input");
@@ -394,11 +386,12 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord* wtx, b
         return QString::fromStdString(wtx->address) + watchAddress;
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::MNReward:
-    case TransactionRecord::RecvWithDarksend:
+    case TransactionRecord::RecvWithObfuscation:
     case TransactionRecord::SendToAddress:
     case TransactionRecord::Generated:
     case TransactionRecord::StakeMint:
-        return lookupAddress(wtx->address, tooltip);
+	//case TransactionRecord::YouTube:
+    //    return lookupAddress(wtx->address, tooltip);
     case TransactionRecord::Obfuscated:
         return lookupAddress(wtx->address, tooltip) + watchAddress;
     case TransactionRecord::SendToOther:
@@ -413,7 +406,6 @@ QVariant TransactionTableModel::addressColor(const TransactionRecord* wtx) const
 {
     switch (wtx->type) {
     case TransactionRecord::SendToSelf:
-        return COLOR_BAREADDRESS;
     // Show addresses without label in a less visible color
     case TransactionRecord::RecvWithAddress:
     case TransactionRecord::SendToAddress:
@@ -470,7 +462,7 @@ QVariant TransactionTableModel::txStatusDecoration(const TransactionRecord* wtx)
         return QIcon(":/icons/transaction_conflicted");
     case TransactionStatus::Immature: {
         int total = wtx->status.depth + wtx->status.matures_in;
-        int part = (wtx->status.depth * 4 / total) + 1;
+        int part = (wtx->status.depth * 5 / total) + 1;
         return QIcon(QString(":/icons/transaction_%1").arg(part));
     }
     case TransactionStatus::MaturesWarning:
@@ -550,8 +542,20 @@ QVariant TransactionTableModel::data(const QModelIndex& index, int role) const
     case Qt::TextAlignmentRole:
         return column_alignments[index.column()];
     case Qt::ForegroundRole:
-        // Non-confirmed (but not immature) as transactions are grey
-        if (!rec->status.countsForBalance && rec->status.status != TransactionStatus::Immature) {
+        // Minted
+        if (rec->type == TransactionRecord::Generated || rec->type == TransactionRecord::StakeMint ||
+                rec->type == TransactionRecord::StakeZVIP || rec->type == TransactionRecord::MNReward) {
+            if (rec->status.status == TransactionStatus::Conflicted || rec->status.status == TransactionStatus::NotAccepted)
+                return COLOR_ORPHAN;
+            else
+                return COLOR_STAKE;
+        }
+        // Conflicted tx
+        if (rec->status.status == TransactionStatus::Conflicted || rec->status.status == TransactionStatus::NotAccepted) {
+            return COLOR_CONFLICTED;
+        }
+        // Unconfimed or immature
+        if ((rec->status.status == TransactionStatus::Unconfirmed) || (rec->status.status == TransactionStatus::Immature)) {
             return COLOR_UNCONFIRMED;
         }
         if (index.column() == Amount && (rec->credit + rec->debit) < 0) {

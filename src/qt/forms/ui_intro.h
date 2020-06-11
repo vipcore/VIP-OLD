@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'intro.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -181,12 +181,12 @@ public:
 
     void retranslateUi(QDialog *Intro)
     {
-        Intro->setWindowTitle(QApplication::translate("Intro", "Welcome", 0));
-        label_2->setText(QApplication::translate("Intro", "Welcome to Vip Core.", 0));
-        label_4->setText(QApplication::translate("Intro", "As this is the first time the program is launched, you can choose where Vip Core will store its data.", 0));
-        sizeWarningLabel->setText(QApplication::translate("Intro", "Vip Core will download and store a copy of the Vip block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.", 0));
-        dataDirDefault->setText(QApplication::translate("Intro", "Use the default data directory", 0));
-        dataDirCustom->setText(QApplication::translate("Intro", "Use a custom data directory:", 0));
+        Intro->setWindowTitle(QApplication::translate("Intro", "Welcome", Q_NULLPTR));
+        label_2->setText(QApplication::translate("Intro", "Welcome to VIP Core.", Q_NULLPTR));
+        label_4->setText(QApplication::translate("Intro", "As this is the first time the program is launched, you can choose where VIP Core will store its data.", Q_NULLPTR));
+        sizeWarningLabel->setText(QApplication::translate("Intro", "VIP Core will download and store a copy of the VIP block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.", Q_NULLPTR));
+        dataDirDefault->setText(QApplication::translate("Intro", "Use the default data directory", Q_NULLPTR));
+        dataDirCustom->setText(QApplication::translate("Intro", "Use a custom data directory:", Q_NULLPTR));
         freeSpace->setText(QString());
     } // retranslateUi
 

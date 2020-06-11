@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'rpcconsole.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -97,10 +97,15 @@ public:
     QSpacerItem *verticalSpacer_4;
     QWidget *tab_peers;
     QGridLayout *gridLayout_2;
+    QVBoxLayout *verticalLayout_101;
     QTableView *peerWidget;
+    QLabel *banHeading;
+    QTableView *banlistWidget;
     QLabel *peerHeading;
     QWidget *detailWidget;
     QGridLayout *gridLayout_3;
+    QLabel *label_30;
+    QLabel *peerWhitelisted;
     QLabel *label_23;
     QLabel *peerDirection;
     QLabel *label_21;
@@ -113,6 +118,8 @@ public:
     QLabel *peerHeight;
     QLabel *label_27;
     QLabel *peerSyncHeight;
+    QLabel *label_25;
+    QLabel *peerCommonHeight;
     QLabel *label_24;
     QLabel *peerBanScore;
     QLabel *label_22;
@@ -127,6 +134,10 @@ public:
     QLabel *peerBytesRecv;
     QLabel *label_26;
     QLabel *peerPingTime;
+    QLabel *peerPingWaitLabel;
+    QLabel *peerPingWait;
+    QLabel *label_timeoffset;
+    QLabel *timeoffset;
     QSpacerItem *verticalSpacer_3;
     QWidget *tab_repair;
     QGridLayout *gridLayout_4;
@@ -134,6 +145,10 @@ public:
     QLabel *label_repair_helptext;
     QLabel *wallet_path_label;
     QLabel *wallet_path;
+    QLabel *wallet_custombackuppath_label;
+    QLabel *wallet_custombackuppath;
+    QLabel *wallet_custombackupthreshold_label;
+    QLabel *wallet_custombackupthreshold;
     QSpacerItem *verticalSpacer_repair1;
     QPushButton *btn_salvagewallet;
     QLabel *label_repair_salvage_command;
@@ -153,6 +168,9 @@ public:
     QPushButton *btn_reindex;
     QLabel *label_repair_reindex_command;
     QLabel *label_repair_reindex;
+    QPushButton *btn_resync;
+    QLabel *label_repair_resync_command;
+    QLabel *label_repair_resync;
     QSpacerItem *verticalSpacer_repair2;
 
     void setupUi(QDialog *RPCConsole)
@@ -297,6 +315,9 @@ public:
 
         masternodeCount = new QLabel(tab_info);
         masternodeCount->setObjectName(QStringLiteral("masternodeCount"));
+        masternodeCount->setCursor(QCursor(Qt::IBeamCursor));
+        masternodeCount->setTextFormat(Qt::PlainText);
+        masternodeCount->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
         gridLayout->addWidget(masternodeCount, 10, 1, 1, 1);
 
@@ -383,7 +404,9 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
         clearButton->setIcon(icon);
+#ifndef QT_NO_SHORTCUT
         clearButton->setShortcut(QStringLiteral("Ctrl+L"));
+#endif // QT_NO_SHORTCUT
         clearButton->setAutoDefault(false);
 
         horizontalLayout->addWidget(clearButton);
@@ -531,27 +554,59 @@ public:
         tab_peers->setObjectName(QStringLiteral("tab_peers"));
         gridLayout_2 = new QGridLayout(tab_peers);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        verticalLayout_101 = new QVBoxLayout();
+        verticalLayout_101->setSpacing(0);
+        verticalLayout_101->setObjectName(QStringLiteral("verticalLayout_101"));
         peerWidget = new QTableView(tab_peers);
         peerWidget->setObjectName(QStringLiteral("peerWidget"));
         peerWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         peerWidget->setSortingEnabled(true);
         peerWidget->horizontalHeader()->setHighlightSections(false);
 
-        gridLayout_2->addWidget(peerWidget, 0, 0, 2, 1);
+        verticalLayout_101->addWidget(peerWidget);
 
-        peerHeading = new QLabel(tab_peers);
-        peerHeading->setObjectName(QStringLiteral("peerHeading"));
+        banHeading = new QLabel(tab_peers);
+        banHeading->setObjectName(QStringLiteral("banHeading"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(banHeading->sizePolicy().hasHeightForWidth());
+        banHeading->setSizePolicy(sizePolicy2);
+        banHeading->setMinimumSize(QSize(300, 32));
+        banHeading->setMaximumSize(QSize(16777215, 32));
+        QFont font1;
+        font1.setPointSize(12);
+        banHeading->setFont(font1);
+        banHeading->setCursor(QCursor(Qt::IBeamCursor));
+        banHeading->setAlignment(Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft);
+        banHeading->setWordWrap(true);
+        banHeading->setTextInteractionFlags(Qt::NoTextInteraction);
+
+        verticalLayout_101->addWidget(banHeading);
+
+        banlistWidget = new QTableView(tab_peers);
+        banlistWidget->setObjectName(QStringLiteral("banlistWidget"));
+        sizePolicy.setHeightForWidth(banlistWidget->sizePolicy().hasHeightForWidth());
+        banlistWidget->setSizePolicy(sizePolicy);
+        banlistWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        banlistWidget->setSortingEnabled(true);
+        banlistWidget->horizontalHeader()->setHighlightSections(false);
+
+        verticalLayout_101->addWidget(banlistWidget);
+
+
+        gridLayout_2->addLayout(verticalLayout_101, 0, 0, 2, 1);
+
+        peerHeading = new QLabel(tab_peers);
+        peerHeading->setObjectName(QStringLiteral("peerHeading"));
         sizePolicy2.setHeightForWidth(peerHeading->sizePolicy().hasHeightForWidth());
         peerHeading->setSizePolicy(sizePolicy2);
         peerHeading->setMinimumSize(QSize(300, 32));
-        QFont font1;
-        font1.setPointSize(10);
-        font1.setBold(true);
-        font1.setWeight(75);
-        peerHeading->setFont(font1);
+        QFont font2;
+        font2.setPointSize(10);
+        font2.setBold(true);
+        font2.setWeight(75);
+        peerHeading->setFont(font2);
         peerHeading->setCursor(QCursor(Qt::IBeamCursor));
         peerHeading->setAlignment(Qt::AlignCenter);
         peerHeading->setWordWrap(true);
@@ -564,10 +619,23 @@ public:
         detailWidget->setMinimumSize(QSize(300, 0));
         gridLayout_3 = new QGridLayout(detailWidget);
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
+        label_30 = new QLabel(detailWidget);
+        label_30->setObjectName(QStringLiteral("label_30"));
+
+        gridLayout_3->addWidget(label_30, 0, 0, 1, 1);
+
+        peerWhitelisted = new QLabel(detailWidget);
+        peerWhitelisted->setObjectName(QStringLiteral("peerWhitelisted"));
+        peerWhitelisted->setCursor(QCursor(Qt::IBeamCursor));
+        peerWhitelisted->setTextFormat(Qt::PlainText);
+        peerWhitelisted->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+
+        gridLayout_3->addWidget(peerWhitelisted, 0, 2, 1, 1);
+
         label_23 = new QLabel(detailWidget);
         label_23->setObjectName(QStringLiteral("label_23"));
 
-        gridLayout_3->addWidget(label_23, 0, 0, 1, 1);
+        gridLayout_3->addWidget(label_23, 1, 0, 1, 1);
 
         peerDirection = new QLabel(detailWidget);
         peerDirection->setObjectName(QStringLiteral("peerDirection"));
@@ -575,12 +643,12 @@ public:
         peerDirection->setTextFormat(Qt::PlainText);
         peerDirection->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerDirection, 0, 2, 1, 1);
+        gridLayout_3->addWidget(peerDirection, 1, 2, 1, 1);
 
         label_21 = new QLabel(detailWidget);
         label_21->setObjectName(QStringLiteral("label_21"));
 
-        gridLayout_3->addWidget(label_21, 1, 0, 1, 1);
+        gridLayout_3->addWidget(label_21, 2, 0, 1, 1);
 
         peerVersion = new QLabel(detailWidget);
         peerVersion->setObjectName(QStringLiteral("peerVersion"));
@@ -588,12 +656,12 @@ public:
         peerVersion->setTextFormat(Qt::PlainText);
         peerVersion->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerVersion, 1, 2, 1, 1);
+        gridLayout_3->addWidget(peerVersion, 2, 2, 1, 1);
 
         label_28 = new QLabel(detailWidget);
         label_28->setObjectName(QStringLiteral("label_28"));
 
-        gridLayout_3->addWidget(label_28, 2, 0, 1, 1);
+        gridLayout_3->addWidget(label_28, 3, 0, 1, 1);
 
         peerSubversion = new QLabel(detailWidget);
         peerSubversion->setObjectName(QStringLiteral("peerSubversion"));
@@ -601,12 +669,12 @@ public:
         peerSubversion->setTextFormat(Qt::PlainText);
         peerSubversion->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerSubversion, 2, 2, 1, 1);
+        gridLayout_3->addWidget(peerSubversion, 3, 2, 1, 1);
 
         label_4 = new QLabel(detailWidget);
         label_4->setObjectName(QStringLiteral("label_4"));
 
-        gridLayout_3->addWidget(label_4, 3, 0, 1, 1);
+        gridLayout_3->addWidget(label_4, 4, 0, 1, 1);
 
         peerServices = new QLabel(detailWidget);
         peerServices->setObjectName(QStringLiteral("peerServices"));
@@ -614,7 +682,7 @@ public:
         peerServices->setTextFormat(Qt::PlainText);
         peerServices->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerServices, 3, 2, 1, 1);
+        gridLayout_3->addWidget(peerServices, 4, 2, 1, 1);
 
         label_29 = new QLabel(detailWidget);
         label_29->setObjectName(QStringLiteral("label_29"));
@@ -642,10 +710,23 @@ public:
 
         gridLayout_3->addWidget(peerSyncHeight, 6, 2, 1, 1);
 
+        label_25 = new QLabel(detailWidget);
+        label_25->setObjectName(QStringLiteral("label_25"));
+
+        gridLayout_3->addWidget(label_25, 7, 0, 1, 1);
+
+        peerCommonHeight = new QLabel(detailWidget);
+        peerCommonHeight->setObjectName(QStringLiteral("peerCommonHeight"));
+        peerCommonHeight->setCursor(QCursor(Qt::IBeamCursor));
+        peerCommonHeight->setTextFormat(Qt::PlainText);
+        peerCommonHeight->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+
+        gridLayout_3->addWidget(peerCommonHeight, 7, 2, 1, 1);
+
         label_24 = new QLabel(detailWidget);
         label_24->setObjectName(QStringLiteral("label_24"));
 
-        gridLayout_3->addWidget(label_24, 7, 0, 1, 1);
+        gridLayout_3->addWidget(label_24, 8, 0, 1, 1);
 
         peerBanScore = new QLabel(detailWidget);
         peerBanScore->setObjectName(QStringLiteral("peerBanScore"));
@@ -653,12 +734,12 @@ public:
         peerBanScore->setTextFormat(Qt::PlainText);
         peerBanScore->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerBanScore, 7, 2, 1, 1);
+        gridLayout_3->addWidget(peerBanScore, 8, 2, 1, 1);
 
         label_22 = new QLabel(detailWidget);
         label_22->setObjectName(QStringLiteral("label_22"));
 
-        gridLayout_3->addWidget(label_22, 8, 0, 1, 1);
+        gridLayout_3->addWidget(label_22, 9, 0, 1, 1);
 
         peerConnTime = new QLabel(detailWidget);
         peerConnTime->setObjectName(QStringLiteral("peerConnTime"));
@@ -666,12 +747,12 @@ public:
         peerConnTime->setTextFormat(Qt::PlainText);
         peerConnTime->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerConnTime, 8, 2, 1, 1);
+        gridLayout_3->addWidget(peerConnTime, 9, 2, 1, 1);
 
         label_15 = new QLabel(detailWidget);
         label_15->setObjectName(QStringLiteral("label_15"));
 
-        gridLayout_3->addWidget(label_15, 9, 0, 1, 1);
+        gridLayout_3->addWidget(label_15, 10, 0, 1, 1);
 
         peerLastSend = new QLabel(detailWidget);
         peerLastSend->setObjectName(QStringLiteral("peerLastSend"));
@@ -679,12 +760,12 @@ public:
         peerLastSend->setTextFormat(Qt::PlainText);
         peerLastSend->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerLastSend, 9, 2, 1, 1);
+        gridLayout_3->addWidget(peerLastSend, 10, 2, 1, 1);
 
         label_19 = new QLabel(detailWidget);
         label_19->setObjectName(QStringLiteral("label_19"));
 
-        gridLayout_3->addWidget(label_19, 10, 0, 1, 1);
+        gridLayout_3->addWidget(label_19, 11, 0, 1, 1);
 
         peerLastRecv = new QLabel(detailWidget);
         peerLastRecv->setObjectName(QStringLiteral("peerLastRecv"));
@@ -692,12 +773,12 @@ public:
         peerLastRecv->setTextFormat(Qt::PlainText);
         peerLastRecv->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerLastRecv, 10, 2, 1, 1);
+        gridLayout_3->addWidget(peerLastRecv, 11, 2, 1, 1);
 
         label_18 = new QLabel(detailWidget);
         label_18->setObjectName(QStringLiteral("label_18"));
 
-        gridLayout_3->addWidget(label_18, 11, 0, 1, 1);
+        gridLayout_3->addWidget(label_18, 12, 0, 1, 1);
 
         peerBytesSent = new QLabel(detailWidget);
         peerBytesSent->setObjectName(QStringLiteral("peerBytesSent"));
@@ -705,12 +786,12 @@ public:
         peerBytesSent->setTextFormat(Qt::PlainText);
         peerBytesSent->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerBytesSent, 11, 2, 1, 1);
+        gridLayout_3->addWidget(peerBytesSent, 12, 2, 1, 1);
 
         label_20 = new QLabel(detailWidget);
         label_20->setObjectName(QStringLiteral("label_20"));
 
-        gridLayout_3->addWidget(label_20, 12, 0, 1, 1);
+        gridLayout_3->addWidget(label_20, 13, 0, 1, 1);
 
         peerBytesRecv = new QLabel(detailWidget);
         peerBytesRecv->setObjectName(QStringLiteral("peerBytesRecv"));
@@ -718,12 +799,12 @@ public:
         peerBytesRecv->setTextFormat(Qt::PlainText);
         peerBytesRecv->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerBytesRecv, 12, 2, 1, 1);
+        gridLayout_3->addWidget(peerBytesRecv, 13, 2, 1, 1);
 
         label_26 = new QLabel(detailWidget);
         label_26->setObjectName(QStringLiteral("label_26"));
 
-        gridLayout_3->addWidget(label_26, 13, 0, 1, 1);
+        gridLayout_3->addWidget(label_26, 14, 0, 1, 1);
 
         peerPingTime = new QLabel(detailWidget);
         peerPingTime->setObjectName(QStringLiteral("peerPingTime"));
@@ -731,11 +812,37 @@ public:
         peerPingTime->setTextFormat(Qt::PlainText);
         peerPingTime->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
-        gridLayout_3->addWidget(peerPingTime, 13, 2, 1, 1);
+        gridLayout_3->addWidget(peerPingTime, 14, 2, 1, 1);
+
+        peerPingWaitLabel = new QLabel(detailWidget);
+        peerPingWaitLabel->setObjectName(QStringLiteral("peerPingWaitLabel"));
+
+        gridLayout_3->addWidget(peerPingWaitLabel, 15, 0, 1, 1);
+
+        peerPingWait = new QLabel(detailWidget);
+        peerPingWait->setObjectName(QStringLiteral("peerPingWait"));
+        peerPingWait->setCursor(QCursor(Qt::IBeamCursor));
+        peerPingWait->setTextFormat(Qt::PlainText);
+        peerPingWait->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+
+        gridLayout_3->addWidget(peerPingWait, 15, 2, 1, 1);
+
+        label_timeoffset = new QLabel(detailWidget);
+        label_timeoffset->setObjectName(QStringLiteral("label_timeoffset"));
+
+        gridLayout_3->addWidget(label_timeoffset, 16, 0, 1, 1);
+
+        timeoffset = new QLabel(detailWidget);
+        timeoffset->setObjectName(QStringLiteral("timeoffset"));
+        timeoffset->setCursor(QCursor(Qt::IBeamCursor));
+        timeoffset->setTextFormat(Qt::PlainText);
+        timeoffset->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+
+        gridLayout_3->addWidget(timeoffset, 16, 2, 1, 1);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_3->addItem(verticalSpacer_3, 14, 1, 1, 1);
+        gridLayout_3->addItem(verticalSpacer_3, 17, 1, 1, 1);
 
 
         gridLayout_2->addWidget(detailWidget, 1, 1, 1, 1);
@@ -754,10 +861,10 @@ public:
 
         label_repair_helptext = new QLabel(tab_repair);
         label_repair_helptext->setObjectName(QStringLiteral("label_repair_helptext"));
-        QFont font2;
-        font2.setBold(false);
-        font2.setWeight(50);
-        label_repair_helptext->setFont(font2);
+        QFont font3;
+        font3.setBold(false);
+        font3.setWeight(50);
+        label_repair_helptext->setFont(font3);
         label_repair_helptext->setWordWrap(true);
 
         gridLayout_4->addWidget(label_repair_helptext, 1, 0, 1, 4);
@@ -775,124 +882,169 @@ public:
 
         gridLayout_4->addWidget(wallet_path, 2, 1, 1, 3);
 
+        wallet_custombackuppath_label = new QLabel(tab_repair);
+        wallet_custombackuppath_label->setObjectName(QStringLiteral("wallet_custombackuppath_label"));
+        wallet_custombackuppath_label->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_custombackuppath_label, 3, 0, 1, 1);
+
+        wallet_custombackuppath = new QLabel(tab_repair);
+        wallet_custombackuppath->setObjectName(QStringLiteral("wallet_custombackuppath"));
+        wallet_custombackuppath->setCursor(QCursor(Qt::IBeamCursor));
+        wallet_custombackuppath->setTextFormat(Qt::PlainText);
+        wallet_custombackuppath->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        wallet_custombackuppath->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_custombackuppath, 3, 1, 1, 3);
+
+        wallet_custombackupthreshold_label = new QLabel(tab_repair);
+        wallet_custombackupthreshold_label->setObjectName(QStringLiteral("wallet_custombackupthreshold_label"));
+        wallet_custombackupthreshold_label->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_custombackupthreshold_label, 5, 0, 1, 1);
+
+        wallet_custombackupthreshold = new QLabel(tab_repair);
+        wallet_custombackupthreshold->setObjectName(QStringLiteral("wallet_custombackupthreshold"));
+        wallet_custombackupthreshold->setCursor(QCursor(Qt::IBeamCursor));
+        wallet_custombackupthreshold->setTextFormat(Qt::PlainText);
+        wallet_custombackupthreshold->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        wallet_custombackupthreshold->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_custombackupthreshold, 5, 1, 1, 3);
+
         verticalSpacer_repair1 = new QSpacerItem(10, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_4->addItem(verticalSpacer_repair1, 3, 0, 1, 1);
+        gridLayout_4->addItem(verticalSpacer_repair1, 6, 0, 1, 1);
 
         btn_salvagewallet = new QPushButton(tab_repair);
         btn_salvagewallet->setObjectName(QStringLiteral("btn_salvagewallet"));
         btn_salvagewallet->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_salvagewallet, 4, 0, 1, 2);
+        gridLayout_4->addWidget(btn_salvagewallet, 7, 0, 1, 2);
 
         label_repair_salvage_command = new QLabel(tab_repair);
         label_repair_salvage_command->setObjectName(QStringLiteral("label_repair_salvage_command"));
         label_repair_salvage_command->setText(QStringLiteral("-salvagewallet:"));
 
-        gridLayout_4->addWidget(label_repair_salvage_command, 4, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_salvage_command, 7, 2, 1, 1);
 
         label_repair_salvage = new QLabel(tab_repair);
         label_repair_salvage->setObjectName(QStringLiteral("label_repair_salvage"));
         label_repair_salvage->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_salvage, 4, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_salvage, 7, 3, 1, 1);
 
         btn_rescan = new QPushButton(tab_repair);
         btn_rescan->setObjectName(QStringLiteral("btn_rescan"));
         btn_rescan->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_rescan, 5, 0, 1, 2);
+        gridLayout_4->addWidget(btn_rescan, 8, 0, 1, 2);
 
         label_repair_rescan_command = new QLabel(tab_repair);
         label_repair_rescan_command->setObjectName(QStringLiteral("label_repair_rescan_command"));
         label_repair_rescan_command->setText(QStringLiteral("-rescan:"));
 
-        gridLayout_4->addWidget(label_repair_rescan_command, 5, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_rescan_command, 8, 2, 1, 1);
 
         label_repair_rescan = new QLabel(tab_repair);
         label_repair_rescan->setObjectName(QStringLiteral("label_repair_rescan"));
         label_repair_rescan->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_rescan, 5, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_rescan, 8, 3, 1, 1);
 
         btn_zapwallettxes1 = new QPushButton(tab_repair);
         btn_zapwallettxes1->setObjectName(QStringLiteral("btn_zapwallettxes1"));
         btn_zapwallettxes1->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_zapwallettxes1, 6, 0, 1, 2);
+        gridLayout_4->addWidget(btn_zapwallettxes1, 9, 0, 1, 2);
 
         label_repair_zap1_command = new QLabel(tab_repair);
         label_repair_zap1_command->setObjectName(QStringLiteral("label_repair_zap1_command"));
         label_repair_zap1_command->setText(QStringLiteral("-zapwallettxes=1:"));
 
-        gridLayout_4->addWidget(label_repair_zap1_command, 6, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_zap1_command, 9, 2, 1, 1);
 
         label_repair_zap1 = new QLabel(tab_repair);
         label_repair_zap1->setObjectName(QStringLiteral("label_repair_zap1"));
         label_repair_zap1->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_zap1, 6, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_zap1, 9, 3, 1, 1);
 
         btn_zapwallettxes2 = new QPushButton(tab_repair);
         btn_zapwallettxes2->setObjectName(QStringLiteral("btn_zapwallettxes2"));
         btn_zapwallettxes2->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_zapwallettxes2, 7, 0, 1, 2);
+        gridLayout_4->addWidget(btn_zapwallettxes2, 10, 0, 1, 2);
 
         label_repair_zap2_command = new QLabel(tab_repair);
         label_repair_zap2_command->setObjectName(QStringLiteral("label_repair_zap2_command"));
         label_repair_zap2_command->setText(QStringLiteral("-zapwallettxes=2:"));
 
-        gridLayout_4->addWidget(label_repair_zap2_command, 7, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_zap2_command, 10, 2, 1, 1);
 
         label_repair_zap2 = new QLabel(tab_repair);
         label_repair_zap2->setObjectName(QStringLiteral("label_repair_zap2"));
         label_repair_zap2->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_zap2, 7, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_zap2, 10, 3, 1, 1);
 
         btn_upgradewallet = new QPushButton(tab_repair);
         btn_upgradewallet->setObjectName(QStringLiteral("btn_upgradewallet"));
         btn_upgradewallet->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_upgradewallet, 8, 0, 1, 2);
+        gridLayout_4->addWidget(btn_upgradewallet, 11, 0, 1, 2);
 
         label_repair_upgrade_command = new QLabel(tab_repair);
         label_repair_upgrade_command->setObjectName(QStringLiteral("label_repair_upgrade_command"));
         label_repair_upgrade_command->setText(QStringLiteral("-upgradewallet:"));
 
-        gridLayout_4->addWidget(label_repair_upgrade_command, 8, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_upgrade_command, 11, 2, 1, 1);
 
         label_repair_upgrade = new QLabel(tab_repair);
         label_repair_upgrade->setObjectName(QStringLiteral("label_repair_upgrade"));
         label_repair_upgrade->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_upgrade, 8, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_upgrade, 11, 3, 1, 1);
 
         btn_reindex = new QPushButton(tab_repair);
         btn_reindex->setObjectName(QStringLiteral("btn_reindex"));
         btn_reindex->setMinimumSize(QSize(100, 23));
 
-        gridLayout_4->addWidget(btn_reindex, 9, 0, 1, 2);
+        gridLayout_4->addWidget(btn_reindex, 12, 0, 1, 2);
 
         label_repair_reindex_command = new QLabel(tab_repair);
         label_repair_reindex_command->setObjectName(QStringLiteral("label_repair_reindex_command"));
         label_repair_reindex_command->setText(QStringLiteral("-reindex:"));
 
-        gridLayout_4->addWidget(label_repair_reindex_command, 9, 2, 1, 1);
+        gridLayout_4->addWidget(label_repair_reindex_command, 12, 2, 1, 1);
 
         label_repair_reindex = new QLabel(tab_repair);
         label_repair_reindex->setObjectName(QStringLiteral("label_repair_reindex"));
         label_repair_reindex->setWordWrap(true);
 
-        gridLayout_4->addWidget(label_repair_reindex, 9, 3, 1, 1);
+        gridLayout_4->addWidget(label_repair_reindex, 12, 3, 1, 1);
+
+        btn_resync = new QPushButton(tab_repair);
+        btn_resync->setObjectName(QStringLiteral("btn_resync"));
+        btn_resync->setMinimumSize(QSize(100, 23));
+
+        gridLayout_4->addWidget(btn_resync, 13, 0, 1, 2);
+
+        label_repair_resync_command = new QLabel(tab_repair);
+        label_repair_resync_command->setObjectName(QStringLiteral("label_repair_resync_command"));
+
+        gridLayout_4->addWidget(label_repair_resync_command, 13, 2, 1, 1);
+
+        label_repair_resync = new QLabel(tab_repair);
+        label_repair_resync->setObjectName(QStringLiteral("label_repair_resync"));
+        label_repair_resync->setWordWrap(true);
+
+        gridLayout_4->addWidget(label_repair_resync, 13, 3, 1, 1);
 
         verticalSpacer_repair2 = new QSpacerItem(20, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_4->addItem(verticalSpacer_repair2, 10, 0, 1, 1);
+        gridLayout_4->addItem(verticalSpacer_repair2, 14, 0, 1, 1);
 
-        gridLayout_4->setColumnStretch(1, 1);
-        gridLayout_4->setColumnStretch(3, 2);
         tabWidget->addTab(tab_repair, QString());
 
         verticalLayout_2->addWidget(tabWidget);
@@ -908,93 +1060,112 @@ public:
 
     void retranslateUi(QDialog *RPCConsole)
     {
-        RPCConsole->setWindowTitle(QApplication::translate("RPCConsole", "Tools window", 0));
-        generalHeader->setText(QApplication::translate("RPCConsole", "General", 0));
-        clientNameLabel->setText(QApplication::translate("RPCConsole", "Client name", 0));
-        clientName->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        clientVersionLabel->setText(QApplication::translate("RPCConsole", "Client version", 0));
-        clientVersion->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        openSSLVersionLabel->setText(QApplication::translate("RPCConsole", "Using OpenSSL version", 0));
-        openSSLVersion->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        berkeleyDBVersionLabel->setText(QApplication::translate("RPCConsole", "Using BerkeleyDB version", 0));
-        berkeleyDBVersion->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        buildDateLabel->setText(QApplication::translate("RPCConsole", "Build date", 0));
-        buildDate->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        startupTimeLabel->setText(QApplication::translate("RPCConsole", "Startup time", 0));
-        startupTime->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        networkHeader->setText(QApplication::translate("RPCConsole", "Network", 0));
-        networkNameLabel->setText(QApplication::translate("RPCConsole", "Name", 0));
-        networkName->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        numberOfConnectionsLabel->setText(QApplication::translate("RPCConsole", "Number of connections", 0));
-        numberOfConnections->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        masternodeCountLabel->setText(QApplication::translate("RPCConsole", "Number of Masternodes", 0));
-        masternodeCount->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        blockchainHeader->setText(QApplication::translate("RPCConsole", "Block chain", 0));
-        numberOfBlocksLabel->setText(QApplication::translate("RPCConsole", "Current number of blocks", 0));
-        numberOfBlocks->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        lastBlockTimeLabel->setText(QApplication::translate("RPCConsole", "Last block time", 0));
-        lastBlockTime->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        debugLogFileHeader->setText(QApplication::translate("RPCConsole", "Debug log file", 0));
+        RPCConsole->setWindowTitle(QApplication::translate("RPCConsole", "Tools window", Q_NULLPTR));
+        generalHeader->setText(QApplication::translate("RPCConsole", "General", Q_NULLPTR));
+        clientNameLabel->setText(QApplication::translate("RPCConsole", "Client name", Q_NULLPTR));
+        clientName->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        clientVersionLabel->setText(QApplication::translate("RPCConsole", "Client version", Q_NULLPTR));
+        clientVersion->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        openSSLVersionLabel->setText(QApplication::translate("RPCConsole", "Using OpenSSL version", Q_NULLPTR));
+        openSSLVersion->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        berkeleyDBVersionLabel->setText(QApplication::translate("RPCConsole", "Using BerkeleyDB version", Q_NULLPTR));
+        berkeleyDBVersion->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        buildDateLabel->setText(QApplication::translate("RPCConsole", "Build date", Q_NULLPTR));
+        buildDate->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        startupTimeLabel->setText(QApplication::translate("RPCConsole", "Startup time", Q_NULLPTR));
+        startupTime->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        networkHeader->setText(QApplication::translate("RPCConsole", "Network", Q_NULLPTR));
+        networkNameLabel->setText(QApplication::translate("RPCConsole", "Name", Q_NULLPTR));
+        networkName->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        numberOfConnectionsLabel->setText(QApplication::translate("RPCConsole", "Number of connections", Q_NULLPTR));
+        numberOfConnections->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        masternodeCountLabel->setText(QApplication::translate("RPCConsole", "Number of Masternodes", Q_NULLPTR));
+        masternodeCount->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        blockchainHeader->setText(QApplication::translate("RPCConsole", "Block chain", Q_NULLPTR));
+        numberOfBlocksLabel->setText(QApplication::translate("RPCConsole", "Current number of blocks", Q_NULLPTR));
+        numberOfBlocks->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        lastBlockTimeLabel->setText(QApplication::translate("RPCConsole", "Last block time", Q_NULLPTR));
+        lastBlockTime->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        debugLogFileHeader->setText(QApplication::translate("RPCConsole", "Debug log file", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        openDebugLogfileButton->setToolTip(QApplication::translate("RPCConsole", "Open the Vip debug log file from the current data directory. This can take a few seconds for large log files.", 0));
+        openDebugLogfileButton->setToolTip(QApplication::translate("RPCConsole", "Open the VIP debug log file from the current data directory. This can take a few seconds for large log files.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        openDebugLogfileButton->setText(QApplication::translate("RPCConsole", "&Open", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_info), QApplication::translate("RPCConsole", "&Information", 0));
+        openDebugLogfileButton->setText(QApplication::translate("RPCConsole", "&Open", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_info), QApplication::translate("RPCConsole", "&Information", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        clearButton->setToolTip(QApplication::translate("RPCConsole", "Clear console", 0));
+        clearButton->setToolTip(QApplication::translate("RPCConsole", "Clear console", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         clearButton->setText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tab_console), QApplication::translate("RPCConsole", "&Console", 0));
-        btnClearTrafficGraph->setText(QApplication::translate("RPCConsole", "&Clear", 0));
-        groupBox->setTitle(QApplication::translate("RPCConsole", "Totals", 0));
-        label_16->setText(QApplication::translate("RPCConsole", "Received", 0));
-        label_17->setText(QApplication::translate("RPCConsole", "Sent", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_nettraffic), QApplication::translate("RPCConsole", "&Network Traffic", 0));
-        peerHeading->setText(QApplication::translate("RPCConsole", "Select a peer to view detailed information.", 0));
-        label_23->setText(QApplication::translate("RPCConsole", "Direction", 0));
-        peerDirection->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_21->setText(QApplication::translate("RPCConsole", "Protocol", 0));
-        peerVersion->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_28->setText(QApplication::translate("RPCConsole", "Version", 0));
-        peerSubversion->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_4->setText(QApplication::translate("RPCConsole", "Services", 0));
-        peerServices->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_29->setText(QApplication::translate("RPCConsole", "Starting Height", 0));
-        peerHeight->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_27->setText(QApplication::translate("RPCConsole", "Sync Height", 0));
-        peerSyncHeight->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_24->setText(QApplication::translate("RPCConsole", "Ban Score", 0));
-        peerBanScore->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_22->setText(QApplication::translate("RPCConsole", "Connection Time", 0));
-        peerConnTime->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_15->setText(QApplication::translate("RPCConsole", "Last Send", 0));
-        peerLastSend->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_19->setText(QApplication::translate("RPCConsole", "Last Receive", 0));
-        peerLastRecv->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_18->setText(QApplication::translate("RPCConsole", "Bytes Sent", 0));
-        peerBytesSent->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_20->setText(QApplication::translate("RPCConsole", "Bytes Received", 0));
-        peerBytesRecv->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        label_26->setText(QApplication::translate("RPCConsole", "Ping Time", 0));
-        peerPingTime->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_peers), QApplication::translate("RPCConsole", "&Peers", 0));
-        label_repair_header->setText(QApplication::translate("RPCConsole", "Wallet repair options.", 0));
-        label_repair_helptext->setText(QApplication::translate("RPCConsole", "The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.", 0));
-        wallet_path_label->setText(QApplication::translate("RPCConsole", "Wallet In Use:", 0));
-        wallet_path->setText(QApplication::translate("RPCConsole", "N/A", 0));
-        btn_salvagewallet->setText(QApplication::translate("RPCConsole", "Salvage wallet", 0));
-        label_repair_salvage->setText(QApplication::translate("RPCConsole", "Attempt to recover private keys from a corrupt wallet.dat.", 0));
-        btn_rescan->setText(QApplication::translate("RPCConsole", "Rescan blockchain files", 0));
-        label_repair_rescan->setText(QApplication::translate("RPCConsole", "Rescan the block chain for missing wallet transactions.", 0));
-        btn_zapwallettxes1->setText(QApplication::translate("RPCConsole", "Recover transactions 1", 0));
-        label_repair_zap1->setText(QApplication::translate("RPCConsole", "Recover transactions from blockchain (keep meta-data, e.g. account owner).", 0));
-        btn_zapwallettxes2->setText(QApplication::translate("RPCConsole", "Recover transactions 2", 0));
-        label_repair_zap2->setText(QApplication::translate("RPCConsole", "Recover transactions from blockchain (drop meta-data).", 0));
-        btn_upgradewallet->setText(QApplication::translate("RPCConsole", "Upgrade wallet format", 0));
-        label_repair_upgrade->setText(QApplication::translate("RPCConsole", "Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself!)", 0));
-        btn_reindex->setText(QApplication::translate("RPCConsole", "Rebuild index", 0));
-        label_repair_reindex->setText(QApplication::translate("RPCConsole", "Rebuild block chain index from current blk000??.dat files.", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tab_repair), QApplication::translate("RPCConsole", "&Wallet Repair", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tab_console), QApplication::translate("RPCConsole", "&Console", Q_NULLPTR));
+        btnClearTrafficGraph->setText(QApplication::translate("RPCConsole", "&Clear", Q_NULLPTR));
+        groupBox->setTitle(QApplication::translate("RPCConsole", "Totals", Q_NULLPTR));
+        label_16->setText(QApplication::translate("RPCConsole", "Received", Q_NULLPTR));
+        label_17->setText(QApplication::translate("RPCConsole", "Sent", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_nettraffic), QApplication::translate("RPCConsole", "&Network Traffic", Q_NULLPTR));
+        banHeading->setText(QApplication::translate("RPCConsole", "Banned peers", Q_NULLPTR));
+        peerHeading->setText(QApplication::translate("RPCConsole", "Select a peer to view detailed information.", Q_NULLPTR));
+        label_30->setText(QApplication::translate("RPCConsole", "Whitelisted", Q_NULLPTR));
+        peerWhitelisted->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_23->setText(QApplication::translate("RPCConsole", "Direction", Q_NULLPTR));
+        peerDirection->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_21->setText(QApplication::translate("RPCConsole", "Protocol", Q_NULLPTR));
+        peerVersion->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_28->setText(QApplication::translate("RPCConsole", "Version", Q_NULLPTR));
+        peerSubversion->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_4->setText(QApplication::translate("RPCConsole", "Services", Q_NULLPTR));
+        peerServices->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_29->setText(QApplication::translate("RPCConsole", "Starting Block", Q_NULLPTR));
+        peerHeight->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_27->setText(QApplication::translate("RPCConsole", "Synced Headers", Q_NULLPTR));
+        peerSyncHeight->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_25->setText(QApplication::translate("RPCConsole", "Synced Blocks", Q_NULLPTR));
+        peerCommonHeight->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_24->setText(QApplication::translate("RPCConsole", "Ban Score", Q_NULLPTR));
+        peerBanScore->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_22->setText(QApplication::translate("RPCConsole", "Connection Time", Q_NULLPTR));
+        peerConnTime->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_15->setText(QApplication::translate("RPCConsole", "Last Send", Q_NULLPTR));
+        peerLastSend->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_19->setText(QApplication::translate("RPCConsole", "Last Receive", Q_NULLPTR));
+        peerLastRecv->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_18->setText(QApplication::translate("RPCConsole", "Bytes Sent", Q_NULLPTR));
+        peerBytesSent->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_20->setText(QApplication::translate("RPCConsole", "Bytes Received", Q_NULLPTR));
+        peerBytesRecv->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_26->setText(QApplication::translate("RPCConsole", "Ping Time", Q_NULLPTR));
+        peerPingTime->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        peerPingWaitLabel->setToolTip(QApplication::translate("RPCConsole", "The duration of a currently outstanding ping.", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        peerPingWaitLabel->setText(QApplication::translate("RPCConsole", "Ping Wait", Q_NULLPTR));
+        peerPingWait->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        label_timeoffset->setText(QApplication::translate("RPCConsole", "Time Offset", Q_NULLPTR));
+        timeoffset->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_peers), QApplication::translate("RPCConsole", "&Peers", Q_NULLPTR));
+        label_repair_header->setText(QApplication::translate("RPCConsole", "Wallet repair options.", Q_NULLPTR));
+        label_repair_helptext->setText(QApplication::translate("RPCConsole", "The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.", Q_NULLPTR));
+        wallet_path_label->setText(QApplication::translate("RPCConsole", "Wallet In Use:", Q_NULLPTR));
+        wallet_path->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        wallet_custombackuppath_label->setText(QApplication::translate("RPCConsole", "Custom Backup Path:", Q_NULLPTR));
+        wallet_custombackuppath->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        wallet_custombackupthreshold_label->setText(QApplication::translate("RPCConsole", "Custom Backups Threshold:", Q_NULLPTR));
+        wallet_custombackupthreshold->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        btn_salvagewallet->setText(QApplication::translate("RPCConsole", "Salvage wallet", Q_NULLPTR));
+        label_repair_salvage->setText(QApplication::translate("RPCConsole", "Attempt to recover private keys from a corrupt wallet.dat.", Q_NULLPTR));
+        btn_rescan->setText(QApplication::translate("RPCConsole", "Rescan blockchain files", Q_NULLPTR));
+        label_repair_rescan->setText(QApplication::translate("RPCConsole", "Rescan the block chain for missing wallet transactions.", Q_NULLPTR));
+        btn_zapwallettxes1->setText(QApplication::translate("RPCConsole", "Recover transactions 1", Q_NULLPTR));
+        label_repair_zap1->setText(QApplication::translate("RPCConsole", "Recover transactions from blockchain (keep meta-data, e.g. account owner).", Q_NULLPTR));
+        btn_zapwallettxes2->setText(QApplication::translate("RPCConsole", "Recover transactions 2", Q_NULLPTR));
+        label_repair_zap2->setText(QApplication::translate("RPCConsole", "Recover transactions from blockchain (drop meta-data).", Q_NULLPTR));
+        btn_upgradewallet->setText(QApplication::translate("RPCConsole", "Upgrade wallet format", Q_NULLPTR));
+        label_repair_upgrade->setText(QApplication::translate("RPCConsole", "Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself!)", Q_NULLPTR));
+        btn_reindex->setText(QApplication::translate("RPCConsole", "Rebuild index", Q_NULLPTR));
+        label_repair_reindex->setText(QApplication::translate("RPCConsole", "Rebuild block chain index from current blk000??.dat files.", Q_NULLPTR));
+        btn_resync->setText(QApplication::translate("RPCConsole", "Delete local Blockchain Folders", Q_NULLPTR));
+        label_repair_resync_command->setText(QApplication::translate("RPCConsole", "-resync:", Q_NULLPTR));
+        label_repair_resync->setText(QApplication::translate("RPCConsole", "Deletes all local blockchain folders so the wallet synchronizes from scratch.", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab_repair), QApplication::translate("RPCConsole", "&Wallet Repair", Q_NULLPTR));
     } // retranslateUi
 
 };

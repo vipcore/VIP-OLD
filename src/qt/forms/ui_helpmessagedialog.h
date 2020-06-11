@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'helpmessagedialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -42,11 +42,11 @@ public:
     {
         if (HelpMessageDialog->objectName().isEmpty())
             HelpMessageDialog->setObjectName(QStringLiteral("HelpMessageDialog"));
-        HelpMessageDialog->resize(585, 225);
+        HelpMessageDialog->resize(585, 488);
         QFont font;
         font.setPointSize(10);
         HelpMessageDialog->setFont(font);
-        HelpMessageDialog->setWindowTitle(QStringLiteral("Vip Core - Command-line options"));
+        HelpMessageDialog->setWindowTitle(QStringLiteral("VIP Core - Command-line options"));
         horizontalLayout_2 = new QHBoxLayout(HelpMessageDialog);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         graphic = new QLabel(HelpMessageDialog);
@@ -74,7 +74,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 447, 68));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 479, 213));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         aboutMessage = new QLabel(scrollAreaWidgetContents);

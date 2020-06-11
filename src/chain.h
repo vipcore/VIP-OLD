@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +17,6 @@
 #include <vector>
 
 #include <boost/foreach.hpp>
-#include <boost/lexical_cast.hpp>
 
 struct CDiskBlockPos {
     int nFile;
@@ -162,7 +163,6 @@ public:
     COutPoint prevoutStake;
     unsigned int nStakeTime;
     uint256 hashProofOfStake;
-    int64_t nMint;
     int64_t nMoneySupply;
 
     //! block header
@@ -171,10 +171,10 @@ public:
     unsigned int nTime;
     unsigned int nBits;
     unsigned int nNonce;
-
     //! (memory only) Sequential id assigned to distinguish order in which blocks are received.
     uint32_t nSequenceId;
-
+    
+    
     void SetNull()
     {
         phashBlock = NULL;
@@ -190,7 +190,6 @@ public:
         nStatus = 0;
         nSequenceId = 0;
 
-        nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
         nStakeModifier = 0;
@@ -222,7 +221,6 @@ public:
 
         //Proof of Stake
         bnChainTrust = uint256();
-        nMint = 0;
         nMoneySupply = 0;
         nFlags = 0;
         nStakeModifier = 0;
@@ -238,6 +236,7 @@ public:
             nStakeTime = 0;
         }
     }
+    
 
     CDiskBlockPos GetBlockPos() const
     {
@@ -316,7 +315,7 @@ public:
     unsigned int GetStakeEntropyBit() const
     {
         unsigned int nEntropyBit = ((GetBlockHash().Get64()) & 1);
-        if (fDebug || GetBoolArg("-printstakemodifier", false))
+        if (GetBoolArg("-printstakemodifier", false))
             LogPrintf("GetStakeEntropyBit: nHeight=%u hashBlock=%s nEntropyBit=%u\n", nHeight, GetBlockHash().ToString().c_str(), nEntropyBit);
 
         return nEntropyBit;
@@ -424,8 +423,6 @@ public:
         if (nStatus & BLOCK_HAVE_UNDO)
             READWRITE(VARINT(nUndoPos));
 
-
-        READWRITE(nMint);
         READWRITE(nMoneySupply);
         READWRITE(nFlags);
         READWRITE(nStakeModifier);
@@ -446,6 +443,7 @@ public:
         READWRITE(nTime);
         READWRITE(nBits);
         READWRITE(nNonce);
+
     }
 
     uint256 GetBlockHash() const

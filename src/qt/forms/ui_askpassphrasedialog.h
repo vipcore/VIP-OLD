@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'askpassphrasedialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -136,15 +136,15 @@ public:
 
     void retranslateUi(QDialog *AskPassphraseDialog)
     {
-        AskPassphraseDialog->setWindowTitle(QApplication::translate("AskPassphraseDialog", "Passphrase Dialog", 0));
-        passLabel1->setText(QApplication::translate("AskPassphraseDialog", "Enter passphrase", 0));
-        passLabel2->setText(QApplication::translate("AskPassphraseDialog", "New passphrase", 0));
-        passLabel3->setText(QApplication::translate("AskPassphraseDialog", "Repeat new passphrase", 0));
+        AskPassphraseDialog->setWindowTitle(QApplication::translate("AskPassphraseDialog", "Passphrase Dialog", Q_NULLPTR));
+        passLabel1->setText(QApplication::translate("AskPassphraseDialog", "Enter passphrase", Q_NULLPTR));
+        passLabel2->setText(QApplication::translate("AskPassphraseDialog", "New passphrase", Q_NULLPTR));
+        passLabel3->setText(QApplication::translate("AskPassphraseDialog", "Repeat new passphrase", Q_NULLPTR));
         capsLabel->setText(QString());
 #ifndef QT_NO_TOOLTIP
-        anonymizationCheckBox->setToolTip(QApplication::translate("AskPassphraseDialog", "Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.", 0));
+        anonymizationCheckBox->setToolTip(QApplication::translate("AskPassphraseDialog", "Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        anonymizationCheckBox->setText(QApplication::translate("AskPassphraseDialog", "For anonymization and staking only", 0));
+        anonymizationCheckBox->setText(QApplication::translate("AskPassphraseDialog", "For anonymization, automint, and staking only", Q_NULLPTR));
     } // retranslateUi
 
 };

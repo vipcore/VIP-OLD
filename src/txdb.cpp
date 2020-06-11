@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2016-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -195,6 +197,16 @@ bool CBlockTreeDB::ReadFlag(const std::string& name, bool& fValue)
     return true;
 }
 
+bool CBlockTreeDB::WriteInt(const std::string& name, int nValue)
+{
+    return Write(std::make_pair('I', name), nValue);
+}
+
+bool CBlockTreeDB::ReadInt(const std::string& name, int& nValue)
+{
+    return Read(std::make_pair('I', name), nValue);
+}
+
 bool CBlockTreeDB::LoadBlockIndexGuts()
 {
     boost::scoped_ptr<leveldb::Iterator> pcursor(NewIterator());
@@ -204,6 +216,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
     pcursor->Seek(ssKeySet.str());
 
     // Load mapBlockIndex
+    uint256 nPreviousCheckpoint;
     while (pcursor->Valid()) {
         boost::this_thread::interruption_point();
         try {
@@ -234,7 +247,6 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nTx = diskindex.nTx;
 
                 //Proof Of Stake
-                pindexNew->nMint = diskindex.nMint;
                 pindexNew->nMoneySupply = diskindex.nMoneySupply;
                 pindexNew->nFlags = diskindex.nFlags;
                 pindexNew->nStakeModifier = diskindex.nStakeModifier;
@@ -261,3 +273,5 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
 
     return true;
 }
+
+

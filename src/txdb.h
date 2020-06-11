@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2016-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -62,7 +64,10 @@ public:
     bool WriteTxIndex(const std::vector<std::pair<uint256, CDiskTxPos> >& list);
     bool WriteFlag(const std::string& name, bool fValue);
     bool ReadFlag(const std::string& name, bool& fValue);
+    bool WriteInt(const std::string& name, int nValue);
+    bool ReadInt(const std::string& name, int& nValue);
     bool LoadBlockIndexGuts();
 };
+
 
 #endif // BITCOIN_TXDB_H

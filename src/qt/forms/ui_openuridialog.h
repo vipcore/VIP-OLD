@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'openuridialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -92,11 +92,11 @@ public:
 
     void retranslateUi(QDialog *OpenURIDialog)
     {
-        OpenURIDialog->setWindowTitle(QApplication::translate("OpenURIDialog", "Open URI", 0));
-        label_2->setText(QApplication::translate("OpenURIDialog", "Open payment request from URI or file", 0));
-        label->setText(QApplication::translate("OpenURIDialog", "URI:", 0));
+        OpenURIDialog->setWindowTitle(QApplication::translate("OpenURIDialog", "Open URI", Q_NULLPTR));
+        label_2->setText(QApplication::translate("OpenURIDialog", "Open payment request from URI or file", Q_NULLPTR));
+        label->setText(QApplication::translate("OpenURIDialog", "URI:", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        selectFileButton->setToolTip(QApplication::translate("OpenURIDialog", "Select payment request file", 0));
+        selectFileButton->setToolTip(QApplication::translate("OpenURIDialog", "Select payment request file", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
     } // retranslateUi
 

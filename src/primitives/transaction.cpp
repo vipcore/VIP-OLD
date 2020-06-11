@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,6 +13,7 @@
 #include "main.h"
 #include "tinyformat.h"
 #include "utilstrencodings.h"
+#include "transaction.h"
 
 #include <boost/foreach.hpp>
 
@@ -45,13 +48,14 @@ CTxIn::CTxIn(uint256 hashPrevTx, uint32_t nOut, CScript scriptSigIn, uint32_t nS
     nSequence = nSequenceIn;
 }
 
+
 std::string CTxIn::ToString() const
 {
     std::string str;
     str += "CTxIn(";
     str += prevout.ToString();
     if (prevout.IsNull())
-        str += strprintf(", coinbase %s", HexStr(scriptSig));
+            str += strprintf(", coinbase %s", HexStr(scriptSig));
     else
         str += strprintf(", scriptSig=%s", scriptSig.ToString().substr(0,24));
     if (nSequence != std::numeric_limits<unsigned int>::max())
@@ -128,12 +132,24 @@ CTransaction& CTransaction::operator=(const CTransaction &tx) {
     return *this;
 }
 
+bool CTransaction::IsCoinStake() const
+{
+    if (vin.empty())
+        return false;
+
+    // ppcoin: the coin stake transaction is marked with the first output empty
+    if (vin[0].prevout.IsNull())
+        return false;
+
+    return (vin.size() > 0 && vout.size() >= 2 && vout[0].IsEmpty());
+}
+
 CAmount CTransaction::GetValueOut() const
 {
     CAmount nValueOut = 0;
     for (std::vector<CTxOut>::const_iterator it(vout.begin()); it != vout.end(); ++it)
     {
-        // PIVX: previously MoneyRange() was called here. This has been replaced with negative check and boundary wrap check.
+        // VIP: previously MoneyRange() was called here. This has been replaced with negative check and boundary wrap check.
         if (it->nValue < 0)
             throw std::runtime_error("CTransaction::GetValueOut() : value out of range : less than 0");
 
@@ -144,6 +160,25 @@ CAmount CTransaction::GetValueOut() const
     }
     return nValueOut;
 }
+
+bool CTransaction::UsesUTXO(const COutPoint out)
+{
+    for (const CTxIn& in : vin) {
+        if (in.prevout == out)
+            return true;
+    }
+
+    return false;
+}
+
+std::list<COutPoint> CTransaction::GetOutPoints() const
+{
+    std::list<COutPoint> listOutPoints;
+    uint256 txHash = GetHash();
+    for (unsigned int i = 0; i < vout.size(); i++)
+        listOutPoints.emplace_back(COutPoint(txHash, i));
+    return listOutPoints;
+}	
 
 double CTransaction::ComputePriority(double dPriorityInputs, unsigned int nTxSize) const
 {

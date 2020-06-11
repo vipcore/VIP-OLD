@@ -1,5 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2016-2017 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -223,7 +224,6 @@ static CScript CombineSignatures(const CScript& scriptPubKey, const CTransaction
     {
     case TX_NONSTANDARD:
     case TX_NULL_DATA:
-        // Don't know anything about this, assume bigger one is correct:
         if (sigs1.size() >= sigs2.size())
             return PushAll(sigs1);
         return PushAll(sigs2);

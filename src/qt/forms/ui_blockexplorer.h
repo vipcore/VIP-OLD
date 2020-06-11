@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'blockexplorer.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -49,8 +49,10 @@ public:
         if (BlockExplorer->objectName().isEmpty())
             BlockExplorer->setObjectName(QStringLiteral("BlockExplorer"));
         BlockExplorer->resize(800, 600);
+        BlockExplorer->setStyleSheet(QStringLiteral(""));
         centralwidget = new QWidget(BlockExplorer);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
+        centralwidget->setStyleSheet(QStringLiteral(""));
         verticalLayout = new QVBoxLayout(centralwidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -106,7 +108,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 780, 498));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 780, 489));
         horizontalLayout_2 = new QHBoxLayout(scrollAreaWidgetContents);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         content = new QLabel(scrollAreaWidgetContents);
@@ -129,7 +131,7 @@ public:
         BlockExplorer->setCentralWidget(centralwidget);
         menubar = new QMenuBar(BlockExplorer);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 800, 27));
         BlockExplorer->setMenuBar(menubar);
         statusbar = new QStatusBar(BlockExplorer);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -145,14 +147,14 @@ public:
 
     void retranslateUi(QMainWindow *BlockExplorer)
     {
-        BlockExplorer->setWindowTitle(QApplication::translate("BlockExplorer", "Blockchain Explorer", 0));
-        back->setText(QString());
-        forward->setText(QString());
+        BlockExplorer->setWindowTitle(QApplication::translate("BlockExplorer", "Blockchain Explorer", Q_NULLPTR));
+        back->setText(QApplication::translate("BlockExplorer", "Back", Q_NULLPTR));
+        forward->setText(QApplication::translate("BlockExplorer", "Forward", Q_NULLPTR));
         searchBox->setInputMask(QString());
         searchBox->setText(QString());
-        searchBox->setPlaceholderText(QApplication::translate("BlockExplorer", "Address / Block / Transaction", 0));
-        pushSearch->setText(QApplication::translate("BlockExplorer", "Search", 0));
-        content->setText(QApplication::translate("BlockExplorer", "TextLabel", 0));
+        searchBox->setPlaceholderText(QApplication::translate("BlockExplorer", "Address / Block / Transaction", Q_NULLPTR));
+        pushSearch->setText(QApplication::translate("BlockExplorer", "Search", Q_NULLPTR));
+        content->setText(QApplication::translate("BlockExplorer", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };

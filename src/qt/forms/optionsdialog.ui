@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>576</width>
-    <height>417</height>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start Vip after logging in to the system.</string>
+          <string>Automatically start VIP after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start Vip on system login</string>
+          <string>&amp;Start VIP on system login</string>
          </property>
         </widget>
        </item>
@@ -118,7 +118,7 @@
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_Main">
+        <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -130,6 +130,13 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+        </layout>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabWallet">
@@ -137,6 +144,27 @@
        <string>W&amp;allet</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_Wallet">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2_Wallet">
+         <item>
+          <widget class="QLabel" name="labelStakeSplitThresholdText">
+           <property name="text">
+            <string>Stake split threshold:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinBoxStakeSplitThreshold">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>999999</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
@@ -160,16 +188,6 @@
             </property>
             <property name="text">
              <string>Show Masternodes Tab</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="spendZeroConfChange">
-            <property name="toolTip">
-             <string>If you disable the spending of unconfirmed change, the change from a transaction&lt;br/&gt;cannot be used until that transaction has at least one confirmation.&lt;br/&gt;This also affects how your balance is computed.</string>
-            </property>
-            <property name="text">
-             <string>&amp;Spend unconfirmed change</string>
             </property>
            </widget>
           </item>
@@ -199,7 +217,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the Vip client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the VIP client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -219,7 +237,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the Vip network through a SOCKS5 proxy.</string>
+          <string>Connect to the VIP network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -385,7 +403,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting Vip.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting VIP.</string>
            </property>
           </widget>
          </item>
@@ -421,7 +439,7 @@ https://www.transifex.com/vip-project/vip-project-translations</string>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4_Display" stretch="0,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2_Display" stretch="0,0">
          <item>
           <widget class="QLabel" name="themeLabel">
            <property name="text">
@@ -442,7 +460,7 @@ https://www.transifex.com/vip-project/vip-project-translations</string>
         </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2_Display">
+        <layout class="QHBoxLayout" name="horizontalLayout_3_Display">
          <item>
           <widget class="QLabel" name="unitLabel">
            <property name="text">
@@ -466,7 +484,7 @@ https://www.transifex.com/vip-project/vip-project-translations</string>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5_Display">
+        <layout class="QHBoxLayout" name="horizontalLayout_4_Display">
          <item>
           <widget class="QLabel" name="digitsLabel">
            <property name="text">
@@ -480,7 +498,47 @@ https://www.transifex.com/vip-project/vip-project-translations</string>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3_Display">
+        <layout class="QHBoxLayout" name="horizontalLayout_5_Display">
+         <item>
+          <widget class="QCheckBox" name="checkBoxHideZeroBalances">
+           <property name="toolTip">
+            <string>Hide empty balances</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Hide empty balances</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBoxHideOrphans">
+           <property name="toolTip">
+            <string>Hide orphan stakes in transaction lists</string>
+           </property>
+           <property name="text">
+            <string>Hide orphan stakes</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6_Display">
          <item>
           <widget class="QLabel" name="thirdPartyTxUrlsLabel">
            <property name="toolTip">

@@ -1,5 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2016-2017 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,7 +24,7 @@ public:
     CBaseMainParams()
     {
         networkID = CBaseChainParams::MAIN;
-        nRPCPort = 28000;
+        nRPCPort = 19455;
     }
 };
 static CBaseMainParams mainParams;
@@ -36,7 +38,7 @@ public:
     CBaseTestNetParams()
     {
         networkID = CBaseChainParams::TESTNET;
-        nRPCPort = 55000;
+        nRPCPort = 51995;
         strDataDir = "testnet4";
     }
 };

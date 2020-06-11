@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'masternodelist.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,14 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -31,11 +30,19 @@ class Ui_MasternodeList
 {
 public:
     QVBoxLayout *topLayout;
+    QVBoxLayout *verticalLayout_Master;
+    QFrame *frame_Header;
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_Header;
+    QLabel *labelOverviewHeaderLeft;
+    QSpacerItem *horizontalSpacer;
+    QLabel *labelOverviewHeaderRight;
+    QFrame *frame_BG;
+    QVBoxLayout *verticalLayout_3;
+    QFrame *frame_Content;
     QVBoxLayout *verticalLayout;
-    QSpacerItem *horizontalSpacer0;
-    QTabWidget *tabWidget;
-    QWidget *tabMyMasternodes;
     QGridLayout *gridLayout_2;
+    QFrame *frameList;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_note;
     QLabel *updateNote;
@@ -48,15 +55,6 @@ public:
     QLabel *autoupdate_label;
     QLabel *secondsLabel;
     QSpacerItem *horizontalSpacer_5;
-    QWidget *tabAllMasternodes;
-    QGridLayout *gridLayout;
-    QTableWidget *tableWidgetMasternodes;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_filter;
-    QLineEdit *filterLineEdit;
-    QSpacerItem *horizontalSpacer_3;
-    QLabel *label_count;
-    QLabel *countLabel;
 
     void setupUi(QWidget *MasternodeList)
     {
@@ -65,27 +63,75 @@ public:
         MasternodeList->resize(723, 457);
         topLayout = new QVBoxLayout(MasternodeList);
         topLayout->setObjectName(QStringLiteral("topLayout"));
-        topLayout->setContentsMargins(0, 0, 0, 0);
-        verticalLayout = new QVBoxLayout();
+        topLayout->setContentsMargins(9, 9, 9, 9);
+        verticalLayout_Master = new QVBoxLayout();
+        verticalLayout_Master->setSpacing(0);
+        verticalLayout_Master->setObjectName(QStringLiteral("verticalLayout_Master"));
+        frame_Header = new QFrame(MasternodeList);
+        frame_Header->setObjectName(QStringLiteral("frame_Header"));
+        verticalLayout_4 = new QVBoxLayout(frame_Header);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_Header = new QHBoxLayout();
+        horizontalLayout_Header->setObjectName(QStringLiteral("horizontalLayout_Header"));
+        labelOverviewHeaderLeft = new QLabel(frame_Header);
+        labelOverviewHeaderLeft->setObjectName(QStringLiteral("labelOverviewHeaderLeft"));
+        labelOverviewHeaderLeft->setMinimumSize(QSize(464, 60));
+        labelOverviewHeaderLeft->setMaximumSize(QSize(16777215, 60));
+        QFont font;
+        font.setPointSize(20);
+        font.setBold(true);
+        font.setWeight(75);
+        labelOverviewHeaderLeft->setFont(font);
+
+        horizontalLayout_Header->addWidget(labelOverviewHeaderLeft);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_Header->addItem(horizontalSpacer);
+
+        labelOverviewHeaderRight = new QLabel(frame_Header);
+        labelOverviewHeaderRight->setObjectName(QStringLiteral("labelOverviewHeaderRight"));
+        labelOverviewHeaderRight->setMinimumSize(QSize(464, 60));
+        labelOverviewHeaderRight->setMaximumSize(QSize(16777215, 60));
+        QFont font1;
+        font1.setPointSize(14);
+        labelOverviewHeaderRight->setFont(font1);
+        labelOverviewHeaderRight->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        horizontalLayout_Header->addWidget(labelOverviewHeaderRight);
+
+        horizontalLayout_Header->setStretch(0, 1);
+        horizontalLayout_Header->setStretch(2, 1);
+
+        verticalLayout_4->addLayout(horizontalLayout_Header);
+
+
+        verticalLayout_Master->addWidget(frame_Header);
+
+        frame_BG = new QFrame(MasternodeList);
+        frame_BG->setObjectName(QStringLiteral("frame_BG"));
+        verticalLayout_3 = new QVBoxLayout(frame_BG);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(6, 6, 6, 6);
+        frame_Content = new QFrame(frame_BG);
+        frame_Content->setObjectName(QStringLiteral("frame_Content"));
+        verticalLayout = new QVBoxLayout(frame_Content);
+        verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(-1, -1, -1, 0);
-        horizontalSpacer0 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        verticalLayout->addItem(horizontalSpacer0);
-
-        tabWidget = new QTabWidget(MasternodeList);
-        tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabMyMasternodes = new QWidget();
-        tabMyMasternodes->setObjectName(QStringLiteral("tabMyMasternodes"));
-        gridLayout_2 = new QGridLayout(tabMyMasternodes);
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(2);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        verticalLayout_2 = new QVBoxLayout();
+        frameList = new QFrame(frame_Content);
+        frameList->setObjectName(QStringLiteral("frameList"));
+        verticalLayout_2 = new QVBoxLayout(frameList);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(-1, -1, -1, 0);
+        verticalLayout_2->setContentsMargins(-1, -1, -1, 1);
         horizontalLayout_note = new QHBoxLayout();
         horizontalLayout_note->setObjectName(QStringLiteral("horizontalLayout_note"));
         horizontalLayout_note->setContentsMargins(-1, -1, -1, 0);
-        updateNote = new QLabel(tabMyMasternodes);
+        updateNote = new QLabel(frameList);
         updateNote->setObjectName(QStringLiteral("updateNote"));
 
         horizontalLayout_note->addWidget(updateNote);
@@ -93,7 +139,7 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_note);
 
-        tableWidgetMyMasternodes = new QTableWidget(tabMyMasternodes);
+        tableWidgetMyMasternodes = new QTableWidget(frameList);
         if (tableWidgetMyMasternodes->columnCount() < 7)
             tableWidgetMyMasternodes->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
@@ -133,32 +179,32 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
         horizontalLayout_5->setContentsMargins(-1, -1, -1, 0);
-        startButton = new QPushButton(tabMyMasternodes);
+        startButton = new QPushButton(frameList);
         startButton->setObjectName(QStringLiteral("startButton"));
 
         horizontalLayout_5->addWidget(startButton);
 
-        startAllButton = new QPushButton(tabMyMasternodes);
+        startAllButton = new QPushButton(frameList);
         startAllButton->setObjectName(QStringLiteral("startAllButton"));
 
         horizontalLayout_5->addWidget(startAllButton);
 
-        startMissingButton = new QPushButton(tabMyMasternodes);
+        startMissingButton = new QPushButton(frameList);
         startMissingButton->setObjectName(QStringLiteral("startMissingButton"));
 
         horizontalLayout_5->addWidget(startMissingButton);
 
-        UpdateButton = new QPushButton(tabMyMasternodes);
+        UpdateButton = new QPushButton(frameList);
         UpdateButton->setObjectName(QStringLiteral("UpdateButton"));
 
         horizontalLayout_5->addWidget(UpdateButton);
 
-        autoupdate_label = new QLabel(tabMyMasternodes);
+        autoupdate_label = new QLabel(frameList);
         autoupdate_label->setObjectName(QStringLiteral("autoupdate_label"));
 
         horizontalLayout_5->addWidget(autoupdate_label);
 
-        secondsLabel = new QLabel(tabMyMasternodes);
+        secondsLabel = new QLabel(frameList);
         secondsLabel->setObjectName(QStringLiteral("secondsLabel"));
 
         horizontalLayout_5->addWidget(secondsLabel);
@@ -171,132 +217,53 @@ public:
         verticalLayout_2->addLayout(horizontalLayout_5);
 
 
-        gridLayout_2->addLayout(verticalLayout_2, 0, 0, 1, 1);
-
-        tabWidget->addTab(tabMyMasternodes, QString());
-        tabAllMasternodes = new QWidget();
-        tabAllMasternodes->setObjectName(QStringLiteral("tabAllMasternodes"));
-        gridLayout = new QGridLayout(tabAllMasternodes);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        tableWidgetMasternodes = new QTableWidget(tabAllMasternodes);
-        if (tableWidgetMasternodes->columnCount() < 6)
-            tableWidgetMasternodes->setColumnCount(6);
-        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(0, __qtablewidgetitem7);
-        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(1, __qtablewidgetitem8);
-        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(2, __qtablewidgetitem9);
-        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(3, __qtablewidgetitem10);
-        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(4, __qtablewidgetitem11);
-        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
-        tableWidgetMasternodes->setHorizontalHeaderItem(5, __qtablewidgetitem12);
-        tableWidgetMasternodes->setObjectName(QStringLiteral("tableWidgetMasternodes"));
-        QPalette palette1;
-        palette1.setBrush(QPalette::Active, QPalette::Text, brush);
-        palette1.setBrush(QPalette::Inactive, QPalette::Text, brush);
-        palette1.setBrush(QPalette::Disabled, QPalette::Text, brush1);
-        tableWidgetMasternodes->setPalette(palette1);
-        tableWidgetMasternodes->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tableWidgetMasternodes->setAlternatingRowColors(true);
-        tableWidgetMasternodes->setSelectionBehavior(QAbstractItemView::SelectRows);
-        tableWidgetMasternodes->setSortingEnabled(true);
-        tableWidgetMasternodes->horizontalHeader()->setStretchLastSection(true);
-
-        gridLayout->addWidget(tableWidgetMasternodes, 1, 0, 1, 1);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(-1, -1, -1, 0);
-        label_filter = new QLabel(tabAllMasternodes);
-        label_filter->setObjectName(QStringLiteral("label_filter"));
-
-        horizontalLayout_3->addWidget(label_filter);
-
-        filterLineEdit = new QLineEdit(tabAllMasternodes);
-        filterLineEdit->setObjectName(QStringLiteral("filterLineEdit"));
-
-        horizontalLayout_3->addWidget(filterLineEdit);
-
-        horizontalSpacer_3 = new QSpacerItem(10, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_3);
-
-        label_count = new QLabel(tabAllMasternodes);
-        label_count->setObjectName(QStringLiteral("label_count"));
-
-        horizontalLayout_3->addWidget(label_count);
-
-        countLabel = new QLabel(tabAllMasternodes);
-        countLabel->setObjectName(QStringLiteral("countLabel"));
-
-        horizontalLayout_3->addWidget(countLabel);
+        gridLayout_2->addWidget(frameList, 0, 0, 1, 1);
 
 
-        gridLayout->addLayout(horizontalLayout_3, 0, 0, 1, 1);
-
-        tabWidget->addTab(tabAllMasternodes, QString());
-
-        verticalLayout->addWidget(tabWidget);
+        verticalLayout->addLayout(gridLayout_2);
 
 
-        topLayout->addLayout(verticalLayout);
+        verticalLayout_3->addWidget(frame_Content);
+
+
+        verticalLayout_Master->addWidget(frame_BG);
+
+        verticalLayout_Master->setStretch(1, 1);
+
+        topLayout->addLayout(verticalLayout_Master);
 
 
         retranslateUi(MasternodeList);
-
-        tabWidget->setCurrentIndex(0);
-
 
         QMetaObject::connectSlotsByName(MasternodeList);
     } // setupUi
 
     void retranslateUi(QWidget *MasternodeList)
     {
-        MasternodeList->setWindowTitle(QApplication::translate("MasternodeList", "Form", 0));
-        updateNote->setText(QApplication::translate("MasternodeList", "Note: Status of your masternodes in local wallet can potentially be slightly incorrect.<br />Always wait for wallet to sync additional data and then double check from another node<br />if your node should be running but you still see \"MISSING\" in \"Status\" field.", 0));
+        MasternodeList->setWindowTitle(QApplication::translate("MasternodeList", "Form", Q_NULLPTR));
+        labelOverviewHeaderLeft->setText(QApplication::translate("MasternodeList", "MASTERNODES", Q_NULLPTR));
+        labelOverviewHeaderRight->setText(QString());
+        updateNote->setText(QApplication::translate("MasternodeList", "Note: Status of your masternodes in local wallet can potentially be slightly incorrect.<br />Always wait for wallet to sync additional data and then double check from another node<br />if your node should be running but you still see \"MISSING\" in \"Status\" field.", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = tableWidgetMyMasternodes->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MasternodeList", "Alias", 0));
+        ___qtablewidgetitem->setText(QApplication::translate("MasternodeList", "Alias", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidgetMyMasternodes->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MasternodeList", "Address", 0));
+        ___qtablewidgetitem1->setText(QApplication::translate("MasternodeList", "Address", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidgetMyMasternodes->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MasternodeList", "Protocol", 0));
+        ___qtablewidgetitem2->setText(QApplication::translate("MasternodeList", "Protocol", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidgetMyMasternodes->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MasternodeList", "Status", 0));
+        ___qtablewidgetitem3->setText(QApplication::translate("MasternodeList", "Status", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidgetMyMasternodes->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MasternodeList", "Active", 0));
+        ___qtablewidgetitem4->setText(QApplication::translate("MasternodeList", "Active", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidgetMyMasternodes->horizontalHeaderItem(5);
-        ___qtablewidgetitem5->setText(QApplication::translate("MasternodeList", "Last Seen (UTC)", 0));
+        ___qtablewidgetitem5->setText(QApplication::translate("MasternodeList", "Last Seen (UTC)", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem6 = tableWidgetMyMasternodes->horizontalHeaderItem(6);
-        ___qtablewidgetitem6->setText(QApplication::translate("MasternodeList", "Pubkey", 0));
-        startButton->setText(QApplication::translate("MasternodeList", "S&tart alias", 0));
-        startAllButton->setText(QApplication::translate("MasternodeList", "Start &all", 0));
-        startMissingButton->setText(QApplication::translate("MasternodeList", "Start &MISSING", 0));
-        UpdateButton->setText(QApplication::translate("MasternodeList", "&Update status", 0));
-        autoupdate_label->setText(QApplication::translate("MasternodeList", "Status will be updated automatically in (sec):", 0));
-        secondsLabel->setText(QApplication::translate("MasternodeList", "0", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tabMyMasternodes), QApplication::translate("MasternodeList", "My Masternodes", 0));
-        QTableWidgetItem *___qtablewidgetitem7 = tableWidgetMasternodes->horizontalHeaderItem(0);
-        ___qtablewidgetitem7->setText(QApplication::translate("MasternodeList", "Address", 0));
-        QTableWidgetItem *___qtablewidgetitem8 = tableWidgetMasternodes->horizontalHeaderItem(1);
-        ___qtablewidgetitem8->setText(QApplication::translate("MasternodeList", "Protocol", 0));
-        QTableWidgetItem *___qtablewidgetitem9 = tableWidgetMasternodes->horizontalHeaderItem(2);
-        ___qtablewidgetitem9->setText(QApplication::translate("MasternodeList", "Status", 0));
-        QTableWidgetItem *___qtablewidgetitem10 = tableWidgetMasternodes->horizontalHeaderItem(3);
-        ___qtablewidgetitem10->setText(QApplication::translate("MasternodeList", "Active", 0));
-        QTableWidgetItem *___qtablewidgetitem11 = tableWidgetMasternodes->horizontalHeaderItem(4);
-        ___qtablewidgetitem11->setText(QApplication::translate("MasternodeList", "Last Seen (UTC)", 0));
-        QTableWidgetItem *___qtablewidgetitem12 = tableWidgetMasternodes->horizontalHeaderItem(5);
-        ___qtablewidgetitem12->setText(QApplication::translate("MasternodeList", "Pubkey", 0));
-        label_filter->setText(QApplication::translate("MasternodeList", "Filter List:", 0));
-#ifndef QT_NO_TOOLTIP
-        filterLineEdit->setToolTip(QApplication::translate("MasternodeList", "Filter masternode list", 0));
-#endif // QT_NO_TOOLTIP
-        label_count->setText(QApplication::translate("MasternodeList", "Node Count:", 0));
-        countLabel->setText(QApplication::translate("MasternodeList", "0", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tabAllMasternodes), QApplication::translate("MasternodeList", "All Masternodes", 0));
+        ___qtablewidgetitem6->setText(QApplication::translate("MasternodeList", "Pubkey", Q_NULLPTR));
+        startButton->setText(QApplication::translate("MasternodeList", "S&tart alias", Q_NULLPTR));
+        startAllButton->setText(QApplication::translate("MasternodeList", "Start &all", Q_NULLPTR));
+        startMissingButton->setText(QApplication::translate("MasternodeList", "Start &MISSING", Q_NULLPTR));
+        UpdateButton->setText(QApplication::translate("MasternodeList", "&Update status", Q_NULLPTR));
+        autoupdate_label->setText(QApplication::translate("MasternodeList", "Status will be updated automatically in (sec):", Q_NULLPTR));
+        secondsLabel->setText(QApplication::translate("MasternodeList", "0", Q_NULLPTR));
     } // retranslateUi
 
 };

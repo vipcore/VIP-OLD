@@ -1,10 +1,14 @@
-// clang-format off
-#include "net.h"
+// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
+// Distributed under the MIT/X11 software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#include "netbase.h"
 #include "masternodeconfig.h"
 #include "util.h"
 #include "ui_interface.h"
 #include <base58.h>
-// clang-format on
 
 CMasternodeConfig masternodeConfig;
 
@@ -25,7 +29,7 @@ bool CMasternodeConfig::read(std::string& strErr)
         if (configFile != NULL) {
             std::string strHeader = "# Masternode config file\n"
                                     "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index\n"
-                                    "# Example: mn1 127.0.0.2:28181 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
+                                    "# Example: mn1 127.0.0.2:19450 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
             fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
         }
@@ -55,21 +59,31 @@ bool CMasternodeConfig::read(std::string& strErr)
             }
         }
 
-        if (Params().NetworkID() == CBaseChainParams::MAIN) {
-            if (CService(ip).GetPort() != 28181) {
-                strErr = _("Invalid port detected in masternode.conf") + "\n" +
-                         strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
-                         _("(must be 28181 for mainnet)");
-                streamConfig.close();
-                return false;
-            }
-        } else if (CService(ip).GetPort() == 28181) {
-            strErr = _("Invalid port detected in masternode.conf") + "\n" +
-                     strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
-                     _("(28181 could be used only on mainnet)");
+        int port = 0;
+        std::string hostname = "";
+        SplitHostPort(ip, port, hostname);
+        if(port == 0 || hostname == "") {
+            strErr = _("Failed to parse host:port string") + "\n"+
+                     strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"";
             streamConfig.close();
             return false;
         }
+
+        // if (Params().NetworkID() == CBaseChainParams::MAIN) {
+        //     if (port != 19450) {
+        //         strErr = _("Invalid port detected in masternode.conf") + "\n" +
+        //                  strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
+        //                  _("(must be 19450 for mainnet)");
+        //         streamConfig.close();
+        //         return false;
+        //     }
+        // } else if (port == 19450) {
+        //     strErr = _("Invalid port detected in masternode.conf") + "\n" +
+        //              strprintf(_("Line: %d"), linenumber) + "\n\"" + line + "\"" + "\n" +
+        //              _("(19450 could be used only on mainnet)");
+        //     streamConfig.close();
+        //     return false;
+        // }
 
 
         add(alias, ip, privKey, txHash, outputIndex);

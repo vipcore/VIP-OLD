@@ -1,5 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2018-2019 The VIP developers
+// Copyright (c) 2019 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -243,6 +245,7 @@ bool CScript::IsPayToScriptHash() const
             this->at(22) == OP_EQUAL);
 }
 
+
 bool CScript::IsPushOnly(const_iterator pc) const
 {
     while (pc < end())
@@ -280,10 +283,12 @@ std::string CScript::ToString() const
             str += "[error]";
             return str;
         }
-        if (0 <= opcode && opcode <= OP_PUSHDATA4)
+        if (0 <= opcode && opcode <= OP_PUSHDATA4) {
             str += ValueString(vch);
-        else
+        } else {
             str += GetOpName(opcode);
+        }
+
     }
     return str;
 }

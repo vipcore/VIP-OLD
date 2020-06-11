@@ -1,10 +1,12 @@
 // Copyright (c) 2014 The Bitcoin developers
+// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "winshutdownmonitor.h"
 
-#if defined(Q_OS_WIN) && QT_VERSION >= 0x050000
+#if defined(Q_OS_WIN)
 #include "init.h"
 #include "util.h"
 
@@ -33,8 +35,8 @@ bool WinShutdownMonitor::nativeEventFilter(const QByteArray& eventType, void* pM
     }
 
     switch (pMsg->message) {
-    case WM_QUERYENDSESSION: {
-        // Initiate a client shutdown after receiving a WM_QUERYENDSESSION and block
+    case WM_QUERVIPDSESSION: {
+        // Initiate a client shutdown after receiving a WM_QUERVIPDSESSION and block
         // Windows session end until we have finished client shutdown.
         StartShutdown();
         *pnResult = FALSE;

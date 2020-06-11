@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Vip"
-            VALUE "FileDescription",    "vipd (OSS daemon/client for Vip)"
+            VALUE "CompanyName",        "VIP"
+            VALUE "FileDescription",    "vipd (OSS daemon/client for VIP)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "vipd"
             VALUE "LegalCopyright",     COPYRIGHT_STR

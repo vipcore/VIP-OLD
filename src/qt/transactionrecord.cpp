@@ -1,15 +1,15 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers 
-// Copyright (c) 2018-2019 The Vip developers
-// Distributed under the MIT/X11 software license, see the accompanying
+// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
+// Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "transactionrecord.h"
 
 #include "base58.h"
-#include "Darksend.h"
-#include "Instantx.h"
+#include "obfuscation.h"
+#include "swifttx.h"
 #include "timedata.h"
 #include "wallet.h"
 
@@ -34,7 +34,7 @@ bool TransactionRecord::showTransaction(const CWalletTx& wtx)
 QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* wallet, const CWalletTx& wtx)
 {
     QList<TransactionRecord> parts;
-    int64_t nTime = wtx.GetTxTime();
+    int64_t nTime = wtx.GetComputedTxTime();
     CAmount nCredit = wtx.GetCredit(ISMINE_ALL);
     CAmount nDebit = wtx.GetDebit(ISMINE_ALL);
     CAmount nNet = nCredit - nDebit;
@@ -47,29 +47,35 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         if (!ExtractDestination(wtx.vout[1].scriptPubKey, address))
             return parts;
 
-        if (!IsMine(*wallet, address)) {
-            //if the address is not yours then it means you have a tx sent to you in someone elses coinstake tx
-            for (unsigned int i = 1; i < wtx.vout.size(); i++) {
-                CTxDestination outAddress;
-                if (ExtractDestination(wtx.vout[i].scriptPubKey, outAddress)) {
-                    if (IsMine(*wallet, outAddress)) {
-                        isminetype mine = wallet->IsMine(wtx.vout[i]);
-                        sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
-                        sub.type = TransactionRecord::MNReward;
-                        sub.address = CBitcoinAddress(outAddress).ToString();
-                        sub.credit = wtx.vout[i].nValue;
-                    }
-                }
-            }
-        } else {
-            //stake reward
-            isminetype mine = wallet->IsMine(wtx.vout[1]);
+        if (isminetype mine = wallet->IsMine(wtx.vout[1])) {
+            // VIP stake reward
             sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
             sub.type = TransactionRecord::StakeMint;
             sub.address = CBitcoinAddress(address).ToString();
             sub.credit = nNet;
+        } else {
+            //Masternode reward
+            CTxDestination destMN;
+            int nIndexMN = wtx.vout.size() - 2;
+            if (ExtractDestination(wtx.vout[nIndexMN].scriptPubKey, destMN) && IsMine(*wallet, destMN)) {
+                isminetype mine = wallet->IsMine(wtx.vout[nIndexMN]);
+                sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
+                sub.type = TransactionRecord::MNReward;
+                sub.address = CBitcoinAddress(destMN).ToString();
+                sub.credit = wtx.vout[nIndexMN].nValue;
+            }
+            nIndexMN++;
+            if (ExtractDestination(wtx.vout[nIndexMN].scriptPubKey, destMN) && IsMine(*wallet, destMN)) {
+                isminetype mine = wallet->IsMine(wtx.vout[nIndexMN]);
+                sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
+                sub.type = TransactionRecord::MNReward;
+                sub.address = CBitcoinAddress(destMN).ToString();
+                sub.credit = wtx.vout[nIndexMN].nValue;
+            }
         }
+
         parts.append(sub);
+
     } else if (nNet > 0 || wtx.IsCoinBase()) {
         //
         // Credit
@@ -83,7 +89,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.credit = txout.nValue;
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*wallet, address)) {
-                    // Received by Vip Address
+                    // Received by VIP Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
@@ -95,52 +101,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     // Generated
                     sub.type = TransactionRecord::Generated;
                 }
-				
-				int nHeight = chainActive.Height();
-				int64_t nSubsidy;
-				
-				if(nHeight <= 86400 && nHeight > 0) {
-					nSubsidy = 200 * COIN;
-					if(nSubsidy / 100 * 20 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 86400 && nHeight <= 151200) {
-					nSubsidy = 150 * COIN;
-					if(nSubsidy / 100 * 25 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 151200 && nHeight <= 152500) {
-					nSubsidy = 125 * COIN;
-					if(nSubsidy / 100 * 20 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 152500 && nHeight <= 225000) {
-					nSubsidy = 125 * COIN;
-					if(nSubsidy / 100 * 30 == txout.nValue || nSubsidy / 100 * 60 == txout.nValue ) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 225000 && nHeight <= 302400) {
-					nSubsidy = 125 * COIN;
-					if(nSubsidy / 100 * 60 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 302400 && nHeight <= 345600) {
-					nSubsidy = 100 * COIN;
-					if(nSubsidy / 100 * 60 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 345600 && nHeight <= 388800) {
-					nSubsidy = 75 * COIN;
-					if(nSubsidy / 100 * 60 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				} else if (nHeight > 388800 && nHeight <= 475200) { // 475200 => LAST POW BLOCK
-					nSubsidy = 50 * COIN;
-					if(nSubsidy / 100 * 60 == txout.nValue) {
-						sub.type = TransactionRecord::MNReward;
-					}
-				}
-				
+
                 parts.append(sub);
             }
         }
@@ -173,7 +134,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
         }
 
         if (fAllFromMeDenom && fAllToMeDenom && nFromMe * nToMe) {
-            parts.append(TransactionRecord(hash, nTime, TransactionRecord::DarksendDenominate, "", -nDebit, nCredit));
+            parts.append(TransactionRecord(hash, nTime, TransactionRecord::ObfuscationDenominate, "", -nDebit, nCredit));
             parts.last().involvesWatchAddress = false; // maybe pass to TransactionRecord as constructor argument
         } else if (fAllFromMe && fAllToMe) {
             // Payment to self
@@ -189,7 +150,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                 sub.type = TransactionRecord::Obfuscated;
                 CTxDestination address;
                 if (ExtractDestination(wtx.vout[0].scriptPubKey, address)) {
-                    // Sent to Vip Address
+                    // Sent to VIP Address
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
                     // Sent to IP, or other non-address transaction like OP_EVAL
@@ -200,9 +161,9 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
                     const CTxOut& txout = wtx.vout[nOut];
                     sub.idx = parts.size();
 
-                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::DarksendMakeCollaterals;
-                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::DarksendCreateDenominations;
-                    if (nDebit - wtx.GetValueOut() == DARKSEND_COLLATERAL) sub.type = TransactionRecord::DarksendCollateralPayment;
+                    if (wallet->IsCollateralAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationMakeCollaterals;
+                    if (wallet->IsDenominatedAmount(txout.nValue)) sub.type = TransactionRecord::ObfuscationCreateDenominations;
+                    if (nDebit - wtx.GetValueOut() == OBFUSCATION_COLLATERAL) sub.type = TransactionRecord::ObfuscationCollateralPayment;
                 }
             }
 
@@ -232,7 +193,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
 
                 CTxDestination address;
                 if (ExtractDestination(txout.scriptPubKey, address)) {
-                    // Sent to Vip Address
+                    // Sent to CGen Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = CBitcoinAddress(address).ToString();
                 } else {
@@ -267,6 +228,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet* 
     return parts;
 }
 
+
 void TransactionRecord::updateStatus(const CWalletTx& wtx)
 {
     AssertLockHeld(cs_main);
@@ -284,8 +246,13 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
         (wtx.IsCoinBase() ? 1 : 0),
         wtx.nTimeReceived,
         idx);
-    status.countsForBalance = wtx.IsTrusted() && !(wtx.GetBlocksToMaturity() > 0);
+    //status.countsForBalance = wtx.IsTrusted() && !(wtx.GetBlocksToMaturity() > 0);
     status.depth = wtx.GetDepthInMainChain();
+
+    //Determine the depth of the block
+    int nBlocksToMaturity = wtx.GetBlocksToMaturity();
+
+    status.countsForBalance = wtx.IsTrusted() && !(nBlocksToMaturity > 0);
     status.cur_num_blocks = chainActive.Height();
     status.cur_num_ix_locks = nCompleteTXLocks;
 
@@ -299,13 +266,12 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
         }
     }
     // For generated transactions, determine maturity
-    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::MNReward) {
-        if (wtx.GetBlocksToMaturity() > 0) {
+    else if (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint || type == TransactionRecord::StakeZVIP || type == TransactionRecord::MNReward) {
+        if (nBlocksToMaturity > 0) {
             status.status = TransactionStatus::Immature;
+            status.matures_in = nBlocksToMaturity;
 
-            if (wtx.IsInMainChain()) {
-                status.matures_in = wtx.GetBlocksToMaturity();
-
+            if (pindex && chainActive.Contains(pindex)) {
                 // Check if the block was requested by anyone
                 if (GetAdjustedTime() - wtx.nTimeReceived > 2 * 60 && wtx.GetRequestCount() == 0)
                     status.status = TransactionStatus::MaturesWarning;
@@ -314,6 +280,7 @@ void TransactionRecord::updateStatus(const CWalletTx& wtx)
             }
         } else {
             status.status = TransactionStatus::Confirmed;
+            status.matures_in = 0;
         }
     } else {
         if (status.depth < 0) {

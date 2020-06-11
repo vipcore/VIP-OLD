@@ -1,5 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
+// Copyright (c) 2014-2015 The Dash developers
+// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2018-2020 VIP Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,7 +26,7 @@ struct CDNSSeedData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Vip system. There are three: the main network on which people trade goods
+ * VIP system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -47,7 +50,6 @@ public:
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
-    int SubsidyHalvingInterval() const { return nSubsidyHalvingInterval; }
     /** Used to check majorities for block version upgrade */
     int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
     int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
@@ -57,7 +59,6 @@ public:
     /** Used if GenerateBitcoins is called with a negative number of threads */
     int DefaultMinerThreads() const { return nMinerThreads; }
     const CBlock& GenesisBlock() const { return genesis; }
-    bool RequireRPCPassword() const { return fRequireRPCPassword; }
     /** Make miner wait to have peers to avoid wasting work */
     bool MiningRequiresPeers() const { return fMiningRequiresPeers; }
     /** Headers first syncing is disabled */
@@ -73,13 +74,11 @@ public:
     int64_t TargetTimespan() const { return nTargetTimespan; }
     int64_t TargetSpacing() const { return nTargetSpacing; }
     int64_t Interval() const { return nTargetTimespan / nTargetSpacing; }
-    int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int COINBASE_MATURITY() const { return nMaturity; }
-    int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     CAmount MaxMoneyOut() const { return nMaxMoneyOut; }
+    CAmount MasternodeCollateral() const { return nMNCollateral; }
     /** The masternode count that we will allow the see-saw reward payments to be off by */
     int MasternodeCountDrift() const { return nMasternodeCountDrift; }
-	int MasternodeColleteral() const { return nMasternodeColleteral; }
     /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
     bool MineBlocksOnDemand() const { return fMineBlocksOnDemand; }
     /** In the future use NetworkIDString() for RPC fields */
@@ -91,17 +90,26 @@ public:
     const std::vector<CAddress>& FixedSeeds() const { return vFixedSeeds; }
     virtual const Checkpoints::CCheckpointData& Checkpoints() const = 0;
     int PoolMaxTransactions() const { return nPoolMaxTransactions; }
+    std::string DevPubKey() const { return strDevpubkey; }
+
+    /** Spork key and Masternode Handling **/
     std::string SporkKey() const { return strSporkKey; }
     std::string SporkKeyOld() const { return strSporkKeyOld; }
     int64_t NewSporkStart() const { return nEnforceNewSporkKey; }
     int64_t RejectOldSporkKey() const { return nRejectOldSporkKey; }
-    std::string DarksendPoolDummyAddress() const { return strDarksendPoolDummyAddress; }
+    std::string ObfuscationPoolDummyAddress() const { return strObfuscationPoolDummyAddress; }
     int64_t StartMasternodePayments() const { return nStartMasternodePayments; }
+
     CBaseChainParams::Network NetworkID() const { return networkID; }
-	std::string GetDeveloperFeePayee() const { return strDeveloperFeePayee; }
 
 
-	
+    /** Height or Time Based Activations **/
+    int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
+    int LAST_POW_BLOCK() const { return nLastPOWBlock; }
+    int Block_Enforce_Invalid() const { return nBlockEnforceInvalidUTXO; }
+    // fake serial attack
+    CAmount InvalidAmountFiltered() const { return nInvalidAmountFiltered; };
+
 protected:
     CChainParams() {}
 
@@ -110,10 +118,8 @@ protected:
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
     int nDefaultPort;
-	int nMasternodeColleteral;
     uint256 bnProofOfWorkLimit;
     int nMaxReorganizationDepth;
-    int nSubsidyHalvingInterval;
     int nEnforceBlockUpgradeMajority;
     int nRejectBlockOutdatedMajority;
     int nToCheckBlockUpgradeMajority;
@@ -122,8 +128,8 @@ protected:
     int nLastPOWBlock;
     int nMasternodeCountDrift;
     int nMaturity;
-	int nMaturityMAX;
     int nModifierUpdateBlock;
+    CAmount nMNCollateral;
     CAmount nMaxMoneyOut;
     int nMinerThreads;
     std::vector<CDNSSeedData> vSeeds;
@@ -132,7 +138,6 @@ protected:
     std::string strNetworkID;
     CBlock genesis;
     std::vector<CAddress> vFixedSeeds;
-    bool fRequireRPCPassword;
     bool fMiningRequiresPeers;
     bool fAllowMinDifficultyBlocks;
     bool fDefaultConsistencyChecks;
@@ -142,16 +147,24 @@ protected:
     bool fTestnetToBeDeprecatedFieldRPC;
     bool fHeadersFirstSyncingActive;
     int nPoolMaxTransactions;
+    std::string strDevpubkey;
     std::string strSporkKey;
     std::string strSporkKeyOld;
     int64_t nEnforceNewSporkKey;
     int64_t nRejectOldSporkKey;
-    std::string strDarksendPoolDummyAddress;
+    std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
-	std::string strDeveloperFeePayee;
+    CAmount nInvalidAmountFiltered;
+
+    int nBlockEnforceSerialRange;
+    int nBlockFirstFraudulent;
+    int nBlockLastGoodCheckpoint;
+    int nBlockEnforceInvalidUTXO;
+    int nBlockDoubleAccumulated;
+
 };
 
-/** 
+/**
  * Modifiable parameters interface is used by test cases to adapt the parameters in order
  * to test specific features more easily. Test cases should always restore the previous
  * values after finalization.
@@ -161,7 +174,6 @@ class CModifiableParams
 {
 public:
     //! Published setters to allow changing values in unit test cases
-    virtual void setSubsidyHalvingInterval(int anSubsidyHalvingInterval) = 0;
     virtual void setEnforceBlockUpgradeMajority(int anEnforceBlockUpgradeMajority) = 0;
     virtual void setRejectBlockOutdatedMajority(int anRejectBlockOutdatedMajority) = 0;
     virtual void setToCheckBlockUpgradeMajority(int anToCheckBlockUpgradeMajority) = 0;
