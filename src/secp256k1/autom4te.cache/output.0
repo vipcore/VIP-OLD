@@ -704,7 +704,7 @@ am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
 am__nodep
-AMDEPBACKSLASH
+AMDEPVIPKSLASH
 AMDEP_FALSE
 AMDEP_TRUE
 am__quote
@@ -718,7 +718,7 @@ LDFLAGS
 CFLAGS
 CC
 LIBTOOL
-AM_BACKSLASH
+AM_VIPKSLASH
 AM_DEFAULT_VERBOSITY
 AM_DEFAULT_V
 AM_V
@@ -811,7 +811,7 @@ enable_tests
 enable_openssl_tests
 enable_experimental
 enable_exhaustive_tests
-enable_endomorphism
+enable_enviprphism
 enable_ecmult_static_precomputation
 enable_module_ecdh
 enable_module_recovery
@@ -1487,7 +1487,8 @@ Optional Features:
   --enable-experimental   allow experimental configure options (default is no)
   --enable-exhaustive-tests 
                           compile exhaustive tests (default is yes)
-  --enable-endomorphism   enable endomorphism (default is no)
+  --enable-enviprphism 
+                          enable enviprphism (default is no)
   --enable-ecmult-static-precomputation 
                           enable precomputed ecmult table for signing (default
                           is yes)
@@ -2938,7 +2939,7 @@ else
   AM_V=$AM_DEFAULT_VERBOSITY
   AM_DEFAULT_V=$AM_DEFAULT_VERBOSITY
 fi
-AM_BACKSLASH='\'
+AM_VIPKSLASH='\'
 
 if test "`cd $srcdir && pwd`" != "`pwd`"; then
   # Use -I$(srcdir) only when $(srcdir) != ., so that make's output
@@ -3200,7 +3201,7 @@ fi
 
 if test "x$enable_dependency_tracking" != xno; then
   am_depcomp="$ac_aux_dir/depcomp"
-  AMDEPBACKSLASH='\'
+  AMDEPVIPKSLASH='\'
   am__nodep='_no'
 fi
  if test "x$enable_dependency_tracking" != xno; then
@@ -12146,7 +12147,7 @@ else
   AM_V=$AM_DEFAULT_VERBOSITY
   AM_DEFAULT_V=$AM_DEFAULT_VERBOSITY
 fi
-AM_BACKSLASH='\'
+AM_VIPKSLASH='\'
 
 
 
@@ -13873,11 +13874,11 @@ else
 fi
 
 
-@%:@ Check whether --enable-endomorphism was given.
-if test "${enable_endomorphism+set}" = set; then :
-  enableval=$enable_endomorphism; use_endomorphism=$enableval
+@%:@ Check whether --enable-enviprphism was given.
+if test "${enable_enviprphism+set}" = set; then :
+  enableval=$enable_enviprphism; use_enviprphism=$enableval
 else
-  use_endomorphism=no
+  use_enviprphism=no
 fi
 
 
@@ -14801,9 +14802,9 @@ if test x"$set_bignum" = x"gmp"; then
   SECP_INCLUDES="$SECP_INCLUDES $GMP_CPPFLAGS"
 fi
 
-if test x"$use_endomorphism" = x"yes"; then
+if test x"$use_enviprphism" = x"yes"; then
   
-$as_echo "@%:@define USE_ENDOMORPHISM 1" >>confdefs.h
+$as_echo "@%:@define USE_ENVIPRPHISM 1" >>confdefs.h
 
 fi
 
@@ -15066,8 +15067,8 @@ $as_echo "$as_me: Using field implementation: $set_field" >&6;}
 $as_echo "$as_me: Using bignum implementation: $set_bignum" >&6;}
 { $as_echo "$as_me:${as_lineno-$LINENO}: Using scalar implementation: $set_scalar" >&5
 $as_echo "$as_me: Using scalar implementation: $set_scalar" >&6;}
-{ $as_echo "$as_me:${as_lineno-$LINENO}: Using endomorphism optimizations: $use_endomorphism" >&5
-$as_echo "$as_me: Using endomorphism optimizations: $use_endomorphism" >&6;}
+{ $as_echo "$as_me:${as_lineno-$LINENO}: Using enviprphism optimizations: $use_enviprphism" >&5
+$as_echo "$as_me: Using enviprphism optimizations: $use_enviprphism" >&6;}
 { $as_echo "$as_me:${as_lineno-$LINENO}: Building benchmarks: $use_benchmark" >&5
 $as_echo "$as_me: Building benchmarks: $use_benchmark" >&6;}
 { $as_echo "$as_me:${as_lineno-$LINENO}: Building for coverage analysis: $enable_coverage" >&5

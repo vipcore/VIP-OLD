@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,6 +15,7 @@
 #include "allocators.h"
 #include "chainparamsbase.h"
 #include "random.h"
+#include "serialize.h"
 #include "sync.h"
 #include "utilstrencodings.h"
 #include "utiltime.h"
@@ -24,6 +25,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <openssl/bio.h>
 #include <openssl/buffer.h>
+#include <openssl/crypto.h> // for OPENSSL_cleanse()
 #include <openssl/evp.h>
 
 
@@ -114,9 +116,10 @@ bool fLiteMode = false;
 bool fEnableSwiftTX = true;
 int nSwiftTXDepth = 5;
 // Automatic Zerocoin minting
-bool fEnableObfuscation = true;
-int nObfuscationRounds = 10;
+bool fEnableZeromint = false;
+int nZeromintPercentage = 10;
 int nPreferredDenom = 0;
+const int64_t AUTOMINT_DELAY = (60 * 5); // Wait at least 5 minutes until Automint starts
 
 int nAnonymizeVipAmount = 1000;
 int nLiquidityProvider = 0;
@@ -125,6 +128,7 @@ int64_t enforceMasternodePaymentsTime = 4085657524;
 bool fSucessfullyLoaded = false;
 /** All denominations used by obfuscation */
 std::vector<int64_t> obfuScationDenominations;
+string strBudgetMode = "";
 
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
@@ -140,7 +144,7 @@ volatile bool fReopenDebugLog = false;
 
 /** Init OpenSSL library multithreading support */
 static CCriticalSection** ppmutexOpenSSL;
-void locking_callback(int mode, int i, const char* file, int line)
+void locking_callback(int mode, int i, const char* file, int line) NO_THREAD_SAFETY_ANALYSIS
 {
     if (mode & CRYPTO_LOCK) {
         ENTER_CRITICAL_SECTION(*ppmutexOpenSSL[i]);
@@ -236,11 +240,12 @@ bool LogAcceptCategory(const char* category)
             // thread_specific_ptr automatically deletes the set when the thread ends.
             // "vip" is a composite category enabling all VIP-related debug output
             if (ptrCategory->count(string("vip"))) {
+                ptrCategory->insert(string("obfuscation"));
                 ptrCategory->insert(string("swiftx"));
                 ptrCategory->insert(string("masternode"));
                 ptrCategory->insert(string("mnpayments"));
-                ptrCategory->insert(string("precompute"));
-                ptrCategory->insert(string("staking"));
+                ptrCategory->insert(string("zero"));
+                ptrCategory->insert(string("mnbudget"));
             }
         }
         const set<string>& setCategories = *ptrCategory.get();
@@ -302,7 +307,7 @@ static bool InterpretBool(const std::string& strValue)
 /** Turn -noX into -X=0 */
 static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
 {
-    if (strKey.length()>3 && strKey[0]=='-' && strKey[1]=='n' && strKey[2]=='o') {
+    if (strKey.length() > 3 && strKey[0] == '-' && strKey[1] == 'n' && strKey[2] == 'o') {
         strKey = "-" + strKey.substr(3);
         strValue = InterpretBool(strValue) ? "0" : "1";
     }
@@ -382,13 +387,15 @@ static const int screenWidth = 79;
 static const int optIndent = 2;
 static const int msgIndent = 7;
 
-std::string HelpMessageGroup(const std::string &message) {
+std::string HelpMessageGroup(const std::string& message)
+{
     return std::string(message) + std::string("\n\n");
 }
 
-std::string HelpMessageOpt(const std::string &option, const std::string &message) {
-    return std::string(optIndent,' ') + std::string(option) +
-           std::string("\n") + std::string(msgIndent,' ') +
+std::string HelpMessageOpt(const std::string& option, const std::string& message)
+{
+    return std::string(optIndent, ' ') + std::string(option) +
+           std::string("\n") + std::string(msgIndent, ' ') +
            FormatParagraph(message, screenWidth - msgIndent, msgIndent) +
            std::string("\n\n");
 }
@@ -528,11 +535,16 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
             strHeader += rpc_user;
             strHeader += "\nrpcpassword=";
             strHeader += rpc_passwd;
-            strHeader += "\naddnode=hardseed1.vip.io\naddnode=hardseed2.vip.io\naddnode=hardseed3.vip.io\n";
-            strHeader += "txindex=1\nvipstake=1\n";
+            strHeader += "\naddnode=107.161.26.12:19450\naddnode=168.235.93.113:19450\naddnode=168.235.93.110:19450\naddnode=168.235.82.33:19450\n";
+            strHeader += "txindex=1\nvipstake=1\nserver=1\ndaemon=1\n";
             fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
             fclose(configFile);
-	}
+
+
+
+
+        }
+        // return; // Nothing to read, so just return
         streamConfig.open(GetConfigFile());
     }
 
@@ -705,12 +717,12 @@ void ShrinkDebugFile()
         // Restart the file with some of the end
         std::vector<char> vch(200000, 0);
         fseek(file, -((long)vch.size()), SEEK_END);
-        int nBytes = fread(vch.data(), 1, vch.size(), file);
+        int nBytes = fread(begin_ptr(vch), 1, vch.size(), file);
         fclose(file);
 
         file = fopen(pathLog.string().c_str(), "w");
         if (file) {
-            fwrite(vch.data(), 1, nBytes, file);
+            fwrite(begin_ptr(vch), 1, nBytes, file);
             fclose(file);
         }
     } else if (file != NULL)
@@ -831,8 +843,8 @@ bool SetupNetworking()
 #ifdef WIN32
     // Initialize Windows Sockets
     WSADATA wsadata;
-    int ret = WSAStartup(MAKEWORD(2,2), &wsadata);
-    if (ret != NO_ERROR || LOBYTE(wsadata.wVersion ) != 2 || HIBYTE(wsadata.wVersion) != 2)
+    int ret = WSAStartup(MAKEWORD(2, 2), &wsadata);
+    if (ret != NO_ERROR || LOBYTE(wsadata.wVersion) != 2 || HIBYTE(wsadata.wVersion) != 2)
         return false;
 #endif
     return true;

@@ -1,7 +1,7 @@
-TOR SUPPORT IN VIP
+TOR SUPPORT IN BAC
 =======================
 
-It is possible to run VIP as a Tor hidden service, and connect to such services.
+It is possible to run BAC as a Tor hidden service, and connect to such services.
 
 The following directions assume you have a Tor proxy running on port 9050. Many
 distributions default to having a SOCKS proxy listening on port 9050, but others
@@ -10,10 +10,10 @@ port. See [Tor Project FAQ:TBBSocksPort](https://www.torproject.org/docs/faq.htm
 for how to properly configure Tor.
 
 
-Run VIP behind a Tor proxy
+Run BAC behind a Tor proxy
 ----------------------------------
 
-The first step is running VIP behind a Tor proxy. This will already make all
+The first step is running BAC behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
 ```
 -proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
@@ -46,7 +46,7 @@ In a typical situation, this suffices to run behind a Tor proxy:
 ./vipd -proxy=127.0.0.1:9050
 ```
 
-Run a VIP hidden server
+Run a BAC hidden server
 -------------------------------
 
 If you configure your Tor system accordingly, it is possible to make your node also
@@ -59,7 +59,7 @@ SOCKSPolicy accept 127.0.0.1/8
 Log notice file /var/log/tor/notices.log
 ControlPort 9051
 HiddenServiceDir /var/lib/tor/dnet/
-HiddenServicePort 989 127.0.0.1:37701
+HiddenServicePort 989 127.0.0.1:19450
 HiddenServiceStatistics 0
 ORPort 9001
 LongLivedPorts 989
@@ -69,7 +69,7 @@ NumEntryGuards 8
 ```
 
 The directory can be different of course, but (both) port numbers should be equal to
-your vipd's P2P listen port (37701 by default).
+your vipd's P2P listen port (19450 by default).
 ```
 -externalip=X   You can tell vip about its publicly reachable address using
                 this option, and this can be a .onion address. Given the above
@@ -102,7 +102,7 @@ specify:
 ./vipd ... -discover
 ```
 
-and open port 37701 on your firewall (or use -upnp).
+and open port 19450 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
@@ -110,7 +110,7 @@ for normal IPv4/IPv6 communication, use:
 ./vipd -onion=127.0.0.1:9050 -externalip=dnetzj6l4cvo2fxy.onion:989 -discover
 ```
 
-List of known VIP Tor relays
+List of known BAC Tor relays
 ------------------------------------
 ```
 y5kcscnhpygvvnjn.onion:989

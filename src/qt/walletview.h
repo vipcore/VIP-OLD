@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
 class ReceiveCoinsDialog;
-class DividendsPage;
+class PrivacyDialog;
 class SendCoinsDialog;
 class SendCoinsRecipient;
 class TransactionView;
@@ -67,7 +67,7 @@ private:
     OverviewPage* overviewPage;
     QWidget* transactionsPage;
     ReceiveCoinsDialog* receiveCoinsPage;
-    DividendsPage* dividendsPage;
+    PrivacyDialog* privacyPage;
     SendCoinsDialog* sendCoinsPage;
     BlockExplorer* explorerWindow;
     MasternodeList* masternodeListPage;
@@ -82,12 +82,12 @@ public slots:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
-    /** Switch to dividends page */
-    void gotoDividendsPage();
     /** Switch to masternode page */
     void gotoMasternodePage();
     /** Switch to explorer page */
     void gotoBlockExplorerPage();
+    /** Switch to privacy page */
+    void gotoPrivacyPage();
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */

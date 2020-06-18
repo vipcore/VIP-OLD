@@ -147,6 +147,8 @@ public:
     QLabel *wallet_path;
     QLabel *wallet_custombackuppath_label;
     QLabel *wallet_custombackuppath;
+    QLabel *wallet_customzpivbackuppath_label;
+    QLabel *wallet_customzpivbackuppath;
     QLabel *wallet_custombackupthreshold_label;
     QLabel *wallet_custombackupthreshold;
     QSpacerItem *verticalSpacer_repair1;
@@ -897,6 +899,21 @@ public:
 
         gridLayout_4->addWidget(wallet_custombackuppath, 3, 1, 1, 3);
 
+        wallet_customzpivbackuppath_label = new QLabel(tab_repair);
+        wallet_customzpivbackuppath_label->setObjectName(QStringLiteral("wallet_customzpivbackuppath_label"));
+        wallet_customzpivbackuppath_label->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_customzpivbackuppath_label, 4, 0, 1, 1);
+
+        wallet_customzpivbackuppath = new QLabel(tab_repair);
+        wallet_customzpivbackuppath->setObjectName(QStringLiteral("wallet_customzpivbackuppath"));
+        wallet_customzpivbackuppath->setCursor(QCursor(Qt::IBeamCursor));
+        wallet_customzpivbackuppath->setTextFormat(Qt::PlainText);
+        wallet_customzpivbackuppath->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
+        wallet_customzpivbackuppath->setVisible(false);
+
+        gridLayout_4->addWidget(wallet_customzpivbackuppath, 4, 1, 1, 3);
+
         wallet_custombackupthreshold_label = new QLabel(tab_repair);
         wallet_custombackupthreshold_label->setObjectName(QStringLiteral("wallet_custombackupthreshold_label"));
         wallet_custombackupthreshold_label->setVisible(false);
@@ -1148,6 +1165,8 @@ public:
         wallet_path->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
         wallet_custombackuppath_label->setText(QApplication::translate("RPCConsole", "Custom Backup Path:", Q_NULLPTR));
         wallet_custombackuppath->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
+        wallet_customzpivbackuppath_label->setText(QApplication::translate("RPCConsole", "Custom zVIP Backup Path:", Q_NULLPTR));
+        wallet_customzpivbackuppath->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
         wallet_custombackupthreshold_label->setText(QApplication::translate("RPCConsole", "Custom Backups Threshold:", Q_NULLPTR));
         wallet_custombackupthreshold->setText(QApplication::translate("RPCConsole", "N/A", Q_NULLPTR));
         btn_salvagewallet->setText(QApplication::translate("RPCConsole", "Salvage wallet", Q_NULLPTR));

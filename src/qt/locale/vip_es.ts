@@ -4249,10 +4249,6 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
         <translation>Los desarrolladores de PIVX Core</translation>
     </message>
     <message>
-        <source>The HUZU Core developers</source>
-        <translation>Los desarrolladores de HUZU Core</translation>
-    </message>
-    <message>
         <source>The VIP Core developers</source>
         <translation>Los desarrolladores de VIP Core</translation>
     </message>
@@ -5276,10 +5272,6 @@ O mint las denominaciones más altas (por lo tanto, se necesitan menos datos) o 
     <message>
         <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
-    </message>
-    <message>
-        <source>Copyright (C) 2015-%i The HUZU Core Developers</source>
-        <translation>Copyright (C) 2015-%i The HUZU Core Developers</translation>
     </message>
     <message>
         <source>Copyright (C) %i The VIP Core Developers</source>

@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,7 +52,6 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         setWindowTitle(tr("Encrypt wallet"));
         break;
     case Mode::UnlockAnonymize:
-        ui->anonymizationCheckBox->setChecked(true);
         ui->anonymizationCheckBox->show();
     case Mode::Unlock: // Ask passphrase
         ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
@@ -76,7 +75,18 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget* parent, WalletModel
         break;
     }
 
-    ui->anonymizationCheckBox->setChecked(model->isAnonymizeOnlyUnlocked());
+    // Set checkbox "For anonymization, automint, and staking only" depending on from where we were called
+    if (context == Context::Unlock_Menu || context == Context::Mint_zVIP || context == Context::BIP_38) {
+        ui->anonymizationCheckBox->setChecked(true);
+    }
+    else {
+        ui->anonymizationCheckBox->setChecked(false);
+    }
+
+    // It doesn't make sense to show the checkbox for sending VIP because you wouldn't check it anyway.
+    if (context == Context::Send_VIP || context == Context::Send_zVIP) {
+        ui->anonymizationCheckBox->hide();
+    }
 
     textChanged();
     connect(ui->passEdit1, SIGNAL(textChanged(QString)), this, SLOT(textChanged()));

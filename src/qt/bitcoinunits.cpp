@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,7 +20,7 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(THEVIP);
+    unitlist.append(VIP);
     unitlist.append(mVIP);
     unitlist.append(uVIP);
     return unitlist;
@@ -29,7 +29,7 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case THEVIP:
+    case VIP:
     case mVIP:
     case uVIP:
         return true;
@@ -41,7 +41,7 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case THEVIP:
+    case VIP:
         return QString("vip");
     case mVIP:
         return QString("mvip");
@@ -56,7 +56,7 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case THEVIP:
+        case VIP:
             return QString("VIP");
         case mVIP:
             return QString("mVIP");
@@ -67,7 +67,7 @@ QString BitcoinUnits::name(int unit)
         }
     } else {
         switch (unit) {
-        case THEVIP:
+        case VIP:
             return QString("tVIP");
         case mVIP:
             return QString("mtVIP");
@@ -83,7 +83,7 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case THEVIP:
+        case VIP:
             return QString("VIP");
         case mVIP:
             return QString("Milli-VIP (1 / 1" THIN_SP_UTF8 "000)");
@@ -94,7 +94,7 @@ QString BitcoinUnits::description(int unit)
         }
     } else {
         switch (unit) {
-        case THEVIP:
+        case VIP:
             return QString("TestVIPs");
         case mVIP:
             return QString("Milli-TestVIP (1 / 1" THIN_SP_UTF8 "000)");
@@ -109,7 +109,7 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case THEVIP:
+    case VIP:
         return 100000000;
     case mVIP:
         return 100000;
@@ -123,7 +123,7 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case THEVIP:
+    case VIP:
         return 8;
     case mVIP:
         return 5;

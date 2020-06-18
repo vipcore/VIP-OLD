@@ -45,7 +45,10 @@ QT_TRANSLATE_NOOP("vip-core", ""
 "effective with disabled wallet functionality)"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Delete all wallet transactions and only recover those parts of the "
-"blockchain through -rescan on startup")
+"blockchain through -rescan on startup"),
+QT_TRANSLATE_NOOP("vip-core", ""
+"Delete all zerocoin spends and mints that have been recorded to the "
+"blockchain database and reindex them (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Disable all VIP specific functionality (Masternodes, Zerocoin, SwiftX, "
 "Budgeting) (0-1, default: %u)"),
@@ -55,9 +58,12 @@ QT_TRANSLATE_NOOP("vip-core", ""
 QT_TRANSLATE_NOOP("vip-core", ""
 "Enable SwiftX, show confirmations for locked transactions (bool, default: %s)"),
 QT_TRANSLATE_NOOP("vip-core", ""
-"Enable automatic Zerocoin minting from specific addresses (0-1, default: %u)"),
+"Enable automatic wallet backups triggered after each zVIP minting (0-1, "
+"default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Enable or disable staking functionality for VIP inputs (0-1, default: %u)"),
+QT_TRANSLATE_NOOP("vip-core", ""
+"Enable or disable staking functionality for zVIP inputs (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Enable spork administration functionality with the appropriate private key."),
 QT_TRANSLATE_NOOP("vip-core", ""
@@ -128,13 +134,8 @@ QT_TRANSLATE_NOOP("vip-core", ""
 "Maintain a full transaction index, used by the getrawtransaction rpc call "
 "(default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", ""
-"Maximum average size of an index occurrence in the block spam filter "
-"(default: %u)"),
-QT_TRANSLATE_NOOP("vip-core", ""
 "Maximum size of data in data carrier transactions we relay and mine "
 "(default: %u)"),
-QT_TRANSLATE_NOOP("vip-core", ""
-"Maximum size of the list of indexes in the block spam filter (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Maximum total fees to use in a single wallet transaction, setting too low "
 "may abort large transactions (default: %s)"),
@@ -161,9 +162,6 @@ QT_TRANSLATE_NOOP("vip-core", ""
 QT_TRANSLATE_NOOP("vip-core", ""
 "Set maximum size of high-priority/low-fee transactions in bytes (default: %d)"),
 QT_TRANSLATE_NOOP("vip-core", ""
-"Set the number of included blocks to precompute per cycle. (minimum: %d) "
-"(maximum: %d) (default: %d)"),
-QT_TRANSLATE_NOOP("vip-core", ""
 "Set the number of script verification threads (%u to %d, 0 = auto, <0 = "
 "leave that many cores free, default: %d)"),
 QT_TRANSLATE_NOOP("vip-core", ""
@@ -172,6 +170,11 @@ QT_TRANSLATE_NOOP("vip-core", ""
 QT_TRANSLATE_NOOP("vip-core", ""
 "Show N confirmations for a successfully locked transaction (0-9999, default: "
 "%u)"),
+QT_TRANSLATE_NOOP("vip-core", ""
+"Specify custom backup path to add a copy of any automatic zVIP backup. If "
+"set as dir, every backup generates a timestamped file. If set as file, will "
+"rewrite to that file every backup. If backuppath is set as well, 4 backups "
+"will happen"),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Specify custom backup path to add a copy of any wallet backup. If set as "
 "dir, every backup generates a timestamped file. If set as file, will rewrite "
@@ -182,11 +185,6 @@ QT_TRANSLATE_NOOP("vip-core", ""
 "SwiftX requires inputs with at least 6 confirmations, you might need to wait "
 "a few minutes and try again."),
 QT_TRANSLATE_NOOP("vip-core", ""
-"The block database contains a block which appears to be from the future. "
-"This may be due to your computer's date and time being set incorrectly. Only "
-"rebuild the block database if you are sure that your computer's date and "
-"time are correct"),
-QT_TRANSLATE_NOOP("vip-core", ""
 "This is a pre-release test build - use at your own risk - do not use for "
 "staking or merchant applications!"),
 QT_TRANSLATE_NOOP("vip-core", ""
@@ -194,15 +192,12 @@ QT_TRANSLATE_NOOP("vip-core", ""
 "the OpenSSL Toolkit <https://www.openssl.org/> and cryptographic software "
 "written by Eric Young and UPnP software written by Thomas Bernard."),
 QT_TRANSLATE_NOOP("vip-core", ""
-"Total length of network version string (%i) exceeds maximum length (%i). "
-"Reduce the number or size of uacomments."),
-QT_TRANSLATE_NOOP("vip-core", ""
 "Unable to bind to %s on this computer. VIP Core is probably already running."),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Unable to locate enough Obfuscation denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Unable to locate enough Obfuscation non-denominated funds for this "
-"transaction that are not equal 2500 VIP."),
+"transaction that are not equal 10000 VIP."),
 QT_TRANSLATE_NOOP("vip-core", ""
 "Unable to locate enough funds for this transaction that are not equal 10000 "
 "VIP."),
@@ -240,20 +235,18 @@ QT_TRANSLATE_NOOP("vip-core", ""
 QT_TRANSLATE_NOOP("vip-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("vip-core", "(19450 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("vip-core", "(31992 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("vip-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("vip-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("vip-core", "(must be 19450 for mainnet)"),
+QT_TRANSLATE_NOOP("vip-core", "(must be 31992 for mainnet)"),
 QT_TRANSLATE_NOOP("vip-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("vip-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("vip-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
 QT_TRANSLATE_NOOP("vip-core", "Accept public REST requests (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Add a node to connect to and attempt to keep the connection open"),
-QT_TRANSLATE_NOOP("vip-core", "Adding Wrapped Serials supply..."),
 QT_TRANSLATE_NOOP("vip-core", "Allow DNS lookups for -addnode, -seednode and -connect"),
 QT_TRANSLATE_NOOP("vip-core", "Already have that input."),
 QT_TRANSLATE_NOOP("vip-core", "Always query for peer addresses via DNS lookup (default: %u)"),
-QT_TRANSLATE_NOOP("vip-core", "Append comment to the user agent string"),
 QT_TRANSLATE_NOOP("vip-core", "Attempt to force blockchain corruption recovery"),
 QT_TRANSLATE_NOOP("vip-core", "Attempt to recover private keys from a corrupt wallet.dat"),
 QT_TRANSLATE_NOOP("vip-core", "Automatically create Tor hidden service (default: %d)"),
@@ -268,7 +261,6 @@ QT_TRANSLATE_NOOP("vip-core", "Cannot resolve -externalip address: '%s'"),
 QT_TRANSLATE_NOOP("vip-core", "Cannot resolve -whitebind address: '%s'"),
 QT_TRANSLATE_NOOP("vip-core", "Cannot write default address"),
 QT_TRANSLATE_NOOP("vip-core", "CoinSpend: Accumulator witness does not verify"),
-QT_TRANSLATE_NOOP("vip-core", "CoinSpend: failed check"),
 QT_TRANSLATE_NOOP("vip-core", "Collateral not valid."),
 QT_TRANSLATE_NOOP("vip-core", "Connect only to the specified node(s)"),
 QT_TRANSLATE_NOOP("vip-core", "Connect through SOCKS5 proxy"),
@@ -277,10 +269,9 @@ QT_TRANSLATE_NOOP("vip-core", "Connection options:"),
 QT_TRANSLATE_NOOP("vip-core", "Copyright (C) 2009-%i The Bitcoin Core Developers"),
 QT_TRANSLATE_NOOP("vip-core", "Copyright (C) 2014-%i The Dash Core Developers"),
 QT_TRANSLATE_NOOP("vip-core", "Copyright (C) 2015-%i The PIVX Core Developers"),
-QT_TRANSLATE_NOOP("vip-core", "Copyright (C) 2018-%i The VIP Core Developers"),
+QT_TRANSLATE_NOOP("vip-core", "Copyright (C) %i The VIP Core Developers"),
 QT_TRANSLATE_NOOP("vip-core", "Corrupted block database detected"),
 QT_TRANSLATE_NOOP("vip-core", "Could not parse masternode.conf"),
-QT_TRANSLATE_NOOP("vip-core", "Couldn't generate the accumulator witness"),
 QT_TRANSLATE_NOOP("vip-core", "Debugging/Testing options:"),
 QT_TRANSLATE_NOOP("vip-core", "Delete blockchain folders and resync from scratch"),
 QT_TRANSLATE_NOOP("vip-core", "Disable OS notifications for incoming transactions (default: %u)"),
@@ -291,6 +282,7 @@ QT_TRANSLATE_NOOP("vip-core", "Display verbose coin stake messages in the debug.
 QT_TRANSLATE_NOOP("vip-core", "Do not load the wallet and disable wallet RPC calls"),
 QT_TRANSLATE_NOOP("vip-core", "Do you want to rebuild the block database now?"),
 QT_TRANSLATE_NOOP("vip-core", "Done loading"),
+QT_TRANSLATE_NOOP("vip-core", "Enable automatic Zerocoin minting (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Enable publish hash block in <address>"),
 QT_TRANSLATE_NOOP("vip-core", "Enable publish hash transaction (locked via SwiftX) in <address>"),
 QT_TRANSLATE_NOOP("vip-core", "Enable publish hash transaction in <address>"),
@@ -310,6 +302,7 @@ QT_TRANSLATE_NOOP("vip-core", "Error loading wallet.dat: Wallet requires newer v
 QT_TRANSLATE_NOOP("vip-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("vip-core", "Error reading from database, shutting down."),
 QT_TRANSLATE_NOOP("vip-core", "Error recovering public key."),
+QT_TRANSLATE_NOOP("vip-core", "Error writing zerocoinDB to disk"),
 QT_TRANSLATE_NOOP("vip-core", "Error"),
 QT_TRANSLATE_NOOP("vip-core", "Error: A fatal internal error occured, see debug.log for details"),
 QT_TRANSLATE_NOOP("vip-core", "Error: A fatal internal error occurred, see debug.log for details"),
@@ -320,9 +313,14 @@ QT_TRANSLATE_NOOP("vip-core", "Error: Unsupported argument -tor found, use -onio
 QT_TRANSLATE_NOOP("vip-core", "Error: Wallet locked, unable to create transaction!"),
 QT_TRANSLATE_NOOP("vip-core", "Error: You already have pending entries in the Obfuscation pool"),
 QT_TRANSLATE_NOOP("vip-core", "Failed to calculate accumulator checkpoint"),
+QT_TRANSLATE_NOOP("vip-core", "Failed to create mint"),
+QT_TRANSLATE_NOOP("vip-core", "Failed to deserialize"),
+QT_TRANSLATE_NOOP("vip-core", "Failed to find Zerocoins in wallet.dat"),
 QT_TRANSLATE_NOOP("vip-core", "Failed to listen on any port. Use -listen=0 if you want this."),
 QT_TRANSLATE_NOOP("vip-core", "Failed to parse host:port string"),
 QT_TRANSLATE_NOOP("vip-core", "Failed to read block"),
+QT_TRANSLATE_NOOP("vip-core", "Failed to select a zerocoin"),
+QT_TRANSLATE_NOOP("vip-core", "Failed to wipe zerocoinDB"),
 QT_TRANSLATE_NOOP("vip-core", "Failed to write coin serial number into wallet"),
 QT_TRANSLATE_NOOP("vip-core", "Fee (in VIP/kB) to add to transactions you send (default: %s)"),
 QT_TRANSLATE_NOOP("vip-core", "Finalizing transaction."),
@@ -365,8 +363,10 @@ QT_TRANSLATE_NOOP("vip-core", "Listen for JSON-RPC connections on <port> (defaul
 QT_TRANSLATE_NOOP("vip-core", "Listen for connections on <port> (default: %u or testnet: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Loading addresses..."),
 QT_TRANSLATE_NOOP("vip-core", "Loading block index..."),
+QT_TRANSLATE_NOOP("vip-core", "Loading budget cache..."),
 QT_TRANSLATE_NOOP("vip-core", "Loading masternode cache..."),
 QT_TRANSLATE_NOOP("vip-core", "Loading masternode payment cache..."),
+QT_TRANSLATE_NOOP("vip-core", "Loading sporks..."),
 QT_TRANSLATE_NOOP("vip-core", "Loading wallet... (%3.2f %%)"),
 QT_TRANSLATE_NOOP("vip-core", "Loading wallet..."),
 QT_TRANSLATE_NOOP("vip-core", "Location of the auth cookie (default: data dir)"),
@@ -410,9 +410,11 @@ QT_TRANSLATE_NOOP("vip-core", "RPC server options:"),
 QT_TRANSLATE_NOOP("vip-core", "Randomly drop 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("vip-core", "Randomly fuzz 1 of every <n> network messages"),
 QT_TRANSLATE_NOOP("vip-core", "Rebuild block chain index from current blk000??.dat files"),
-QT_TRANSLATE_NOOP("vip-core", "Recalculating VIP supply..."),
 QT_TRANSLATE_NOOP("vip-core", "Receive and display P2P network alerts (default: %u)"),
+QT_TRANSLATE_NOOP("vip-core", "Reindex the VIP and zVIP money supply statistics"),
 QT_TRANSLATE_NOOP("vip-core", "Reindex the accumulator database"),
+QT_TRANSLATE_NOOP("vip-core", "Reindexing zerocoin database..."),
+QT_TRANSLATE_NOOP("vip-core", "Reindexing zerocoin failed"),
 QT_TRANSLATE_NOOP("vip-core", "Relay and mine data carrier transactions (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Relay non-P2SH multisig (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Rescan the block chain for missing wallet transactions"),
@@ -457,10 +459,14 @@ QT_TRANSLATE_NOOP("vip-core", "SwiftX options:"),
 QT_TRANSLATE_NOOP("vip-core", "Synchronization failed"),
 QT_TRANSLATE_NOOP("vip-core", "Synchronization finished"),
 QT_TRANSLATE_NOOP("vip-core", "Synchronization pending..."),
+QT_TRANSLATE_NOOP("vip-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("vip-core", "Synchronizing masternode winners..."),
 QT_TRANSLATE_NOOP("vip-core", "Synchronizing masternodes..."),
 QT_TRANSLATE_NOOP("vip-core", "Synchronizing sporks..."),
+QT_TRANSLATE_NOOP("vip-core", "Syncing zVIP wallet..."),
 QT_TRANSLATE_NOOP("vip-core", "The coin spend has been used"),
+QT_TRANSLATE_NOOP("vip-core", "The new spend coin transaction did not verify"),
+QT_TRANSLATE_NOOP("vip-core", "The selected mint coin is an invalid coin"),
 QT_TRANSLATE_NOOP("vip-core", "The transaction did not verify"),
 QT_TRANSLATE_NOOP("vip-core", "This help message"),
 QT_TRANSLATE_NOOP("vip-core", "This is experimental software."),
@@ -480,6 +486,7 @@ QT_TRANSLATE_NOOP("vip-core", "Transaction not valid."),
 QT_TRANSLATE_NOOP("vip-core", "Transaction too large for fee policy"),
 QT_TRANSLATE_NOOP("vip-core", "Transaction too large"),
 QT_TRANSLATE_NOOP("vip-core", "Transmitting final transaction."),
+QT_TRANSLATE_NOOP("vip-core", "Try to spend with a higher security level to include more coins"),
 QT_TRANSLATE_NOOP("vip-core", "Trying to spend an already spent serial #, try again."),
 QT_TRANSLATE_NOOP("vip-core", "Unable to bind to %s on this computer (bind returned error %s)"),
 QT_TRANSLATE_NOOP("vip-core", "Unable to find transaction containing mint"),
@@ -491,13 +498,13 @@ QT_TRANSLATE_NOOP("vip-core", "Upgrade wallet to latest format"),
 QT_TRANSLATE_NOOP("vip-core", "Use UPnP to map the listening port (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Use UPnP to map the listening port (default: 1 when listening)"),
 QT_TRANSLATE_NOOP("vip-core", "Use a custom max chain reorganization depth (default: %u)"),
-QT_TRANSLATE_NOOP("vip-core", "Use block spam filter (default: %u)"),
 QT_TRANSLATE_NOOP("vip-core", "Use the test network"),
-QT_TRANSLATE_NOOP("vip-core", "User Agent comment (%s) contains unsafe characters."),
 QT_TRANSLATE_NOOP("vip-core", "Username for JSON-RPC connections"),
+QT_TRANSLATE_NOOP("vip-core", "Value is below the smallest available denomination (= 1) of zVIP"),
 QT_TRANSLATE_NOOP("vip-core", "Value more than Obfuscation pool maximum allows."),
 QT_TRANSLATE_NOOP("vip-core", "Verifying blocks..."),
 QT_TRANSLATE_NOOP("vip-core", "Verifying wallet..."),
+QT_TRANSLATE_NOOP("vip-core", "Version 1 zVIP require a security level of 100 to successfully spend."),
 QT_TRANSLATE_NOOP("vip-core", "Wallet %s resides outside data directory %s"),
 QT_TRANSLATE_NOOP("vip-core", "Wallet is locked."),
 QT_TRANSLATE_NOOP("vip-core", "Wallet needed to be rewritten: restart VIP Core to complete"),
@@ -514,7 +521,7 @@ QT_TRANSLATE_NOOP("vip-core", "Your entries added successfully."),
 QT_TRANSLATE_NOOP("vip-core", "Your transaction was accepted into the pool!"),
 QT_TRANSLATE_NOOP("vip-core", "Zapping all transactions from wallet..."),
 QT_TRANSLATE_NOOP("vip-core", "ZeroMQ notification options:"),
-QT_TRANSLATE_NOOP("vip-core", "could not get lock on cs_spendcache"),
+QT_TRANSLATE_NOOP("vip-core", "Zerocoin options:"),
 QT_TRANSLATE_NOOP("vip-core", "isValid(): Invalid -proxy address or hostname: '%s'"),
 QT_TRANSLATE_NOOP("vip-core", "on startup"),
 QT_TRANSLATE_NOOP("vip-core", "wallet.dat corrupt, salvage failed"),

@@ -4165,10 +4165,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
         <translation>PIVX Core utvecklarna</translation>
     </message>
     <message>
-        <source>The HUZU Core developers</source>
-        <translation>HUZU Core utvecklarna</translation>
-    </message>
-    <message>
         <source>The VIP Core developers</source>
         <translation>VIP Core utvecklarna</translation>
     </message>
@@ -5192,10 +5188,6 @@ Minta antingen högre valörer (så att färre inputs behövs) eller spendera mi
     <message>
         <source>Copyright (C) 2015-%i The PIVX Core Developers</source>
         <translation>Copyright (C) 2015-%i The PIVX Core Developers</translation>
-    </message>
-    <message>
-        <source>Copyright (C) 2017-%i The HUZU Core Developers</source>
-        <translation>Copyright (C) 2017-%i The HUZU Core Developers</translation>
     </message>
     <message>
         <source>Copyright (C) %i The VIP Core Developers</source>

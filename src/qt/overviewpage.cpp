@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,7 +36,7 @@ class TxViewDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::THEVIP)
+    TxViewDelegate() : QAbstractItemDelegate(), unit(BitcoinUnits::VIP)
     {
     }
 
@@ -60,6 +60,17 @@ public:
         qint64 amount = index.data(TransactionTableModel::AmountRole).toLongLong();
         bool confirmed = index.data(TransactionTableModel::ConfirmedRole).toBool();
 
+        // Check transaction status
+        int nStatus = index.data(TransactionTableModel::StatusRole).toInt();
+        bool fConflicted = false;
+        if (nStatus == TransactionStatus::Conflicted || nStatus == TransactionStatus::NotAccepted) {
+            fConflicted = true; // Most probably orphaned, but could have other reasons as well
+        }
+        bool fImmature = false;
+        if (nStatus == TransactionStatus::Immature) {
+            fImmature = true;
+        }
+
         QVariant value = index.data(Qt::ForegroundRole);
         QColor foreground = COLOR_BLACK;
         if (value.canConvert<QBrush>()) {
@@ -77,9 +88,15 @@ public:
             iconWatchonly.paint(painter, watchonlyRect);
         }
 
-        if (amount < 0)
+        if(fConflicted) { // No need to check anything else for conflicted transactions
+            foreground = COLOR_CONFLICTED;
+        } else if (!confirmed || fImmature) {
+            foreground = COLOR_UNCONFIRMED;
+        } else if (amount < 0) {
             foreground = COLOR_NEGATIVE;
-
+        } else {
+            foreground = COLOR_BLACK;
+        }
         painter->setPen(foreground);
         QString amountText = BitcoinUnits::formatWithUnit(unit, amount, true, BitcoinUnits::separatorAlways);
         if (!confirmed) {
@@ -109,6 +126,9 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
                                               currentBalance(-1),
                                               currentUnconfirmedBalance(-1),
                                               currentImmatureBalance(-1),
+                                              currentZerocoinBalance(-1),
+                                              currentUnconfirmedZerocoinBalance(-1),
+                                              currentimmatureZerocoinBalance(-1),
                                               currentWatchOnlyBalance(-1),
                                               currentWatchUnconfBalance(-1),
                                               currentWatchImmatureBalance(-1),
@@ -130,7 +150,6 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
     ui->labelWalletStatus->setText("(" + tr("out of sync") + ")");
     ui->labelTransactionsStatus->setText("(" + tr("out of sync") + ")");
 
-		
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
 }
@@ -146,100 +165,146 @@ OverviewPage::~OverviewPage()
     delete ui;
 }
 
-void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
+void OverviewPage::getPercentage(CAmount nUnlockedBalance, CAmount nZerocoinBalance, QString& sVIPPercentage, QString& szVIPPercentage)
+{
+    int nPrecision = 2;
+    double dzPercentage = 0.0;
+
+    if (nZerocoinBalance <= 0){
+        dzPercentage = 0.0;
+    }
+    else{
+        if (nUnlockedBalance <= 0){
+            dzPercentage = 100.0;
+        }
+        else{
+            dzPercentage = 100.0 * (double)(nZerocoinBalance / (double)(nZerocoinBalance + nUnlockedBalance));
+        }
+    }
+
+    double dPercentage = 100.0 - dzPercentage;
+    
+    szVIPPercentage = "(" + QLocale(QLocale::system()).toString(dzPercentage, 'f', nPrecision) + " %)";
+    sVIPPercentage = "(" + QLocale(QLocale::system()).toString(dPercentage, 'f', nPrecision) + " %)";
+    
+}
+
+void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmedBalance, const CAmount& immatureBalance, 
+                              const CAmount& zerocoinBalance, const CAmount& unconfirmedZerocoinBalance, const CAmount& immatureZerocoinBalance,
+                              const CAmount& watchOnlyBalance, const CAmount& watchUnconfBalance, const CAmount& watchImmatureBalance)
 {
     currentBalance = balance;
     currentUnconfirmedBalance = unconfirmedBalance;
     currentImmatureBalance = immatureBalance;
+    currentZerocoinBalance = zerocoinBalance;
+    currentUnconfirmedZerocoinBalance = unconfirmedZerocoinBalance;
+    currentimmatureZerocoinBalance = immatureZerocoinBalance;
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
 
-	
-	ui->frame_ZerocoinBalances->hide();
-	
     CAmount nLockedBalance = 0;
     CAmount nWatchOnlyLockedBalance = 0;
     if (pwalletMain) {
         nLockedBalance = pwalletMain->GetLockedCoins();
         nWatchOnlyLockedBalance = pwalletMain->GetLockedWatchOnlyBalance();
     }
-
     // VIP Balance
-    CAmount nTotalBalance = balance + unconfirmedBalance;
-    CAmount vipAvailableBalance = balance - immatureBalance - nLockedBalance;
-    //CAmount nUnlockedBalance = nTotalBalance - nLockedBalance;
-
-    // VIP Watch-Only Balance
-    CAmount nTotalWatchBalance = watchOnlyBalance + watchUnconfBalance;
-    CAmount nAvailableWatchBalance = watchOnlyBalance - watchImmatureBalance - nWatchOnlyLockedBalance;
-
+    CAmount nTotalBalance = balance + unconfirmedBalance + nLockedBalance;
+    CAmount pivAvailableBalance = balance - immatureBalance;
+    CAmount nTotalWatchBalance = watchOnlyBalance + watchUnconfBalance + watchImmatureBalance;    
+    CAmount nUnlockedBalance = nTotalBalance - nLockedBalance - nLockedBalance; // increment nLockedBalance twice because it was added to
+                                                                                // nTotalBalance above
+    // zVIP Balance
+    CAmount matureZerocoinBalance = zerocoinBalance - unconfirmedZerocoinBalance - immatureZerocoinBalance;
     // Percentages
     QString szPercentage = "";
     QString sPercentage = "";
+    getPercentage(nUnlockedBalance, zerocoinBalance, sPercentage, szPercentage);
     // Combined balances
-    CAmount availableTotalBalance = vipAvailableBalance;
-    CAmount sumTotalBalance = nTotalBalance;
+    CAmount availableTotalBalance = pivAvailableBalance + matureZerocoinBalance;
+    CAmount sumTotalBalance = nTotalBalance + zerocoinBalance;
 
     // VIP labels
-    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, vipAvailableBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, pivAvailableBalance, false, BitcoinUnits::separatorAlways));
     ui->labelUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureBalance, false, BitcoinUnits::separatorAlways));
     ui->labelLockedBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nLockedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalBalance, false, BitcoinUnits::separatorAlways));
 
     // Watchonly labels
-    ui->labelWatchAvailable->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nAvailableWatchBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelWatchAvailable->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchOnlyBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchPending->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchUnconfBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, watchImmatureBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchLocked->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nWatchOnlyLockedBalance, false, BitcoinUnits::separatorAlways));
     ui->labelWatchTotal->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, nTotalWatchBalance, false, BitcoinUnits::separatorAlways));
 
+    // zVIP labels
+    ui->labelzBalance->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, zerocoinBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelzBalanceUnconfirmed->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, unconfirmedZerocoinBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelzBalanceMature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, matureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+    ui->labelzBalanceImmature->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, immatureZerocoinBalance, false, BitcoinUnits::separatorAlways));
+
     // Combined labels
     ui->labelBalancez->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, availableTotalBalance, false, BitcoinUnits::separatorAlways));
     ui->labelTotalz->setText(BitcoinUnits::floorHtmlWithUnit(nDisplayUnit, sumTotalBalance, false, BitcoinUnits::separatorAlways));
 
-  
+    // Percentage labels
+    ui->labelVIPPercent->setText(sPercentage);
+    ui->labelzVIPPercent->setText(szPercentage);
+
+    // Adjust bubble-help according to AutoMint settings
+    QString automintHelp = tr("Current percentage of zVIP.\nIf AutoMint is enabled this percentage will settle around the configured AutoMint percentage (default = 10%).\n");
+    bool fEnableZeromint = GetBoolArg("-enablezeromint", false);
+    int nZeromintPercentage = GetArg("-zeromintpercentage", 10);
+    if (fEnableZeromint) {
+        automintHelp += tr("AutoMint is currently enabled and set to ") + QString::number(nZeromintPercentage) + "%.\n";
+        automintHelp += tr("To disable AutoMint add 'enablezeromint=0' in vip.conf.");
+    }
+    else {
+        automintHelp += tr("AutoMint is currently disabled.\nTo enable AutoMint change 'enablezeromint=0' to 'enablezeromint=1' in vip.conf");
+    }
 
     // Only show most balances if they are non-zero for the sake of simplicity
     QSettings settings;
     bool settingShowAllBalances = !settings.value("fHideZeroBalances").toBool();
-
     bool showSumAvailable = settingShowAllBalances || sumTotalBalance != availableTotalBalance;
     ui->labelBalanceTextz->setVisible(showSumAvailable);
     ui->labelBalancez->setVisible(showSumAvailable);
-
-    bool showWatchOnly = nTotalWatchBalance != 0;
-
-    // VIP Available
-    bool showVIPAvailable = settingShowAllBalances || vipAvailableBalance != nTotalBalance;
-    bool showWatchOnlyVIPAvailable = showVIPAvailable || nAvailableWatchBalance != nTotalWatchBalance;
-    ui->labelBalanceText->setVisible(showVIPAvailable || showWatchOnlyVIPAvailable);
-    ui->labelBalance->setVisible(showVIPAvailable || showWatchOnlyVIPAvailable);
-    ui->labelWatchAvailable->setVisible(showWatchOnlyVIPAvailable && showWatchOnly);
-
-    // VIP Pending
+    bool showVIPAvailable = settingShowAllBalances || pivAvailableBalance != nTotalBalance;
+    bool showWatchOnlyVIPAvailable = watchOnlyBalance != nTotalWatchBalance;
     bool showVIPPending = settingShowAllBalances || unconfirmedBalance != 0;
-    bool showWatchOnlyVIPPending = showVIPPending || watchUnconfBalance != 0;
-    ui->labelPendingText->setVisible(showVIPPending || showWatchOnlyVIPPending);
-    ui->labelUnconfirmed->setVisible(showVIPPending || showWatchOnlyVIPPending);
-    ui->labelWatchPending->setVisible(showWatchOnlyVIPPending && showWatchOnly);
-
-    // VIP Immature
-    bool showVIPImmature = settingShowAllBalances || immatureBalance != 0;
-    bool showWatchOnlyImmature = showVIPImmature || watchImmatureBalance != 0;
-    ui->labelImmatureText->setVisible(showVIPImmature || showWatchOnlyImmature);
-    ui->labelImmature->setVisible(showVIPImmature || showWatchOnlyImmature); // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelWatchImmature->setVisible(showWatchOnlyImmature && showWatchOnly); // show watch-only immature balance
-
-    // VIP Locked
+    bool showWatchOnlyVIPPending = watchUnconfBalance != 0;
     bool showVIPLocked = settingShowAllBalances || nLockedBalance != 0;
-    bool showWatchOnlyVIPLocked = showVIPLocked || nWatchOnlyLockedBalance != 0;
-    ui->labelLockedBalanceText->setVisible(showVIPLocked || showWatchOnlyVIPLocked);
+    bool showWatchOnlyVIPLocked = nWatchOnlyLockedBalance != 0;
+    bool showImmature = settingShowAllBalances || immatureBalance != 0;
+    bool showWatchOnlyImmature = watchImmatureBalance != 0;
+    bool showWatchOnly = nTotalWatchBalance != 0;
+    ui->labelBalance->setVisible(showVIPAvailable || showWatchOnlyVIPAvailable);
+    ui->labelBalanceText->setVisible(showVIPAvailable || showWatchOnlyVIPAvailable);
+    ui->labelWatchAvailable->setVisible(showVIPAvailable && showWatchOnly);
+    ui->labelUnconfirmed->setVisible(showVIPPending || showWatchOnlyVIPPending);
+    ui->labelPendingText->setVisible(showVIPPending || showWatchOnlyVIPPending);
+    ui->labelWatchPending->setVisible(showVIPPending && showWatchOnly);
     ui->labelLockedBalance->setVisible(showVIPLocked || showWatchOnlyVIPLocked);
-    ui->labelWatchLocked->setVisible(showWatchOnlyVIPLocked && showWatchOnly);
+    ui->labelLockedBalanceText->setVisible(showVIPLocked || showWatchOnlyVIPLocked);
+    ui->labelWatchLocked->setVisible(showVIPLocked && showWatchOnly);
+    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature); // for symmetry reasons also show immature label when the watch-only one is shown
+    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelWatchImmature->setVisible(showImmature && showWatchOnly); // show watch-only immature balance
+    bool showzVIPAvailable = settingShowAllBalances || zerocoinBalance != matureZerocoinBalance;
+    bool showzVIPnconfirmed = settingShowAllBalances || unconfirmedZerocoinBalance != 0;
+    bool showzVIPImmature = settingShowAllBalances || immatureZerocoinBalance != 0;
+    ui->labelzBalanceMature->setVisible(showzVIPAvailable);
+    ui->labelzBalanceMatureText->setVisible(showzVIPAvailable);
+    ui->labelzBalanceUnconfirmed->setVisible(showzVIPnconfirmed);
+    ui->labelzBalanceUnconfirmedText->setVisible(showzVIPnconfirmed);
+    ui->labelzBalanceImmature->setVisible(showzVIPImmature);
+    ui->labelzBalanceImmatureText->setVisible(showzVIPImmature);
+    bool showPercentages = ! (zerocoinBalance == 0 && nTotalBalance == 0);
+    ui->labelVIPPercent->setVisible(showPercentages);
+    ui->labelzVIPPercent->setVisible(showPercentages);
 
-    
     static int cachedTxLocks = 0;
 
     if (cachedTxLocks != nCompleteTXLocks) {
@@ -296,12 +361,14 @@ void OverviewPage::setWalletModel(WalletModel* model)
         ui->listTransactions->setModelColumn(TransactionTableModel::ToAddress);
 
         // Keep up to date with wallet
-        setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(), 
-        model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
-        connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this, SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
+        setBalance(model->getBalance(), model->getUnconfirmedBalance(), model->getImmatureBalance(),
+                   model->getZerocoinBalance(), model->getUnconfirmedZerocoinBalance(), model->getImmatureZerocoinBalance(), 
+                   model->getWatchBalance(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+        connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this, 
+                         SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
 
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
-        connect(model->getOptionsModel(), SIGNAL(hideOrphansChanged(bool)), this, SLOT(hideOrphans(bool)));
+        connect(model->getOptionsModel(), SIGNAL(hideZeroBalancesChanged(bool)), this, SLOT(updateDisplayUnit()));
 
         updateWatchOnlyLabels(model->haveWatchOnly());
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
@@ -309,10 +376,6 @@ void OverviewPage::setWalletModel(WalletModel* model)
 
     // update the display unit, to not use the default ("VIP")
     updateDisplayUnit();
-
-    // Hide orphans
-    QSettings settings;
-    hideOrphans(settings.value("fHideOrphans", false).toBool());
 }
 
 void OverviewPage::updateDisplayUnit()
@@ -320,7 +383,7 @@ void OverviewPage::updateDisplayUnit()
     if (walletModel && walletModel->getOptionsModel()) {
         nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
         if (currentBalance != -1)
-            setBalance(currentBalance, currentUnconfirmedBalance, currentImmatureBalance,
+            setBalance(currentBalance, currentUnconfirmedBalance, currentImmatureBalance, currentZerocoinBalance, currentUnconfirmedZerocoinBalance, currentimmatureZerocoinBalance,
                 currentWatchOnlyBalance, currentWatchUnconfBalance, currentWatchImmatureBalance);
 
         // Update txdelegate->unit with the current unit
@@ -340,10 +403,4 @@ void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
-}
-
-void OverviewPage::hideOrphans(bool fHide)
-{
-    if (filter)
-        filter->setHideOrphans(fHide);
 }

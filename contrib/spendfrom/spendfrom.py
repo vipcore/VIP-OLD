@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Use the raw transactions API to spend VIPs received on particular addresses,
+# Use the raw transactions API to spend BACs received on particular addresses,
 # and send any change back to that same address.
 #
 # Example usage:
@@ -35,9 +35,9 @@ def check_json_precision():
 def determine_db_dir():
     """Return the default location of the vip data directory"""
     if platform.system() == "Darwin":
-        return os.path.expanduser("~/Library/Application Support/VIP/")
+        return os.path.expanduser("~/Library/Application Support/BAC/")
     elif platform.system() == "Windows":
-        return os.path.join(os.environ['APPDATA'], "VIP")
+        return os.path.join(os.environ['APPDATA'], "BAC")
     return os.path.expanduser("~/.vip")
 
 def read_bitcoin_config(dbdir):
@@ -67,7 +67,7 @@ def connect_JSON(config):
     testnet = config.get('testnet', '0')
     testnet = (int(testnet) > 0)  # 0/1 in config file, convert to True/False
     if not 'rpcport' in config:
-        config['rpcport'] = 51475 if testnet else 37702
+        config['rpcport'] = 31995 if testnet else 19455
     connect = "http://%s:%s@127.0.0.1:%s"%(config['rpcuser'], config['rpcpassword'], config['rpcport'])
     try:
         result = ServiceProxy(connect)
@@ -221,9 +221,9 @@ def main():
 
     parser = optparse.OptionParser(usage="%prog [options]")
     parser.add_option("--from", dest="fromaddresses", default=None,
-                      help="addresses to get VIPs from")
+                      help="addresses to get BACs from")
     parser.add_option("--to", dest="to", default=None,
-                      help="address to get send VIPs to")
+                      help="address to get send BACs to")
     parser.add_option("--amount", dest="amount", default=None,
                       help="amount to send")
     parser.add_option("--fee", dest="fee", default="0.0",

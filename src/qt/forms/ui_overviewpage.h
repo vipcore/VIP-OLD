@@ -62,6 +62,7 @@ public:
     QVBoxLayout *verticalLayout_4;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_5;
+    QLabel *labelVIPPercent;
     QSpacerItem *horizontalSpacer_3;
     QFrame *line_Balance;
     QGridLayout *gridLayout;
@@ -257,7 +258,7 @@ public:
         font3.setWeight(75);
         labelBalancez->setFont(font3);
         labelBalancez->setCursor(QCursor(Qt::IBeamCursor));
-        labelBalancez->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelBalancez->setText(QStringLiteral("0.000???000???00 VIP"));
         labelBalancez->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelBalancez->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -272,7 +273,7 @@ public:
         labelTotalz->setObjectName(QStringLiteral("labelTotalz"));
         labelTotalz->setFont(font3);
         labelTotalz->setCursor(QCursor(Qt::IBeamCursor));
-        labelTotalz->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelTotalz->setText(QStringLiteral("0.000???000???00 VIP"));
         labelTotalz->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelTotalz->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -306,6 +307,12 @@ public:
         label_5->setFont(font2);
 
         horizontalLayout_4->addWidget(label_5);
+
+        labelVIPPercent = new QLabel(frame_Balances);
+        labelVIPPercent->setObjectName(QStringLiteral("labelVIPPercent"));
+        labelVIPPercent->setText(QStringLiteral("0 %"));
+
+        horizontalLayout_4->addWidget(labelVIPPercent);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -347,7 +354,7 @@ public:
         labelBalance->setObjectName(QStringLiteral("labelBalance"));
         labelBalance->setFont(font3);
         labelBalance->setCursor(QCursor(Qt::IBeamCursor));
-        labelBalance->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelBalance->setText(QStringLiteral("0.000???000???00 VIP"));
         labelBalance->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelBalance->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -357,7 +364,7 @@ public:
         labelWatchAvailable->setObjectName(QStringLiteral("labelWatchAvailable"));
         labelWatchAvailable->setFont(font3);
         labelWatchAvailable->setCursor(QCursor(Qt::IBeamCursor));
-        labelWatchAvailable->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelWatchAvailable->setText(QStringLiteral("0.000???000???00 VIP"));
         labelWatchAvailable->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWatchAvailable->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -372,7 +379,7 @@ public:
         labelUnconfirmed->setObjectName(QStringLiteral("labelUnconfirmed"));
         labelUnconfirmed->setFont(font3);
         labelUnconfirmed->setCursor(QCursor(Qt::IBeamCursor));
-        labelUnconfirmed->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelUnconfirmed->setText(QStringLiteral("0.000???000???00 VIP"));
         labelUnconfirmed->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelUnconfirmed->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -382,7 +389,7 @@ public:
         labelWatchPending->setObjectName(QStringLiteral("labelWatchPending"));
         labelWatchPending->setFont(font3);
         labelWatchPending->setCursor(QCursor(Qt::IBeamCursor));
-        labelWatchPending->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelWatchPending->setText(QStringLiteral("0.000???000???00 VIP"));
         labelWatchPending->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWatchPending->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -397,7 +404,7 @@ public:
         labelImmature->setObjectName(QStringLiteral("labelImmature"));
         labelImmature->setFont(font3);
         labelImmature->setCursor(QCursor(Qt::IBeamCursor));
-        labelImmature->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelImmature->setText(QStringLiteral("0.000???000???00 VIP"));
         labelImmature->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelImmature->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -407,7 +414,7 @@ public:
         labelWatchImmature->setObjectName(QStringLiteral("labelWatchImmature"));
         labelWatchImmature->setFont(font3);
         labelWatchImmature->setCursor(QCursor(Qt::IBeamCursor));
-        labelWatchImmature->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelWatchImmature->setText(QStringLiteral("0.000???000???00 VIP"));
         labelWatchImmature->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWatchImmature->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -422,7 +429,7 @@ public:
         labelLockedBalance->setObjectName(QStringLiteral("labelLockedBalance"));
         labelLockedBalance->setFont(font3);
         labelLockedBalance->setCursor(QCursor(Qt::IBeamCursor));
-        labelLockedBalance->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelLockedBalance->setText(QStringLiteral("0.000???000???00 VIP"));
         labelLockedBalance->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelLockedBalance->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -432,7 +439,7 @@ public:
         labelWatchLocked->setObjectName(QStringLiteral("labelWatchLocked"));
         labelWatchLocked->setFont(font3);
         labelWatchLocked->setCursor(QCursor(Qt::IBeamCursor));
-        labelWatchLocked->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelWatchLocked->setText(QStringLiteral("0.000???000???00 VIP"));
         labelWatchLocked->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWatchLocked->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -447,7 +454,7 @@ public:
         labelTotal->setObjectName(QStringLiteral("labelTotal"));
         labelTotal->setFont(font3);
         labelTotal->setCursor(QCursor(Qt::IBeamCursor));
-        labelTotal->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelTotal->setText(QStringLiteral("0.000???000???00 VIP"));
         labelTotal->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelTotal->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -457,7 +464,7 @@ public:
         labelWatchTotal->setObjectName(QStringLiteral("labelWatchTotal"));
         labelWatchTotal->setFont(font3);
         labelWatchTotal->setCursor(QCursor(Qt::IBeamCursor));
-        labelWatchTotal->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelWatchTotal->setText(QStringLiteral("0.000???000???00 VIP"));
         labelWatchTotal->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWatchTotal->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -525,7 +532,7 @@ public:
         labelzBalanceMature = new QLabel(frame_ZerocoinBalances);
         labelzBalanceMature->setObjectName(QStringLiteral("labelzBalanceMature"));
         labelzBalanceMature->setFont(font3);
-        labelzBalanceMature->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelzBalanceMature->setText(QStringLiteral("0.000???000???00 VIP"));
         labelzBalanceMature->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_5->addWidget(labelzBalanceMature, 1, 1, 1, 1);
@@ -538,7 +545,7 @@ public:
         labelzBalanceUnconfirmed = new QLabel(frame_ZerocoinBalances);
         labelzBalanceUnconfirmed->setObjectName(QStringLiteral("labelzBalanceUnconfirmed"));
         labelzBalanceUnconfirmed->setFont(font3);
-        labelzBalanceUnconfirmed->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelzBalanceUnconfirmed->setText(QStringLiteral("0.000???000???00 VIP"));
         labelzBalanceUnconfirmed->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_5->addWidget(labelzBalanceUnconfirmed, 2, 1, 1, 1);
@@ -551,7 +558,7 @@ public:
         labelzBalanceImmature = new QLabel(frame_ZerocoinBalances);
         labelzBalanceImmature->setObjectName(QStringLiteral("labelzBalanceImmature"));
         labelzBalanceImmature->setFont(font3);
-        labelzBalanceImmature->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelzBalanceImmature->setText(QStringLiteral("0.000???000???00 VIP"));
         labelzBalanceImmature->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_5->addWidget(labelzBalanceImmature, 3, 1, 1, 1);
@@ -565,7 +572,7 @@ public:
         labelzBalance->setObjectName(QStringLiteral("labelzBalance"));
         labelzBalance->setFont(font3);
         labelzBalance->setCursor(QCursor(Qt::IBeamCursor));
-        labelzBalance->setText(QString::fromUtf8("0.000\342\200\211000\342\200\21100 VIP"));
+        labelzBalance->setText(QStringLiteral("0.000???000???00 VIP"));
         labelzBalance->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelzBalance->setTextInteractionFlags(Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse);
 
@@ -734,11 +741,11 @@ public:
         labelWatchImmature->setToolTip(QApplication::translate("OverviewPage", "Staked or masternode rewards in watch-only addresses that has not yet matured", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        labelLockedBalanceText->setToolTip(QApplication::translate("OverviewPage", "Locked VIP or Masternode collaterals.", Q_NULLPTR));
+        labelLockedBalanceText->setToolTip(QApplication::translate("OverviewPage", "Locked VIP or Masternode collaterals. These are excluded from zVIP minting.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         labelLockedBalanceText->setText(QApplication::translate("OverviewPage", "Locked:", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        labelLockedBalance->setToolTip(QApplication::translate("OverviewPage", "Locked VIP or Masternode collaterals.", Q_NULLPTR));
+        labelLockedBalance->setToolTip(QApplication::translate("OverviewPage", "Locked VIP or Masternode collaterals. These are excluded from zVIP minting.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
         labelWatchLocked->setToolTip(QApplication::translate("OverviewPage", "Current locked balance in watch-only addresses", Q_NULLPTR));

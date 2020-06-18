@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
@@ -50,7 +51,13 @@ public:
     QSpinBox *threadsScriptVerif;
     QSpacerItem *horizontalSpacer_3_Main;
     QSpacerItem *verticalSpacer_2;
+    QCheckBox *checkBoxZeromintEnable;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *percentage_label;
+    QSpinBox *zeromintPercentage;
     QHBoxLayout *horizontalLayout;
+    QLabel *labelPreferredDenom;
+    QComboBox *preferredDenom;
     QWidget *tabWallet;
     QVBoxLayout *verticalLayout_Wallet;
     QHBoxLayout *horizontalLayout_2_Wallet;
@@ -60,6 +67,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QCheckBox *coinControlFeatures;
     QCheckBox *showMasternodesTab;
+    QCheckBox *spendZeroConfChange;
     QSpacerItem *verticalSpacer_Wallet;
     QWidget *tabNetwork;
     QVBoxLayout *verticalLayout_Network;
@@ -84,21 +92,18 @@ public:
     QLabel *langLabel;
     QValueComboBox *lang;
     QLabel *label_3;
-    QHBoxLayout *horizontalLayout_2_Display;
+    QHBoxLayout *horizontalLayout_4_Display;
     QLabel *themeLabel;
     QValueComboBox *theme;
     QFrame *line;
-    QHBoxLayout *horizontalLayout_3_Display;
+    QHBoxLayout *horizontalLayout_2_Display;
     QLabel *unitLabel;
     QValueComboBox *unit;
-    QHBoxLayout *horizontalLayout_4_Display;
+    QHBoxLayout *horizontalLayout_5_Display;
     QLabel *digitsLabel;
     QValueComboBox *digits;
-    QHBoxLayout *horizontalLayout_5_Display;
     QCheckBox *checkBoxHideZeroBalances;
-    QCheckBox *checkBoxHideOrphans;
-    QSpacerItem *horizontalSpacer;
-    QHBoxLayout *horizontalLayout_6_Display;
+    QHBoxLayout *horizontalLayout_3_Display;
     QLabel *thirdPartyTxUrlsLabel;
     QLineEdit *thirdPartyTxUrls;
     QSpacerItem *verticalSpacer;
@@ -185,9 +190,46 @@ public:
 
         verticalLayout_Main->addItem(verticalSpacer_2);
 
+        checkBoxZeromintEnable = new QCheckBox(tabMain);
+        checkBoxZeromintEnable->setObjectName(QStringLiteral("checkBoxZeromintEnable"));
+        checkBoxZeromintEnable->setLayoutDirection(Qt::LeftToRight);
+
+        verticalLayout_Main->addWidget(checkBoxZeromintEnable);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        percentage_label = new QLabel(tabMain);
+        percentage_label->setObjectName(QStringLiteral("percentage_label"));
+
+        horizontalLayout_3->addWidget(percentage_label);
+
+        zeromintPercentage = new QSpinBox(tabMain);
+        zeromintPercentage->setObjectName(QStringLiteral("zeromintPercentage"));
+        zeromintPercentage->setMinimum(1);
+        zeromintPercentage->setMaximum(100);
+
+        horizontalLayout_3->addWidget(zeromintPercentage);
+
+
+        verticalLayout_Main->addLayout(horizontalLayout_3);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setSizeConstraint(QLayout::SetFixedSize);
+        labelPreferredDenom = new QLabel(tabMain);
+        labelPreferredDenom->setObjectName(QStringLiteral("labelPreferredDenom"));
+        labelPreferredDenom->setMaximumSize(QSize(16777215, 16777215));
+
+        horizontalLayout->addWidget(labelPreferredDenom);
+
+        preferredDenom = new QComboBox(tabMain);
+        preferredDenom->setObjectName(QStringLiteral("preferredDenom"));
+        preferredDenom->setMaximumSize(QSize(16777215, 27));
+        preferredDenom->setMaxVisibleItems(9);
+        preferredDenom->setMaxCount(9);
+
+        horizontalLayout->addWidget(preferredDenom);
+
 
         verticalLayout_Main->addLayout(horizontalLayout);
 
@@ -226,6 +268,11 @@ public:
         showMasternodesTab->setObjectName(QStringLiteral("showMasternodesTab"));
 
         verticalLayout_2->addWidget(showMasternodesTab);
+
+        spendZeroConfChange = new QCheckBox(groupBox);
+        spendZeroConfChange->setObjectName(QStringLiteral("spendZeroConfChange"));
+
+        verticalLayout_2->addWidget(spendZeroConfChange);
 
 
         verticalLayout_Wallet->addWidget(groupBox);
@@ -353,20 +400,20 @@ public:
 
         verticalLayout_Display->addWidget(label_3);
 
-        horizontalLayout_2_Display = new QHBoxLayout();
-        horizontalLayout_2_Display->setObjectName(QStringLiteral("horizontalLayout_2_Display"));
+        horizontalLayout_4_Display = new QHBoxLayout();
+        horizontalLayout_4_Display->setObjectName(QStringLiteral("horizontalLayout_4_Display"));
         themeLabel = new QLabel(tabDisplay);
         themeLabel->setObjectName(QStringLiteral("themeLabel"));
 
-        horizontalLayout_2_Display->addWidget(themeLabel);
+        horizontalLayout_4_Display->addWidget(themeLabel);
 
         theme = new QValueComboBox(tabDisplay);
         theme->setObjectName(QStringLiteral("theme"));
 
-        horizontalLayout_2_Display->addWidget(theme);
+        horizontalLayout_4_Display->addWidget(theme);
 
 
-        verticalLayout_Display->addLayout(horizontalLayout_2_Display);
+        verticalLayout_Display->addLayout(horizontalLayout_4_Display);
 
         line = new QFrame(tabDisplay);
         line->setObjectName(QStringLiteral("line"));
@@ -375,71 +422,57 @@ public:
 
         verticalLayout_Display->addWidget(line);
 
-        horizontalLayout_3_Display = new QHBoxLayout();
-        horizontalLayout_3_Display->setObjectName(QStringLiteral("horizontalLayout_3_Display"));
+        horizontalLayout_2_Display = new QHBoxLayout();
+        horizontalLayout_2_Display->setObjectName(QStringLiteral("horizontalLayout_2_Display"));
         unitLabel = new QLabel(tabDisplay);
         unitLabel->setObjectName(QStringLiteral("unitLabel"));
         unitLabel->setTextFormat(Qt::PlainText);
 
-        horizontalLayout_3_Display->addWidget(unitLabel);
+        horizontalLayout_2_Display->addWidget(unitLabel);
 
         unit = new QValueComboBox(tabDisplay);
         unit->setObjectName(QStringLiteral("unit"));
 
-        horizontalLayout_3_Display->addWidget(unit);
+        horizontalLayout_2_Display->addWidget(unit);
 
 
-        verticalLayout_Display->addLayout(horizontalLayout_3_Display);
+        verticalLayout_Display->addLayout(horizontalLayout_2_Display);
 
-        horizontalLayout_4_Display = new QHBoxLayout();
-        horizontalLayout_4_Display->setObjectName(QStringLiteral("horizontalLayout_4_Display"));
+        horizontalLayout_5_Display = new QHBoxLayout();
+        horizontalLayout_5_Display->setObjectName(QStringLiteral("horizontalLayout_5_Display"));
         digitsLabel = new QLabel(tabDisplay);
         digitsLabel->setObjectName(QStringLiteral("digitsLabel"));
 
-        horizontalLayout_4_Display->addWidget(digitsLabel);
+        horizontalLayout_5_Display->addWidget(digitsLabel);
 
         digits = new QValueComboBox(tabDisplay);
         digits->setObjectName(QStringLiteral("digits"));
 
-        horizontalLayout_4_Display->addWidget(digits);
-
-
-        verticalLayout_Display->addLayout(horizontalLayout_4_Display);
-
-        horizontalLayout_5_Display = new QHBoxLayout();
-        horizontalLayout_5_Display->setObjectName(QStringLiteral("horizontalLayout_5_Display"));
-        checkBoxHideZeroBalances = new QCheckBox(tabDisplay);
-        checkBoxHideZeroBalances->setObjectName(QStringLiteral("checkBoxHideZeroBalances"));
-        checkBoxHideZeroBalances->setLayoutDirection(Qt::LeftToRight);
-
-        horizontalLayout_5_Display->addWidget(checkBoxHideZeroBalances);
-
-        checkBoxHideOrphans = new QCheckBox(tabDisplay);
-        checkBoxHideOrphans->setObjectName(QStringLiteral("checkBoxHideOrphans"));
-
-        horizontalLayout_5_Display->addWidget(checkBoxHideOrphans);
-
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_5_Display->addItem(horizontalSpacer);
+        horizontalLayout_5_Display->addWidget(digits);
 
 
         verticalLayout_Display->addLayout(horizontalLayout_5_Display);
 
-        horizontalLayout_6_Display = new QHBoxLayout();
-        horizontalLayout_6_Display->setObjectName(QStringLiteral("horizontalLayout_6_Display"));
+        checkBoxHideZeroBalances = new QCheckBox(tabDisplay);
+        checkBoxHideZeroBalances->setObjectName(QStringLiteral("checkBoxHideZeroBalances"));
+        checkBoxHideZeroBalances->setLayoutDirection(Qt::LeftToRight);
+
+        verticalLayout_Display->addWidget(checkBoxHideZeroBalances);
+
+        horizontalLayout_3_Display = new QHBoxLayout();
+        horizontalLayout_3_Display->setObjectName(QStringLiteral("horizontalLayout_3_Display"));
         thirdPartyTxUrlsLabel = new QLabel(tabDisplay);
         thirdPartyTxUrlsLabel->setObjectName(QStringLiteral("thirdPartyTxUrlsLabel"));
 
-        horizontalLayout_6_Display->addWidget(thirdPartyTxUrlsLabel);
+        horizontalLayout_3_Display->addWidget(thirdPartyTxUrlsLabel);
 
         thirdPartyTxUrls = new QLineEdit(tabDisplay);
         thirdPartyTxUrls->setObjectName(QStringLiteral("thirdPartyTxUrls"));
 
-        horizontalLayout_6_Display->addWidget(thirdPartyTxUrls);
+        horizontalLayout_3_Display->addWidget(thirdPartyTxUrls);
 
 
-        verticalLayout_Display->addLayout(horizontalLayout_6_Display);
+        verticalLayout_Display->addLayout(horizontalLayout_3_Display);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -533,7 +566,7 @@ public:
 
         retranslateUi(OptionsDialog);
 
-        tabWidget->setCurrentIndex(4);
+        tabWidget->setCurrentIndex(0);
         okButton->setDefault(true);
 
 
@@ -553,6 +586,21 @@ public:
 #ifndef QT_NO_TOOLTIP
         threadsScriptVerif->setToolTip(QApplication::translate("OptionsDialog", "(0 = auto, <0 = leave that many cores free)", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
+#ifndef QT_NO_TOOLTIP
+        checkBoxZeromintEnable->setToolTip(QApplication::translate("OptionsDialog", "Enable automatic minting of VIP units to zVIP", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        checkBoxZeromintEnable->setText(QApplication::translate("OptionsDialog", "Enable zVIP Automint", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        percentage_label->setToolTip(QApplication::translate("OptionsDialog", "Percentage of incoming VIP which get automatically converted to zVIP via Zerocoin Protocol (min: 10%)", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        percentage_label->setText(QApplication::translate("OptionsDialog", "Percentage of autominted zVIP", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        labelPreferredDenom->setToolTip(QApplication::translate("OptionsDialog", "Wait with automatic conversion to Zerocoin until enough VIP for this denomination is available", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        labelPreferredDenom->setText(QApplication::translate("OptionsDialog", "Preferred Automint zVIP Denomination", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        preferredDenom->setToolTip(QApplication::translate("OptionsDialog", "Wait with automatic conversion to Zerocoin until enough VIP for this denomination is available", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         tabWidget->setTabText(tabWidget->indexOf(tabMain), QApplication::translate("OptionsDialog", "&Main", Q_NULLPTR));
         labelStakeSplitThresholdText->setText(QApplication::translate("OptionsDialog", "Stake split threshold:", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("OptionsDialog", "Expert", Q_NULLPTR));
@@ -564,6 +612,10 @@ public:
         showMasternodesTab->setToolTip(QApplication::translate("OptionsDialog", "Show additional tab listing all your masternodes in first sub-tab<br/>and all masternodes on the network in second sub-tab.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         showMasternodesTab->setText(QApplication::translate("OptionsDialog", "Show Masternodes Tab", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        spendZeroConfChange->setToolTip(QApplication::translate("OptionsDialog", "If you disable the spending of unconfirmed change, the change from a transaction<br/>cannot be used until that transaction has at least one confirmation.<br/>This also affects how your balance is computed.", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        spendZeroConfChange->setText(QApplication::translate("OptionsDialog", "&Spend unconfirmed change", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tabWallet), QApplication::translate("OptionsDialog", "W&allet", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         mapPortUpnp->setToolTip(QApplication::translate("OptionsDialog", "Automatically open the VIP client port on the router. This only works when your router supports UPnP and it is enabled.", Q_NULLPTR));
@@ -611,10 +663,6 @@ public:
         checkBoxHideZeroBalances->setToolTip(QApplication::translate("OptionsDialog", "Hide empty balances", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         checkBoxHideZeroBalances->setText(QApplication::translate("OptionsDialog", "Hide empty balances", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        checkBoxHideOrphans->setToolTip(QApplication::translate("OptionsDialog", "Hide orphan stakes in transaction lists", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        checkBoxHideOrphans->setText(QApplication::translate("OptionsDialog", "Hide orphan stakes", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         thirdPartyTxUrlsLabel->setToolTip(QApplication::translate("OptionsDialog", "Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP

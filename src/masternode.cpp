@@ -1,6 +1,6 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +10,7 @@
 #include "obfuscation.h"
 #include "sync.h"
 #include "util.h"
+#include <boost/lexical_cast.hpp>
 
 // keep track of the scanning errors I've seen
 map<uint256, int> mapSeenMasternodeScanningErrors;
@@ -208,10 +209,10 @@ void CMasternode::Check(bool forceCheck)
         return;
     }
 
-    //if(lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS){
-    //	activeState = MASTERNODE_PRE_ENABLED;
-    //	return;
-    //}
+    // if(lastPing.sigTime - sigTime < MASTERNODE_MIN_MNP_SECONDS){
+    // 	activeState = MASTERNODE_PRE_ENABLED;
+    // 	return;
+    // }
 
     if (!unitTest) {
         CValidationState state;
@@ -463,7 +464,16 @@ bool CMasternodeBroadcast::Create(CTxIn txin, CService service, CKey keyCollater
 
 bool CMasternodeBroadcast::CheckDefaultPort(std::string strService, std::string& strErrorRet, std::string strContext)
 {
-    //CService service = CService(strService);
+    CService service = CService(strService);
+    int nDefaultPort = Params().GetDefaultPort();
+
+    // if (service.GetPort() != nDefaultPort) {
+    //     strErrorRet = strprintf("Invalid port %u for masternode %s, only %d is supported on %s-net.",
+    //                                     service.GetPort(), strService, nDefaultPort, Params().NetworkIDString());
+    //     LogPrint("masternode", "%s - %s\n", strContext, strErrorRet);
+    //     return false;
+    // }
+
     return true;
 }
 
@@ -652,6 +662,9 @@ bool CMasternodeBroadcast::Sign(CKey& keyCollateralAddress)
     sigTime = GetAdjustedTime();
 
     std::string strMessage;
+    if(chainActive.Height() < Params().Zerocoin_Block_V2_Start())
+    	strMessage = GetOldStrMessage();
+    else
     	strMessage = GetNewStrMessage();
 
     if (!obfuScationSigner.SignMessage(strMessage, errorMessage, sig, keyCollateralAddress))
@@ -681,7 +694,7 @@ std::string CMasternodeBroadcast::GetOldStrMessage()
 
     std::string vchPubKey(pubKeyCollateralAddress.begin(), pubKeyCollateralAddress.end());
     std::string vchPubKey2(pubKeyMasternode.begin(), pubKeyMasternode.end());
-    strMessage = addr.ToString() + std::to_string(sigTime) + vchPubKey + vchPubKey2 + std::to_string(protocolVersion);
+    strMessage = addr.ToString() + boost::lexical_cast<std::string>(sigTime) + vchPubKey + vchPubKey2 + boost::lexical_cast<std::string>(protocolVersion);
 
     return strMessage;
 }
@@ -690,7 +703,7 @@ std:: string CMasternodeBroadcast::GetNewStrMessage()
 {
     std::string strMessage;
 
-    strMessage = addr.ToString() + std::to_string(sigTime) + pubKeyCollateralAddress.GetID().ToString() + pubKeyMasternode.GetID().ToString() + std::to_string(protocolVersion);
+    strMessage = addr.ToString() + boost::lexical_cast<std::string>(sigTime) + pubKeyCollateralAddress.GetID().ToString() + pubKeyMasternode.GetID().ToString() + boost::lexical_cast<std::string>(protocolVersion);
 
     return strMessage;
 }
@@ -718,7 +731,7 @@ bool CMasternodePing::Sign(CKey& keyMasternode, CPubKey& pubKeyMasternode)
     std::string strMasterNodeSignMessage;
 
     sigTime = GetAdjustedTime();
-    std::string strMessage = vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+    std::string strMessage = vin.ToString() + blockHash.ToString() + boost::lexical_cast<std::string>(sigTime);
 
     if (!obfuScationSigner.SignMessage(strMessage, errorMessage, vchSig, keyMasternode)) {
         LogPrint("masternode","CMasternodePing::Sign() - Error: %s\n", errorMessage);
@@ -733,9 +746,8 @@ bool CMasternodePing::Sign(CKey& keyMasternode, CPubKey& pubKeyMasternode)
     return true;
 }
 
-bool CMasternodePing::VerifySignature(CPubKey& pubKeyMasternode, int &nDos)
-{
-    std::string strMessage = vin.ToString() + blockHash.ToString() + std::to_string(sigTime);
+bool CMasternodePing::VerifySignature(CPubKey& pubKeyMasternode, int &nDos) {
+	std::string strMessage = vin.ToString() + blockHash.ToString() + boost::lexical_cast<std::string>(sigTime);
 	std::string errorMessage = "";
 
 	if(!obfuScationSigner.VerifyMessage(pubKeyMasternode, vchSig, strMessage, errorMessage)){

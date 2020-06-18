@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,10 +82,20 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
         digits.setNum(index);
         ui->digits->addItem(digits, digits);
     }
-
+    
     /* Theme selector static themes */
     ui->theme->addItem(QString("Default"), QVariant("default"));
 
+    /* Preferred Zerocoin Denominations */
+    ui->preferredDenom->addItem(QString(tr("Any")), QVariant("0"));
+    ui->preferredDenom->addItem(QString("1"), QVariant("1"));
+    ui->preferredDenom->addItem(QString("5"), QVariant("5"));
+    ui->preferredDenom->addItem(QString("10"), QVariant("10"));
+    ui->preferredDenom->addItem(QString("50"), QVariant("50"));
+    ui->preferredDenom->addItem(QString("100"), QVariant("100"));
+    ui->preferredDenom->addItem(QString("500"), QVariant("500"));
+    ui->preferredDenom->addItem(QString("1000"), QVariant("1000"));
+    ui->preferredDenom->addItem(QString("5000"), QVariant("5000"));
 
     /* Theme selector external themes */
     boost::filesystem::path pathAddr = GetDataDir() / "themes";
@@ -105,18 +115,27 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet) : QDialog(paren
         QLocale locale(langStr);
 
         /** check if the locale name consists of 2 parts (language_country) */
-        if(langStr.contains("_"))
-        {
+        if (langStr.contains("_")) {
+#if QT_VERSION >= 0x040800
             /** display language strings as "native language - native country (locale name)", e.g. "Deutsch - Deutschland (de)" */
             ui->lang->addItem(locale.nativeLanguageName() + QString(" - ") + locale.nativeCountryName() + QString(" (") + langStr + QString(")"), QVariant(langStr));
-        }
-        else
-        {
+#else
+            /** display language strings as "language - country (locale name)", e.g. "German - Germany (de)" */
+            ui->lang->addItem(QLocale::languageToString(locale.language()) + QString(" - ") + QLocale::countryToString(locale.country()) + QString(" (") + langStr + QString(")"), QVariant(langStr));
+#endif
+        } else {
+#if QT_VERSION >= 0x040800
             /** display language strings as "native language (locale name)", e.g. "Deutsch (de)" */
             ui->lang->addItem(locale.nativeLanguageName() + QString(" (") + langStr + QString(")"), QVariant(langStr));
+#else
+            /** display language strings as "language (locale name)", e.g. "German (de)" */
+            ui->lang->addItem(QLocale::languageToString(locale.language()) + QString(" (") + langStr + QString(")"), QVariant(langStr));
+#endif
         }
     }
+#if QT_VERSION >= 0x040700
     ui->thirdPartyTxUrls->setPlaceholderText("https://example.com/tx/%s");
+#endif
 
     ui->unit->setModel(new BitcoinUnits(this));
 
@@ -152,9 +171,6 @@ void OptionsDialog::setModel(OptionsModel* model)
         mapper->setModel(model);
         setMapper();
         mapper->toFirst();
-
-        /* keep consistency for action triggered elsewhere */
-        connect(model, SIGNAL(hideOrphansChanged(bool)), this, SLOT(updateHideOrphans(bool)));
     }
 
     /* warn when one of the following settings changes by user action (placed here so init via mapper doesn't trigger them) */
@@ -163,6 +179,7 @@ void OptionsDialog::setModel(OptionsModel* model)
     connect(ui->databaseCache, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
     connect(ui->threadsScriptVerif, SIGNAL(valueChanged(int)), this, SLOT(showRestartWarning()));
     /* Wallet */
+    connect(ui->spendZeroConfChange, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
     /* Network */
     connect(ui->allowIncoming, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
     connect(ui->connectSocks, SIGNAL(clicked(bool)), this, SLOT(showRestartWarning()));
@@ -180,8 +197,15 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
+    // Zeromint Enabled
+    mapper->addMapping(ui->checkBoxZeromintEnable, OptionsModel::ZeromintEnable);
+    // Zerocoin mint percentage
+    mapper->addMapping(ui->zeromintPercentage, OptionsModel::ZeromintPercentage);
+    // Zerocoin preferred denomination
+    mapper->addMapping(ui->preferredDenom, OptionsModel::ZeromintPrefDenom);
 
     /* Wallet */
+    mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);
     mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);
     mapper->addMapping(ui->spinBoxStakeSplitThreshold, OptionsModel::StakeSplitThreshold);
 
@@ -207,7 +231,6 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
     mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
     mapper->addMapping(ui->checkBoxHideZeroBalances, OptionsModel::HideZeroBalances);
-    mapper->addMapping(ui->checkBoxHideOrphans, OptionsModel::HideOrphans);
 
     /* Masternode Tab */
     mapper->addMapping(ui->showMasternodesTab, OptionsModel::ShowMasternodesTab);
@@ -279,12 +302,6 @@ void OptionsDialog::clearStatusLabel()
     ui->statusLabel->clear();
 }
 
-void OptionsDialog::updateHideOrphans(bool fHide)
-{
-    if(ui->checkBoxHideOrphans->isChecked() != fHide)
-        ui->checkBoxHideOrphans->setChecked(fHide);
-}
-
 void OptionsDialog::doProxyIpChecks(QValidatedLineEdit* pUiProxyIp, QLineEdit* pUiProxyPort)
 {
     const std::string strAddrProxy = pUiProxyIp->text().toStdString();
@@ -326,9 +343,4 @@ bool OptionsDialog::eventFilter(QObject* object, QEvent* event)
         }
     }
     return QDialog::eventFilter(object, event);
-}
-
-void OptionsDialog::setCurrentIndex(int index)
-{
-    ui->tabWidget->setCurrentIndex(index);
 }

@@ -1,33 +1,23 @@
-VIP Core integration/staging repository
-=====================================
+VIP stands for Value Is Precious. Value is associated with something precious as it plays a
+significant role in determining the ups and downs of a cryptocurrency. When there is no value,
+everything will be put to an end.
+In VIP, we treasure our value. To ensure the longevity and relevancy of VIP, a handful of strategic
+plans are carefully planned by our dedicated team.
+One unique advantage that VIP is offering is that we have one platform specialized in dividend
+distribution among our Vip holders. This dividend is very exclusive as it is rewarded according to
+the current prices of VIP.
 
-### Coin Specs
+For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit our ANN thread at [BitcoinTalk](https://bitcointalk.org/index.php?topic=5102140) or [Twitter Official](https://twitter.com/core_vip) or [Community Discord](https://discord.gg/xKPXvyw) [Contact](mailto:admin@vipcore.vip)
 
-<table>
-<tr><td>Algo</td><td>Quark</td></tr>
-<tr><td>Block Time</td><td>60 Seconds</td></tr>
-<tr><td>Coin Maturity</td><td>60 Seconds</td></tr>
-<tr><td>Max Coin Supply (PoS Phase)</td><td>31 000 000 VIP</td></tr>
-<tr><td>Block reword</td><td>5 VIP</td></tr>
-<tr><td>P2P PORT</td><td>37701</td></tr>
-<tr><td>RPC PORT</td><td>37702</td></tr>
-<tr><td>MN collateral</td><td>2 500 VIP</td></tr>
-</table>
-
-
-### Reward structure
-
-<table>
-<th>Structure</th><th>Coins</th><th>Percentage</th>
-<tr><td>MN</td><td>3,50 VIP</td><td>70%</td></tr>
-<tr><td>PoS</td><td>0,75 VIP</td><td>15%</td></tr>
-<tr><td>YTM (YouTube Mining)</td><td>0,75 VIP</td><td>15%</td></tr>
-</table>
-
-
-### Donate
-BTC: 1DBHibb7T6WjtiJVHpi966VsTPFrMRCZ7Q
-VIP: Yh6PCHasATneVLfcgbG7CAdwBSqXK3oxEH
-HLF: Hh1E7jxQTTYUo7opT3o31uq9UiuaP9aUJ4
-
-
+# Coin Specs
+<br>• Coin Name: VIP (PoS & Masternode Coin)</br>
+<br>• Ticker: VIP  </br>
+<br>• Algorithm: Quark  </br>
+<br>• Premine: (#1 Block) 80,000 VIP</br>
+<br>• Block Time: 60 Seconds  </br>
+<br>• Block Rewards 1 VIP : 70% Masternode, 20% PoS, 10% Dev Funds (Will be dividens to VIP Holders)</br>
+<br>• Max Coin Output/Supply: 1,000,000 VIP </br>
+<br>• Masternode Requirements: 4,000 VIP  </br>
+<br>• Maturity: 11 Confirmations  </br>
+<br>• Prefix: Vip adresses start with the capital letter "W"  </br>
+<br>• [Block-Explorer](http://explorer.vipcore.vip/)</br>

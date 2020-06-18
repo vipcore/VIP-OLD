@@ -2219,10 +2219,6 @@ Please check the address and try again.</source>
         <translation>PIVX core kehittäjät</translation>
     </message>
     <message>
-        <source>The HUZU Core developers</source>
-        <translation>HUZU core kehittäjät</translation>
-    </message>
-    <message>
         <source>The VIP Core developers</source>
         <translation>VIP core kehittäjät</translation>
     </message>

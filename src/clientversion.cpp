@@ -1,6 +1,6 @@
 // Copyright (c) 2012-2014 The Bitcoin developers
 // Copyright (c) 2016-2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,6 +8,7 @@
 
 #include "tinyformat.h"
 
+#include <string>
 
 /**
  * Name of client reported in the 'version' message. Report the same name
@@ -40,11 +41,10 @@ const std::string CLIENT_NAME("VIP Core");
 
 //! First, include build.h if requested
 #ifdef HAVE_BUILD_INFO
-#include "obj/build.h"
+#include "build.h"
 #endif
 
-//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives. 
-#define GIT_ARCHIVE 1
+//! git will put "#define GIT_ARCHIVE 1" on the next line inside archives.
 #ifdef GIT_ARCHIVE
 #define GIT_COMMIT_ID "cbcb549"
 #define GIT_COMMIT_DATE "Tue, 9 Feb 2016 16:54:57 -0500"

@@ -1,6 +1,6 @@
 UNIX BUILD NOTES
 ====================
-Some notes on how to build VIP in Unix.
+Some notes on how to build BAC in Unix.
 
 Note
 ---------------------
@@ -29,12 +29,11 @@ Dependencies
 
 These dependencies are required:
 
- Library     | Purpose            | Description
- ------------|--------------------|----------------------
- libssl      | SSL Support        | Secure communications
- libboost    | Boost              | C++ Library
- libevent    | Events             | Asynchronous event notification
- libgmp      | Bignum Arithmetic  | Precision arithmetic
+ Library     | Purpose          | Description
+ ------------|------------------|----------------------
+ libssl      | SSL Support      | Secure communications
+ libboost    | Boost            | C++ Library
+ libevent    | Events           | Asynchronous event notification
 
 Optional dependencies:
 
@@ -46,7 +45,6 @@ Optional dependencies:
  protobuf    | Payments in GUI  | Data interchange format used for payment protocol (only needed when GUI enabled)
  libqrencode | QR codes in GUI  | Optional for generating QR codes (only needed when GUI enabled)
  univalue    | Utility          | JSON parsing and encoding (bundled version will be used unless --with-system-univalue passed to configure)
- libzmq3     | ZMQ notification | Optional, allows generating ZMQ notifications (requires ZMQ version >= 4.0.0)
 
 For the versions used in the release, see [release-process.md](release-process.md) under *Fetch and build inputs*.
 
@@ -57,53 +55,37 @@ C++ compilers are memory-hungry. It is recommended to have at least 1 GB of
 memory available when compiling VIP Core. With 512MB of memory or less
 compilation will take much longer due to swap thrashing.
 
-## Linux Distribution Specific Instructions
+Dependency Build Instructions: Ubuntu & Debian
+----------------------------------------------
+Build requirements:
 
-###  Ubuntu & Debian
+	sudo apt-get install build-essential libtool autotools-dev autoconf pkg-config libssl-dev libevent-dev
 
-#### Dependency Build Instructions
+For Ubuntu 12.04 and later or Debian 7 and later libboost-all-dev has to be installed:
 
-Build Requirements:
+	sudo apt-get install libboost-all-dev
 
-	sudo apt-get install build-essential libtool bsdmainutils autotools-dev autoconf pkg-config automake python3
-
-Now, you can either build from self-compiled [depends](/depends/README.md) or install the required dependencies:
-
-    sudo apt-get install libssl-dev libgmp-dev libevent-dev libboost-all-dev
-
-**Note:** For Ubuntu versions starting with Bionic (18.04), or Debian versions starting with Stretch, use `libssl1.0-dev`
-above instead of `libssl-dev`. VIP Core does not support the use of OpenSSL 1.1, though compilation is still possible
-by passing `--with-incompatible-ssl` to configure (NOT RECOMMENDED!).
-
-BerkeleyDB is required for the wallet.
-
- **For Ubuntu only:** db4.8 packages are available [here](https://launchpad.net/~bitcoin/+archive/bitcoin).
+ db4.8 packages are available [here](https://launchpad.net/~bitcoin/+archive/bitcoin).
  You can add the repository using the following command:
 
-        sudo apt-get install software-properties-common
         sudo add-apt-repository ppa:bitcoin/bitcoin
         sudo apt-get update
-        sudo apt-get install libdb4.8-dev libdb4.8++-dev
 
-Ubuntu and Debian have their own libdb-dev and libdb++-dev packages, but these will install
-BerkeleyDB 5.1 or later. This will break binary wallet compatibility with the distributed executables, which
-are based on BerkeleyDB 4.8. If you do not care about wallet compatibility,
-pass `--with-incompatible-bdb` to configure.
+ Ubuntu 12.04 and later have packages for libdb5.1-dev and libdb5.1++-dev,
+ but using these will break binary wallet compatibility, and is not recommended.
 
-To build Bitcoin Core without wallet, see [*Disable-wallet mode*](/doc/build-unix.md#disable-wallet-mode)
+For other Debian & Ubuntu (with ppa):
 
-Optional (see --with-miniupnpc and --enable-upnp-default):
+	sudo apt-get install libdb4.8-dev libdb4.8++-dev
 
-    sudo apt-get install libminiupnpc-dev
+Optional:
 
-ZMQ dependencies (provides ZMQ API):
+	sudo apt-get install libminiupnpc-dev (see --with-miniupnpc and --enable-upnp-default)
 
-    sudo apt-get install libzmq3-dev
+Dependencies for the GUI: Ubuntu & Debian
+-----------------------------------------
 
-GUI dependencies:
-
-
-If you want to build vip-qt, make sure that the required packages for Qt development
+If you want to build BAC-Qt, make sure that the required packages for Qt development
 are installed. Qt 5 is necessary to build the GUI.
 If both Qt 4 and Qt 5 are installed, Qt 5 will be used.
 To build without GUI pass `--without-gui`.
@@ -118,27 +100,6 @@ libqrencode (optional) can be installed with:
 
 Once these are installed, they will be found by configure and a vip-qt executable will be
 built by default.
-
-### Fedora
-
-#### Dependency Build Instructions
-
-Build requirements:
-
-    sudo dnf install which gcc-c++ libtool make autoconf automake compat-openssl10-devel libevent-devel boost-devel libdb4-devel libdb4-cxx-devel gmp-devel python3
-
-Optional:
-
-    sudo dnf install miniupnpc-devel zeromq-devel
-
-To build with Qt 5 you need the following:
-
-    sudo dnf install qt5-qttools-devel qt5-qtbase-devel protobuf-devel
-
-libqrencode (optional) can be installed with:
-
-    sudo dnf install qrencode-devel
-
 
 Notes
 -----
@@ -171,10 +132,10 @@ Berkeley DB
 It is recommended to use Berkeley DB 4.8. If you have to build it yourself:
 
 ```bash
-VIP_ROOT=$(pwd)
+BAC_ROOT=$(pwd)
 
 # Pick some path to install BDB to, here we create a directory within the vip directory
-BDB_PREFIX="${VIP_ROOT}/db4"
+BDB_PREFIX="${BAC_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
@@ -190,7 +151,7 @@ cd db-4.8.30.NC/build_unix/
 make install
 
 # Configure VIP Core to use our own-built instance of BDB
-cd $VIP_ROOT
+cd $BAC_ROOT
 ./configure (other args...) LDFLAGS="-L${BDB_PREFIX}/lib/" CPPFLAGS="-I${BDB_PREFIX}/include/"
 ```
 
@@ -207,7 +168,7 @@ If you need to build Boost yourself:
 
 Security
 --------
-To help make your VIP installation more secure by making certain attacks impossible to
+To help make your BAC installation more secure by making certain attacks impossible to
 exploit even if a vulnerability is found, binaries are hardened by default.
 This can be disabled with:
 
@@ -216,9 +177,11 @@ Hardening Flags:
 	./configure --enable-hardening
 	./configure --disable-hardening
 
+
 Hardening enables the following features:
 
-* _Position Independent Executable_: Build position independent code to take advantage of Address Space Layout Randomization
+* Position Independent Executable
+    Build position independent code to take advantage of Address Space Layout Randomization
     offered by some kernels. An attacker who is able to cause execution of code at an arbitrary
     memory location is thwarted if he doesn't know where anything useful is located.
     The stack and heap are randomly located by default but this allows the code section to be
@@ -235,7 +198,8 @@ Hardening enables the following features:
      TYPE
     ET_DYN
 
-* _Non-executable Stack_: If the stack is executable then trivial stack based buffer overflow exploits are possible if
+* Non-executable Stack
+    If the stack is executable then trivial stack based buffer overflow exploits are possible if
     vulnerable buffers are found. By default, vip should be built with a non-executable stack
     but if one of the libraries it uses asks for an executable stack or someone makes a mistake
     and uses a compiler extension which requires an executable stack, it will silently build an
@@ -249,20 +213,3 @@ Hardening enables the following features:
 	RW- R-- RW-
 
     The STK RW- means that the stack is readable and writeable but not executable.
-
-Disable-wallet mode
---------------------
-**Note:** This functionality is not yet completely implemented, and compilation using the below option will currently fail.
-
-When the intention is to run only a P2P node without a wallet, VIP Core may be compiled in
-disable-wallet mode with:
-
-    ./configure --disable-wallet
-
-In this case there is no dependency on Berkeley DB 4.8.
-
-Additional Configure Flags
---------------------------
-A list of additional configure flags can be displayed with:
-
-    ./configure --help

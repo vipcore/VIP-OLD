@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,6 +32,22 @@ CScript ParseScript(std::string s)
 
     static map<string, opcodetype> mapOpNames;
 
+    if (mapOpNames.empty()) {
+        for (int op = 0; op <= OP_ZEROCOINSPEND; op++) {
+            // Allow OP_RESERVED to get into mapOpNames
+            if (op < OP_NOP && op != OP_RESERVED)
+                continue;
+
+            const char* name = GetOpName((opcodetype)op);
+            if (strcmp(name, "OP_UNKNOWN") == 0)
+                continue;
+            string strName(name);
+            mapOpNames[strName] = (opcodetype)op;
+            // Convenience: OP_ADD and just ADD are both recognized:
+            replace_first(strName, "OP_", "");
+            mapOpNames[strName] = (opcodetype)op;
+        }
+    }
 
     vector<string> words;
     split(words, s, is_any_of(" \t\n"), token_compress_on);

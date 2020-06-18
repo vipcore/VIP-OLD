@@ -603,7 +603,7 @@ AC_REQUIRE([AC_CANONICAL_HOST])dnl
 AC_REQUIRE([AC_CANONICAL_BUILD])dnl
 m4_require([_LT_DECL_SED])dnl
 m4_require([_LT_DECL_EGREP])dnl
-m4_require([_LT_PROG_ECHO_BACKSLASH])dnl
+m4_require([_LT_PROG_ECHO_VIPKSLASH])dnl
 
 AC_ARG_WITH([gnu-ld],
     [AS_HELP_STRING([--with-gnu-ld],
@@ -1634,7 +1634,7 @@ _LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 _LT_DECL(, macro_revision, 0)
 ])
 m4trace:/usr/share/aclocal/lt~obsolete.m4:37: -1- AC_DEFUN([LTOBSOLETE_VERSION], [m4_if([1])])
-m4trace:/usr/share/aclocal/lt~obsolete.m4:41: -1- AC_DEFUN([_LT_AC_PROG_ECHO_BACKSLASH])
+m4trace:/usr/share/aclocal/lt~obsolete.m4:41: -1- AC_DEFUN([_LT_AC_PROG_ECHO_VIPKSLASH])
 m4trace:/usr/share/aclocal/lt~obsolete.m4:42: -1- AC_DEFUN([_LT_AC_SHELL_INIT])
 m4trace:/usr/share/aclocal/lt~obsolete.m4:43: -1- AC_DEFUN([_LT_AC_SYS_LIBPATH_AIX])
 m4trace:/usr/share/aclocal/lt~obsolete.m4:45: -1- AC_DEFUN([_LT_AC_TAGVAR])
@@ -1990,12 +1990,12 @@ AS_HELP_STRING(
   [speeds up one-time build])])
 if test "x$enable_dependency_tracking" != xno; then
   am_depcomp="$ac_aux_dir/depcomp"
-  AMDEPBACKSLASH='\'
+  AMDEPVIPKSLASH='\'
   am__nodep='_no'
 fi
 AM_CONDITIONAL([AMDEP], [test "x$enable_dependency_tracking" != xno])
-AC_SUBST([AMDEPBACKSLASH])dnl
-_AM_SUBST_NOTMAKE([AMDEPBACKSLASH])dnl
+AC_SUBST([AMDEPVIPKSLASH])dnl
+_AM_SUBST_NOTMAKE([AMDEPVIPKSLASH])dnl
 AC_SUBST([am__nodep])dnl
 _AM_SUBST_NOTMAKE([am__nodep])dnl
 ])
@@ -2440,9 +2440,9 @@ AM_SUBST_NOTMAKE([AM_V])dnl
 AC_SUBST([AM_DEFAULT_V])dnl
 AM_SUBST_NOTMAKE([AM_DEFAULT_V])dnl
 AC_SUBST([AM_DEFAULT_VERBOSITY])dnl
-AM_BACKSLASH='\'
-AC_SUBST([AM_BACKSLASH])dnl
-_AM_SUBST_NOTMAKE([AM_BACKSLASH])dnl
+AM_VIPKSLASH='\'
+AC_SUBST([AM_VIPKSLASH])dnl
+_AM_SUBST_NOTMAKE([AM_VIPKSLASH])dnl
 ])
 m4trace:/usr/share/aclocal-1.15/strip.m4:17: -1- AC_DEFUN([AM_PROG_INSTALL_STRIP], [AC_REQUIRE([AM_PROG_INSTALL_SH])dnl
 # Installed binaries are usually stripped using 'strip' when the user
@@ -2957,8 +2957,8 @@ m4trace:configure.ac:9: -1- m4_pattern_allow([^AM_DEFAULT_V$])
 m4trace:configure.ac:9: -1- AM_SUBST_NOTMAKE([AM_DEFAULT_V])
 m4trace:configure.ac:9: -1- _AM_SUBST_NOTMAKE([AM_DEFAULT_V])
 m4trace:configure.ac:9: -1- m4_pattern_allow([^AM_DEFAULT_VERBOSITY$])
-m4trace:configure.ac:9: -1- m4_pattern_allow([^AM_BACKSLASH$])
-m4trace:configure.ac:9: -1- _AM_SUBST_NOTMAKE([AM_BACKSLASH])
+m4trace:configure.ac:9: -1- m4_pattern_allow([^AM_VIPKSLASH$])
+m4trace:configure.ac:9: -1- _AM_SUBST_NOTMAKE([AM_VIPKSLASH])
 m4trace:configure.ac:10: -1- LT_INIT
 m4trace:configure.ac:10: -1- m4_pattern_forbid([^_?LT_[A-Z_]+$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^(_LT_EOF|LT_DLGLOBAL|LT_DLLAZY_OR_NOW|LT_MULTI_MODULE)$])
@@ -2969,7 +2969,7 @@ m4trace:configure.ac:10: -1- LTOBSOLETE_VERSION
 m4trace:configure.ac:10: -1- _LT_PROG_LTMAIN
 m4trace:configure.ac:10: -1- m4_pattern_allow([^LIBTOOL$])
 m4trace:configure.ac:10: -1- _LT_PREPARE_SED_QUOTE_VARS
-m4trace:configure.ac:10: -1- _LT_PROG_ECHO_BACKSLASH
+m4trace:configure.ac:10: -1- _LT_PROG_ECHO_VIPKSLASH
 m4trace:configure.ac:10: -1- m4_pattern_allow([^CC$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^CFLAGS$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^LDFLAGS$])
@@ -2997,8 +2997,8 @@ m4trace:configure.ac:10: -1- m4_pattern_allow([^AMDEP_TRUE$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^AMDEP_FALSE$])
 m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([AMDEP_TRUE])
 m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([AMDEP_FALSE])
-m4trace:configure.ac:10: -1- m4_pattern_allow([^AMDEPBACKSLASH$])
-m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([AMDEPBACKSLASH])
+m4trace:configure.ac:10: -1- m4_pattern_allow([^AMDEPVIPKSLASH$])
+m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([AMDEPVIPKSLASH])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^am__nodep$])
 m4trace:configure.ac:10: -1- _AM_SUBST_NOTMAKE([am__nodep])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^CCDEPMODE$])
@@ -3073,8 +3073,8 @@ m4trace:configure.ac:13: -1- m4_pattern_allow([^AM_DEFAULT_V$])
 m4trace:configure.ac:13: -1- AM_SUBST_NOTMAKE([AM_DEFAULT_V])
 m4trace:configure.ac:13: -1- _AM_SUBST_NOTMAKE([AM_DEFAULT_V])
 m4trace:configure.ac:13: -1- m4_pattern_allow([^AM_DEFAULT_VERBOSITY$])
-m4trace:configure.ac:13: -1- m4_pattern_allow([^AM_BACKSLASH$])
-m4trace:configure.ac:13: -1- _AM_SUBST_NOTMAKE([AM_BACKSLASH])
+m4trace:configure.ac:13: -1- m4_pattern_allow([^AM_VIPKSLASH$])
+m4trace:configure.ac:13: -1- _AM_SUBST_NOTMAKE([AM_VIPKSLASH])
 m4trace:configure.ac:15: -1- PKG_PROG_PKG_CONFIG
 m4trace:configure.ac:15: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
 m4trace:configure.ac:15: -1- m4_pattern_allow([^PKG_CONFIG(_(PATH|LIBDIR|SYSROOT_DIR|ALLOW_SYSTEM_(CFLAGS|LIBS)))?$])
@@ -3173,7 +3173,7 @@ m4trace:configure.ac:373: -1- m4_pattern_allow([^ENABLE_OPENSSL_TESTS$])
 m4trace:configure.ac:395: -1- AX_JNI_INCLUDE_DIR
 m4trace:configure.ac:395: -1- m4_pattern_allow([^_ACJNI_JAVAC$])
 m4trace:configure.ac:395: -1- _ACJNI_FOLLOW_SYMLINKS(["$_ACJNI_JAVAC"])
-m4trace:configure.ac:423: -1- m4_pattern_allow([^USE_ENDOMORPHISM$])
+m4trace:configure.ac:423: -1- m4_pattern_allow([^USE_ENVIPRPHISM$])
 m4trace:configure.ac:427: -1- m4_pattern_allow([^USE_ECMULT_STATIC_PRECOMPUTATION$])
 m4trace:configure.ac:431: -1- m4_pattern_allow([^ENABLE_MODULE_ECDH$])
 m4trace:configure.ac:435: -1- m4_pattern_allow([^ENABLE_MODULE_RECOVERY$])

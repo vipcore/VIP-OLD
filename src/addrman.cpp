@@ -1,7 +1,7 @@
 // Copyright (c) 2012 Pieter Wuille
 // Copyright (c) 2012-2014 The Bitcoin developers
 // Copyright (c) 2017 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -334,10 +334,10 @@ void CAddrMan::Attempt_(const CService& addr, int64_t nTime)
     info.nAttempts++;
 }
 
-CAddrInfo CAddrMan::Select_()
+CAddress CAddrMan::Select_()
 {
     if (size() == 0)
-        return CAddrInfo();
+        return CAddress();
 
     // Use a 50% chance for choosing between tried and new table entries.
     if (nTried > 0 && (nNew == 0 || GetRandInt(2) == 0)) {

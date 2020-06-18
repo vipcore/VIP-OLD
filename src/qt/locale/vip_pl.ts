@@ -406,11 +406,11 @@
     </message>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>&amp;Zatwierdź wiadomość</translation>
+        <translation>&amp;Zatwierdź wiavipść</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Zweryfikuj wiadomość</translation>
+        <translation>&amp;Zweryfikuj wiavipść</translation>
     </message>
     <message>
         <source>&amp;Information</source>
@@ -542,11 +542,11 @@
     </message>
     <message>
         <source>Sign messages with your VIP addresses to prove you own them</source>
-        <translation>Zatwierdź wiadomość z twoimi adresami VIP, by udowodnić, że jesteś w ich posiadaniu</translation>
+        <translation>Zatwierdź wiavipść z twoimi adresami VIP, by udowodnić, że jesteś w ich posiadaniu</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified VIP addresses</source>
-        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu VIP</translation>
+        <translation>Zweryfikuj wiavipści by upewnić się, że zostały zatwierdzone z podanego adresu VIP</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -586,7 +586,7 @@
     </message>
     <message>
         <source>Show the VIP Core help message to get a list with possible VIP command-line options</source>
-        <translation>Pokaż wiadomość pomocy rdzenia VIP, aby dostać listę możliwych opcji VIP command-line</translation>
+        <translation>Pokaż wiavipść pomocy rdzenia VIP, aby dostać listę możliwych opcji VIP command-line</translation>
     </message>
     <message>
         <source>VIP Core client</source>
@@ -1741,7 +1741,7 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>&amp;Message:</source>
-        <translation>&amp;Wiadomość:</translation>
+        <translation>&amp;Wiavipść:</translation>
     </message>
     <message>
         <source>Copy label</source>
@@ -1895,7 +1895,7 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
     </message>
     <message>
         <source>Sign the message to prove you own this VIP address</source>
-        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres VIP jest w twoim posiadaniu</translation>
+        <translation>Zatwierdź wiavipść, aby udowodnić, że podany adres VIP jest w twoim posiadaniu</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>

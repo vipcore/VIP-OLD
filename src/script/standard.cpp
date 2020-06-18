@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2018-2019 The VIP developers
-// Copyright (c) 2019 The VIP developers
+// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,6 +32,7 @@ const char* GetTxnOutputType(txnouttype t)
     case TX_SCRIPTHASH: return "scripthash";
     case TX_MULTISIG: return "multisig";
     case TX_NULL_DATA: return "nulldata";
+    case TX_ZEROCOINMINT: return "zerocoinmint";
     }
     return NULL;
 }
@@ -64,7 +65,15 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
         vSolutionsRet.push_back(hashBytes);
         return true;
     }
-    //return true;
+
+    // Zerocoin
+    if (scriptPubKey.IsZerocoinMint()){
+        typeRet = TX_ZEROCOINMINT;
+        if(scriptPubKey.size() > 150) return false;
+        vector<unsigned char> hashBytes(scriptPubKey.begin()+2, scriptPubKey.end());
+        vSolutionsRet.push_back(hashBytes);
+        return true;
+    }
 
     // Provably prunable, data-carrying output
     //
@@ -167,6 +176,7 @@ int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned c
     {
     case TX_NONSTANDARD:
     case TX_NULL_DATA:
+    case TX_ZEROCOINMINT:
         return -1;
     case TX_PUBKEY:
         return 1;

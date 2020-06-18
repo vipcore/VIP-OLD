@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -45,11 +45,10 @@ public:
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
-        ZeromintAddresses,   // bool
+        ZeromintEnable,      // bool
         ZeromintPercentage,  // int
         ZeromintPrefDenom,   // int
         HideZeroBalances,    // bool
-        HideOrphans,    // bool
         AnonymizeVipAmount, //int
         ShowMasternodesTab,  // bool
         Listen,              // bool
@@ -91,7 +90,6 @@ private:
     QString strThirdPartyTxUrls;
     bool fCoinControlFeatures;
     bool fHideZeroBalances;
-    bool fHideOrphans;
     /* settings that were overriden by command-line */
     QString strOverriddenByCommandLine;
 
@@ -101,13 +99,11 @@ private:
 signals:
     void displayUnitChanged(int unit);
     void zeromintEnableChanged(bool);
-    void zeromintAddressesChanged(bool);
     void zeromintPercentageChanged(int);
     void preferredDenomChanged(int);
     void anonymizeVipAmountChanged(int);
     void coinControlFeaturesChanged(bool);
     void hideZeroBalancesChanged(bool);
-    void hideOrphansChanged(bool);
 };
 
 #endif // BITCOIN_QT_OPTIONSMODEL_H

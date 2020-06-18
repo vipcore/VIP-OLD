@@ -3,11 +3,11 @@ VIP Core
 
 Setup
 ---------------------
-[VIP Core](https://vip.icu/wallet) is the original VIP client and it builds the backbone of the network. However, it downloads and stores the entire history of VIP transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[VIP Core](http://vip.org/wallet) is the original BAC client and it builds the backbone of the network. However, it downloads and stores the entire history of BAC transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run VIP on your native platform.
+The following are some helpful notes on how to run BAC on your native platform.
 
 ### Unix
 
@@ -22,19 +22,19 @@ Unpack the files into a directory, and then run vip-qt.exe.
 
 ### OSX
 
-Drag VIP-Qt to your applications folder, and then run VIP-Qt.
+Drag BAC-Qt to your applications folder, and then run BAC-Qt.
 
 ### Need Help?
 
-* See the documentation at the [VIP Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
+* See the documentation at the [BAC Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [VIP Forum](http://forum.vip.icu/).
-* Join our Discord server [Discord Server](https://discord.vip.icu)
-* Join one of our Slack groups [VIP Slack Groups](https://vip.icu/slack-logins/) (Main community is replaced by Discord).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or on the [BAC Forum](http://forum.vip.org/).
+* Join our Discord server [Discord Server](https://discord.vip.org)
+* Join one of our Slack groups [BAC Slack Groups](https://vip.org/slack-logins/) (Main community is replaced by Discord).
 
 Building
 ---------------------
-The following are developer notes on how to build VIP on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build BAC on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -42,7 +42,7 @@ The following are developer notes on how to build VIP on your native platform. T
 
 Development
 ---------------------
-The Vip repo's [root README](https://github.com/VIP-Project/VIP/blob/master/README.md) contains relevant information on the development process and automated testing.
+The Bitalley repo's [root README](https://github.com/BAC-Project/BAC/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,8 +56,8 @@ The Vip repo's [root README](https://github.com/VIP-Project/VIP/blob/master/READ
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [VIP](http://forum.vip.icu/) forum.
-* Join the [VIP-Dev](https://vip-dev.slack.com/) Slack group ([Sign-Up](https://vip-dev.herokuapp.com/)).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) or the [BAC](http://forum.vip.org/) forum.
+* Join the [BAC-Dev](https://vip-dev.slack.com/) Slack group ([Sign-Up](https://vip-dev.herokuapp.com/)).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin developers
 // Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,6 @@
 #include "bitcoingui.h"
 #include "blockexplorer.h"
 #include "clientmodel.h"
-#include "dividendspage.h"
 #include "guiutil.h"
 #include "masternodeconfig.h"
 #include "multisenddialog.h"
@@ -19,6 +18,7 @@
 #include "optionsmodel.h"
 #include "overviewpage.h"
 #include "receivecoinsdialog.h"
+#include "privacydialog.h"
 #include "sendcoinsdialog.h"
 #include "signverifymessagedialog.h"
 #include "transactiontablemodel.h"
@@ -116,13 +116,13 @@ WalletView::WalletView(QWidget* parent) : QStackedWidget(parent),
     vbox->addLayout(hbox_buttons);
     transactionsPage->setLayout(vbox);
 
-    dividendsPage = new DividendsPage();
+    privacyPage = new PrivacyDialog();
     receiveCoinsPage = new ReceiveCoinsDialog();
     sendCoinsPage = new SendCoinsDialog();
 
     addWidget(overviewPage);
     addWidget(transactionsPage);
-    addWidget(dividendsPage);
+    addWidget(privacyPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
     addWidget(explorerWindow);
@@ -183,7 +183,6 @@ void WalletView::setClientModel(ClientModel* clientModel)
     if (settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setClientModel(clientModel);
     }
-    dividendsPage->setClientModel(clientModel);
 }
 
 void WalletView::setWalletModel(WalletModel* walletModel)
@@ -197,9 +196,9 @@ void WalletView::setWalletModel(WalletModel* walletModel)
     if (settings.value("fShowMasternodesTab").toBool()) {
         masternodeListPage->setWalletModel(walletModel);
     }
+    privacyPage->setModel(walletModel);
     receiveCoinsPage->setModel(walletModel);
     sendCoinsPage->setModel(walletModel);
-    dividendsPage->setWalletModel(walletModel);
 
     if (walletModel) {
         // Receive and pass through messages from wallet model
@@ -251,10 +250,6 @@ void WalletView::gotoHistoryPage()
     setCurrentWidget(transactionsPage);
 }
 
-void WalletView::gotoDividendsPage()
-{
-    setCurrentWidget(dividendsPage);
-}
 
 void WalletView::gotoBlockExplorerPage()
 {
@@ -274,7 +269,12 @@ void WalletView::gotoReceiveCoinsPage()
     setCurrentWidget(receiveCoinsPage);
 }
 
-
+void WalletView::gotoPrivacyPage()
+{
+    setCurrentWidget(privacyPage);
+    // Refresh UI-elements in case coins were locked/unlocked in CoinControl
+    walletModel->emitBalanceChanged();
+}
 
 void WalletView::gotoSendCoinsPage(QString addr)
 {
@@ -338,6 +338,7 @@ bool WalletView::handlePaymentRequest(const SendCoinsRecipient& recipient)
 void WalletView::showOutOfSyncWarning(bool fShow)
 {
     overviewPage->showOutOfSyncWarning(fShow);
+    privacyPage->showOutOfSyncWarning(fShow);
 }
 
 void WalletView::updateEncryptionStatus()

@@ -102,20 +102,9 @@ public:
     QFrame *frameFee;
     QVBoxLayout *verticalLayoutFee1;
     QVBoxLayout *verticalLayoutFee2;
-    QVBoxLayout *verticalLayout_feeConf;
-    QHBoxLayout *horizontalLayoutFee9;
-    QCheckBox *checkSwiftTX;
-    QLabel *labelSmartFee3;
-    QLabel *labelSmartFeeNormal;
-    QSlider *sliderSmartFee;
-    QLabel *labelSmartFeeFast;
-    QHBoxLayout *horizontalLayout_recommended_texts;
-    QSpacerItem *horizontalSpacer_8;
-    QLabel *labelFeeEstimation;
-    QLabel *labelSmartFee2;
-    QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayoutFee1;
     QVBoxLayout *verticalLayoutFee7;
+    QSpacerItem *verticalSpacerSmartFee;
     QHBoxLayout *horizontalLayoutSmartFee;
     QLabel *labelFeeHeadline;
     QLabel *labelFeeMinimized;
@@ -143,14 +132,24 @@ public:
     QLabel *labelMinFeeWarning;
     QSpacerItem *horizontalSpacer_2;
     QLabel *labelSmartFee_2;
-    QLabel *labelSmartFee;
-    QRadioButton *radioSmartFee;
     QVBoxLayout *verticalLayoutFee3;
+    QHBoxLayout *horizontalLayoutFee9;
+    QLabel *labelSmartFee3;
+    QLabel *labelSmartFeeNormal;
+    QSlider *sliderSmartFee;
+    QLabel *labelSmartFeeFast;
+    QHBoxLayout *horizontalLayout_recommended_texts;
+    QSpacerItem *horizontalSpacer_8;
+    QLabel *labelFeeEstimation;
+    QLabel *labelSmartFee2;
+    QSpacerItem *horizontalSpacer_3;
     QFrame *line_2;
     QHBoxLayout *horizontalLayoutFee12;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *verticalSpacer_4;
     QSpacerItem *verticalSpacer_3;
+    QLabel *labelSmartFee;
+    QRadioButton *radioSmartFee;
     QHBoxLayout *horizontalLayoutFee5;
     QCheckBox *checkBoxFreeTx;
     QLabel *labelFreeTx;
@@ -164,6 +163,8 @@ public:
     QPushButton *addButton;
     QSpacerItem *horizontalSpacer;
     QHBoxLayout *horizontalLayout_2;
+    QCheckBox *checkzVIP;
+    QCheckBox *checkSwiftTX;
     QLabel *label;
     QLabel *labelBalance;
     QButtonGroup *groupCustomFee;
@@ -595,7 +596,7 @@ public:
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 944, 69));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 944, 68));
         verticalLayout_2 = new QVBoxLayout(scrollAreaWidgetContents);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -629,92 +630,16 @@ public:
         verticalLayoutFee2->setSpacing(0);
         verticalLayoutFee2->setObjectName(QStringLiteral("verticalLayoutFee2"));
         verticalLayoutFee2->setContentsMargins(6, 0, 6, -1);
-        verticalLayout_feeConf = new QVBoxLayout();
-        verticalLayout_feeConf->setSpacing(0);
-        verticalLayout_feeConf->setObjectName(QStringLiteral("verticalLayout_feeConf"));
-        verticalLayout_feeConf->setContentsMargins(10, -1, 10, 5);
-        horizontalLayoutFee9 = new QHBoxLayout();
-        horizontalLayoutFee9->setObjectName(QStringLiteral("horizontalLayoutFee9"));
-        checkSwiftTX = new QCheckBox(frameFee);
-        checkSwiftTX->setObjectName(QStringLiteral("checkSwiftTX"));
-        checkSwiftTX->setEnabled(true);
-        checkSwiftTX->setMinimumSize(QSize(85, 0));
-
-        horizontalLayoutFee9->addWidget(checkSwiftTX);
-
-        labelSmartFee3 = new QLabel(frameFee);
-        labelSmartFee3->setObjectName(QStringLiteral("labelSmartFee3"));
-        labelSmartFee3->setMargin(2);
-
-        horizontalLayoutFee9->addWidget(labelSmartFee3);
-
-        labelSmartFeeNormal = new QLabel(frameFee);
-        labelSmartFeeNormal->setObjectName(QStringLiteral("labelSmartFeeNormal"));
-        labelSmartFeeNormal->setMargin(8);
-
-        horizontalLayoutFee9->addWidget(labelSmartFeeNormal);
-
-        sliderSmartFee = new QSlider(frameFee);
-        sliderSmartFee->setObjectName(QStringLiteral("sliderSmartFee"));
-        sliderSmartFee->setMinimumSize(QSize(0, 24));
-        sliderSmartFee->setMinimum(0);
-        sliderSmartFee->setMaximum(24);
-        sliderSmartFee->setPageStep(1);
-        sliderSmartFee->setValue(0);
-        sliderSmartFee->setOrientation(Qt::Horizontal);
-        sliderSmartFee->setInvertedAppearance(false);
-        sliderSmartFee->setInvertedControls(false);
-        sliderSmartFee->setTickPosition(QSlider::NoTicks);
-
-        horizontalLayoutFee9->addWidget(sliderSmartFee);
-
-        labelSmartFeeFast = new QLabel(frameFee);
-        labelSmartFeeFast->setObjectName(QStringLiteral("labelSmartFeeFast"));
-        labelSmartFeeFast->setMargin(8);
-
-        horizontalLayoutFee9->addWidget(labelSmartFeeFast);
-
-
-        verticalLayout_feeConf->addLayout(horizontalLayoutFee9);
-
-        horizontalLayout_recommended_texts = new QHBoxLayout();
-        horizontalLayout_recommended_texts->setSpacing(0);
-        horizontalLayout_recommended_texts->setObjectName(QStringLiteral("horizontalLayout_recommended_texts"));
-        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_recommended_texts->addItem(horizontalSpacer_8);
-
-        labelFeeEstimation = new QLabel(frameFee);
-        labelFeeEstimation->setObjectName(QStringLiteral("labelFeeEstimation"));
-        labelFeeEstimation->setMargin(2);
-
-        horizontalLayout_recommended_texts->addWidget(labelFeeEstimation);
-
-        labelSmartFee2 = new QLabel(frameFee);
-        labelSmartFee2->setObjectName(QStringLiteral("labelSmartFee2"));
-        labelSmartFee2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
-        labelSmartFee2->setWordWrap(false);
-        labelSmartFee2->setMargin(2);
-        labelSmartFee2->setIndent(-1);
-
-        horizontalLayout_recommended_texts->addWidget(labelSmartFee2);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_recommended_texts->addItem(horizontalSpacer_3);
-
-
-        verticalLayout_feeConf->addLayout(horizontalLayout_recommended_texts);
-
-
-        verticalLayoutFee2->addLayout(verticalLayout_feeConf);
-
         horizontalLayoutFee1 = new QHBoxLayout();
         horizontalLayoutFee1->setObjectName(QStringLiteral("horizontalLayoutFee1"));
-        horizontalLayoutFee1->setContentsMargins(10, -1, 10, 0);
+        horizontalLayoutFee1->setContentsMargins(-1, -1, -1, 0);
         verticalLayoutFee7 = new QVBoxLayout();
         verticalLayoutFee7->setSpacing(0);
         verticalLayoutFee7->setObjectName(QStringLiteral("verticalLayoutFee7"));
+        verticalSpacerSmartFee = new QSpacerItem(1, 4, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        verticalLayoutFee7->addItem(verticalSpacerSmartFee);
+
         horizontalLayoutSmartFee = new QHBoxLayout();
         horizontalLayoutSmartFee->setSpacing(10);
         horizontalLayoutSmartFee->setObjectName(QStringLiteral("horizontalLayoutSmartFee"));
@@ -864,23 +789,75 @@ public:
 
         gridLayoutFee->addWidget(labelSmartFee_2, 1, 1, 1, 1);
 
-        labelSmartFee = new QLabel(frameFeeSelection);
-        labelSmartFee->setObjectName(QStringLiteral("labelSmartFee"));
-        labelSmartFee->setMargin(2);
-
-        gridLayoutFee->addWidget(labelSmartFee, 1, 2, 1, 1);
-
-        radioSmartFee = new QRadioButton(frameFeeSelection);
-        groupFee->addButton(radioSmartFee);
-        radioSmartFee->setObjectName(QStringLiteral("radioSmartFee"));
-        radioSmartFee->setChecked(true);
-
-        gridLayoutFee->addWidget(radioSmartFee, 1, 0, 1, 1);
-
         verticalLayoutFee3 = new QVBoxLayout();
         verticalLayoutFee3->setSpacing(6);
         verticalLayoutFee3->setObjectName(QStringLiteral("verticalLayoutFee3"));
         verticalLayoutFee3->setContentsMargins(-1, 2, -1, 20);
+        horizontalLayoutFee9 = new QHBoxLayout();
+        horizontalLayoutFee9->setObjectName(QStringLiteral("horizontalLayoutFee9"));
+        labelSmartFee3 = new QLabel(frameFeeSelection);
+        labelSmartFee3->setObjectName(QStringLiteral("labelSmartFee3"));
+        labelSmartFee3->setMargin(2);
+
+        horizontalLayoutFee9->addWidget(labelSmartFee3);
+
+        labelSmartFeeNormal = new QLabel(frameFeeSelection);
+        labelSmartFeeNormal->setObjectName(QStringLiteral("labelSmartFeeNormal"));
+        labelSmartFeeNormal->setMargin(2);
+
+        horizontalLayoutFee9->addWidget(labelSmartFeeNormal);
+
+        sliderSmartFee = new QSlider(frameFeeSelection);
+        sliderSmartFee->setObjectName(QStringLiteral("sliderSmartFee"));
+        sliderSmartFee->setMinimumSize(QSize(0, 24));
+        sliderSmartFee->setMinimum(0);
+        sliderSmartFee->setMaximum(24);
+        sliderSmartFee->setPageStep(1);
+        sliderSmartFee->setValue(0);
+        sliderSmartFee->setOrientation(Qt::Horizontal);
+        sliderSmartFee->setInvertedAppearance(false);
+        sliderSmartFee->setInvertedControls(false);
+        sliderSmartFee->setTickPosition(QSlider::NoTicks);
+
+        horizontalLayoutFee9->addWidget(sliderSmartFee);
+
+        labelSmartFeeFast = new QLabel(frameFeeSelection);
+        labelSmartFeeFast->setObjectName(QStringLiteral("labelSmartFeeFast"));
+
+        horizontalLayoutFee9->addWidget(labelSmartFeeFast);
+
+
+        verticalLayoutFee3->addLayout(horizontalLayoutFee9);
+
+        horizontalLayout_recommended_texts = new QHBoxLayout();
+        horizontalLayout_recommended_texts->setSpacing(0);
+        horizontalLayout_recommended_texts->setObjectName(QStringLiteral("horizontalLayout_recommended_texts"));
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_recommended_texts->addItem(horizontalSpacer_8);
+
+        labelFeeEstimation = new QLabel(frameFeeSelection);
+        labelFeeEstimation->setObjectName(QStringLiteral("labelFeeEstimation"));
+        labelFeeEstimation->setMargin(2);
+
+        horizontalLayout_recommended_texts->addWidget(labelFeeEstimation);
+
+        labelSmartFee2 = new QLabel(frameFeeSelection);
+        labelSmartFee2->setObjectName(QStringLiteral("labelSmartFee2"));
+        labelSmartFee2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        labelSmartFee2->setWordWrap(false);
+        labelSmartFee2->setMargin(2);
+        labelSmartFee2->setIndent(-1);
+
+        horizontalLayout_recommended_texts->addWidget(labelSmartFee2);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_recommended_texts->addItem(horizontalSpacer_3);
+
+
+        verticalLayoutFee3->addLayout(horizontalLayout_recommended_texts);
+
         line_2 = new QFrame(frameFeeSelection);
         line_2->setObjectName(QStringLiteral("line_2"));
         line_2->setMinimumSize(QSize(0, 1));
@@ -907,8 +884,22 @@ public:
 
         verticalLayoutFee3->addItem(verticalSpacer_3);
 
+        verticalLayoutFee3->setStretch(4, 1);
 
         gridLayoutFee->addLayout(verticalLayoutFee3, 0, 4, 3, 1);
+
+        labelSmartFee = new QLabel(frameFeeSelection);
+        labelSmartFee->setObjectName(QStringLiteral("labelSmartFee"));
+        labelSmartFee->setMargin(2);
+
+        gridLayoutFee->addWidget(labelSmartFee, 1, 2, 1, 1);
+
+        radioSmartFee = new QRadioButton(frameFeeSelection);
+        groupFee->addButton(radioSmartFee);
+        radioSmartFee->setObjectName(QStringLiteral("radioSmartFee"));
+        radioSmartFee->setChecked(true);
+
+        gridLayoutFee->addWidget(radioSmartFee, 1, 0, 1, 1);
 
 
         verticalLayoutFee12->addLayout(gridLayoutFee);
@@ -974,18 +965,12 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(clearButton->sizePolicy().hasHeightForWidth());
         clearButton->setSizePolicy(sizePolicy4);
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/icons/remove"), QSize(), QIcon::Normal, QIcon::Off);
-        clearButton->setIcon(icon1);
         clearButton->setAutoDefault(false);
 
         horizontalLayout->addWidget(clearButton);
 
         addButton = new QPushButton(frame_Send);
         addButton->setObjectName(QStringLiteral("addButton"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/icons/add"), QSize(), QIcon::Normal, QIcon::Off);
-        addButton->setIcon(icon2);
         addButton->setAutoDefault(false);
 
         horizontalLayout->addWidget(addButton);
@@ -997,6 +982,19 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(3);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        checkzVIP = new QCheckBox(frame_Send);
+        checkzVIP->setObjectName(QStringLiteral("checkzVIP"));
+        checkzVIP->setEnabled(false);
+
+        horizontalLayout_2->addWidget(checkzVIP);
+
+        checkSwiftTX = new QCheckBox(frame_Send);
+        checkSwiftTX->setObjectName(QStringLiteral("checkSwiftTX"));
+        checkSwiftTX->setEnabled(true);
+        checkSwiftTX->setMinimumSize(QSize(85, 0));
+
+        horizontalLayout_2->addWidget(checkSwiftTX);
+
         label = new QLabel(frame_Send);
         label->setObjectName(QStringLiteral("label"));
 
@@ -1065,15 +1063,6 @@ public:
         splitBlockLineEdit->setPlaceholderText(QApplication::translate("SendCoinsDialog", "# of outputs", Q_NULLPTR));
         labelBlockSizeText->setText(QApplication::translate("SendCoinsDialog", "UTXO Size:", Q_NULLPTR));
         labelBlockSize->setText(QApplication::translate("SendCoinsDialog", "0 VIP", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        checkSwiftTX->setToolTip(QApplication::translate("SendCoinsDialog", "SwiftX technology allows for near instant transactions - A flat fee of 0.01 VIP applies", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        checkSwiftTX->setText(QApplication::translate("SendCoinsDialog", "SwiftX", Q_NULLPTR));
-        labelSmartFee3->setText(QApplication::translate("SendCoinsDialog", "Confirmation time:", Q_NULLPTR));
-        labelSmartFeeNormal->setText(QApplication::translate("SendCoinsDialog", "normal", Q_NULLPTR));
-        labelSmartFeeFast->setText(QApplication::translate("SendCoinsDialog", "fast", Q_NULLPTR));
-        labelFeeEstimation->setText(QString());
-        labelSmartFee2->setText(QApplication::translate("SendCoinsDialog", "(Smart fee not initialized yet. This usually takes a few blocks...)", Q_NULLPTR));
         labelFeeHeadline->setText(QApplication::translate("SendCoinsDialog", "Transaction Fee:", Q_NULLPTR));
         labelFeeMinimized->setText(QString());
         buttonChooseFee->setText(QApplication::translate("SendCoinsDialog", "Choose...", Q_NULLPTR));
@@ -1100,6 +1089,11 @@ public:
 #endif // QT_NO_TOOLTIP
         labelMinFeeWarning->setText(QApplication::translate("SendCoinsDialog", "(read the tooltip)", Q_NULLPTR));
         labelSmartFee_2->setText(QApplication::translate("SendCoinsDialog", "Recommended", Q_NULLPTR));
+        labelSmartFee3->setText(QApplication::translate("SendCoinsDialog", "Confirmation time:", Q_NULLPTR));
+        labelSmartFeeNormal->setText(QApplication::translate("SendCoinsDialog", "normal", Q_NULLPTR));
+        labelSmartFeeFast->setText(QApplication::translate("SendCoinsDialog", "fast", Q_NULLPTR));
+        labelFeeEstimation->setText(QString());
+        labelSmartFee2->setText(QApplication::translate("SendCoinsDialog", "(Smart fee not initialized yet. This usually takes a few blocks...)", Q_NULLPTR));
         labelSmartFee->setText(QString());
         radioSmartFee->setText(QString());
         checkBoxFreeTx->setText(QApplication::translate("SendCoinsDialog", "Send as zero-fee transaction if possible", Q_NULLPTR));
@@ -1116,6 +1110,8 @@ public:
         addButton->setToolTip(QApplication::translate("SendCoinsDialog", "Send to multiple recipients at once", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         addButton->setText(QApplication::translate("SendCoinsDialog", "Add &Recipient", Q_NULLPTR));
+        checkzVIP->setText(QApplication::translate("SendCoinsDialog", "Anonymized VIP", Q_NULLPTR));
+        checkSwiftTX->setText(QApplication::translate("SendCoinsDialog", "SwiftX", Q_NULLPTR));
         label->setText(QApplication::translate("SendCoinsDialog", "Balance:", Q_NULLPTR));
     } // retranslateUi
 

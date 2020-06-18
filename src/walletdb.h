@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2013 The Bitcoin developers
 // Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2018-2020 VIP Core developers
+// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,10 @@
 #include "db.h"
 #include "key.h"
 #include "keystore.h"
+#include "primitives/zerocoin.h"
+#include "libzerocoin/Accumulator.h"
+#include "libzerocoin/Denominations.h"
+#include "zpivtracker.h"
 
 #include <list>
 #include <stdint.h>
@@ -21,13 +25,15 @@
 
 class CAccount;
 class CAccountingEntry;
-class CBitcoinAddress;
 struct CBlockLocator;
 class CKeyPool;
 class CMasterKey;
 class CScript;
 class CWallet;
 class CWalletTx;
+class CDeterministicMint;
+class CZerocoinMint;
+class CZerocoinSpend;
 class uint160;
 class uint256;
 
@@ -147,6 +153,40 @@ public:
     DBErrors ZapWalletTx(CWallet* pwallet, std::vector<CWalletTx>& vWtx);
     static bool Recover(CDBEnv& dbenv, std::string filename, bool fOnlyKeys);
     static bool Recover(CDBEnv& dbenv, std::string filename);
+
+    bool WriteDeterministicMint(const CDeterministicMint& dMint);
+    bool ReadDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint);
+    bool EraseDeterministicMint(const uint256& hashPubcoin);
+    bool WriteZerocoinMint(const CZerocoinMint& zerocoinMint);
+    bool EraseZerocoinMint(const CZerocoinMint& zerocoinMint);
+    bool ReadZerocoinMint(const CBigNum &bnPubcoinValue, CZerocoinMint& zerocoinMint);
+    bool ReadZerocoinMint(const uint256& hashPubcoin, CZerocoinMint& mint);
+    bool ArchiveMintOrphan(const CZerocoinMint& zerocoinMint);
+    bool ArchiveDeterministicOrphan(const CDeterministicMint& dMint);
+    bool UnarchiveZerocoinMint(const uint256& hashPubcoin, CZerocoinMint& mint);
+    bool UnarchiveDeterministicMint(const uint256& hashPubcoin, CDeterministicMint& dMint);
+    std::list<CZerocoinMint> ListMintedCoins();
+    std::list<CDeterministicMint> ListDeterministicMints();
+    std::list<CZerocoinSpend> ListSpentCoins();
+    std::list<CBigNum> ListSpentCoinsSerial();
+    std::list<CZerocoinMint> ListArchivedZerocoins();
+    std::list<CDeterministicMint> ListArchivedDeterministicMints();
+    bool WriteZerocoinSpendSerialEntry(const CZerocoinSpend& zerocoinSpend);
+    bool EraseZerocoinSpendSerialEntry(const CBigNum& serialEntry);
+    bool ReadZerocoinSpendSerialEntry(const CBigNum& bnSerial);
+    bool WriteCurrentSeedHash(const uint256& hashSeed);
+    bool ReadCurrentSeedHash(uint256& hashSeed);
+    bool WriteZVIPSeed(const uint256& hashSeed, const vector<unsigned char>& seed);
+    bool ReadZVIPSeed(const uint256& hashSeed, vector<unsigned char>& seed);
+    bool ReadZVIPSeed_deprecated(uint256& seed);
+    bool EraseZVIPSeed();
+    bool EraseZVIPSeed_deprecated();
+
+    bool WriteZVIPCount(const uint32_t& nCount);
+    bool ReadZVIPCount(uint32_t& nCount);
+    std::map<uint256, std::vector<pair<uint256, uint32_t> > > MapMintPool();
+    bool WriteMintPoolPair(const uint256& hashMasterSeed, const uint256& hashPubcoin, const uint32_t& nCount);
+
 
 private:
     CWalletDB(const CWalletDB&);
