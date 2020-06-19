@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>io.vip.Bitalley-Qt</string>
+  <string>io.vip.Vip-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>io.vip.BitalleyPayment</string>
+      <string>io.vip.VipPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>vip</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>io.vip.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Bitalley payment request</string>
+      <string>Vip payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>

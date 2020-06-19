@@ -58,7 +58,7 @@ Other implementations of the zerocoin protocol only allow for spending of one de
 The BAC zerocoin implementation is structured in such a way that denominations aren't needed to be known by the average user.
 
 ### Fees
-zBitalley transactions require more computation and disk space than typical BAC transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zBitalley, each minted denomination is charged a flat rate of 0.01 Bitalley. zBitalley spends are not charged a transaction fee unless the change is minted into zBitalley, see the *Minting Change* section for details on fees for zBitalley spends with minted change.
+zVip transactions require more computation and disk space than typical BAC transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zVip, each minted denomination is charged a flat rate of 0.01 Vip. zVip spends are not charged a transaction fee unless the change is minted into zVip, see the *Minting Change* section for details on fees for zVip spends with minted change.
 
 ### Converting BAC to zBAC (*zBAC Mint*)
 **GUI** - Conversion from BAC to zBAC can be done using the `Privacy Dialog` in the QT wallet. Enter the amount of BAC you would like to convert and click `Mint Zerocoin`.

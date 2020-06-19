@@ -42,7 +42,7 @@ The following are developer notes on how to build BAC on your native platform. T
 
 Development
 ---------------------
-The Bitalley repo's [root README](https://github.com/BAC-Project/BAC/blob/master/README.md) contains relevant information on the development process and automated testing.
+The Vip repo's [root README](https://github.com/BAC-Project/BAC/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)

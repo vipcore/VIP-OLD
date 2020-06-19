@@ -287,10 +287,10 @@
 #define PACKAGE_BUGREPORT "www.vip.org"
 
 /* Define to the full name of this package. */
-#define PACKAGE_NAME "Bitalley Core"
+#define PACKAGE_NAME "Vip Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Bitalley Core 1.0.0"
+#define PACKAGE_STRING "Vip Core 1.0.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "vip"

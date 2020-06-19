@@ -97,7 +97,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
-host_triplet = x86_64-pc-linux-gnu
+host_triplet = i686-w64-mingw32
 am__append_1 = -I$(srcdir)/leveldb/include \
 	-I$(srcdir)/leveldb/helpers/memenv
 am__append_2 = $(builddir)/leveldb/libleveldb.a
@@ -109,81 +109,81 @@ TESTS = $(am__EXEEXT_6) $(am__EXEEXT_5)
 am__append_4 = vipd
 am__append_5 = vip-cli vip-tx
 #am__append_6 = compat/glibc_compat.cpp
-#am__append_7 = vipd-res.rc
-#am__append_8 = vip-cli-res.rc
-#am__append_9 = vip-tx-res.rc
+am__append_7 = vipd-res.rc
+am__append_8 = vip-cli-res.rc
+am__append_9 = vip-tx-res.rc
 ##am__append_10 = compat/glibc_compat.cpp
 
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#am__append_11 = test/test_vip test/bitcoin-util-test.py
-#am__append_12 = test/test_vip
-#am__append_13 = \
-#	test/bctest.py \
-#	test/bitcoin-util-test.py \
-#	test/data/bitcoin-util-test.json \
-#	test/data/blanktx.hex \
-#	test/data/tt-delin1-out.hex \
-#	test/data/tt-delout1-out.hex \
-#	test/data/tt-locktime317000-out.hex \
-#	test/data/tx394b54bb.hex \
-#	test/data/txcreate1.hex \
-#	test/data/txcreate2.hex \
-#	test/data/txcreatesign.hex
+am__append_11 = test/test_vip test/bitcoin-util-test.py
+am__append_12 = test/test_vip
+am__append_13 = \
+	test/bctest.py \
+	test/bitcoin-util-test.py \
+	test/data/bitcoin-util-test.json \
+	test/data/blanktx.hex \
+	test/data/tt-delin1-out.hex \
+	test/data/tt-delout1-out.hex \
+	test/data/tt-locktime317000-out.hex \
+	test/data/tx394b54bb.hex \
+	test/data/txcreate1.hex \
+	test/data/txcreate2.hex \
+	test/data/txcreatesign.hex
 
-#am__append_14 = \
-#  test/accounting_tests.cpp \
-#  test/wallet_tests.cpp \
-#  test/rpc_wallet_tests.cpp
+am__append_14 = \
+  test/accounting_tests.cpp \
+  test/wallet_tests.cpp \
+  test/rpc_wallet_tests.cpp
 
-#am__append_15 = $(LIBBITCOIN_WALLET)
-#am__append_16 = $(ZMQ_LIBS)
-#am__append_17 = $(CLEAN_BITCOIN_TEST)
-am__append_18 = qt/vip-qt
-am__append_19 = qt/libbitcoinqt.a
+am__append_15 = $(LIBBITCOIN_WALLET)
+am__append_16 = $(ZMQ_LIBS)
+am__append_17 = $(CLEAN_BITCOIN_TEST)
+#am__append_18 = qt/vip-qt
+#am__append_19 = qt/libbitcoinqt.a
 #am__append_20 = qt/winshutdownmonitor.cpp
-am__append_21 = \
-  qt/addressbookpage.cpp \
-  qt/addresstablemodel.cpp \
-  qt/askpassphrasedialog.cpp \
-  qt/bip38tooldialog.cpp \
-  qt/blockexplorer.cpp \
-  qt/coincontroldialog.cpp \
-  qt/coincontroltreewidget.cpp \
-  qt/obfuscationconfig.cpp \
-  qt/editaddressdialog.cpp \
-  qt/masternodelist.cpp \
-  qt/multisenddialog.cpp \
-  qt/multisigdialog.cpp\
-  qt/openuridialog.cpp \
-  qt/overviewpage.cpp \
-  qt/paymentrequestplus.cpp \
-  qt/paymentserver.cpp \
-  qt/receivecoinsdialog.cpp \
-  qt/privacydialog.cpp \
-  qt/receiverequestdialog.cpp \
-  qt/recentrequeststablemodel.cpp \
-  qt/sendcoinsdialog.cpp \
-  qt/sendcoinsentry.cpp \
-  qt/signverifymessagedialog.cpp \
-  qt/transactiondesc.cpp \
-  qt/transactiondescdialog.cpp \
-  qt/transactionfilterproxy.cpp \
-  qt/transactionrecord.cpp \
-  qt/transactiontablemodel.cpp \
-  qt/transactionview.cpp \
-  qt/walletframe.cpp \
-  qt/walletmodel.cpp \
-  qt/walletmodeltransaction.cpp \
-  qt/walletview.cpp \
-  qt/zpivcontroldialog.cpp
+#am__append_21 = \
+#  qt/addressbookpage.cpp \
+#  qt/addresstablemodel.cpp \
+#  qt/askpassphrasedialog.cpp \
+#  qt/bip38tooldialog.cpp \
+#  qt/blockexplorer.cpp \
+#  qt/coincontroldialog.cpp \
+#  qt/coincontroltreewidget.cpp \
+#  qt/obfuscationconfig.cpp \
+#  qt/editaddressdialog.cpp \
+#  qt/masternodelist.cpp \
+#  qt/multisenddialog.cpp \
+#  qt/multisigdialog.cpp\
+#  qt/openuridialog.cpp \
+#  qt/overviewpage.cpp \
+#  qt/paymentrequestplus.cpp \
+#  qt/paymentserver.cpp \
+#  qt/receivecoinsdialog.cpp \
+#  qt/privacydialog.cpp \
+#  qt/receiverequestdialog.cpp \
+#  qt/recentrequeststablemodel.cpp \
+#  qt/sendcoinsdialog.cpp \
+#  qt/sendcoinsentry.cpp \
+#  qt/signverifymessagedialog.cpp \
+#  qt/transactiondesc.cpp \
+#  qt/transactiondescdialog.cpp \
+#  qt/transactionfilterproxy.cpp \
+#  qt/transactionrecord.cpp \
+#  qt/transactiontablemodel.cpp \
+#  qt/transactionview.cpp \
+#  qt/walletframe.cpp \
+#  qt/walletmodel.cpp \
+#  qt/walletmodeltransaction.cpp \
+#  qt/walletview.cpp \
+#  qt/zpivcontroldialog.cpp
 
-#am__append_22 = $(BITCOIN_MM)
+##am__append_22 = $(BITCOIN_MM)
 #am__append_23 = $(BITCOIN_RC)
-am__append_24 = $(LIBBITCOIN_WALLET)
-am__append_25 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
-am__append_26 = $(CLEAN_QT)
+#am__append_24 = $(LIBBITCOIN_WALLET)
+#am__append_25 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+#am__append_26 = $(CLEAN_QT)
 
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
@@ -565,132 +565,132 @@ am__qt_libbitcoinqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/res/css/default.css $(wildcard \
 	$(srcdir)/qt/res/movies/spinner-*.png)
 #am__objects_3 = qt/qt_libbitcoinqt_a-winshutdownmonitor.$(OBJEXT)
-am__objects_4 = qt/qt_libbitcoinqt_a-addressbookpage.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-addresstablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-askpassphrasedialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-bip38tooldialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-blockexplorer.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-coincontroldialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-coincontroltreewidget.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-obfuscationconfig.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-editaddressdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-masternodelist.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-multisenddialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-multisigdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-openuridialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-overviewpage.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-paymentrequestplus.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-paymentserver.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-receivecoinsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-privacydialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-receiverequestdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-recentrequeststablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-sendcoinsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-sendcoinsentry.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-signverifymessagedialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactiondesc.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactiondescdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactionfilterproxy.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactionrecord.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactiontablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-transactionview.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-walletframe.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-walletmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-walletmodeltransaction.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-walletview.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-zpivcontroldialog.$(OBJEXT)
-am__objects_5 =  \
-	qt/qt_libbitcoinqt_a-bantablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-bitcoinaddressvalidator.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-bitcoinamountfield.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-bitcoingui.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-bitcoinunits.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-blockexplorer.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-clientmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-csvmodelwriter.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-guiutil.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-intro.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-masternodelist.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-networkstyle.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-notificator.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-optionsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-optionsmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-peertablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-platformstyle.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-qvalidatedlineedit.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-qvaluecombobox.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-rpcconsole.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-splashscreen.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-trafficgraphwidget.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-utilitydialog.$(OBJEXT) \
-	$(am__objects_3) $(am__objects_4)
-am_qt_libbitcoinqt_a_OBJECTS = $(am__objects_5) \
-	$(am__objects_1) $(am__objects_1) \
-	$(am__objects_1) $(am__objects_1) \
-	$(am__objects_1) $(am__objects_1) \
-	$(am__objects_1) $(am__objects_1) \
-	$(am__objects_1) $(am__objects_1)
-am__objects_6 = qt/qt_libbitcoinqt_a-moc_addressbookpage.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_addresstablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_askpassphrasedialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bantablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bip38tooldialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bitcoinaddressvalidator.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bitcoinamountfield.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bitcoingui.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_bitcoinunits.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_blockexplorer.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_clientmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_coincontroldialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_coincontroltreewidget.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_csvmodelwriter.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_obfuscationconfig.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_editaddressdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_guiutil.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_intro.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_macdockiconhandler.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_macnotificationhandler.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_masternodelist.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_multisenddialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_multisigdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_notificator.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_openuridialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_optionsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_optionsmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_overviewpage.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_peertablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_paymentserver.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_qvalidatedlineedit.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_qvaluecombobox.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_receivecoinsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_privacydialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_receiverequestdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_recentrequeststablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_rpcconsole.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_sendcoinsdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_sendcoinsentry.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_signverifymessagedialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_splashscreen.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_trafficgraphwidget.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_transactiondesc.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_transactiondescdialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_transactionfilterproxy.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_transactiontablemodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_transactionview.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_utilitydialog.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_walletframe.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_walletmodel.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_walletview.$(OBJEXT) \
-	qt/qt_libbitcoinqt_a-moc_zpivcontroldialog.$(OBJEXT)
-am__objects_7 = qt/qt_libbitcoinqt_a-paymentrequest.pb.$(OBJEXT)
-am__objects_8 =  \
-	qt/qt_libbitcoinqt_a-qrc_vip.$(OBJEXT)
-am__objects_9 =  \
-	qt/qt_libbitcoinqt_a-qrc_vip_locale.$(OBJEXT)
-nodist_qt_libbitcoinqt_a_OBJECTS = $(am__objects_6) \
-	$(am__objects_1) $(am__objects_7) \
-	$(am__objects_1) $(am__objects_8) \
-	$(am__objects_9)
+#am__objects_4 = qt/qt_libbitcoinqt_a-addressbookpage.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-addresstablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-askpassphrasedialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-bip38tooldialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-blockexplorer.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-coincontroldialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-coincontroltreewidget.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-obfuscationconfig.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-editaddressdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-masternodelist.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-multisenddialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-multisigdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-openuridialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-overviewpage.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-paymentrequestplus.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-paymentserver.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-receivecoinsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-privacydialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-receiverequestdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-recentrequeststablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-sendcoinsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-sendcoinsentry.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-signverifymessagedialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactiondesc.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactiondescdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactionfilterproxy.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactionrecord.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactiontablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-transactionview.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-walletframe.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-walletmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-walletmodeltransaction.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-walletview.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-zpivcontroldialog.$(OBJEXT)
+#am__objects_5 =  \
+#	qt/qt_libbitcoinqt_a-bantablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-bitcoinaddressvalidator.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-bitcoinamountfield.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-bitcoingui.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-bitcoinunits.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-blockexplorer.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-clientmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-csvmodelwriter.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-guiutil.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-intro.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-masternodelist.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-networkstyle.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-notificator.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-optionsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-optionsmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-peertablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-platformstyle.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-qvalidatedlineedit.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-qvaluecombobox.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-rpcconsole.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-splashscreen.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-trafficgraphwidget.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-utilitydialog.$(OBJEXT) \
+#	$(am__objects_3) $(am__objects_4)
+#am_qt_libbitcoinqt_a_OBJECTS = $(am__objects_5) \
+#	$(am__objects_1) $(am__objects_1) \
+#	$(am__objects_1) $(am__objects_1) \
+#	$(am__objects_1) $(am__objects_1) \
+#	$(am__objects_1) $(am__objects_1) \
+#	$(am__objects_1) $(am__objects_1)
+#am__objects_6 = qt/qt_libbitcoinqt_a-moc_addressbookpage.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_addresstablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_askpassphrasedialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bantablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bip38tooldialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bitcoinaddressvalidator.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bitcoinamountfield.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bitcoingui.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_bitcoinunits.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_blockexplorer.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_clientmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_coincontroldialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_coincontroltreewidget.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_csvmodelwriter.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_obfuscationconfig.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_editaddressdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_guiutil.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_intro.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_macdockiconhandler.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_macnotificationhandler.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_masternodelist.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_multisenddialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_multisigdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_notificator.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_openuridialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_optionsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_optionsmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_overviewpage.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_peertablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_paymentserver.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_qvalidatedlineedit.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_qvaluecombobox.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_receivecoinsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_privacydialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_receiverequestdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_recentrequeststablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_rpcconsole.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_sendcoinsdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_sendcoinsentry.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_signverifymessagedialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_splashscreen.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_trafficgraphwidget.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_transactiondesc.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_transactiondescdialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_transactionfilterproxy.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_transactiontablemodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_transactionview.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_utilitydialog.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_walletframe.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_walletmodel.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_walletview.$(OBJEXT) \
+#	qt/qt_libbitcoinqt_a-moc_zpivcontroldialog.$(OBJEXT)
+#am__objects_7 = qt/qt_libbitcoinqt_a-paymentrequest.pb.$(OBJEXT)
+#am__objects_8 =  \
+#	qt/qt_libbitcoinqt_a-qrc_vip.$(OBJEXT)
+#am__objects_9 =  \
+#	qt/qt_libbitcoinqt_a-qrc_vip_locale.$(OBJEXT)
+#nodist_qt_libbitcoinqt_a_OBJECTS = $(am__objects_6) \
+#	$(am__objects_1) $(am__objects_7) \
+#	$(am__objects_1) $(am__objects_8) \
+#	$(am__objects_9)
 qt_libbitcoinqt_a_OBJECTS = $(am_qt_libbitcoinqt_a_OBJECTS) \
 	$(nodist_qt_libbitcoinqt_a_OBJECTS)
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
@@ -766,8 +766,8 @@ libbitcoinconsensus_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 am__EXEEXT_1 = vipd$(EXEEXT)
 am__EXEEXT_2 = vip-cli$(EXEEXT) \
 	vip-tx$(EXEEXT)
-#am__EXEEXT_3 = test/test_vip$(EXEEXT)
-am__EXEEXT_4 = qt/vip-qt$(EXEEXT)
+am__EXEEXT_3 = test/test_vip$(EXEEXT)
+#am__EXEEXT_4 = qt/vip-qt$(EXEEXT)
 #am__EXEEXT_5 = qt/test/test_vip-qt$(EXEEXT)
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
 am__qt_test_test_vip_qt_SOURCES_DIST = qt/test/test_main.cpp \
@@ -819,33 +819,33 @@ qt_test_test_vip_qt_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(qt_test_test_vip_qt_LDFLAGS) $(LDFLAGS) -o $@
 am__qt_vip_qt_SOURCES_DIST = qt/vip.cpp qt/macdockiconhandler.mm \
 	qt/macnotificationhandler.mm qt/res/vip-qt-res.rc
-am__objects_14 =  \
-	qt/qt_vip_qt-macdockiconhandler.$(OBJEXT) \
-	qt/qt_vip_qt-macnotificationhandler.$(OBJEXT)
-#am__objects_15 =  \
-#	$(am__objects_14)
-am__objects_16 = qt/res/vip-qt-res.$(OBJEXT)
+#am__objects_14 =  \
+#	qt/qt_vip_qt-macdockiconhandler.$(OBJEXT) \
+#	qt/qt_vip_qt-macnotificationhandler.$(OBJEXT)
+##am__objects_15 =  \
+##	$(am__objects_14)
+#am__objects_16 = qt/res/vip-qt-res.$(OBJEXT)
 #am__objects_17 =  \
 #	$(am__objects_16)
-am_qt_vip_qt_OBJECTS = qt/qt_vip_qt-vip.$(OBJEXT) \
-	$(am__objects_15) $(am__objects_17)
+#am_qt_vip_qt_OBJECTS = qt/qt_vip_qt-vip.$(OBJEXT) \
+#	$(am__objects_15) $(am__objects_17)
 qt_vip_qt_OBJECTS = $(am_qt_vip_qt_OBJECTS)
-am__DEPENDENCIES_6 =  \
-	$(LIBBITCOIN_ZMQ) \
-	$(am__DEPENDENCIES_1)
-qt_vip_qt_DEPENDENCIES = qt/libbitcoinqt.a \
-	$(LIBBITCOIN_SERVER) $(am__append_24) \
-	$(am__DEPENDENCIES_6) $(LIBBITCOIN_CLI) \
-	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
-	$(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_3) \
-	$(LIBBITCOIN_ZEROCOIN) $(am__DEPENDENCIES_4) \
-	$(am__DEPENDENCIES_5) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(LIBSECP256K1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1)
+#am__DEPENDENCIES_6 =  \
+#	$(LIBBITCOIN_ZMQ) \
+#	$(am__DEPENDENCIES_1)
+#qt_vip_qt_DEPENDENCIES = qt/libbitcoinqt.a \
+#	$(LIBBITCOIN_SERVER) $(am__append_24) \
+#	$(am__DEPENDENCIES_6) $(LIBBITCOIN_CLI) \
+#	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
+#	$(LIBBITCOIN_CRYPTO) $(am__DEPENDENCIES_3) \
+#	$(LIBBITCOIN_ZEROCOIN) $(am__DEPENDENCIES_4) \
+#	$(am__DEPENDENCIES_5) $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+#	$(LIBSECP256K1) $(am__DEPENDENCIES_1) \
+#	$(am__DEPENDENCIES_1)
 qt_vip_qt_LINK = $(LIBTOOL) $(AM_V_lt) $(qt_vip_qt_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(OBJCXXLD) $(AM_OBJCXXFLAGS) \
 	$(OBJCXXFLAGS) $(qt_vip_qt_LDFLAGS) $(LDFLAGS) -o $@
@@ -881,80 +881,80 @@ am__test_test_vip_SOURCES_DIST =  \
 	test/data/script_invalid.json test/data/tx_invalid.json \
 	test/data/tx_valid.json test/data/sighash.json \
 	test/data/alertTests.raw
-#am__objects_18 = test/test_test_vip-accounting_tests.$(OBJEXT) \
-#	test/test_test_vip-wallet_tests.$(OBJEXT) \
-#	test/test_test_vip-rpc_wallet_tests.$(OBJEXT)
-#am__objects_19 = test/test_test_vip-zerocoin_implementation_tests.$(OBJEXT) \
-#	test/test_test_vip-zerocoin_denomination_tests.$(OBJEXT) \
-#	test/test_test_vip-zerocoin_transactions_tests.$(OBJEXT) \
-#	test/test_test_vip-benchmark_zerocoin.$(OBJEXT) \
-#	test/test_test_vip-tutorial_zerocoin.$(OBJEXT) \
-#	test/test_test_vip-libzerocoin_tests.$(OBJEXT) \
-#	test/test_test_vip-allocator_tests.$(OBJEXT) \
-#	test/test_test_vip-base32_tests.$(OBJEXT) \
-#	test/test_test_vip-base58_tests.$(OBJEXT) \
-#	test/test_test_vip-base64_tests.$(OBJEXT) \
-#	test/test_test_vip-budget_tests.$(OBJEXT) \
-#	test/test_test_vip-checkblock_tests.$(OBJEXT) \
-#	test/test_test_vip-Checkpoints_tests.$(OBJEXT) \
-#	test/test_test_vip-coins_tests.$(OBJEXT) \
-#	test/test_test_vip-compress_tests.$(OBJEXT) \
-#	test/test_test_vip-crypto_tests.$(OBJEXT) \
-#	test/test_test_vip-DoS_tests.$(OBJEXT) \
-#	test/test_test_vip-getarg_tests.$(OBJEXT) \
-#	test/test_test_vip-hash_tests.$(OBJEXT) \
-#	test/test_test_vip-key_tests.$(OBJEXT) \
-#	test/test_test_vip-main_tests.$(OBJEXT) \
-#	test/test_test_vip-mempool_tests.$(OBJEXT) \
-#	test/test_test_vip-mruset_tests.$(OBJEXT) \
-#	test/test_test_vip-multisig_tests.$(OBJEXT) \
-#	test/test_test_vip-netbase_tests.$(OBJEXT) \
-#	test/test_test_vip-pmt_tests.$(OBJEXT) \
-#	test/test_test_vip-reverselock_tests.$(OBJEXT) \
-#	test/test_test_vip-rpc_tests.$(OBJEXT) \
-#	test/test_test_vip-sanity_tests.$(OBJEXT) \
-#	test/test_test_vip-scheduler_tests.$(OBJEXT) \
-#	test/test_test_vip-script_P2SH_tests.$(OBJEXT) \
-#	test/test_test_vip-script_tests.$(OBJEXT) \
-#	test/test_test_vip-scriptnum_tests.$(OBJEXT) \
-#	test/test_test_vip-serialize_tests.$(OBJEXT) \
-#	test/test_test_vip-sighash_tests.$(OBJEXT) \
-#	test/test_test_vip-sigopcount_tests.$(OBJEXT) \
-#	test/test_test_vip-skiplist_tests.$(OBJEXT) \
-#	test/test_test_vip-test_vip.$(OBJEXT) \
-#	test/test_test_vip-timedata_tests.$(OBJEXT) \
-#	test/test_test_vip-torcontrol_tests.$(OBJEXT) \
-#	test/test_test_vip-transaction_tests.$(OBJEXT) \
-#	test/test_test_vip-uint256_tests.$(OBJEXT) \
-#	test/test_test_vip-univalue_tests.$(OBJEXT) \
-#	test/test_test_vip-util_tests.$(OBJEXT) \
-#	$(am__objects_18)
-#am_test_test_vip_OBJECTS = $(am__objects_19) \
-#	$(am__objects_1) $(am__objects_1)
-#am__objects_20 = $(am__objects_1) $(am__objects_1)
-#nodist_test_test_vip_OBJECTS = $(am__objects_20)
+am__objects_18 = test/test_test_vip-accounting_tests.$(OBJEXT) \
+	test/test_test_vip-wallet_tests.$(OBJEXT) \
+	test/test_test_vip-rpc_wallet_tests.$(OBJEXT)
+am__objects_19 = test/test_test_vip-zerocoin_implementation_tests.$(OBJEXT) \
+	test/test_test_vip-zerocoin_denomination_tests.$(OBJEXT) \
+	test/test_test_vip-zerocoin_transactions_tests.$(OBJEXT) \
+	test/test_test_vip-benchmark_zerocoin.$(OBJEXT) \
+	test/test_test_vip-tutorial_zerocoin.$(OBJEXT) \
+	test/test_test_vip-libzerocoin_tests.$(OBJEXT) \
+	test/test_test_vip-allocator_tests.$(OBJEXT) \
+	test/test_test_vip-base32_tests.$(OBJEXT) \
+	test/test_test_vip-base58_tests.$(OBJEXT) \
+	test/test_test_vip-base64_tests.$(OBJEXT) \
+	test/test_test_vip-budget_tests.$(OBJEXT) \
+	test/test_test_vip-checkblock_tests.$(OBJEXT) \
+	test/test_test_vip-Checkpoints_tests.$(OBJEXT) \
+	test/test_test_vip-coins_tests.$(OBJEXT) \
+	test/test_test_vip-compress_tests.$(OBJEXT) \
+	test/test_test_vip-crypto_tests.$(OBJEXT) \
+	test/test_test_vip-DoS_tests.$(OBJEXT) \
+	test/test_test_vip-getarg_tests.$(OBJEXT) \
+	test/test_test_vip-hash_tests.$(OBJEXT) \
+	test/test_test_vip-key_tests.$(OBJEXT) \
+	test/test_test_vip-main_tests.$(OBJEXT) \
+	test/test_test_vip-mempool_tests.$(OBJEXT) \
+	test/test_test_vip-mruset_tests.$(OBJEXT) \
+	test/test_test_vip-multisig_tests.$(OBJEXT) \
+	test/test_test_vip-netbase_tests.$(OBJEXT) \
+	test/test_test_vip-pmt_tests.$(OBJEXT) \
+	test/test_test_vip-reverselock_tests.$(OBJEXT) \
+	test/test_test_vip-rpc_tests.$(OBJEXT) \
+	test/test_test_vip-sanity_tests.$(OBJEXT) \
+	test/test_test_vip-scheduler_tests.$(OBJEXT) \
+	test/test_test_vip-script_P2SH_tests.$(OBJEXT) \
+	test/test_test_vip-script_tests.$(OBJEXT) \
+	test/test_test_vip-scriptnum_tests.$(OBJEXT) \
+	test/test_test_vip-serialize_tests.$(OBJEXT) \
+	test/test_test_vip-sighash_tests.$(OBJEXT) \
+	test/test_test_vip-sigopcount_tests.$(OBJEXT) \
+	test/test_test_vip-skiplist_tests.$(OBJEXT) \
+	test/test_test_vip-test_vip.$(OBJEXT) \
+	test/test_test_vip-timedata_tests.$(OBJEXT) \
+	test/test_test_vip-torcontrol_tests.$(OBJEXT) \
+	test/test_test_vip-transaction_tests.$(OBJEXT) \
+	test/test_test_vip-uint256_tests.$(OBJEXT) \
+	test/test_test_vip-univalue_tests.$(OBJEXT) \
+	test/test_test_vip-util_tests.$(OBJEXT) \
+	$(am__objects_18)
+am_test_test_vip_OBJECTS = $(am__objects_19) \
+	$(am__objects_1) $(am__objects_1)
+am__objects_20 = $(am__objects_1) $(am__objects_1)
+nodist_test_test_vip_OBJECTS = $(am__objects_20)
 test_test_vip_OBJECTS = $(am_test_test_vip_OBJECTS) \
 	$(nodist_test_test_vip_OBJECTS)
-#am__DEPENDENCIES_7 =  \
-#	$(am__DEPENDENCIES_1)
-#test_test_vip_DEPENDENCIES = $(LIBBITCOIN_SERVER) \
-#	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
-#	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) \
-#	$(am__DEPENDENCIES_3) \
-#	$(LIBBITCOIN_ZEROCOIN) \
-#	$(am__DEPENDENCIES_4) $(am__DEPENDENCIES_5) \
-#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-#	$(LIBSECP256K1) $(am__DEPENDENCIES_1) \
-#	$(am__DEPENDENCIES_1) $(am__append_15) \
-#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-#	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-#	$(am__DEPENDENCIES_7)
+am__DEPENDENCIES_7 =  \
+	$(am__DEPENDENCIES_1)
+test_test_vip_DEPENDENCIES = $(LIBBITCOIN_SERVER) \
+	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
+	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) \
+	$(am__DEPENDENCIES_3) \
+	$(LIBBITCOIN_ZEROCOIN) \
+	$(am__DEPENDENCIES_4) $(am__DEPENDENCIES_5) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(LIBSECP256K1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__append_15) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_7)
 test_test_vip_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(test_test_vip_LDFLAGS) $(LDFLAGS) \
 	-o $@
 am__vip_cli_SOURCES_DIST = vip-cli.cpp vip-cli-res.rc
-#am__objects_21 = vip-cli-res.$(OBJEXT)
+am__objects_21 = vip-cli-res.$(OBJEXT)
 am_vip_cli_OBJECTS = vip_cli-vip-cli.$(OBJEXT) $(am__objects_21)
 vip_cli_OBJECTS = $(am_vip_cli_OBJECTS)
 vip_cli_DEPENDENCIES = $(LIBBITCOIN_CLI) $(am__DEPENDENCIES_3) \
@@ -965,7 +965,7 @@ vip_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(vip_cli_CXXFLAGS) \
 	$(CXXFLAGS) $(vip_cli_LDFLAGS) $(LDFLAGS) -o $@
 am__vip_tx_SOURCES_DIST = vip-tx.cpp vip-tx-res.rc
-#am__objects_22 = vip-tx-res.$(OBJEXT)
+am__objects_22 = vip-tx-res.$(OBJEXT)
 am_vip_tx_OBJECTS = vip_tx-vip-tx.$(OBJEXT) $(am__objects_22)
 vip_tx_OBJECTS = $(am_vip_tx_OBJECTS)
 vip_tx_DEPENDENCIES = $(am__DEPENDENCIES_3) $(LIBBITCOIN_COMMON) \
@@ -975,7 +975,7 @@ vip_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(vip_tx_CXXFLAGS) \
 	$(CXXFLAGS) $(vip_tx_LDFLAGS) $(LDFLAGS) -o $@
 am__vipd_SOURCES_DIST = vipd.cpp vipd-res.rc
-#am__objects_23 = vipd-res.$(OBJEXT)
+am__objects_23 = vipd-res.$(OBJEXT)
 am_vipd_OBJECTS = vipd-vipd.$(OBJEXT) $(am__objects_23)
 vipd_OBJECTS = $(am_vipd_OBJECTS)
 vipd_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
@@ -1284,10 +1284,10 @@ am__set_TESTS_bases = \
   bases=`for i in $$bases; do echo $$i; done | sed 's/\.log$$//'`; \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
-#am__EXEEXT_6 = test/test_vip$(EXEEXT) \
-#	test/bitcoin-util-test.py
+am__EXEEXT_6 = test/test_vip$(EXEEXT) \
+	test/bitcoin-util-test.py
 TEST_SUITE_LOG = test-suite.log
-TEST_EXTENSIONS =  .test
+TEST_EXTENSIONS = .exe .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
@@ -1301,7 +1301,7 @@ am__set_b = \
       b='$*';; \
   esac
 am__test_logs1 = $(TESTS:=.log)
-am__test_logs2 = $(am__test_logs1:.log=.log)
+am__test_logs2 = $(am__test_logs1:.exe.log=.log)
 TEST_LOGS = $(am__test_logs2:.test.log=.log)
 TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
@@ -1337,14 +1337,14 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /mnt/VIP/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
-AR = /usr/bin/ar
+AR = /usr/bin/i686-w64-mingw32-ar
 ARFLAGS = cr
-AUTOCONF = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /mnt/VIP/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /mnt/VIP/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /mnt/VIP/build-aux/missing automake-1.15
 AWK = mawk
 BDB_CFLAGS = 
 BDB_CPPFLAGS = 
@@ -1353,23 +1353,23 @@ BITCOIN_CLI_NAME = vip-cli
 BITCOIN_DAEMON_NAME = vipd
 BITCOIN_GUI_NAME = vip-qt
 BITCOIN_TX_NAME = vip-tx
-BOOST_CHRONO_LIB = -lboost_chrono
-BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -pthread -I/usr/include
-BOOST_FILESYSTEM_LIB = -lboost_filesystem
-BOOST_LDFLAGS = -L/usr/lib/x86_64-linux-gnu
-BOOST_LIBS = -L/usr/lib/x86_64-linux-gnu -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread -lboost_chrono
-BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options
-BOOST_SYSTEM_LIB = -lboost_system
-BOOST_THREAD_LIB = -lboost_thread
-BOOST_UNIT_TEST_FRAMEWORK_LIB = 
+BOOST_CHRONO_LIB = -lboost_chrono-mt-s
+BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -mthreads -I/mnt/VIP/depends/i686-w64-mingw32/share/../include
+BOOST_FILESYSTEM_LIB = -lboost_filesystem-mt-s
+BOOST_LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
+BOOST_LIBS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -lboost_system-mt-s -lboost_filesystem-mt-s -lboost_program_options-mt-s -lboost_thread_win32-mt-s -lboost_chrono-mt-s
+BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt-s
+BOOST_SYSTEM_LIB = -lboost_system-mt-s
+BOOST_THREAD_LIB = -lboost_thread_win32-mt-s
+BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt-s
 BREW = 
-BUILD_QT = qt
-BUILD_TEST = 
+BUILD_QT = 
+BUILD_TEST = test
 BUILD_TEST_QT = 
-CC = gcc
+CC = i686-w64-mingw32-gcc
 CCACHE = 
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2
+CFLAGS = -pipe -O2 
 CLIENT_VERSION_BUILD = 0
 CLIENT_VERSION_IS_RELEASE = true
 CLIENT_VERSION_MAJOR = 1
@@ -1377,19 +1377,19 @@ CLIENT_VERSION_MINOR = 0
 CLIENT_VERSION_REVISION = 0
 COMPARISON_TOOL_REORG_TESTS = 0
 COPYRIGHT_YEAR = 2020
-CPP = gcc -E
-CPPFILT = /usr/bin/c++filt
-CPPFLAGS =  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -DHAVE_QT5
+CPP = i686-w64-mingw32-gcc -E
+CPPFILT = /usr/bin/i686-w64-mingw32-c++filt
+CPPFLAGS = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/ -I/mnt/VIP/db4/include/ -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -D_FILE_OFFSET_BITS=64 -DHAVE_QT5
 CRYPTO_CFLAGS = 
 CRYPTO_LIBS = -lcrypto
-CXX = g++ -std=c++11
-CXXCPP = g++ -std=c++11 -E
+CXX = i686-w64-mingw32-g++ -std=c++11
+CXXCPP = i686-w64-mingw32-g++ -std=c++11 -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -g -O2 -Wall -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter -Wno-implicit-fallthrough
+CXXFLAGS = -pipe -O2 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = false
+DLLTOOL = i686-w64-mingw32-dlltool
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
@@ -1399,18 +1399,18 @@ EGREP = /bin/grep -E
 ERROR_CXXFLAGS = 
 EVENT_CFLAGS = 
 EVENT_LIBS = -levent
-EVENT_PTHREADS_CFLAGS = -pthread
-EVENT_PTHREADS_LIBS = -levent_pthreads -levent
-EXEEXT = 
+EVENT_PTHREADS_CFLAGS = 
+EVENT_PTHREADS_LIBS = 
+EXEEXT = .exe
 FGREP = /bin/grep -F
-GCOV = /usr/bin/gcov
+GCOV = /usr/bin/i686-w64-mingw32-gcov
 GENHTML = 
 GENISOIMAGE = 
 GIT = /usr/bin/git
 GREP = /bin/grep
 HARDENED_CPPFLAGS =  -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 HARDENED_CXXFLAGS =  -Wstack-protector -fstack-protector-all
-HARDENED_LDFLAGS =  -Wl,-z,relro -Wl,-z,now
+HARDENED_LDFLAGS =  -Wl,--dynamicbase -Wl,--nxcompat
 HAVE_CXX11 = 1
 HEXDUMP = /usr/bin/hexdump
 IMAGEMAGICK_CONVERT = 
@@ -1422,90 +1422,90 @@ INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 JAVA_COMPARISON_TOOL = 
 LCOV = 
-LD = /usr/bin/ld -m elf_x86_64
-LDFLAGS = 
+LD = /usr/bin/i686-w64-mingw32-ld
+LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/db4/lib/ -Wl,--large-address-aware
 LEVELDB_CPPFLAGS =  $(am__append_1)
-LEVELDB_TARGET_FLAGS = 
+LEVELDB_TARGET_FLAGS = TARGET_OS=OS_WINDOWS_CROSSCOMPILE
 LIBLEVELDB =  $(am__append_2)
 LIBMEMENV =  $(am__append_3)
 LIBOBJS = 
-LIBS = -lcrypto -lanl 
+LIBS = -lcrypto -lssp -lcrypt32 -liphlpapi -lshlwapi -lmswsock -lws2_32 -ladvapi32 -lrpcrt4 -luuid -loleaut32 -lole32 -lcomctl32 -lshell32 -lwinmm -lwinspool -lcomdlg32 -lgdi32 -luser32 -lkernel32 -lmingwthrd 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIBTOOL_APP_LDFLAGS = 
+LIBTOOL_APP_LDFLAGS =  -all-static
 LIPO = 
 LN_S = ln -s
-LRELEASE = /usr/lib/qt5/bin/lrelease
+LRELEASE = 
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-LUPDATE = /usr/lib/qt5/bin/lupdate
+LUPDATE = 
 MAINT = 
-MAKEINFO = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/missing makeinfo
-MAKENSIS = 
+MAKEINFO = ${SHELL} /mnt/VIP/build-aux/missing makeinfo
+MAKENSIS = none
 MANIFEST_TOOL = :
-MINIUPNPC_CPPFLAGS = 
+MINIUPNPC_CPPFLAGS = -DSTATICLIB -DMINIUPNP_STATICLIB
 MINIUPNPC_LIBS = -lminiupnpc
 MKDIR_P = /bin/mkdir -p
-MOC = /usr/lib/qt5/bin/moc
+MOC = 
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
-NM = /usr/bin/nm -B
+NM = i686-w64-mingw32-nm
 NMEDIT = 
-OBJCOPY = /usr/bin/objcopy
-OBJCXX = g++ -std=c++11
+OBJCOPY = /usr/bin/i686-w64-mingw32-objcopy
+OBJCXX = i686-w64-mingw32-g++ -std=c++11
 OBJCXXDEPMODE = depmode=gcc3
 OBJCXXFLAGS = 
-OBJDUMP = objdump
+OBJDUMP = i686-w64-mingw32-objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
 PACKAGE = vip
 PACKAGE_BUGREPORT = www.vip.org
-PACKAGE_NAME = Bitalley Core
-PACKAGE_STRING = Bitalley Core 1.0.0
+PACKAGE_NAME = Vip Core
+PACKAGE_STRING = Vip Core 1.0.0
 PACKAGE_TARNAME = vip
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0.0
 PATH_SEPARATOR = :
-PIC_FLAGS = -fPIC
-PIE_FLAGS = -fPIC
-PKG_CONFIG = /usr/bin/pkg-config
+PIC_FLAGS = 
+PIE_FLAGS = 
+PKG_CONFIG = /usr/bin/pkg-config --static
 PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = 
+PKG_CONFIG_PATH = /mnt/VIP/depends/i686-w64-mingw32/share/../share/pkgconfig:/mnt/VIP/depends/i686-w64-mingw32/share/../lib/pkgconfig
 PORT = 
-PROTOBUF_CFLAGS = -pthread
-PROTOBUF_LIBS = -lprotobuf -pthread -lpthread
-PROTOC = /usr/bin/protoc
-PTHREAD_CC = gcc
+PROTOBUF_CFLAGS = 
+PROTOBUF_LIBS = 
+PROTOC = 
+PTHREAD_CC = i686-w64-mingw32-gcc
 PTHREAD_CFLAGS = -pthread
 PTHREAD_LIBS = 
 PYTHON = /usr/bin/python3.6
-PYTHONPATH = 
+PYTHONPATH = /mnt/VIP/depends/i686-w64-mingw32/share/../native/lib/python/dist-packages:
 QR_CFLAGS = 
-QR_LIBS = -lqrencode
+QR_LIBS = 
 QT4_CFLAGS = 
 QT4_LIBS = 
-QT5_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
-QT5_LIBS = -lQt5Network -lQt5Widgets -lQt5Gui -lQt5Core
+QT5_CFLAGS = 
+QT5_LIBS = 
 QTPLATFORM_CFLAGS = 
 QTPLATFORM_LIBS = 
 QTPRINT_CFLAGS = 
 QTPRINT_LIBS = 
 QTXCBQPA_CFLAGS = 
 QTXCBQPA_LIBS = 
-QT_DBUS_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
-QT_DBUS_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
-QT_DBUS_LIBS = -lQt5DBus -lQt5Core
-QT_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_DBUS_CFLAGS = 
+QT_DBUS_INCLUDES = 
+QT_DBUS_LIBS = -lQt5DBus -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
+QT_INCLUDES = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtCore -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtGui -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtWidgets -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtNetwork -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtTest -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtDBus
 QT_LDFLAGS = 
-QT_LIBS = -lQt5Network -lQt5Widgets -lQt5Gui -lQt5Core
-QT_PIE_FLAGS = -fPIC
+QT_LIBS = -lQt5Widgets -lQt5Network -lQt5Gui     -lQt5Core    -lz  -limm32  -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/depends/i686-w64-mingw32/share/../plugins/platforms
+QT_PIE_FLAGS = 
 QT_SELECT = qt5
-QT_TEST_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
-QT_TEST_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
-QT_TEST_LIBS = -lQt5Test -lQt5Core
-QT_TRANSLATION_DIR = 
-RANLIB = /usr/bin/ranlib
-RCC = /usr/lib/qt5/bin/rcc
-READELF = /usr/bin/readelf
+QT_TEST_CFLAGS = 
+QT_TEST_INCLUDES = 
+QT_TEST_LIBS = -lQt5Test -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
+QT_TRANSLATION_DIR = /mnt/VIP/depends/i686-w64-mingw32/share/../translations
+RANLIB = /usr/bin/i686-w64-mingw32-ranlib
+RCC = 
+READELF = /usr/bin/i686-w64-mingw32-readelf
 RELDFLAGS = 
 RSVG_CONVERT = 
 SED = /bin/sed
@@ -1513,29 +1513,29 @@ SET_MAKE =
 SHELL = /bin/bash
 SSL_CFLAGS = 
 SSL_LIBS = -lssl
-STRIP = /usr/bin/strip
+STRIP = /usr/bin/i686-w64-mingw32-strip
 TESTDEFS = 
 TIFFCP = 
-UIC = /usr/lib/qt5/bin/uic
+UIC = 
 UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_QRCODE = 
 USE_UPNP = 
 VERSION = 1.0.0
-WINDOWS_BITS = 
-WINDRES = 
+WINDOWS_BITS = 32
+WINDRES = /usr/bin/i686-w64-mingw32-windres
 X11XCB_CFLAGS = 
 X11XCB_LIBS = 
 XGETTEXT = /usr/bin/xgettext
-ZMQ_CFLAGS = 
+ZMQ_CFLAGS =  -DZMQ_STATIC
 ZMQ_LIBS = -lzmq
-abs_builddir = /mnt/SOURCE-coin-dev/VIP22/src
-abs_srcdir = /mnt/SOURCE-coin-dev/VIP22/src
-abs_top_builddir = /mnt/SOURCE-coin-dev/VIP22
-abs_top_srcdir = /mnt/SOURCE-coin-dev/VIP22
-ac_ct_AR = ar
-ac_ct_CC = gcc
-ac_ct_CXX = g++
+abs_builddir = /mnt/VIP/src
+abs_srcdir = /mnt/VIP/src
+abs_top_builddir = /mnt/VIP
+abs_top_srcdir = /mnt/VIP
+ac_ct_AR = 
+ac_ct_CC = 
+ac_ct_CXX = 
 ac_ct_DUMPBIN = 
 ac_ct_OBJCXX = 
 am__include = include
@@ -1556,15 +1556,15 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-pc-linux-gnu
-host_alias = 
-host_cpu = x86_64
-host_os = linux-gnu
-host_vendor = pc
+host = i686-w64-mingw32
+host_alias = i686-w64-mingw32
+host_cpu = i686
+host_os = mingw32
+host_vendor = w64
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /mnt/SOURCE-coin-dev/VIP22/build-aux/install-sh
+install_sh = ${SHELL} /mnt/VIP/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -1573,7 +1573,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /usr/local
+prefix = /mnt/VIP/depends/i686-w64-mingw32
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -1991,416 +1991,416 @@ CLEANFILES = $(EXTRA_LIBRARIES) leveldb/libleveldb.a \
 	univalue/*.gcno zmq/*.gcda zmq/*.gcno obj/build.h \
 	$(am__append_17) $(am__append_26) $(am__append_33)
 EXTRA_DIST = leveldb $(am__append_13)
-#TEST_SRCDIR = test
-#TEST_BINARY = test/test_vip$(EXEEXT)
-#JSON_TEST_FILES = \
-#  test/data/script_valid.json \
-#  test/data/base58_keys_valid.json \
-#  test/data/sig_canonical.json \
-#  test/data/sig_noncanonical.json \
-#  test/data/base58_encode_decode.json \
-#  test/data/base58_keys_invalid.json \
-#  test/data/script_invalid.json \
-#  test/data/tx_invalid.json \
-#  test/data/tx_valid.json \
-#  test/data/sighash.json
+TEST_SRCDIR = test
+TEST_BINARY = test/test_vip$(EXEEXT)
+JSON_TEST_FILES = \
+  test/data/script_valid.json \
+  test/data/base58_keys_valid.json \
+  test/data/sig_canonical.json \
+  test/data/sig_noncanonical.json \
+  test/data/base58_encode_decode.json \
+  test/data/base58_keys_invalid.json \
+  test/data/script_invalid.json \
+  test/data/tx_invalid.json \
+  test/data/tx_valid.json \
+  test/data/sighash.json
 
-#RAW_TEST_FILES = test/data/alertTests.raw
-#GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
+RAW_TEST_FILES = test/data/alertTests.raw
+GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
 
 # test_vip binary #
-#BITCOIN_TESTS =  \
-#	test/zerocoin_implementation_tests.cpp \
-#	test/zerocoin_denomination_tests.cpp \
-#	test/zerocoin_transactions_tests.cpp \
-#	test/benchmark_zerocoin.cpp \
-#	test/tutorial_zerocoin.cpp \
-#	test/libzerocoin_tests.cpp \
-#	test/allocator_tests.cpp \
-#	test/base32_tests.cpp test/base58_tests.cpp \
-#	test/base64_tests.cpp test/budget_tests.cpp \
-#	test/checkblock_tests.cpp \
-#	test/Checkpoints_tests.cpp \
-#	test/coins_tests.cpp \
-#	test/compress_tests.cpp \
-#	test/crypto_tests.cpp test/DoS_tests.cpp \
-#	test/getarg_tests.cpp test/hash_tests.cpp \
-#	test/key_tests.cpp test/main_tests.cpp \
-#	test/mempool_tests.cpp \
-#	test/mruset_tests.cpp \
-#	test/multisig_tests.cpp \
-#	test/netbase_tests.cpp test/pmt_tests.cpp \
-#	test/reverselock_tests.cpp \
-#	test/rpc_tests.cpp test/sanity_tests.cpp \
-#	test/scheduler_tests.cpp \
-#	test/script_P2SH_tests.cpp \
-#	test/script_tests.cpp \
-#	test/scriptnum_tests.cpp \
-#	test/serialize_tests.cpp \
-#	test/sighash_tests.cpp \
-#	test/sigopcount_tests.cpp \
-#	test/skiplist_tests.cpp test/test_vip.cpp \
-#	test/timedata_tests.cpp \
-#	test/torcontrol_tests.cpp \
-#	test/transaction_tests.cpp \
-#	test/uint256_tests.cpp \
-#	test/univalue_tests.cpp test/util_tests.cpp \
-#	$(am__append_14)
-#test_test_vip_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-#test_test_vip_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS)
-#test_test_vip_LDADD = $(LIBBITCOIN_SERVER) \
-#	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
-#	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) \
-#	$(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) \
-#	$(LIBLEVELDB) $(LIBMEMENV) $(BOOST_LIBS) \
-#	$(BOOST_UNIT_TEST_FRAMEWORK_LIB) \
-#	$(LIBSECP256K1) $(EVENT_LIBS) \
-#	$(EVENT_PTHREADS_LIBS) $(am__append_15) \
-#	$(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) \
-#	$(SSL_LIBS) $(CRYPTO_LIBS) \
-#	$(MINIUPNPC_LIBS) $(am__append_16)
-#test_test_bitcoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-#test_test_vip_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
-#nodist_test_test_vip_SOURCES = $(GENERATED_TEST_FILES)
-#CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
+BITCOIN_TESTS =  \
+	test/zerocoin_implementation_tests.cpp \
+	test/zerocoin_denomination_tests.cpp \
+	test/zerocoin_transactions_tests.cpp \
+	test/benchmark_zerocoin.cpp \
+	test/tutorial_zerocoin.cpp \
+	test/libzerocoin_tests.cpp \
+	test/allocator_tests.cpp \
+	test/base32_tests.cpp test/base58_tests.cpp \
+	test/base64_tests.cpp test/budget_tests.cpp \
+	test/checkblock_tests.cpp \
+	test/Checkpoints_tests.cpp \
+	test/coins_tests.cpp \
+	test/compress_tests.cpp \
+	test/crypto_tests.cpp test/DoS_tests.cpp \
+	test/getarg_tests.cpp test/hash_tests.cpp \
+	test/key_tests.cpp test/main_tests.cpp \
+	test/mempool_tests.cpp \
+	test/mruset_tests.cpp \
+	test/multisig_tests.cpp \
+	test/netbase_tests.cpp test/pmt_tests.cpp \
+	test/reverselock_tests.cpp \
+	test/rpc_tests.cpp test/sanity_tests.cpp \
+	test/scheduler_tests.cpp \
+	test/script_P2SH_tests.cpp \
+	test/script_tests.cpp \
+	test/scriptnum_tests.cpp \
+	test/serialize_tests.cpp \
+	test/sighash_tests.cpp \
+	test/sigopcount_tests.cpp \
+	test/skiplist_tests.cpp test/test_vip.cpp \
+	test/timedata_tests.cpp \
+	test/torcontrol_tests.cpp \
+	test/transaction_tests.cpp \
+	test/uint256_tests.cpp \
+	test/univalue_tests.cpp test/util_tests.cpp \
+	$(am__append_14)
+test_test_vip_SOURCES = $(BITCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_vip_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS)
+test_test_vip_LDADD = $(LIBBITCOIN_SERVER) \
+	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
+	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) \
+	$(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) \
+	$(LIBLEVELDB) $(LIBMEMENV) $(BOOST_LIBS) \
+	$(BOOST_UNIT_TEST_FRAMEWORK_LIB) \
+	$(LIBSECP256K1) $(EVENT_LIBS) \
+	$(EVENT_PTHREADS_LIBS) $(am__append_15) \
+	$(LIBBITCOIN_CONSENSUS) $(BDB_LIBS) \
+	$(SSL_LIBS) $(CRYPTO_LIBS) \
+	$(MINIUPNPC_LIBS) $(am__append_16)
+test_test_bitcoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_vip_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+nodist_test_test_vip_SOURCES = $(GENERATED_TEST_FILES)
+CLEAN_BITCOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
 # vip qt core #
-QT_TS = \
-  qt/locale/vip_bg.ts \
-  qt/locale/vip_ca.ts \
-  qt/locale/vip_cs.ts \
-  qt/locale/vip_da.ts \
-  qt/locale/vip_de.ts \
-  qt/locale/vip_en.ts \
-  qt/locale/vip_en_US.ts \
-  qt/locale/vip_eo.ts \
-  qt/locale/vip_es.ts \
-  qt/locale/vip_es_ES.ts \
-  qt/locale/vip_fi.ts \
-  qt/locale/vip_fr_FR.ts \
-  qt/locale/vip_hi_IN.ts \
-  qt/locale/vip_hr.ts \
-  qt/locale/vip_hr_HR.ts \
-  qt/locale/vip_it.ts \
-  qt/locale/vip_ja.ts \
-  qt/locale/vip_ko_KR.ts \
-  qt/locale/vip_lt_LT.ts \
-  qt/locale/vip_nl.ts \
-  qt/locale/vip_pl.ts \
-  qt/locale/vip_pt.ts \
-  qt/locale/vip_pt_BR.ts \
-  qt/locale/vip_ro_RO.ts \
-  qt/locale/vip_ru.ts \
-  qt/locale/vip_sk.ts \
-  qt/locale/vip_sv.ts \
-  qt/locale/vip_tr.ts \
-  qt/locale/vip_uk.ts \
-  qt/locale/vip_vi.ts \
-  qt/locale/vip_zh_CN.ts \
-  qt/locale/vip_zh_TW.ts
+#QT_TS = \
+#  qt/locale/vip_bg.ts \
+#  qt/locale/vip_ca.ts \
+#  qt/locale/vip_cs.ts \
+#  qt/locale/vip_da.ts \
+#  qt/locale/vip_de.ts \
+#  qt/locale/vip_en.ts \
+#  qt/locale/vip_en_US.ts \
+#  qt/locale/vip_eo.ts \
+#  qt/locale/vip_es.ts \
+#  qt/locale/vip_es_ES.ts \
+#  qt/locale/vip_fi.ts \
+#  qt/locale/vip_fr_FR.ts \
+#  qt/locale/vip_hi_IN.ts \
+#  qt/locale/vip_hr.ts \
+#  qt/locale/vip_hr_HR.ts \
+#  qt/locale/vip_it.ts \
+#  qt/locale/vip_ja.ts \
+#  qt/locale/vip_ko_KR.ts \
+#  qt/locale/vip_lt_LT.ts \
+#  qt/locale/vip_nl.ts \
+#  qt/locale/vip_pl.ts \
+#  qt/locale/vip_pt.ts \
+#  qt/locale/vip_pt_BR.ts \
+#  qt/locale/vip_ro_RO.ts \
+#  qt/locale/vip_ru.ts \
+#  qt/locale/vip_sk.ts \
+#  qt/locale/vip_sv.ts \
+#  qt/locale/vip_tr.ts \
+#  qt/locale/vip_uk.ts \
+#  qt/locale/vip_vi.ts \
+#  qt/locale/vip_zh_CN.ts \
+#  qt/locale/vip_zh_TW.ts
 
-QT_FORMS_UI = \
-  qt/forms/addressbookpage.ui \
-  qt/forms/askpassphrasedialog.ui \
-  qt/forms/bip38tooldialog.ui \
-  qt/forms/coincontroldialog.ui \
-  qt/forms/blockexplorer.ui \
-  qt/forms/obfuscationconfig.ui \
-  qt/forms/editaddressdialog.ui \
-  qt/forms/helpmessagedialog.ui \
-  qt/forms/intro.ui \
-  qt/forms/masternodelist.ui \
-  qt/forms/multisenddialog.ui \
-  qt/forms/multisigdialog.ui\
-  qt/forms/openuridialog.ui \
-  qt/forms/optionsdialog.ui \
-  qt/forms/overviewpage.ui \
-  qt/forms/receivecoinsdialog.ui \
-  qt/forms/privacydialog.ui \
-  qt/forms/receiverequestdialog.ui \
-  qt/forms/rpcconsole.ui \
-  qt/forms/sendcoinsdialog.ui \
-  qt/forms/sendcoinsentry.ui \
-  qt/forms/signverifymessagedialog.ui \
-  qt/forms/transactiondescdialog.ui \
-  qt/forms/zpivcontroldialog.ui
+#QT_FORMS_UI = \
+#  qt/forms/addressbookpage.ui \
+#  qt/forms/askpassphrasedialog.ui \
+#  qt/forms/bip38tooldialog.ui \
+#  qt/forms/coincontroldialog.ui \
+#  qt/forms/blockexplorer.ui \
+#  qt/forms/obfuscationconfig.ui \
+#  qt/forms/editaddressdialog.ui \
+#  qt/forms/helpmessagedialog.ui \
+#  qt/forms/intro.ui \
+#  qt/forms/masternodelist.ui \
+#  qt/forms/multisenddialog.ui \
+#  qt/forms/multisigdialog.ui\
+#  qt/forms/openuridialog.ui \
+#  qt/forms/optionsdialog.ui \
+#  qt/forms/overviewpage.ui \
+#  qt/forms/receivecoinsdialog.ui \
+#  qt/forms/privacydialog.ui \
+#  qt/forms/receiverequestdialog.ui \
+#  qt/forms/rpcconsole.ui \
+#  qt/forms/sendcoinsdialog.ui \
+#  qt/forms/sendcoinsentry.ui \
+#  qt/forms/signverifymessagedialog.ui \
+#  qt/forms/transactiondescdialog.ui \
+#  qt/forms/zpivcontroldialog.ui
 
-QT_MOC_CPP = \
-  qt/moc_addressbookpage.cpp \
-  qt/moc_addresstablemodel.cpp \
-  qt/moc_askpassphrasedialog.cpp \
-  qt/moc_bantablemodel.cpp \
-  qt/moc_bip38tooldialog.cpp \
-  qt/moc_bitcoinaddressvalidator.cpp \
-  qt/moc_bitcoinamountfield.cpp \
-  qt/moc_bitcoingui.cpp \
-  qt/moc_bitcoinunits.cpp \
-  qt/moc_blockexplorer.cpp \
-  qt/moc_clientmodel.cpp \
-  qt/moc_coincontroldialog.cpp \
-  qt/moc_coincontroltreewidget.cpp \
-  qt/moc_csvmodelwriter.cpp \
-  qt/moc_obfuscationconfig.cpp \
-  qt/moc_editaddressdialog.cpp \
-  qt/moc_guiutil.cpp \
-  qt/moc_intro.cpp \
-  qt/moc_macdockiconhandler.cpp \
-  qt/moc_macnotificationhandler.cpp \
-  qt/moc_masternodelist.cpp \
-  qt/moc_multisenddialog.cpp \
-  qt/moc_multisigdialog.cpp\
-  qt/moc_notificator.cpp \
-  qt/moc_openuridialog.cpp \
-  qt/moc_optionsdialog.cpp \
-  qt/moc_optionsmodel.cpp \
-  qt/moc_overviewpage.cpp \
-  qt/moc_peertablemodel.cpp \
-  qt/moc_paymentserver.cpp \
-  qt/moc_qvalidatedlineedit.cpp \
-  qt/moc_qvaluecombobox.cpp \
-  qt/moc_receivecoinsdialog.cpp \
-  qt/moc_privacydialog.cpp \
-  qt/moc_receiverequestdialog.cpp \
-  qt/moc_recentrequeststablemodel.cpp \
-  qt/moc_rpcconsole.cpp \
-  qt/moc_sendcoinsdialog.cpp \
-  qt/moc_sendcoinsentry.cpp \
-  qt/moc_signverifymessagedialog.cpp \
-  qt/moc_splashscreen.cpp \
-  qt/moc_trafficgraphwidget.cpp \
-  qt/moc_transactiondesc.cpp \
-  qt/moc_transactiondescdialog.cpp \
-  qt/moc_transactionfilterproxy.cpp \
-  qt/moc_transactiontablemodel.cpp \
-  qt/moc_transactionview.cpp \
-  qt/moc_utilitydialog.cpp \
-  qt/moc_walletframe.cpp \
-  qt/moc_walletmodel.cpp \
-  qt/moc_walletview.cpp \
-  qt/moc_zpivcontroldialog.cpp
+#QT_MOC_CPP = \
+#  qt/moc_addressbookpage.cpp \
+#  qt/moc_addresstablemodel.cpp \
+#  qt/moc_askpassphrasedialog.cpp \
+#  qt/moc_bantablemodel.cpp \
+#  qt/moc_bip38tooldialog.cpp \
+#  qt/moc_bitcoinaddressvalidator.cpp \
+#  qt/moc_bitcoinamountfield.cpp \
+#  qt/moc_bitcoingui.cpp \
+#  qt/moc_bitcoinunits.cpp \
+#  qt/moc_blockexplorer.cpp \
+#  qt/moc_clientmodel.cpp \
+#  qt/moc_coincontroldialog.cpp \
+#  qt/moc_coincontroltreewidget.cpp \
+#  qt/moc_csvmodelwriter.cpp \
+#  qt/moc_obfuscationconfig.cpp \
+#  qt/moc_editaddressdialog.cpp \
+#  qt/moc_guiutil.cpp \
+#  qt/moc_intro.cpp \
+#  qt/moc_macdockiconhandler.cpp \
+#  qt/moc_macnotificationhandler.cpp \
+#  qt/moc_masternodelist.cpp \
+#  qt/moc_multisenddialog.cpp \
+#  qt/moc_multisigdialog.cpp\
+#  qt/moc_notificator.cpp \
+#  qt/moc_openuridialog.cpp \
+#  qt/moc_optionsdialog.cpp \
+#  qt/moc_optionsmodel.cpp \
+#  qt/moc_overviewpage.cpp \
+#  qt/moc_peertablemodel.cpp \
+#  qt/moc_paymentserver.cpp \
+#  qt/moc_qvalidatedlineedit.cpp \
+#  qt/moc_qvaluecombobox.cpp \
+#  qt/moc_receivecoinsdialog.cpp \
+#  qt/moc_privacydialog.cpp \
+#  qt/moc_receiverequestdialog.cpp \
+#  qt/moc_recentrequeststablemodel.cpp \
+#  qt/moc_rpcconsole.cpp \
+#  qt/moc_sendcoinsdialog.cpp \
+#  qt/moc_sendcoinsentry.cpp \
+#  qt/moc_signverifymessagedialog.cpp \
+#  qt/moc_splashscreen.cpp \
+#  qt/moc_trafficgraphwidget.cpp \
+#  qt/moc_transactiondesc.cpp \
+#  qt/moc_transactiondescdialog.cpp \
+#  qt/moc_transactionfilterproxy.cpp \
+#  qt/moc_transactiontablemodel.cpp \
+#  qt/moc_transactionview.cpp \
+#  qt/moc_utilitydialog.cpp \
+#  qt/moc_walletframe.cpp \
+#  qt/moc_walletmodel.cpp \
+#  qt/moc_walletview.cpp \
+#  qt/moc_zpivcontroldialog.cpp
 
-BITCOIN_MM = \
-  qt/macdockiconhandler.mm \
-  qt/macnotificationhandler.mm
+#BITCOIN_MM = \
+#  qt/macdockiconhandler.mm \
+#  qt/macnotificationhandler.mm
 
-QT_MOC = \
-  qt/vip.moc \
-  qt/bitcoinamountfield.moc \
-  qt/intro.moc \
-  qt/overviewpage.moc \
-  qt/rpcconsole.moc
+#QT_MOC = \
+#  qt/vip.moc \
+#  qt/bitcoinamountfield.moc \
+#  qt/intro.moc \
+#  qt/overviewpage.moc \
+#  qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_vip.cpp
-QT_QRC = qt/vip.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_vip_locale.cpp
-QT_QRC_LOCALE = qt/vip_locale.qrc
-PROTOBUF_CC = qt/paymentrequest.pb.cc
-PROTOBUF_H = qt/paymentrequest.pb.h
-PROTOBUF_PROTO = qt/paymentrequest.proto
-BITCOIN_QT_H = \
-  qt/addressbookpage.h \
-  qt/addresstablemodel.h \
-  qt/askpassphrasedialog.h \
-  qt/bantablemodel.h \
-  qt/bip38tooldialog.h \
-  qt/bitcoinaddressvalidator.h \
-  qt/bitcoinamountfield.h \
-  qt/bitcoingui.h \
-  qt/bitcoinunits.h \
-  qt/blockexplorer.h \
-  qt/clientmodel.h \
-  qt/coincontroldialog.h \
-  qt/coincontroltreewidget.h \
-  qt/csvmodelwriter.h \
-  qt/obfuscationconfig.h \
-  qt/editaddressdialog.h \
-  qt/guiconstants.h \
-  qt/guiutil.h \
-  qt/intro.h \
-  qt/macdockiconhandler.h \
-  qt/macnotificationhandler.h \
-  qt/masternodelist.h \
-  qt/multisenddialog.h \
-  qt/multisigdialog.h\
-  qt/networkstyle.h \
-  qt/notificator.h \
-  qt/openuridialog.h \
-  qt/optionsdialog.h \
-  qt/optionsmodel.h \
-  qt/overviewpage.h \
-  qt/paymentrequestplus.h \
-  qt/paymentserver.h \
-  qt/peertablemodel.h \
-  qt/platformstyle.h \
-  qt/qvalidatedlineedit.h \
-  qt/qvaluecombobox.h \
-  qt/receivecoinsdialog.h \
-  qt/privacydialog.h \
-  qt/receiverequestdialog.h \
-  qt/recentrequeststablemodel.h \
-  qt/rpcconsole.h \
-  qt/sendcoinsdialog.h \
-  qt/sendcoinsentry.h \
-  qt/signverifymessagedialog.h \
-  qt/splashscreen.h \
-  qt/trafficgraphwidget.h \
-  qt/transactiondesc.h \
-  qt/transactiondescdialog.h \
-  qt/transactionfilterproxy.h \
-  qt/transactionrecord.h \
-  qt/transactiontablemodel.h \
-  qt/transactionview.h \
-  qt/utilitydialog.h \
-  qt/walletframe.h \
-  qt/walletmodel.h \
-  qt/walletmodeltransaction.h \
-  qt/walletview.h \
-  qt/winshutdownmonitor.h \
-  qt/zpivcontroldialog.h
+#QT_QRC_CPP = qt/qrc_vip.cpp
+#QT_QRC = qt/vip.qrc
+#QT_QRC_LOCALE_CPP = qt/qrc_vip_locale.cpp
+#QT_QRC_LOCALE = qt/vip_locale.qrc
+#PROTOBUF_CC = qt/paymentrequest.pb.cc
+#PROTOBUF_H = qt/paymentrequest.pb.h
+#PROTOBUF_PROTO = qt/paymentrequest.proto
+#BITCOIN_QT_H = \
+#  qt/addressbookpage.h \
+#  qt/addresstablemodel.h \
+#  qt/askpassphrasedialog.h \
+#  qt/bantablemodel.h \
+#  qt/bip38tooldialog.h \
+#  qt/bitcoinaddressvalidator.h \
+#  qt/bitcoinamountfield.h \
+#  qt/bitcoingui.h \
+#  qt/bitcoinunits.h \
+#  qt/blockexplorer.h \
+#  qt/clientmodel.h \
+#  qt/coincontroldialog.h \
+#  qt/coincontroltreewidget.h \
+#  qt/csvmodelwriter.h \
+#  qt/obfuscationconfig.h \
+#  qt/editaddressdialog.h \
+#  qt/guiconstants.h \
+#  qt/guiutil.h \
+#  qt/intro.h \
+#  qt/macdockiconhandler.h \
+#  qt/macnotificationhandler.h \
+#  qt/masternodelist.h \
+#  qt/multisenddialog.h \
+#  qt/multisigdialog.h\
+#  qt/networkstyle.h \
+#  qt/notificator.h \
+#  qt/openuridialog.h \
+#  qt/optionsdialog.h \
+#  qt/optionsmodel.h \
+#  qt/overviewpage.h \
+#  qt/paymentrequestplus.h \
+#  qt/paymentserver.h \
+#  qt/peertablemodel.h \
+#  qt/platformstyle.h \
+#  qt/qvalidatedlineedit.h \
+#  qt/qvaluecombobox.h \
+#  qt/receivecoinsdialog.h \
+#  qt/privacydialog.h \
+#  qt/receiverequestdialog.h \
+#  qt/recentrequeststablemodel.h \
+#  qt/rpcconsole.h \
+#  qt/sendcoinsdialog.h \
+#  qt/sendcoinsentry.h \
+#  qt/signverifymessagedialog.h \
+#  qt/splashscreen.h \
+#  qt/trafficgraphwidget.h \
+#  qt/transactiondesc.h \
+#  qt/transactiondescdialog.h \
+#  qt/transactionfilterproxy.h \
+#  qt/transactionrecord.h \
+#  qt/transactiontablemodel.h \
+#  qt/transactionview.h \
+#  qt/utilitydialog.h \
+#  qt/walletframe.h \
+#  qt/walletmodel.h \
+#  qt/walletmodeltransaction.h \
+#  qt/walletview.h \
+#  qt/winshutdownmonitor.h \
+#  qt/zpivcontroldialog.h
 
-RES_ICONS = \
-  qt/res/icons/add.png \
-  qt/res/icons/address-book.png \
-  qt/res/icons/automint_active.png \
-  qt/res/icons/automint_inactive.png \
-  qt/res/icons/bitcoin.ico \
-  qt/res/icons/bitcoin.png \
-  qt/res/icons/bitcoin_testnet.ico \
-  qt/res/icons/bitcoin_testnet.png \
-  qt/res/icons/browse.png \
-  qt/res/icons/clock1.png \
-  qt/res/icons/clock2.png \
-  qt/res/icons/clock3.png \
-  qt/res/icons/clock4.png \
-  qt/res/icons/clock5.png \
-  qt/res/icons/configure.png \
-  qt/res/icons/connect0_16.png \
-  qt/res/icons/connect1_16.png \
-  qt/res/icons/connect2_16.png \
-  qt/res/icons/connect3_16.png \
-  qt/res/icons/connect4_16.png \
-  qt/res/icons/debugwindow.png \
-  qt/res/icons/edit.png \
-  qt/res/icons/editcopy.png \
-  qt/res/icons/editpaste.png \
-  qt/res/icons/explorer.png \
-  qt/res/icons/export.png \
-  qt/res/icons/eye.png \
-  qt/res/icons/eye_minus.png \
-  qt/res/icons/eye_plus.png \
-  qt/res/icons/filesave.png \
-  qt/res/icons/history.png \
-  qt/res/icons/key.png \
-  qt/res/icons/lock_closed.png \
-  qt/res/icons/lock_open.png \
-  qt/res/icons/masternodes.png \
-  qt/res/icons/onion.png \
-  qt/res/icons/overview.png \
-  qt/res/icons/qrcode.png \
-  qt/res/icons/quit.png \
-  qt/res/icons/receive.png \
-  qt/res/icons/receive_dark.png \
-  qt/res/icons/privacy.png \
-  qt/res/icons/remove.png \
-  qt/res/icons/send.png \
-  qt/res/icons/send_dark.png \
-  qt/res/icons/staking_active.png \
-  qt/res/icons/staking_inactive.png \
-  qt/res/icons/synced.png \
-  qt/res/icons/trade.png \
-  qt/res/icons/transaction0.png \
-  qt/res/icons/transaction2.png \
-  qt/res/icons/transaction_conflicted.png \
-  qt/res/icons/tx_inout.png \
-  qt/res/icons/tx_input.png \
-  qt/res/icons/tx_output.png \
-  qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_vip.png \
-  qt/res/icons/unit_mvip.png \
-  qt/res/icons/unit_uvip.png \
-  qt/res/icons/unit_tvip.png \
-  qt/res/icons/unit_tmvip.png \
-  qt/res/icons/unit_tuvip.png
+#RES_ICONS = \
+#  qt/res/icons/add.png \
+#  qt/res/icons/address-book.png \
+#  qt/res/icons/automint_active.png \
+#  qt/res/icons/automint_inactive.png \
+#  qt/res/icons/bitcoin.ico \
+#  qt/res/icons/bitcoin.png \
+#  qt/res/icons/bitcoin_testnet.ico \
+#  qt/res/icons/bitcoin_testnet.png \
+#  qt/res/icons/browse.png \
+#  qt/res/icons/clock1.png \
+#  qt/res/icons/clock2.png \
+#  qt/res/icons/clock3.png \
+#  qt/res/icons/clock4.png \
+#  qt/res/icons/clock5.png \
+#  qt/res/icons/configure.png \
+#  qt/res/icons/connect0_16.png \
+#  qt/res/icons/connect1_16.png \
+#  qt/res/icons/connect2_16.png \
+#  qt/res/icons/connect3_16.png \
+#  qt/res/icons/connect4_16.png \
+#  qt/res/icons/debugwindow.png \
+#  qt/res/icons/edit.png \
+#  qt/res/icons/editcopy.png \
+#  qt/res/icons/editpaste.png \
+#  qt/res/icons/explorer.png \
+#  qt/res/icons/export.png \
+#  qt/res/icons/eye.png \
+#  qt/res/icons/eye_minus.png \
+#  qt/res/icons/eye_plus.png \
+#  qt/res/icons/filesave.png \
+#  qt/res/icons/history.png \
+#  qt/res/icons/key.png \
+#  qt/res/icons/lock_closed.png \
+#  qt/res/icons/lock_open.png \
+#  qt/res/icons/masternodes.png \
+#  qt/res/icons/onion.png \
+#  qt/res/icons/overview.png \
+#  qt/res/icons/qrcode.png \
+#  qt/res/icons/quit.png \
+#  qt/res/icons/receive.png \
+#  qt/res/icons/receive_dark.png \
+#  qt/res/icons/privacy.png \
+#  qt/res/icons/remove.png \
+#  qt/res/icons/send.png \
+#  qt/res/icons/send_dark.png \
+#  qt/res/icons/staking_active.png \
+#  qt/res/icons/staking_inactive.png \
+#  qt/res/icons/synced.png \
+#  qt/res/icons/trade.png \
+#  qt/res/icons/transaction0.png \
+#  qt/res/icons/transaction2.png \
+#  qt/res/icons/transaction_conflicted.png \
+#  qt/res/icons/tx_inout.png \
+#  qt/res/icons/tx_input.png \
+#  qt/res/icons/tx_output.png \
+#  qt/res/icons/tx_mined.png \
+#  qt/res/icons/unit_vip.png \
+#  qt/res/icons/unit_mvip.png \
+#  qt/res/icons/unit_uvip.png \
+#  qt/res/icons/unit_tvip.png \
+#  qt/res/icons/unit_tmvip.png \
+#  qt/res/icons/unit_tuvip.png
 
-BITCOIN_QT_CPP = qt/bantablemodel.cpp \
-	qt/bitcoinaddressvalidator.cpp \
-	qt/bitcoinamountfield.cpp qt/bitcoingui.cpp \
-	qt/bitcoinunits.cpp qt/blockexplorer.cpp \
-	qt/clientmodel.cpp qt/csvmodelwriter.cpp \
-	qt/guiutil.cpp qt/intro.cpp \
-	qt/masternodelist.cpp qt/networkstyle.cpp \
-	qt/notificator.cpp qt/optionsdialog.cpp \
-	qt/optionsmodel.cpp qt/peertablemodel.cpp \
-	qt/platformstyle.cpp qt/qvalidatedlineedit.cpp \
-	qt/qvaluecombobox.cpp qt/rpcconsole.cpp \
-	qt/splashscreen.cpp qt/trafficgraphwidget.cpp \
-	qt/utilitydialog.cpp $(am__append_20) \
-	$(am__append_21)
-RES_IMAGES = \
-  qt/res/images/about.png \
-  qt/res/images/splash.png \
-  qt/res/images/splash_testnet.png \
-  qt/res/images/vip_logo_horizontal.png \
-  qt/res/images/downArrow_dark.png \
-  qt/res/images/downArrow_small_dark.png \
-  qt/res/images/downArrow_small.png \
-  qt/res/images/upArrow_small_dark.png \
-  qt/res/images/upArrow_small.png \
-  qt/res/images/leftArrow_small_dark.png \
-  qt/res/images/rightArrow_small_dark.png \
-  qt/res/images/qtreeview_selected.png \
-  qt/res/images/walletFrame.png \
-  qt/res/images/walletFrame_bg.png \
-  qt/res/images/walletFrame_bg.png
+#BITCOIN_QT_CPP = qt/bantablemodel.cpp \
+#	qt/bitcoinaddressvalidator.cpp \
+#	qt/bitcoinamountfield.cpp qt/bitcoingui.cpp \
+#	qt/bitcoinunits.cpp qt/blockexplorer.cpp \
+#	qt/clientmodel.cpp qt/csvmodelwriter.cpp \
+#	qt/guiutil.cpp qt/intro.cpp \
+#	qt/masternodelist.cpp qt/networkstyle.cpp \
+#	qt/notificator.cpp qt/optionsdialog.cpp \
+#	qt/optionsmodel.cpp qt/peertablemodel.cpp \
+#	qt/platformstyle.cpp qt/qvalidatedlineedit.cpp \
+#	qt/qvaluecombobox.cpp qt/rpcconsole.cpp \
+#	qt/splashscreen.cpp qt/trafficgraphwidget.cpp \
+#	qt/utilitydialog.cpp $(am__append_20) \
+#	$(am__append_21)
+#RES_IMAGES = \
+#  qt/res/images/about.png \
+#  qt/res/images/splash.png \
+#  qt/res/images/splash_testnet.png \
+#  qt/res/images/vip_logo_horizontal.png \
+#  qt/res/images/downArrow_dark.png \
+#  qt/res/images/downArrow_small_dark.png \
+#  qt/res/images/downArrow_small.png \
+#  qt/res/images/upArrow_small_dark.png \
+#  qt/res/images/upArrow_small.png \
+#  qt/res/images/leftArrow_small_dark.png \
+#  qt/res/images/rightArrow_small_dark.png \
+#  qt/res/images/qtreeview_selected.png \
+#  qt/res/images/walletFrame.png \
+#  qt/res/images/walletFrame_bg.png \
+#  qt/res/images/walletFrame_bg.png
 
-RES_CSS = \
-  qt/res/css/default.css
+#RES_CSS = \
+#  qt/res/css/default.css
 
-RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
-BITCOIN_RC = qt/res/vip-qt-res.rc
-BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
-  -I$(builddir)/qt/forms
+#RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+#BITCOIN_RC = qt/res/vip-qt-res.rc
+#BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+#  -I$(builddir)/qt/forms
 
-qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
-  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
+#qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+#  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
-qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
-  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+#qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+#qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+#qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+#  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
 
-nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
-  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+#nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+#  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 
 # forms/foo.h -> forms/ui_foo.h
-QT_FORMS_H = $(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+#QT_FORMS_H = $(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
 
 # vip-qt binary #
-qt_vip_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
-  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
+#qt_vip_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+#  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_vip_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-qt_bitcoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-qt_vip_qt_SOURCES = qt/vip.cpp $(am__append_22) \
-	$(am__append_23)
-qt_vip_qt_LDADD = qt/libbitcoinqt.a \
-	$(LIBBITCOIN_SERVER) $(am__append_24) \
-	$(am__append_25) $(LIBBITCOIN_CLI) \
-	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
-	$(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
-	$(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) \
-	$(LIBMEMENV) $(BOOST_LIBS) $(QT_LIBS) \
-	$(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) \
-	$(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) \
-	$(MINIUPNPC_LIBS) $(LIBSECP256K1) \
-	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_vip_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_vip_qt_LIBTOOLFLAGS = --tag CXX
+#qt_vip_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+#qt_bitcoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+#qt_vip_qt_SOURCES = qt/vip.cpp $(am__append_22) \
+#	$(am__append_23)
+#qt_vip_qt_LDADD = qt/libbitcoinqt.a \
+#	$(LIBBITCOIN_SERVER) $(am__append_24) \
+#	$(am__append_25) $(LIBBITCOIN_CLI) \
+#	$(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) \
+#	$(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) \
+#	$(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) \
+#	$(LIBMEMENV) $(BOOST_LIBS) $(QT_LIBS) \
+#	$(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) \
+#	$(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) \
+#	$(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+#	$(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+#qt_vip_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+#qt_vip_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
-QT_QM = $(QT_TS:.ts=.qm)
-CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_vip_locale.qrc
+#QT_QM = $(QT_TS:.ts=.qm)
+#CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_vip_locale.qrc
 #TEST_QT_MOC_CPP = qt/test/moc_uritests.cpp \
 #	$(am__append_29)
 #TEST_QT_H = \
@@ -8093,13 +8093,13 @@ qt/test/test_vip-qt.log: qt/test/test_vip-qt$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-#.test$(EXEEXT).log:
-#	@p='$<'; \
-#	$(am__set_b); \
-#	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
-#	--log-file $$b.log --trs-file $$b.trs \
-#	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
-#	"$$tst" $(AM_TESTS_FD_REDIRECT)
+.test$(EXEEXT).log:
+	@p='$<'; \
+	$(am__set_b); \
+	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -8156,7 +8156,7 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
-check-local:
+#check-local:
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-TESTS check-local
 check: check-recursive
@@ -8355,90 +8355,90 @@ clean-local:
 	@test -f $(PROTOC)
 	$(AM_V_GEN) $(PROTOC) --cpp_out=$(@D) --proto_path=$(<D) $<
 
-#$(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
+$(BITCOIN_TESTS): $(GENERATED_TEST_FILES)
 
-#vip_test: $(TEST_BINARY)
+vip_test: $(TEST_BINARY)
 
-#vip_test_check: $(TEST_BINARY) FORCE
-#	$(MAKE) check-TESTS TESTS=$^
+vip_test_check: $(TEST_BINARY) FORCE
+	$(MAKE) check-TESTS TESTS=$^
 
-#vip_test_clean : FORCE
-#	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_vip_OBJECTS) $(TEST_BINARY)
+vip_test_clean : FORCE
+	rm -f $(CLEAN_BITCOIN_TEST) $(test_test_vip_OBJECTS) $(TEST_BINARY)
 
-#check-local:
-#	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
-#	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check
+check-local:
+	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
+	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check
 
-#%.json.h: %.json
-#	@$(MKDIR_P) $(@D)
-#	@echo "namespace json_tests{" > $@
-#	@echo "static unsigned const char $(*F)[] = {" >> $@
-#	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
-#	@echo "};};" >> $@
-#	@echo "Generated $@"
+%.json.h: %.json
+	@$(MKDIR_P) $(@D)
+	@echo "namespace json_tests{" > $@
+	@echo "static unsigned const char $(*F)[] = {" >> $@
+	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "Generated $@"
 
-#%.raw.h: %.raw
-#	@$(MKDIR_P) $(@D)
-#	@echo "namespace alert_tests{" > $@
-#	@echo "static unsigned const char $(*F)[] = {" >> $@
-#	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
-#	@echo "};};" >> $@
-#	@echo "Generated $@"
+%.raw.h: %.raw
+	@$(MKDIR_P) $(@D)
+	@echo "namespace alert_tests{" > $@
+	@echo "static unsigned const char $(*F)[] = {" >> $@
+	@$(HEXDUMP) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(SED) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "Generated $@"
 
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
-$(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_vip_qt_OBJECTS) : | $(QT_MOC)
+#$(QT_MOC): $(QT_FORMS_H)
+#$(qt_libbitcoinqt_a_OBJECTS) $(qt_vip_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
-$(QT_MOC): $(PROTOBUF_H)
-$(QT_MOC_CPP): $(PROTOBUF_H)
+#$(QT_MOC): $(PROTOBUF_H)
+#$(QT_MOC_CPP): $(PROTOBUF_H)
 
-SECONDARY: $(QT_QM)
+#SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/vipstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
-	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
-	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+#$(srcdir)/qt/vipstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+#	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+#	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/vipstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
-	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/vip_en.ts
+#translate: $(srcdir)/qt/vipstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+#	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/vip_en.ts
 
-$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
-	@test -f $(RCC)
-	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vip_locale $(@D)/temp_$(<F) | \
-	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
-	@rm $(@D)/temp_$(<F)
+#$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+#	@test -f $(RCC)
+#	@cp -f $< $(@D)/temp_$(<F)
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vip_locale $(@D)/temp_$(<F) | \
+#	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+#	@rm $(@D)/temp_$(<F)
 
-$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
-	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vip $< | \
-	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+#$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+#	@test -f $(RCC)
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name vip $< | \
+#	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-vip_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_vip_qt_OBJECTS) qt/vip-qt$(EXEEXT) $(LIBBITCOINQT)
+#vip_qt_clean: FORCE
+#	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_vip_qt_OBJECTS) qt/vip-qt$(EXEEXT) $(LIBBITCOINQT)
 
-vip_qt : qt/vip-qt$(EXEEXT)
+#vip_qt : qt/vip-qt$(EXEEXT)
 
-ui_%.h: %.ui
-	@test -f $(UIC)
-	@$(MKDIR_P) $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+#ui_%.h: %.ui
+#	@test -f $(UIC)
+#	@$(MKDIR_P) $(@D)
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
 
-%.moc: %.cpp
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
-	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+#%.moc: %.cpp
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+#	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-moc_%.cpp: %.h
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
-	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+#moc_%.cpp: %.h
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+#	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-%.qm: %.ts
-	@test -f $(LRELEASE)
-	@$(MKDIR_P) $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
+#%.qm: %.ts
+#	@test -f $(LRELEASE)
+#	@$(MKDIR_P) $(@D)
+#	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
 
 #test_vip_qt : qt/test/test_vip-qt$(EXEEXT)
 
