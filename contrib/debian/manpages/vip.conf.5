@@ -1,4 +1,4 @@
-.TH BAC.CONF "5" "January 2011" "vip.conf 3.19"
+.TH VIP.CONF "5" "January 2011" "vip.conf 3.19"
 .SH NAME
 vip.conf \- vip configuration file
 .SH SYNOPSIS
@@ -49,16 +49,16 @@ You can use *vip* or *vipd(1)* to send commands to *vip*/*vipd(1)* running on an
 .SH MISCELLANEOUS OPTIONS
 .TP
 \fBgen=\fR[\fI'0'\fR|\fI'1'\fR]
-Enable or disable attempt to generate BACs.
+Enable or disable attempt to generate VIPs.
 .TP
 \fB4way=\fR[\fI'0'\fR|\fI'1'\fR]
-Enable or disable use SSE instructions to try to generate BACs faster.
+Enable or disable use SSE instructions to try to generate VIPs faster.
 .TP
 \fBkeypool=\fR\fI'100'\fR
 Pre-generate this many public/private key pairs, so wallet backups will be valid for both prior transactions and several dozen future transactions.
 .TP
 \fBpaytxfee=\fR\fI'0.00'\fR
-Pay an optional transaction fee every time you send BACs. Transactions with fees are more likely than free transactions to be included in generated blocks, so may be validated sooner.
+Pay an optional transaction fee every time you send VIPs. Transactions with fees are more likely than free transactions to be included in generated blocks, so may be validated sooner.
 .TP
 \fBallowreceivebyip=\fR\fI'1'\fR
 Allow direct connections for the 'pay via IP address' feature.

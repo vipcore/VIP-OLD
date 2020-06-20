@@ -35,9 +35,9 @@ def check_json_precision():
 def determine_db_dir():
     """Return the default location of the vip data directory"""
     if platform.system() == "Darwin":
-        return os.path.expanduser("~/Library/Application Support/BAC/")
+        return os.path.expanduser("~/Library/Application Support/VIP/")
     elif platform.system() == "Windows":
-        return os.path.join(os.environ['APPDATA'], "BAC")
+        return os.path.join(os.environ['APPDATA'], "VIP")
     return os.path.expanduser("~/.vip")
 
 def read_bitcoin_config(dbdir):
@@ -221,9 +221,9 @@ def main():
 
     parser = optparse.OptionParser(usage="%prog [options]")
     parser.add_option("--from", dest="fromaddresses", default=None,
-                      help="addresses to get BACs from")
+                      help="addresses to get VIPs from")
     parser.add_option("--to", dest="to", default=None,
-                      help="address to get send BACs to")
+                      help="address to get send VIPs to")
     parser.add_option("--amount", dest="amount", default=None,
                       help="amount to send")
     parser.add_option("--fee", dest="fee", default="0.0",

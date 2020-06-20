@@ -1,9 +1,9 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=BAC
-Comment=BAC P2P Cryptocurrency
-Comment[fr]=BAC, monnaie virtuelle cryptographique pair à pair
-Comment[tr]=BAC, eşten eşe kriptografik sanal para birimi
+Name=VIP
+Comment=VIP P2P Cryptocurrency
+Comment[fr]=VIP, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=VIP, eşten eşe kriptografik sanal para birimi
 Exec=vip-qt %u
 Terminal=false
 Type=Application
