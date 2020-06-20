@@ -3829,7 +3829,7 @@ fi
 $as_echo "$as_me:${as_lineno-$LINENO}: checking for C++ compiler version" >&5
 set X $ac_compile
 ac_compiler=$2
-for ac_option in --version -v -V --version; do
+for ac_option in --version -v -V -qversion; do
   { { ac_try="$ac_compiler $ac_option >&5"
 case "(($ac_try" in
   *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
@@ -25749,10 +25749,10 @@ $as_echo "#define QT_QPA_PLATFORM_MINIMAL 1" >>confdefs.h
 
       if test "x$TARGET_OS" = xwindows; then
 
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for static Qt plugins: -lqwindows" >&5
-$as_echo_n "checking for static Qt plugins: -lqwindows... " >&6; }
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for static Qt plugins: -lQt5PlatformSupport -lqwindows" >&5
+$as_echo_n "checking for static Qt plugins: -lQt5PlatformSupport -lqwindows... " >&6; }
   CHECK_STATIC_PLUGINS_TEMP_LIBS="$LIBS"
-  LIBS="-lqwindows $QT_LIBS $LIBS"
+  LIBS="-lQt5PlatformSupport -lqwindows $QT_LIBS $LIBS"
   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -25769,19 +25769,19 @@ return 0;
 _ACEOF
 if ac_fn_cxx_try_link "$LINENO"; then :
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }; QT_LIBS="-lqwindows $QT_LIBS"
+$as_echo "yes" >&6; }; QT_LIBS="-lQt5PlatformSupport -lqwindows $QT_LIBS"
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; };
   if test "x$bitcoin_qt_want_version" = xauto && test "x$bitcoin_qt_force" != xyes; then
     if test "x$bitcoin_enable_qt" != xno; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not resolve: -lqwindows; vip-qt frontend will not be built" >&5
-$as_echo "$as_me: WARNING: Could not resolve: -lqwindows; vip-qt frontend will not be built" >&2;}
+      { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not resolve: -lQt5PlatformSupport -lqwindows; vip-qt frontend will not be built" >&5
+$as_echo "$as_me: WARNING: Could not resolve: -lQt5PlatformSupport -lqwindows; vip-qt frontend will not be built" >&2;}
     fi
     bitcoin_enable_qt=no
     bitcoin_enable_qt_test=no
   else
-    as_fn_error $? "Could not resolve: -lqwindows" "$LINENO" 5
+    as_fn_error $? "Could not resolve: -lQt5PlatformSupport -lqwindows" "$LINENO" 5
   fi
 
 fi

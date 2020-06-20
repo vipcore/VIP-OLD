@@ -980,6 +980,7 @@ on winzlinuz-HP-430-Notebook-PC
 config.status:1156: creating Makefile
 config.status:1156: creating libsecp256k1.pc
 config.status:1156: creating src/libsecp256k1-config.h
+config.status:1337: src/libsecp256k1-config.h is unchanged
 config.status:1385: executing depfiles commands
 config.status:1385: executing libtool commands
 
