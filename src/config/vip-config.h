@@ -1,9 +1,9 @@
 /* src/config/vip-config.h.  Generated from vip-config.h.in by configure.  */
 /* src/config/vip-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef BAC_CONFIG_H
+#ifndef VIP_CONFIG_H
 
-#define BAC_CONFIG_H
+#define VIP_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -30,7 +30,7 @@
 #define ENABLE_WALLET 1
 
 /* Define to 1 to enable ZMQ functions */
-#define ENABLE_ZMQ 1
+#define ENABLE_ZMQ 0
 
 /* parameter and return value type for __fdelt_chk */
 /* #undef FDELT_TYPE */
@@ -200,7 +200,7 @@
 #define HAVE_LIBWS2_32 1
 
 /* Define to 1 if you have the `z ' library (-lz ). */
-#define HAVE_LIBZ_ 1
+/* #undef HAVE_LIBZ_ */
 
 /* Define this symbol if you have malloc_info */
 /* #undef HAVE_MALLOC_INFO */
@@ -333,7 +333,7 @@
 /* #undef USE_DBUS */
 
 /* Define if QR support should be compiled in */
-/* #undef USE_QRCODE */
+#define USE_QRCODE 1
 
 /* UPnP support not compiled if undefined, otherwise value (0 or 1) determines
    default state */
@@ -362,4 +362,4 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
-#endif //BAC_CONFIG_H
+#endif //VIP_CONFIG_H

@@ -234,7 +234,8 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/src/config/vip-config.h.in \
 	$(top_srcdir)/src/test/buildenv.py.in COPYING INSTALL \
 	build-aux/compile build-aux/config.guess build-aux/config.sub \
-	build-aux/install-sh build-aux/ltmain.sh build-aux/missing
+	build-aux/depcomp build-aux/install-sh build-aux/ltmain.sh \
+	build-aux/missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -303,11 +304,11 @@ BOOST_SYSTEM_LIB = -lboost_system-mt-s
 BOOST_THREAD_LIB = -lboost_thread_win32-mt-s
 BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt-s
 BREW = 
-BUILD_QT = 
+BUILD_QT = qt
 BUILD_TEST = test
-BUILD_TEST_QT = 
-CC = i686-w64-mingw32-gcc
-CCACHE = 
+BUILD_TEST_QT = test
+CC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache i686-w64-mingw32-gcc
+CCACHE = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache
 CCDEPMODE = depmode=gcc3
 CFLAGS = -pipe -O2 
 CLIENT_VERSION_BUILD = 0
@@ -319,10 +320,10 @@ COMPARISON_TOOL_REORG_TESTS = 0
 COPYRIGHT_YEAR = 2020
 CPP = i686-w64-mingw32-gcc -E
 CPPFILT = /usr/bin/i686-w64-mingw32-c++filt
-CPPFLAGS = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/ -I/mnt/VIP/db4/include/ -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -D_FILE_OFFSET_BITS=64 -DHAVE_QT5
+CPPFLAGS = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -D_FILE_OFFSET_BITS=64 -DHAVE_QT5
 CRYPTO_CFLAGS = 
 CRYPTO_LIBS = -lcrypto
-CXX = i686-w64-mingw32-g++ -std=c++11
+CXX = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache i686-w64-mingw32-g++ -std=c++11
 CXXCPP = i686-w64-mingw32-g++ -std=c++11 -E
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -pipe -O2 
@@ -360,21 +361,21 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-JAVA_COMPARISON_TOOL = 
+JAVA_COMPARISON_TOOL = /mnt/VIP/depends/i686-w64-mingw32/share/../native/share/BitcoindComparisonTool_jar/BitcoindComparisonTool.jar
 LCOV = 
 LD = /usr/bin/i686-w64-mingw32-ld
-LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/db4/lib/ -Wl,--large-address-aware
+LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib  -Wl,--large-address-aware
 LEVELDB_CPPFLAGS = 
 LEVELDB_TARGET_FLAGS = TARGET_OS=OS_WINDOWS_CROSSCOMPILE
 LIBLEVELDB = 
 LIBMEMENV = 
 LIBOBJS = 
-LIBS = -lcrypto -lssp -lcrypt32 -liphlpapi -lshlwapi -lmswsock -lws2_32 -ladvapi32 -lrpcrt4 -luuid -loleaut32 -lole32 -lcomctl32 -lshell32 -lwinmm -lwinspool -lcomdlg32 -lgdi32 -luser32 -lkernel32 -lmingwthrd 
+LIBS = -lcrypto -lQt5PlatformSupport -lssp -lcrypt32 -liphlpapi -lshlwapi -lmswsock -lws2_32 -ladvapi32 -lrpcrt4 -luuid -loleaut32 -lole32 -lcomctl32 -lshell32 -lwinmm -lwinspool -lcomdlg32 -lgdi32 -luser32 -lkernel32 -lmingwthrd 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIBTOOL_APP_LDFLAGS =  -all-static
 LIPO = 
 LN_S = ln -s
-LRELEASE = 
+LRELEASE = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/lrelease
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
 LUPDATE = 
@@ -385,12 +386,12 @@ MANIFEST_TOOL = :
 MINIUPNPC_CPPFLAGS = -DSTATICLIB -DMINIUPNP_STATICLIB
 MINIUPNPC_LIBS = -lminiupnpc
 MKDIR_P = /bin/mkdir -p
-MOC = 
+MOC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/moc
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
 NM = i686-w64-mingw32-nm
 NMEDIT = 
 OBJCOPY = /usr/bin/i686-w64-mingw32-objcopy
-OBJCXX = i686-w64-mingw32-g++ -std=c++11
+OBJCXX = i686-w64-mingw32-g++
 OBJCXXDEPMODE = depmode=gcc3
 OBJCXXFLAGS = 
 OBJDUMP = i686-w64-mingw32-objdump
@@ -408,19 +409,19 @@ PATH_SEPARATOR = :
 PIC_FLAGS = 
 PIE_FLAGS = 
 PKG_CONFIG = /usr/bin/pkg-config --static
-PKG_CONFIG_LIBDIR = 
-PKG_CONFIG_PATH = /mnt/VIP/depends/i686-w64-mingw32/share/../share/pkgconfig:/mnt/VIP/depends/i686-w64-mingw32/share/../lib/pkgconfig
+PKG_CONFIG_LIBDIR = /mnt/VIP/depends/i686-w64-mingw32/share/../lib/pkgconfig
+PKG_CONFIG_PATH = /mnt/VIP/depends/i686-w64-mingw32/share/../share/pkgconfig
 PORT = 
 PROTOBUF_CFLAGS = 
-PROTOBUF_LIBS = 
-PROTOC = 
+PROTOBUF_LIBS = -lprotobuf
+PROTOC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/protoc
 PTHREAD_CC = i686-w64-mingw32-gcc
 PTHREAD_CFLAGS = -pthread
 PTHREAD_LIBS = 
 PYTHON = /usr/bin/python3.6
 PYTHONPATH = /mnt/VIP/depends/i686-w64-mingw32/share/../native/lib/python/dist-packages:
 QR_CFLAGS = 
-QR_LIBS = 
+QR_LIBS = -lqrencode
 QT4_CFLAGS = 
 QT4_LIBS = 
 QT5_CFLAGS = 
@@ -435,8 +436,8 @@ QT_DBUS_CFLAGS =
 QT_DBUS_INCLUDES = 
 QT_DBUS_LIBS = -lQt5DBus -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
 QT_INCLUDES = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtCore -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtGui -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtWidgets -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtNetwork -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtTest -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtDBus
-QT_LDFLAGS = 
-QT_LIBS = -lQt5Widgets -lQt5Network -lQt5Gui     -lQt5Core    -lz  -limm32  -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/depends/i686-w64-mingw32/share/../plugins/platforms
+QT_LDFLAGS =  -mwindows
+QT_LIBS = -lqwindows -lqminimal -lQt5Widgets -lQt5Network -lQt5Gui     -lQt5Core    -lqtharfbuzzng -lqtpcre -limm32  -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/depends/i686-w64-mingw32/share/../plugins/platforms
 QT_PIE_FLAGS = 
 QT_SELECT = qt5
 QT_TEST_CFLAGS = 
@@ -444,7 +445,7 @@ QT_TEST_INCLUDES =
 QT_TEST_LIBS = -lQt5Test -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
 QT_TRANSLATION_DIR = /mnt/VIP/depends/i686-w64-mingw32/share/../translations
 RANLIB = /usr/bin/i686-w64-mingw32-ranlib
-RCC = 
+RCC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/rcc
 READELF = /usr/bin/i686-w64-mingw32-readelf
 RELDFLAGS = 
 RSVG_CONVERT = 
@@ -456,7 +457,7 @@ SSL_LIBS = -lssl
 STRIP = /usr/bin/i686-w64-mingw32-strip
 TESTDEFS = 
 TIFFCP = 
-UIC = 
+UIC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/uic
 UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_QRCODE = 
@@ -467,8 +468,8 @@ WINDRES = /usr/bin/i686-w64-mingw32-windres
 X11XCB_CFLAGS = 
 X11XCB_LIBS = 
 XGETTEXT = /usr/bin/xgettext
-ZMQ_CFLAGS =  -DZMQ_STATIC
-ZMQ_LIBS = -lzmq
+ZMQ_CFLAGS = 
+ZMQ_LIBS = 
 abs_builddir = /mnt/VIP
 abs_srcdir = /mnt/VIP
 abs_top_builddir = /mnt/VIP
