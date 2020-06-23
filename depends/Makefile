@@ -1,6 +1,7 @@
 .NOTPARALLEL :
 
 SOURCES_PATH ?= $(BASEDIR)/sources
+WORK_PATH = $(BASEDIR)/work
 BASE_CACHE ?= $(BASEDIR)/built
 SDK_PATH ?= $(BASEDIR)/SDKs
 NO_QT ?=
@@ -134,6 +135,7 @@ $(host_prefix)/share/config.site : config.site.in $(host_prefix)/.stamp_$(final_
             -e 's|@CXXFLAGS@|$(strip $(host_CXXFLAGS) $(host_$(release_type)_CXXFLAGS))|' \
             -e 's|@CPPFLAGS@|$(strip $(host_CPPFLAGS) $(host_$(release_type)_CPPFLAGS))|' \
             -e 's|@LDFLAGS@|$(strip $(host_LDFLAGS) $(host_$(release_type)_LDFLAGS))|' \
+            -e 's|@allow_host_packages@|$(ALLOW_HOST_PACKAGES)|' \
             -e 's|@no_qt@|$(NO_QT)|' \
             -e 's|@no_wallet@|$(NO_WALLET)|' \
             -e 's|@no_upnp@|$(NO_UPNP)|' \
@@ -164,6 +166,12 @@ check-sources:
 $(host_prefix)/share/config.site: check-packages
 
 check-packages: check-sources
+
+clean-all: clean
+	@rm -rf $(SOURCES_PATH) x86_64* i686* mips* arm* aarch64* riscv32* riscv64*
+
+clean:
+	@rm -rf $(WORK_PATH) $(BASE_CACHE) $(BUILD)
 
 install: check-packages $(host_prefix)/share/config.site
 

@@ -1,4 +1,4 @@
-Name "Vip Core (32-bit)"
+Name "Vip Core (-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -10,25 +10,25 @@ SetCompressor /SOLID lzma
 !define URL https://www.vip.org
 
 # MUI Symbol Definitions
-!define MUI_ICON "/mnt/VIP/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/mnt/VIP/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/mnt/VIP/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "Vip Core"
-!define MUI_FINISHPAGE_RUN $INSTDIR\vip-qt.exe
+!define MUI_FINISHPAGE_RUN $INSTDIR\vip-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/VIP/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
 !include Sections.nsh
 !include MUI2.nsh
-!if "32" == "64"
+!if "" == "64"
 !include x64.nsh
 !endif
 
@@ -48,8 +48,8 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /mnt/VIP/vip-${VERSION}-win32-setup.exe
-!if "32" == "64"
+OutFile /mnt/ALANG-PROJECT/VIP-master/vip-${VERSION}-win-setup.exe
+!if "" == "64"
 InstallDir $PROGRAMFILES64\Vip
 !else
 InstallDir $PROGRAMFILES\Vip
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /mnt/VIP/release/vip-qt.exe
-    File /oname=COPYING.txt /mnt/VIP/COPYING
-    File /oname=readme.txt /mnt/VIP/doc/README_windows.txt
+    File /mnt/ALANG-PROJECT/VIP-master/release/vip-qt
+    File /oname=COPYING.txt /mnt/ALANG-PROJECT/VIP-master/COPYING
+    File /oname=readme.txt /mnt/ALANG-PROJECT/VIP-master/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /mnt/VIP/release/vipd.exe
-    File /mnt/VIP/release/vip-cli.exe
+    File /mnt/ALANG-PROJECT/VIP-master/release/vipd
+    File /mnt/ALANG-PROJECT/VIP-master/release/vip-cli
     SetOutPath $INSTDIR\doc
-    File /r /mnt/VIP/doc\*.*
+    File /r /mnt/ALANG-PROJECT/VIP-master/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd
@@ -91,8 +91,8 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\vip-qt.exe
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Vip Core (testnet, 32-bit).lnk" "$INSTDIR\vip-qt.exe" "-testnet" "$INSTDIR\vip-qt.exe" 1
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\vip-qt
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Vip Core (testnet, -bit).lnk" "$INSTDIR\vip-qt" "-testnet" "$INSTDIR\vip-qt" 1
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
@@ -105,8 +105,8 @@ Section -post SEC0001
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
     WriteRegStr HKCR "vip" "URL Protocol" ""
     WriteRegStr HKCR "vip" "" "URL:Vip"
-    WriteRegStr HKCR "vip\DefaultIcon" "" $INSTDIR\vip-qt.exe
-    WriteRegStr HKCR "vip\shell\open\command" "" '"$INSTDIR\vip-qt.exe" "%1"'
+    WriteRegStr HKCR "vip\DefaultIcon" "" $INSTDIR\vip-qt
+    WriteRegStr HKCR "vip\shell\open\command" "" '"$INSTDIR\vip-qt" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -124,7 +124,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\vip-qt.exe
+    Delete /REBOOTOK $INSTDIR\vip-qt
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -136,7 +136,7 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Vip Core (testnet, 32-bit).lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Vip Core (testnet, -bit).lnk"
     Delete /REBOOTOK "$SMSTARTUP\Vip.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
@@ -158,7 +158,7 @@ SectionEnd
 # Installer functions
 Function .onInit
     InitPluginsDir
-!if "32" == "64"
+!if "" == "64"
     ${If} ${RunningX64}
       ; disable registry redirection (enable access to 64-bit portion of registry)
       SetRegView 64

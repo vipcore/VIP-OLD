@@ -90,7 +90,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
-host_triplet = i686-w64-mingw32
+host_triplet = x86_64-pc-linux-gnu
 TESTS = test/object$(EXEEXT) test/unitester$(EXEEXT) \
 	test/no_nul$(EXEEXT)
 noinst_PROGRAMS = $(am__EXEEXT_1) test/test_json$(EXEEXT)
@@ -412,7 +412,7 @@ am__set_TESTS_bases = \
   bases=`echo $$bases`
 RECHECK_LOGS = $(TEST_LOGS)
 TEST_SUITE_LOG = test-suite.log
-TEST_EXTENSIONS = .exe .test
+TEST_EXTENSIONS =  .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
@@ -426,7 +426,7 @@ am__set_b = \
       b='$*';; \
   esac
 am__test_logs1 = $(TESTS:=.log)
-am__test_logs2 = $(am__test_logs1:.exe.log=.log)
+am__test_logs2 = $(am__test_logs1:.log=.log)
 TEST_LOGS = $(am__test_logs2:.test.log=.log)
 TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
@@ -462,35 +462,35 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /mnt/VIP/src/univalue/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
-AR = i686-w64-mingw32-ar
-AUTOCONF = ${SHELL} /mnt/VIP/src/univalue/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /mnt/VIP/src/univalue/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /mnt/VIP/src/univalue/build-aux/missing automake-1.15
+AR = ar
+AUTOCONF = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/missing automake-1.15
 AWK = mawk
 BUILD_EXEEXT = 
-CC = i686-w64-mingw32-gcc
+CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -pipe -O2 
-CPP = i686-w64-mingw32-gcc -E
-CPPFLAGS = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/ 
-CXX = i686-w64-mingw32-g++
-CXXCPP = i686-w64-mingw32-g++ -E
+CFLAGS = -g -O2
+CPP = gcc -E
+CPPFLAGS = 
+CXX = g++
+CXXCPP = g++ -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -pipe -O2 
+CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = i686-w64-mingw32-dlltool
+DLLTOOL = false
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
 EGREP = /bin/grep -E
-EXEEXT = .exe
+EXEEXT = 
 FGREP = /bin/grep -F
 GREP = /bin/grep
 INSTALL = /usr/bin/install -c
@@ -498,12 +498,12 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/i686-w64-mingw32-ld
-LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib 
+LD = /usr/bin/ld -m elf_x86_64
+LDFLAGS = 
 LIBOBJS = 
 LIBS = 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIBTOOL_APP_LDFLAGS =  -all-static
+LIBTOOL_APP_LDFLAGS = 
 LIBUNIVALUE_AGE = 100
 LIBUNIVALUE_CURRENT = 100
 LIBUNIVALUE_REVISION = 3
@@ -511,12 +511,12 @@ LIPO =
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-MAKEINFO = ${SHELL} /mnt/VIP/src/univalue/build-aux/missing makeinfo
+MAKEINFO = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/missing makeinfo
 MANIFEST_TOOL = :
 MKDIR_P = /bin/mkdir -p
-NM = i686-w64-mingw32-nm
+NM = /usr/bin/nm -B
 NMEDIT = 
-OBJDUMP = i686-w64-mingw32-objdump
+OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
@@ -528,19 +528,19 @@ PACKAGE_TARNAME = univalue
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0.3
 PATH_SEPARATOR = :
-RANLIB = i686-w64-mingw32-ranlib
+RANLIB = ranlib
 SED = /bin/sed
 SET_MAKE = 
 SHELL = /bin/bash
-STRIP = i686-w64-mingw32-strip
+STRIP = strip
 VERSION = 1.0.3
-abs_builddir = /mnt/VIP/src/univalue
-abs_srcdir = /mnt/VIP/src/univalue
-abs_top_builddir = /mnt/VIP/src/univalue
-abs_top_srcdir = /mnt/VIP/src/univalue
-ac_ct_AR = 
-ac_ct_CC = 
-ac_ct_CXX = 
+abs_builddir = /mnt/ALANG-PROJECT/VIP-master/src/univalue
+abs_srcdir = /mnt/ALANG-PROJECT/VIP-master/src/univalue
+abs_top_builddir = /mnt/ALANG-PROJECT/VIP-master/src/univalue
+abs_top_srcdir = /mnt/ALANG-PROJECT/VIP-master/src/univalue
+ac_ct_AR = ar
+ac_ct_CC = gcc
+ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
@@ -559,15 +559,15 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = i686-w64-mingw32
-host_alias = i686-w64-mingw32
-host_cpu = i686
-host_os = mingw32
-host_vendor = w64
+host = x86_64-pc-linux-gnu
+host_alias = 
+host_cpu = x86_64
+host_os = linux-gnu
+host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /mnt/VIP/src/univalue/build-aux/install-sh
+install_sh = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/src/univalue/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -576,7 +576,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /mnt/VIP/depends/i686-w64-mingw32
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -1225,13 +1225,13 @@ test/no_nul.log: test/no_nul$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-.test$(EXEEXT).log:
-	@p='$<'; \
-	$(am__set_b); \
-	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
+#.test$(EXEEXT).log:
+#	@p='$<'; \
+#	$(am__set_b); \
+#	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
+#	--log-file $$b.log --trs-file $$b.trs \
+#	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
+#	"$$tst" $(AM_TESTS_FD_REDIRECT)
 
 distdir: $(DISTFILES)
 	$(am__remove_distdir)

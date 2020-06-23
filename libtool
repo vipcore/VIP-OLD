@@ -1,5 +1,5 @@
 #! /bin/bash
-# Generated automatically by config.status (univalue) 1.0.3
+# Generated automatically by config.status (vip) 1.0.0
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -40,14 +40,14 @@ available_tags='CXX '
 macro_version=2.4.6
 macro_revision=2.4.6
 
+# What type of objects to build.
+pic_mode=yes
+
 # Whether or not to build shared libraries.
-build_libtool_libs=no
+build_libtool_libs=yes
 
 # Whether or not to build static libraries.
 build_old_libs=yes
-
-# What type of objects to build.
-pic_mode=yes
 
 # Whether or not to optimize for fast installation.
 fast_install=needless
@@ -141,7 +141,7 @@ DLLTOOL="false"
 sharedlib_from_linklib_cmd="printf %s\\n"
 
 # The archiver.
-AR="ar"
+AR="/usr/bin/ar"
 
 # Flags to create an archive.
 AR_FLAGS="cru"
@@ -150,10 +150,10 @@ AR_FLAGS="cru"
 archiver_list_spec="@"
 
 # A symbol stripping program.
-STRIP="strip"
+STRIP="/usr/bin/strip"
 
 # Commands used to install an old-style archive.
-RANLIB="ranlib"
+RANLIB="/usr/bin/ranlib"
 old_postinstall_cmds="chmod 644 \$oldlib~\$RANLIB \$tool_oldlib"
 old_postuninstall_cmds=""
 
@@ -335,7 +335,7 @@ link_static_flag="-static"
 compiler_c_o="yes"
 
 # Whether or not to add -lc for building shared libraries.
-build_libtool_need_lc=yes
+build_libtool_need_lc=no
 
 # Whether or not to disallow shared libs when runtime libs are static.
 allow_libtool_libs_with_static_runtimes=no
@@ -378,7 +378,7 @@ no_undefined_flag=""
 
 # Flag to hardcode $libdir into a binary during linking.
 # This must work even if $libdir does not exist
-hardcode_libdir_flag_spec="\$wl-rpath \$wl\$libdir"
+hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "
 
 # Whether we need a single "-rpath" flag with a separated argument.
 hardcode_libdir_separator=""
@@ -11679,7 +11679,7 @@ reload_cmds="\$LD\$reload_flag -o \$output\$reload_objs"
 old_archive_cmds="\$AR \$AR_FLAGS \$oldlib\$oldobjs~\$RANLIB \$tool_oldlib"
 
 # A language specific compiler.
-CC="g++"
+CC="g++ -std=c++11"
 
 # Is the compiler the GNU compiler?
 with_gcc=yes
@@ -11740,7 +11740,7 @@ no_undefined_flag=""
 
 # Flag to hardcode $libdir into a binary during linking.
 # This must work even if $libdir does not exist
-hardcode_libdir_flag_spec="\$wl-rpath \$wl\$libdir"
+hardcode_libdir_flag_spec=" -D__LIBTOOL_IS_A_FOOL__ "
 
 # Whether we need a single "-rpath" flag with a separated argument.
 hardcode_libdir_separator=""

@@ -97,7 +97,7 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = x86_64-pc-linux-gnu
-host_triplet = i686-w64-mingw32
+host_triplet = x86_64-pc-linux-gnu
 am__append_1 = -I$(srcdir)/leveldb/include \
 	-I$(srcdir)/leveldb/helpers/memenv
 am__append_2 = $(builddir)/leveldb/libleveldb.a
@@ -109,9 +109,9 @@ TESTS = $(am__EXEEXT_6) $(am__EXEEXT_5)
 am__append_4 = vipd
 am__append_5 = vip-cli vip-tx
 #am__append_6 = compat/glibc_compat.cpp
-am__append_7 = vipd-res.rc
-am__append_8 = vip-cli-res.rc
-am__append_9 = vip-tx-res.rc
+#am__append_7 = vipd-res.rc
+#am__append_8 = vip-cli-res.rc
+#am__append_9 = vip-tx-res.rc
 ##am__append_10 = compat/glibc_compat.cpp
 
 # Copyright (c) 2013-2016 The Bitcoin Core developers
@@ -138,11 +138,11 @@ am__append_14 = \
   test/rpc_wallet_tests.cpp
 
 am__append_15 = $(LIBBITCOIN_WALLET)
-#am__append_16 = $(ZMQ_LIBS)
+am__append_16 = $(ZMQ_LIBS)
 am__append_17 = $(CLEAN_BITCOIN_TEST)
 am__append_18 = qt/vip-qt
 am__append_19 = qt/libbitcoinqt.a
-am__append_20 = qt/winshutdownmonitor.cpp
+#am__append_20 = qt/winshutdownmonitor.cpp
 am__append_21 = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
@@ -180,9 +180,9 @@ am__append_21 = \
   qt/zpivcontroldialog.cpp
 
 #am__append_22 = $(BITCOIN_MM)
-am__append_23 = $(BITCOIN_RC)
+#am__append_23 = $(BITCOIN_RC)
 am__append_24 = $(LIBBITCOIN_WALLET)
-#am__append_25 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+am__append_25 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 am__append_26 = $(CLEAN_QT)
 
 # Copyright (c) 2013-2016 The Bitcoin Core developers
@@ -195,7 +195,7 @@ am__append_30 = \
   qt/test/paymentservertests.cpp
 
 am__append_31 = $(LIBBITCOIN_WALLET)
-#am__append_32 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+am__append_32 = $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 am__append_33 = $(CLEAN_BITCOIN_QT_TEST)
 subdir = src
 SUBDIRS =
@@ -422,9 +422,9 @@ libbitcoin_zmq_a_AR = $(AR) $(ARFLAGS)
 libbitcoin_zmq_a_LIBADD =
 am__libbitcoin_zmq_a_SOURCES_DIST = zmq/zmqabstractnotifier.cpp \
 	zmq/zmqnotificationinterface.cpp zmq/zmqpublishnotifier.cpp
-#am_libbitcoin_zmq_a_OBJECTS = zmq/libbitcoin_zmq_a-zmqabstractnotifier.$(OBJEXT) \
-#	zmq/libbitcoin_zmq_a-zmqnotificationinterface.$(OBJEXT) \
-#	zmq/libbitcoin_zmq_a-zmqpublishnotifier.$(OBJEXT)
+am_libbitcoin_zmq_a_OBJECTS = zmq/libbitcoin_zmq_a-zmqabstractnotifier.$(OBJEXT) \
+	zmq/libbitcoin_zmq_a-zmqnotificationinterface.$(OBJEXT) \
+	zmq/libbitcoin_zmq_a-zmqpublishnotifier.$(OBJEXT)
 libbitcoin_zmq_a_OBJECTS = $(am_libbitcoin_zmq_a_OBJECTS)
 libzerocoin_libbitcoin_zerocoin_a_AR = $(AR) $(ARFLAGS)
 libzerocoin_libbitcoin_zerocoin_a_LIBADD =
@@ -564,7 +564,7 @@ am__qt_libbitcoinqt_a_SOURCES_DIST = qt/bantablemodel.cpp \
 	qt/res/images/walletFrame.png qt/res/images/walletFrame_bg.png \
 	qt/res/css/default.css $(wildcard \
 	$(srcdir)/qt/res/movies/spinner-*.png)
-am__objects_3 = qt/qt_libbitcoinqt_a-winshutdownmonitor.$(OBJEXT)
+#am__objects_3 = qt/qt_libbitcoinqt_a-winshutdownmonitor.$(OBJEXT)
 am__objects_4 = qt/qt_libbitcoinqt_a-addressbookpage.$(OBJEXT) \
 	qt/qt_libbitcoinqt_a-addresstablemodel.$(OBJEXT) \
 	qt/qt_libbitcoinqt_a-askpassphrasedialog.$(OBJEXT) \
@@ -785,9 +785,9 @@ nodist_qt_test_test_vip_qt_OBJECTS =  \
 	$(am__objects_13)
 qt_test_test_vip_qt_OBJECTS = $(am_qt_test_test_vip_qt_OBJECTS) \
 	$(nodist_qt_test_test_vip_qt_OBJECTS)
-#am__DEPENDENCIES_2 =  \
-#	$(LIBBITCOIN_ZMQ) \
-#	$(am__DEPENDENCIES_1)
+am__DEPENDENCIES_2 =  \
+	$(LIBBITCOIN_ZMQ) \
+	$(am__DEPENDENCIES_1)
 #am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
 am__DEPENDENCIES_3 = univalue/libunivalue.la
 am__DEPENDENCIES_4 = $(am__append_2)
@@ -825,14 +825,14 @@ am__objects_14 =  \
 #am__objects_15 =  \
 #	$(am__objects_14)
 am__objects_16 = qt/res/vip-qt-res.$(OBJEXT)
-am__objects_17 =  \
-	$(am__objects_16)
+#am__objects_17 =  \
+#	$(am__objects_16)
 am_qt_vip_qt_OBJECTS = qt/qt_vip_qt-vip.$(OBJEXT) \
 	$(am__objects_15) $(am__objects_17)
 qt_vip_qt_OBJECTS = $(am_qt_vip_qt_OBJECTS)
-#am__DEPENDENCIES_6 =  \
-#	$(LIBBITCOIN_ZMQ) \
-#	$(am__DEPENDENCIES_1)
+am__DEPENDENCIES_6 =  \
+	$(LIBBITCOIN_ZMQ) \
+	$(am__DEPENDENCIES_1)
 qt_vip_qt_DEPENDENCIES = qt/libbitcoinqt.a \
 	$(LIBBITCOIN_SERVER) $(am__append_24) \
 	$(am__DEPENDENCIES_6) $(LIBBITCOIN_CLI) \
@@ -935,8 +935,8 @@ am__objects_20 = $(am__objects_1) $(am__objects_1)
 nodist_test_test_vip_OBJECTS = $(am__objects_20)
 test_test_vip_OBJECTS = $(am_test_test_vip_OBJECTS) \
 	$(nodist_test_test_vip_OBJECTS)
-#am__DEPENDENCIES_7 =  \
-#	$(am__DEPENDENCIES_1)
+am__DEPENDENCIES_7 =  \
+	$(am__DEPENDENCIES_1)
 test_test_vip_DEPENDENCIES = $(LIBBITCOIN_SERVER) \
 	$(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) \
 	$(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) \
@@ -954,7 +954,7 @@ test_test_vip_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(test_test_vip_LDFLAGS) $(LDFLAGS) \
 	-o $@
 am__vip_cli_SOURCES_DIST = vip-cli.cpp vip-cli-res.rc
-am__objects_21 = vip-cli-res.$(OBJEXT)
+#am__objects_21 = vip-cli-res.$(OBJEXT)
 am_vip_cli_OBJECTS = vip_cli-vip-cli.$(OBJEXT) $(am__objects_21)
 vip_cli_OBJECTS = $(am_vip_cli_OBJECTS)
 vip_cli_DEPENDENCIES = $(LIBBITCOIN_CLI) $(am__DEPENDENCIES_3) \
@@ -965,7 +965,7 @@ vip_cli_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(vip_cli_CXXFLAGS) \
 	$(CXXFLAGS) $(vip_cli_LDFLAGS) $(LDFLAGS) -o $@
 am__vip_tx_SOURCES_DIST = vip-tx.cpp vip-tx-res.rc
-am__objects_22 = vip-tx-res.$(OBJEXT)
+#am__objects_22 = vip-tx-res.$(OBJEXT)
 am_vip_tx_OBJECTS = vip_tx-vip-tx.$(OBJEXT) $(am__objects_22)
 vip_tx_OBJECTS = $(am_vip_tx_OBJECTS)
 vip_tx_DEPENDENCIES = $(am__DEPENDENCIES_3) $(LIBBITCOIN_COMMON) \
@@ -975,7 +975,7 @@ vip_tx_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(vip_tx_CXXFLAGS) \
 	$(CXXFLAGS) $(vip_tx_LDFLAGS) $(LDFLAGS) -o $@
 am__vipd_SOURCES_DIST = vipd.cpp vipd-res.rc
-am__objects_23 = vipd-res.$(OBJEXT)
+#am__objects_23 = vipd-res.$(OBJEXT)
 am_vipd_OBJECTS = vipd-vipd.$(OBJEXT) $(am__objects_23)
 vipd_OBJECTS = $(am_vipd_OBJECTS)
 vipd_DEPENDENCIES = $(LIBBITCOIN_SERVER) $(LIBBITCOIN_COMMON) \
@@ -1287,7 +1287,7 @@ RECHECK_LOGS = $(TEST_LOGS)
 am__EXEEXT_6 = test/test_vip$(EXEEXT) \
 	test/bitcoin-util-test.py
 TEST_SUITE_LOG = test-suite.log
-TEST_EXTENSIONS = .exe .test
+TEST_EXTENSIONS =  .test
 LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)
 am__set_b = \
@@ -1301,7 +1301,7 @@ am__set_b = \
       b='$*';; \
   esac
 am__test_logs1 = $(TESTS:=.log)
-am__test_logs2 = $(am__test_logs1:.exe.log=.log)
+am__test_logs2 = $(am__test_logs1:.log=.log)
 TEST_LOGS = $(am__test_logs2:.test.log=.log)
 TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)/build-aux/test-driver
 TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \
@@ -1337,14 +1337,14 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-ACLOCAL = ${SHELL} /mnt/VIP/build-aux/missing aclocal-1.15
+ACLOCAL = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 0
-AR = /usr/bin/i686-w64-mingw32-ar
+AR = /usr/bin/ar
 ARFLAGS = cr
-AUTOCONF = ${SHELL} /mnt/VIP/build-aux/missing autoconf
-AUTOHEADER = ${SHELL} /mnt/VIP/build-aux/missing autoheader
-AUTOMAKE = ${SHELL} /mnt/VIP/build-aux/missing automake-1.15
+AUTOCONF = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/missing autoconf
+AUTOHEADER = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/missing autoheader
+AUTOMAKE = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/missing automake-1.15
 AWK = mawk
 BDB_CFLAGS = 
 BDB_CPPFLAGS = 
@@ -1353,23 +1353,23 @@ BITCOIN_CLI_NAME = vip-cli
 BITCOIN_DAEMON_NAME = vipd
 BITCOIN_GUI_NAME = vip-qt
 BITCOIN_TX_NAME = vip-tx
-BOOST_CHRONO_LIB = -lboost_chrono-mt-s
-BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -mthreads -I/mnt/VIP/depends/i686-w64-mingw32/share/../include
-BOOST_FILESYSTEM_LIB = -lboost_filesystem-mt-s
-BOOST_LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
-BOOST_LIBS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -lboost_system-mt-s -lboost_filesystem-mt-s -lboost_program_options-mt-s -lboost_thread_win32-mt-s -lboost_chrono-mt-s
-BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options-mt-s
-BOOST_SYSTEM_LIB = -lboost_system-mt-s
-BOOST_THREAD_LIB = -lboost_thread_win32-mt-s
-BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework-mt-s
+BOOST_CHRONO_LIB = -lboost_chrono
+BOOST_CPPFLAGS = -DBOOST_SP_USE_STD_ATOMIC -DBOOST_AC_USE_STD_ATOMIC -pthread -I/usr/include
+BOOST_FILESYSTEM_LIB = -lboost_filesystem
+BOOST_LDFLAGS = -L/usr/lib/x86_64-linux-gnu
+BOOST_LIBS = -L/usr/lib/x86_64-linux-gnu -lboost_system -lboost_filesystem -lboost_program_options -lboost_thread -lboost_chrono
+BOOST_PROGRAM_OPTIONS_LIB = -lboost_program_options
+BOOST_SYSTEM_LIB = -lboost_system
+BOOST_THREAD_LIB = -lboost_thread
+BOOST_UNIT_TEST_FRAMEWORK_LIB = -lboost_unit_test_framework
 BREW = 
 BUILD_QT = qt
 BUILD_TEST = test
 BUILD_TEST_QT = test
-CC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache i686-w64-mingw32-gcc
-CCACHE = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache
+CC = gcc
+CCACHE = 
 CCDEPMODE = depmode=gcc3
-CFLAGS = -pipe -O2 
+CFLAGS = -g -O2
 CLIENT_VERSION_BUILD = 0
 CLIENT_VERSION_IS_RELEASE = true
 CLIENT_VERSION_MAJOR = 1
@@ -1377,19 +1377,19 @@ CLIENT_VERSION_MINOR = 0
 CLIENT_VERSION_REVISION = 0
 COMPARISON_TOOL_REORG_TESTS = 0
 COPYRIGHT_YEAR = 2020
-CPP = i686-w64-mingw32-gcc -E
-CPPFILT = /usr/bin/i686-w64-mingw32-c++filt
-CPPFLAGS = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -D_MT -DWIN32 -D_WINDOWS -DBOOST_THREAD_USE_LIB -D_FILE_OFFSET_BITS=64 -DHAVE_QT5
+CPP = gcc -E
+CPPFILT = /usr/bin/c++filt
+CPPFLAGS =  -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS -DHAVE_QT5
 CRYPTO_CFLAGS = 
 CRYPTO_LIBS = -lcrypto
-CXX = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/ccache i686-w64-mingw32-g++ -std=c++11
-CXXCPP = i686-w64-mingw32-g++ -std=c++11 -E
+CXX = g++ -std=c++11
+CXXCPP = g++ -std=c++11 -E
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -pipe -O2 
+CXXFLAGS = -g -O2 -Wall -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter -Wno-implicit-fallthrough
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
-DLLTOOL = i686-w64-mingw32-dlltool
+DLLTOOL = false
 DSYMUTIL = 
 DUMPBIN = 
 ECHO_C = 
@@ -1399,18 +1399,18 @@ EGREP = /bin/grep -E
 ERROR_CXXFLAGS = 
 EVENT_CFLAGS = 
 EVENT_LIBS = -levent
-EVENT_PTHREADS_CFLAGS = 
-EVENT_PTHREADS_LIBS = 
-EXEEXT = .exe
+EVENT_PTHREADS_CFLAGS = -pthread
+EVENT_PTHREADS_LIBS = -levent_pthreads -levent
+EXEEXT = 
 FGREP = /bin/grep -F
-GCOV = /usr/bin/i686-w64-mingw32-gcov
+GCOV = /usr/bin/gcov
 GENHTML = 
 GENISOIMAGE = 
 GIT = /usr/bin/git
 GREP = /bin/grep
 HARDENED_CPPFLAGS =  -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 HARDENED_CXXFLAGS =  -Wstack-protector -fstack-protector-all
-HARDENED_LDFLAGS =  -Wl,--dynamicbase -Wl,--nxcompat
+HARDENED_LDFLAGS =  -Wl,-z,relro -Wl,-z,now
 HAVE_CXX11 = 1
 HEXDUMP = /usr/bin/hexdump
 IMAGEMAGICK_CONVERT = 
@@ -1420,40 +1420,40 @@ INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-JAVA_COMPARISON_TOOL = /mnt/VIP/depends/i686-w64-mingw32/share/../native/share/BitcoindComparisonTool_jar/BitcoindComparisonTool.jar
+JAVA_COMPARISON_TOOL = 
 LCOV = 
-LD = /usr/bin/i686-w64-mingw32-ld
-LDFLAGS = -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib  -Wl,--large-address-aware
+LD = /usr/bin/ld -m elf_x86_64
+LDFLAGS = 
 LEVELDB_CPPFLAGS =  $(am__append_1)
-LEVELDB_TARGET_FLAGS = TARGET_OS=OS_WINDOWS_CROSSCOMPILE
+LEVELDB_TARGET_FLAGS = 
 LIBLEVELDB =  $(am__append_2)
 LIBMEMENV =  $(am__append_3)
 LIBOBJS = 
-LIBS = -lcrypto -lQt5PlatformSupport -lssp -lcrypt32 -liphlpapi -lshlwapi -lmswsock -lws2_32 -ladvapi32 -lrpcrt4 -luuid -loleaut32 -lole32 -lcomctl32 -lshell32 -lwinmm -lwinspool -lcomdlg32 -lgdi32 -luser32 -lkernel32 -lmingwthrd 
+LIBS = -lcrypto -lanl 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIBTOOL_APP_LDFLAGS =  -all-static
+LIBTOOL_APP_LDFLAGS = 
 LIPO = 
 LN_S = ln -s
-LRELEASE = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/lrelease
+LRELEASE = /usr/lib/qt5/bin/lrelease
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
-LUPDATE = 
+LUPDATE = /usr/lib/qt5/bin/lupdate
 MAINT = 
-MAKEINFO = ${SHELL} /mnt/VIP/build-aux/missing makeinfo
-MAKENSIS = none
+MAKEINFO = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/missing makeinfo
+MAKENSIS = 
 MANIFEST_TOOL = :
-MINIUPNPC_CPPFLAGS = -DSTATICLIB -DMINIUPNP_STATICLIB
+MINIUPNPC_CPPFLAGS = 
 MINIUPNPC_LIBS = -lminiupnpc
 MKDIR_P = /bin/mkdir -p
-MOC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/moc
+MOC = /usr/lib/qt5/bin/moc
 MOC_DEFS = -DHAVE_CONFIG_H -I$(srcdir)
-NM = i686-w64-mingw32-nm
+NM = /usr/bin/nm -B
 NMEDIT = 
-OBJCOPY = /usr/bin/i686-w64-mingw32-objcopy
-OBJCXX = i686-w64-mingw32-g++
+OBJCOPY = /usr/bin/objcopy
+OBJCXX = g++ -std=c++11
 OBJCXXDEPMODE = depmode=gcc3
 OBJCXXFLAGS = 
-OBJDUMP = i686-w64-mingw32-objdump
+OBJDUMP = objdump
 OBJEXT = o
 OTOOL = 
 OTOOL64 = 
@@ -1465,47 +1465,47 @@ PACKAGE_TARNAME = vip
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0.0
 PATH_SEPARATOR = :
-PIC_FLAGS = 
-PIE_FLAGS = 
-PKG_CONFIG = /usr/bin/pkg-config --static
-PKG_CONFIG_LIBDIR = /mnt/VIP/depends/i686-w64-mingw32/share/../lib/pkgconfig
-PKG_CONFIG_PATH = /mnt/VIP/depends/i686-w64-mingw32/share/../share/pkgconfig
+PIC_FLAGS = -fPIC
+PIE_FLAGS = -fPIC
+PKG_CONFIG = /usr/bin/pkg-config
+PKG_CONFIG_LIBDIR = 
+PKG_CONFIG_PATH = 
 PORT = 
-PROTOBUF_CFLAGS = 
-PROTOBUF_LIBS = -lprotobuf
-PROTOC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/protoc
-PTHREAD_CC = i686-w64-mingw32-gcc
+PROTOBUF_CFLAGS = -pthread
+PROTOBUF_LIBS = -lprotobuf -pthread -lpthread
+PROTOC = /usr/bin/protoc
+PTHREAD_CC = gcc
 PTHREAD_CFLAGS = -pthread
 PTHREAD_LIBS = 
 PYTHON = /usr/bin/python3.6
-PYTHONPATH = /mnt/VIP/depends/i686-w64-mingw32/share/../native/lib/python/dist-packages:
+PYTHONPATH = 
 QR_CFLAGS = 
 QR_LIBS = -lqrencode
 QT4_CFLAGS = 
 QT4_LIBS = 
-QT5_CFLAGS = 
-QT5_LIBS = 
+QT5_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT5_LIBS = -lQt5Network -lQt5Widgets -lQt5Gui -lQt5Core
 QTPLATFORM_CFLAGS = 
 QTPLATFORM_LIBS = 
 QTPRINT_CFLAGS = 
 QTPRINT_LIBS = 
 QTXCBQPA_CFLAGS = 
 QTXCBQPA_LIBS = 
-QT_DBUS_CFLAGS = 
-QT_DBUS_INCLUDES = 
-QT_DBUS_LIBS = -lQt5DBus -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
-QT_INCLUDES = -I/mnt/VIP/depends/i686-w64-mingw32/share/../include -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtCore -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtGui -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtWidgets -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtNetwork -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtTest -I/mnt/VIP/depends/i686-w64-mingw32/share/../include/QtDBus
-QT_LDFLAGS =  -mwindows
-QT_LIBS = -lqwindows -lqminimal -lQt5Widgets -lQt5Network -lQt5Gui     -lQt5Core    -lqtharfbuzzng -lqtpcre -limm32  -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib -L/mnt/VIP/depends/i686-w64-mingw32/share/../plugins/platforms
-QT_PIE_FLAGS = 
+QT_DBUS_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_DBUS_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtDBus -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_DBUS_LIBS = -lQt5DBus -lQt5Core
+QT_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_LDFLAGS = 
+QT_LIBS = -lQt5Network -lQt5Widgets -lQt5Gui -lQt5Core
+QT_PIE_FLAGS = -fPIC
 QT_SELECT = qt5
-QT_TEST_CFLAGS = 
-QT_TEST_INCLUDES = 
-QT_TEST_LIBS = -lQt5Test -L/mnt/VIP/depends/i686-w64-mingw32/share/../lib
-QT_TRANSLATION_DIR = /mnt/VIP/depends/i686-w64-mingw32/share/../translations
-RANLIB = /usr/bin/i686-w64-mingw32-ranlib
-RCC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/rcc
-READELF = /usr/bin/i686-w64-mingw32-readelf
+QT_TEST_CFLAGS = -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_TEST_INCLUDES = -I/usr/include/x86_64-linux-gnu/qt5/QtTest -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/x86_64-linux-gnu/qt5
+QT_TEST_LIBS = -lQt5Test -lQt5Core
+QT_TRANSLATION_DIR = 
+RANLIB = /usr/bin/ranlib
+RCC = /usr/lib/qt5/bin/rcc
+READELF = /usr/bin/readelf
 RELDFLAGS = 
 RSVG_CONVERT = 
 SED = /bin/sed
@@ -1513,29 +1513,29 @@ SET_MAKE =
 SHELL = /bin/bash
 SSL_CFLAGS = 
 SSL_LIBS = -lssl
-STRIP = /usr/bin/i686-w64-mingw32-strip
-TESTDEFS = 
+STRIP = /usr/bin/strip
+TESTDEFS =  -DBOOST_TEST_DYN_LINK
 TIFFCP = 
-UIC = /mnt/VIP/depends/i686-w64-mingw32/share/../native/bin/uic
+UIC = /usr/lib/qt5/bin/uic
 UNIVALUE_CFLAGS = -I$(srcdir)/univalue/include
 UNIVALUE_LIBS = univalue/libunivalue.la
 USE_QRCODE = 
 USE_UPNP = 
 VERSION = 1.0.0
-WINDOWS_BITS = 32
-WINDRES = /usr/bin/i686-w64-mingw32-windres
+WINDOWS_BITS = 
+WINDRES = 
 X11XCB_CFLAGS = 
 X11XCB_LIBS = 
 XGETTEXT = /usr/bin/xgettext
 ZMQ_CFLAGS = 
-ZMQ_LIBS = 
-abs_builddir = /mnt/VIP/src
-abs_srcdir = /mnt/VIP/src
-abs_top_builddir = /mnt/VIP
-abs_top_srcdir = /mnt/VIP
-ac_ct_AR = 
-ac_ct_CC = 
-ac_ct_CXX = 
+ZMQ_LIBS = -lzmq
+abs_builddir = /mnt/ALANG-PROJECT/VIP-master/src
+abs_srcdir = /mnt/ALANG-PROJECT/VIP-master/src
+abs_top_builddir = /mnt/ALANG-PROJECT/VIP-master
+abs_top_srcdir = /mnt/ALANG-PROJECT/VIP-master
+ac_ct_AR = ar
+ac_ct_CC = gcc
+ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
 ac_ct_OBJCXX = 
 am__include = include
@@ -1556,15 +1556,15 @@ datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = i686-w64-mingw32
-host_alias = i686-w64-mingw32
-host_cpu = i686
-host_os = mingw32
-host_vendor = w64
+host = x86_64-pc-linux-gnu
+host_alias = 
+host_cpu = x86_64
+host_os = linux-gnu
+host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /mnt/VIP/build-aux/install-sh
+install_sh = ${SHELL} /mnt/ALANG-PROJECT/VIP-master/build-aux/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -1573,7 +1573,7 @@ mandir = ${datarootdir}/man
 mkdir_p = $(MKDIR_P)
 oldincludedir = /usr/include
 pdfdir = ${docdir}
-prefix = /mnt/VIP/depends/i686-w64-mingw32
+prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
 runstatedir = ${localstatedir}/run
@@ -1611,7 +1611,7 @@ LIBBITCOIN_CRYPTO = crypto/libbitcoin_crypto.a
 LIBBITCOIN_ZEROCOIN = libzerocoin/libbitcoin_zerocoin.a
 LIBBITCOINQT = qt/libbitcoinqt.a
 LIBSECP256K1 = secp256k1/libsecp256k1.la
-#LIBBITCOIN_ZMQ = libbitcoin_zmq.a
+LIBBITCOIN_ZMQ = libbitcoin_zmq.a
 #LIBBITCOINCONSENSUS = libbitcoinconsensus.la
 LIBBITCOIN_WALLET = libbitcoin_wallet.a
 lib_LTLIBRARIES = $(LIBBITCOINCONSENSUS)
@@ -1767,12 +1767,12 @@ libbitcoin_server_a_SOURCES = \
   zpivchain.cpp \
   $(BITCOIN_CORE_H)
 
-#libbitcoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-#libbitcoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-#libbitcoin_zmq_a_SOURCES = \
-#  zmq/zmqabstractnotifier.cpp \
-#  zmq/zmqnotificationinterface.cpp \
-#  zmq/zmqpublishnotifier.cpp
+libbitcoin_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libbitcoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libbitcoin_zmq_a_SOURCES = \
+  zmq/zmqabstractnotifier.cpp \
+  zmq/zmqnotificationinterface.cpp \
+  zmq/zmqpublishnotifier.cpp
 
 
 # wallet: shared between vipd and vip-qt, but only linked
@@ -8093,13 +8093,13 @@ qt/test/test_vip-qt.log: qt/test/test_vip-qt$(EXEEXT)
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
 	"$$tst" $(AM_TESTS_FD_REDIRECT)
-.test$(EXEEXT).log:
-	@p='$<'; \
-	$(am__set_b); \
-	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
-	--log-file $$b.log --trs-file $$b.trs \
-	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
-	"$$tst" $(AM_TESTS_FD_REDIRECT)
+#.test$(EXEEXT).log:
+#	@p='$<'; \
+#	$(am__set_b); \
+#	$(am__check_pre) $(TEST_LOG_DRIVER) --test-name "$$f" \
+#	--log-file $$b.log --trs-file $$b.trs \
+#	$(am__common_driver_flags) $(AM_TEST_LOG_DRIVER_FLAGS) $(TEST_LOG_DRIVER_FLAGS) -- $(TEST_LOG_COMPILE) \
+#	"$$tst" $(AM_TESTS_FD_REDIRECT)
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
