@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Use the raw transactions API to spend BACs received on particular addresses,
+# Use the raw transactions API to spend VIPs received on particular addresses,
 # and send any change back to that same address.
 #
 # Example usage:

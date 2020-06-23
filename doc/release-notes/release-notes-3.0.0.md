@@ -19,7 +19,7 @@ Users updating from a previous version after the 13th of October will require a 
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/BAC-Qt (on Mac) or vipd/vip-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/VIP-Qt (on Mac) or vipd/vip-qt (on Linux).
 
 Compatibility
 ==============
@@ -43,53 +43,53 @@ frequently tested on them.
 Notable Changes
 ===============
 
-Zerocoin (zBAC) Protocol
+Zerocoin (zVIP) Protocol
 ---------------------
 
-At long last, the zBAC release is here and the zerocoin protocol has been fully implemented! This allows users to send transactions with 100% fungible coins and absolutely zero history or link-ability to their previous owners.
+At long last, the zVIP release is here and the zerocoin protocol has been fully implemented! This allows users to send transactions with 100% fungible coins and absolutely zero history or link-ability to their previous owners.
 
-The Zerocoin protocol allows user to convert (mint) their *BAC* to zerocoins, which we call *zBAC*. When zBAC are converted back to BAC there is no trail associated with the coins being sent, such as who originally minted those coins. Essentially the only thing the receiver of the zBAC transaction will see is that it came from the zerocoin protocol.
+The Zerocoin protocol allows user to convert (mint) their *VIP* to zerocoins, which we call *zVIP*. When zVIP are converted back to VIP there is no trail associated with the coins being sent, such as who originally minted those coins. Essentially the only thing the receiver of the zVIP transaction will see is that it came from the zerocoin protocol.
 
-### zBAC Denominations
-zBAC comes in specific denominations of 1, 5, 10, 50, 100, 500, 1000, and 5000. A denomination is a similar concept to paper currency, where you can hold a $100 bill but there is no available $99 bill for you to hold.
+### zVIP Denominations
+zVIP comes in specific denominations of 1, 5, 10, 50, 100, 500, 1000, and 5000. A denomination is a similar concept to paper currency, where you can hold a $100 bill but there is no available $99 bill for you to hold.
 
-Other implementations of the zerocoin protocol only allow for spending of one denomination/zerocoin at a time. The BAC implementation of zerocoin allows users to spend any amount of zBAC they would like (with certain limitations). If a user held two denominations of 5 and they send 7.75 to a merchant, the wallet will automatically grab the two denominations of 5 and then issue 2.25 BAC in change to the spender. There is currently a limit of up to 6 individual zerocoin `coins` that can be combined into a spend, where each `coin` could be a different or similar denomination
+Other implementations of the zerocoin protocol only allow for spending of one denomination/zerocoin at a time. The VIP implementation of zerocoin allows users to spend any amount of zVIP they would like (with certain limitations). If a user held two denominations of 5 and they send 7.75 to a merchant, the wallet will automatically grab the two denominations of 5 and then issue 2.25 VIP in change to the spender. There is currently a limit of up to 6 individual zerocoin `coins` that can be combined into a spend, where each `coin` could be a different or similar denomination
 
-The BAC zerocoin implementation is structured in such a way that denominations aren't needed to be known by the average user.
+The VIP zerocoin implementation is structured in such a way that denominations aren't needed to be known by the average user.
 
 ### Fees
-zVip transactions require more computation and disk space than typical BAC transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zVip, each minted denomination is charged a flat rate of 0.01 Vip. zVip spends are not charged a transaction fee unless the change is minted into zVip, see the *Minting Change* section for details on fees for zVip spends with minted change.
+zVip transactions require more computation and disk space than typical VIP transactions, and as such require a higher transaction fee in order to prevent network spam. Fees are only charged when minting zVip, each minted denomination is charged a flat rate of 0.01 Vip. zVip spends are not charged a transaction fee unless the change is minted into zVip, see the *Minting Change* section for details on fees for zVip spends with minted change.
 
-### Converting BAC to zBAC (*zBAC Mint*)
-**GUI** - Conversion from BAC to zBAC can be done using the `Privacy Dialog` in the QT wallet. Enter the amount of BAC you would like to convert and click `Mint Zerocoin`.
+### Converting VIP to zVIP (*zVIP Mint*)
+**GUI** - Conversion from VIP to zVIP can be done using the `Privacy Dialog` in the QT wallet. Enter the amount of VIP you would like to convert and click `Mint Zerocoin`.
 
-**RPC** - Conversion from BAC to zBAC can be done using the `mintzerocoin` command.
+**RPC** - Conversion from VIP to zVIP can be done using the `mintzerocoin` command.
 
-**Automint** - The BAC wallet is set to convert 10% of the wallets available BAC to zBAC automatically. This can be adjusted in the GUI within the Options dialog, which allows the preferred % to be adjusted as well as the ability to set the preferred zBAC denomination that will be minted. Automint is set to be triggered when additional blocks are added to the block chain and is programmed *not* to convert your coins all at once.
+**Automint** - The VIP wallet is set to convert 10% of the wallets available VIP to zVIP automatically. This can be adjusted in the GUI within the Options dialog, which allows the preferred % to be adjusted as well as the ability to set the preferred zVIP denomination that will be minted. Automint is set to be triggered when additional blocks are added to the block chain and is programmed *not* to convert your coins all at once.
 
 Automint can be disabled by adding `enablezeromint=0` to the wallet configuration file. The preferred mint % and denomination can also be set by the configuration file using `zeromintpercentage=<n>` and `preferredDenom=<n>`.
 
-### Converting zBAC to BAC (*zBAC Spend*)
-Redeeming zBAC is done by converting it back to BAC. With the 3.0.0 software release, users are not able to send zBAC to each other directly in an atomic fashion.
+### Converting zVIP to VIP (*zVIP Spend*)
+Redeeming zVIP is done by converting it back to VIP. With the 3.0.0 software release, users are not able to send zVIP to each other directly in an atomic fashion.
 
-**GUI** - Conversion from zBAC to BAC can be done using the `Privacy Dialog` in the QT wallet. Enter a BAC address that you would like to Pay To, enter the amount of BAC the receiver should be sent, click `Spend Zerocoin`.
+**GUI** - Conversion from zVIP to VIP can be done using the `Privacy Dialog` in the QT wallet. Enter a VIP address that you would like to Pay To, enter the amount of VIP the receiver should be sent, click `Spend Zerocoin`.
 
-**RPC** - Conversion from zBAC to BAC can be done using the `spendzerocoin` command.
+**RPC** - Conversion from zVIP to VIP can be done using the `spendzerocoin` command.
 
 ### Advanced Use & Privacy Considerations
-**Security Level** - When spending zBAC, a user is prompted to enter a *Security Level* choosing from 1-100. In an indirect way, the Security Level parameter allows the user to choose how many coins to obfuscate their transaction with.
+**Security Level** - When spending zVIP, a user is prompted to enter a *Security Level* choosing from 1-100. In an indirect way, the Security Level parameter allows the user to choose how many coins to obfuscate their transaction with.
 
 A Security Level of 1 for example would take all of the minted coins in the blockchain before your mint was added to the blockchain, and would then add any coins that were minted within the next 10 blocks as well. A Security Level of 2 would do the same thing, except add the next 20 blocks worth of mints. A **Security Level of 100 will add the maximum amount of mints** up to the current end of the blockchain.
 
 The higher the Security Level, the more computation and time it will take to spend. Although it takes longer, a level of 100 is recommended for transactions that need maximum anonymity.
 
 
-**Minting Change** - The BAC implementation of the zerocoin protocol also allows the spender to choose how to receive their leftover change from a Spend transaction. For maximum anonymity it is recommended that the spender choose to receive the change in zBAC, which prevents situations where change from a zBAC spend that is redeemed in BAC is accidentally mixed with the rest of the users BAC, thus linking transactions back to a BAC address.
+**Minting Change** - The VIP implementation of the zerocoin protocol also allows the spender to choose how to receive their leftover change from a Spend transaction. For maximum anonymity it is recommended that the spender choose to receive the change in zVIP, which prevents situations where change from a zVIP spend that is redeemed in VIP is accidentally mixed with the rest of the users VIP, thus linking transactions back to a VIP address.
 
-Since the lowest denomination of zBAC is 1, and a fee is required to mint zBAC, in most situations a high fee will be paid to mint change. The fee is the remainder of the change that cannot be converted back to zBAC. For example this would mean a spending a denomination of 10 that yields change of 6.75 in change, would issue zBAC denominations of 5 and 1 back to the sender with the remaining 0.75 that is unmintable being contributed as a fee.
+Since the lowest denomination of zVIP is 1, and a fee is required to mint zVIP, in most situations a high fee will be paid to mint change. The fee is the remainder of the change that cannot be converted back to zVIP. For example this would mean a spending a denomination of 10 that yields change of 6.75 in change, would issue zVIP denominations of 5 and 1 back to the sender with the remaining 0.75 that is unmintable being contributed as a fee.
 
-**zBAC Control**
-Similar to the concept of Coin Control in the QT wallet, zBAC Control allows users to select exactly which zBAC mints they would like to spend. This gives a flexibility to choose which denominations can be picked for a spend that wouldn't otherwise be available.
+**zVIP Control**
+Similar to the concept of Coin Control in the QT wallet, zVIP Control allows users to select exactly which zVIP mints they would like to spend. This gives a flexibility to choose which denominations can be picked for a spend that wouldn't otherwise be available.
 
 
 Tor Service Integration Improvements
@@ -110,7 +110,7 @@ the code changes and accompanying discussion, both the pull request and
 git merge commit are mentioned.
 
 ### Broad Features
-- #264 `15e84e5` zBAC is here! (Fuzzbawls Mrs-X Presstab Spock BAC)
+- #264 `15e84e5` zVIP is here! (Fuzzbawls Mrs-X Presstab Spock VIP)
 
 ### P2P Protocol and Network Code
 - #242 `0ecd77f` [P2P] Improve TOR service connectivity (Fuzzbawls)
@@ -128,7 +128,7 @@ Thanks to everyone who directly contributed to this release:
 - Fuzzbawls
 - Jon Spock
 - Mrs-X
-- BAC
+- VIP
 - amirabrams
 - presstab
 

@@ -1,9 +1,9 @@
 /* src/config/vip-config.h.  Generated from vip-config.h.in by configure.  */
 /* src/config/vip-config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef BAC_CONFIG_H
+#ifndef VIP_CONFIG_H
 
-#define BAC_CONFIG_H
+#define VIP_CONFIG_H
 
 /* Define if building universal (internal helper macro) */
 /* #undef AC_APPLE_UNIVERSAL_BUILD */
@@ -362,4 +362,4 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
-#endif //BAC_CONFIG_H
+#endif //VIP_CONFIG_H

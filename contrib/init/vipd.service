@@ -1,5 +1,5 @@
 [Unit]
-Description=BAC's distributed currency daemon
+Description=VIP's distributed currency daemon
 After=network.target
 
 [Service]

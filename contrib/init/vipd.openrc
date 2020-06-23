@@ -17,7 +17,7 @@ BITCOIND_GROUP=${BITCOIND_GROUP:-vip}
 BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/vipd}
 
 name="VIP Core Daemon"
-description="BAC crypto-currency p2p network daemon"
+description="VIP crypto-currency p2p network daemon"
 
 command="/usr/bin/vipd"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \

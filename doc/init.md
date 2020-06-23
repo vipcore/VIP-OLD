@@ -89,7 +89,7 @@ use old versions of Upstart and do not supply the start-stop-daemon uitility.
 Copy vipd.init to /etc/init.d/vipd. Test by running "service vipd start".
 
 Using this script, you can adjust the path and flags to the vipd program by
-setting the BACD and FLAGS environment variables in the file
+setting the VIPD and FLAGS environment variables in the file
 /etc/sysconfig/vipd. You can also use the DAEMONOPTS environment variable here.
 
 5. Auto-respawn
