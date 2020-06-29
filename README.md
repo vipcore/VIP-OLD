@@ -18,6 +18,6 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>• Block Rewards 1 VIP : 70% Masternode, 20% PoS, 10% Dev Funds (Will be dividens to VIP Holders)</br>
 <br>• Max Coin Output/Supply: 1,000,000 VIP </br>
 <br>• Masternode Requirements: 4,000 VIP  </br>
-<br>• Maturity: 11 Confirmations  </br>
-<br>• Prefix: Vip adresses start with the capital letter "W"  </br>
+<br>• Maturity: 15 Confirmations  </br>
+<br>• Prefix: Vip adresses start with the capital letter "Q"  </br>
 <br>• [Block-Explorer](http://explorer.vipcore.vip/)</br>
