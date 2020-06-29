@@ -59,6 +59,8 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
       (1000, uint256("0x22d9644cab17d14bf9edf99ba4f9a96c8bc1d3a2b05bee6d5ef01cec2f91ba55"))
       (2000, uint256("0x42dc15d7cfbe8e7d73545a85d19d0a590f123908e8cd7b8c85ce628ede6fcd04"))
       (4000, uint256("0x84bd7d887fd1432512840ca542d417101eca2cdcc5bc3b188c3b7cf796a4db8e"))
+      (8000, uint256("0xe878bb601dcc367b17e3c6a5ce4da6d9624b7966e88cce160c44201a197eb5d4"))
+      (15000, uint256("0x19c24744bf942e11a7f0282f9238e7eaaf8f586d003659b7a2cb130ad780205f"))
     ;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -169,11 +171,16 @@ public:
         assert(hashGenesisBlock == uint256("0x00000af0c0eb9db08c9fc913a36c2676ad5fcc226838ed2da4139b94e777723c"));
         assert(genesis.hashMerkleRoot == uint256("0x46f8eabb9583e70d7b7b169201bd358f34d6c80bf557d3750ca23cd6a49b7f16"));
 
-        // vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "vip.seed.fuzzbawls.pw"));     // Primary DNS Seeder from Fuzzbawls
-        // vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "vip.seed2.fuzzbawls.pw"));    // Secondary DNS Seeder from Fuzzbawls
-        // vSeeds.push_back(CDNSSeedData("coin-server.com", "coin-server.com"));         // Single node address
-        // vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddns.net")); // Single node address
-        // vSeeds.push_back(CDNSSeedData("178.254.23.111", "178.254.23.111"));           // Single node address
+         vSeeds.push_back(CDNSSeedData("58.168.210.152:19450", "58.168.210.152:19450"));     // Primary DNS Seeder from Fuzzbawls
+         vSeeds.push_back(CDNSSeedData("168.235.93.113:19450", "168.235.93.113:19450"));    // Secondary DNS Seeder from Fuzzbawls
+         vSeeds.push_back(CDNSSeedData("107.161.26.12:19450", "107.161.26.12:19450"));         // Single node address
+         vSeeds.push_back(CDNSSeedData("54.36.172.184:19450", "54.36.172.184:19450")); // Single node address
+         vSeeds.push_back(CDNSSeedData("142.93.115.23:19450", "142.93.115.23:19450")); 
+         vSeeds.push_back(CDNSSeedData("155.138.162.108:19450", "155.138.162.108:19450"));
+         vSeeds.push_back(CDNSSeedData("168.235.93.113:19450", "168.235.93.113:19450"));
+         vSeeds.push_back(CDNSSeedData("54.36.172.184:19450", "54.36.172.184:19450"));
+         vSeeds.push_back(CDNSSeedData("168.235.93.113:1945", "168.235.93.113:1945"));
+    
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 58);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 14);
