@@ -21,3 +21,9 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>• Maturity: 15 Confirmations  </br>
 <br>• Prefix: Vip adresses start with the capital letter "Q"  </br>
 <br>• [Block-Explorer](http://explorer.vipcore.vip/)</br>
+
+# Semi-Auto install Masternode
+git clone https://github.com/vipcore/VIP.git
+cd VIP
+./mnscriptinstall16.sh <-------for Ubuntu 16
+./mnscriptinstall16.sh <-------For Ubuntu 18
