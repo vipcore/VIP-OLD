@@ -28,6 +28,3 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>./mnscriptinstall16.sh <-------for Ubuntu 16</br>
 <br>./mnscriptinstall16.sh <-------For Ubuntu 18</br>
 
-# VIP Chart
-<script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
-<coingecko-coin-ticker-widget  coin-id="vip-coin" currency="usd" locale="en"></coingecko-coin-ticker-widget>
