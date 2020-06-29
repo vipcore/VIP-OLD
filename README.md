@@ -23,7 +23,11 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>• [Block-Explorer](http://explorer.vipcore.vip/)</br>
 
 # Semi-Auto install Masternode
-git clone https://github.com/vipcore/VIP.git
-cd VIP
-./mnscriptinstall16.sh <-------for Ubuntu 16
-./mnscriptinstall16.sh <-------For Ubuntu 18
+<br>git clone https://github.com/vipcore/VIP.git</br>
+<br>cd VIP</br>
+<br>./mnscriptinstall16.sh <-------for Ubuntu 16</br>
+<br>./mnscriptinstall16.sh <-------For Ubuntu 18</br>
+
+# VIP Chart
+<script src="https://widgets.coingecko.com/coingecko-coin-ticker-widget.js"></script>
+<coingecko-coin-ticker-widget  coin-id="vip-coin" currency="usd" locale="en"></coingecko-coin-ticker-widget>
