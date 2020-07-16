@@ -26,4 +26,4 @@ For further information visit us at [vipcore.vip](https://vipcore.vip/) or visit
 <br>git clone https://github.com/vipcore/VIP.git</br>
 <br>cd VIP</br>
 <br>./mnscriptinstall16.sh <-------for Ubuntu 16</br>
-<br>./mnscriptinstall16.sh <-------For Ubuntu 18</br>
+<br>./mnscriptinstall18.sh <-------For Ubuntu 18</br>
