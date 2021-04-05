@@ -61,6 +61,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
       (4000, uint256("0x84bd7d887fd1432512840ca542d417101eca2cdcc5bc3b188c3b7cf796a4db8e"))
       (8000, uint256("0xe878bb601dcc367b17e3c6a5ce4da6d9624b7966e88cce160c44201a197eb5d4"))
       (15000, uint256("0x19c24744bf942e11a7f0282f9238e7eaaf8f586d003659b7a2cb130ad780205f"))
+      (366853, uint256("0x55fef28c3e543bbebbbb8fdcf06f752a517272ed3c744732fcebf1ac618cd26c"))
     ;
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -138,7 +139,7 @@ public:
         strDevpubkey = "02215f347e4ae40587e7d757c192300443fb61f71584d7e493765dd32e40a970d9";
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 150;
+        nLastPOWBlock = 100150;
         nModifierUpdateBlock = 1999999999;
         nZerocoinStartHeight = 250;
         nZerocoinStartTime = 1548875015; // October 17, 2017 4:30:00 AM
