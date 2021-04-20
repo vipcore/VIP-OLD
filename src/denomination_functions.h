@@ -1,7 +1,14 @@
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+/**
+ * @file       denominations_functions.h
+ *
+ * @brief      Denomination functions for the Zerocoin library.
+ *
+ * @copyright  Copyright 2017 PIVX Developers
+ * @copyright  Copyright 2018 Vip Developers
+ * @license    This project is released under the MIT license.
+ **/
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 
 #include "reverse_iterate.h"
 #include "util.h"
@@ -9,11 +16,11 @@
 #include "primitives/zerocoin.h"
 #include <list>
 #include <map>
-std::vector<CMintMeta> SelectMintsFromList(const CAmount nValueTarget, CAmount& nSelectedValue,
+std::vector<CZerocoinMint> SelectMintsFromList(const CAmount nValueTarget, CAmount& nSelectedValue,
                                                int nMaxNumberOfSpends,
                                                bool fMinimizeChange,
                                                int& nCoinsReturned,
-                                               const std::list<CMintMeta>& listMints,
+                                               const std::list<CZerocoinMint>& listMints,
                                                const std::map<libzerocoin::CoinDenomination, CAmount> mapDenomsHeld,
                                                int& nNeededSpends
                                                );
@@ -25,4 +32,4 @@ int calculateChange(
     const std::map<libzerocoin::CoinDenomination, CAmount>& mapOfDenomsHeld,
     std::map<libzerocoin::CoinDenomination, CAmount>& mapOfDenomsUsed);
 
-void listSpends(const std::vector<CMintMeta>& vSelectedMints);
+void listSpends(const std::vector<CZerocoinMint>& vSelectedMints);

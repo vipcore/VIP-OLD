@@ -671,7 +671,7 @@ am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
 am__nodep
-AMDEPVIPKSLASH
+AMDEPBACKSLASH
 AMDEP_FALSE
 AMDEP_TRUE
 am__quote
@@ -719,7 +719,7 @@ am__isrc
 INSTALL_DATA
 INSTALL_SCRIPT
 INSTALL_PROGRAM
-AM_VIPKSLASH
+AM_BACKSLASH
 AM_DEFAULT_VERBOSITY
 AM_DEFAULT_V
 AM_V
@@ -2309,7 +2309,7 @@ else
   AM_V=$AM_DEFAULT_VERBOSITY
   AM_DEFAULT_V=$AM_DEFAULT_VERBOSITY
 fi
-AM_VIPKSLASH='\'
+AM_BACKSLASH='\'
 
 
 
@@ -3118,7 +3118,7 @@ fi
 
 if test "x$enable_dependency_tracking" != xno; then
   am_depcomp="$ac_aux_dir/depcomp"
-  AMDEPVIPKSLASH='\'
+  AMDEPBACKSLASH='\'
   am__nodep='_no'
 fi
  if test "x$enable_dependency_tracking" != xno; then

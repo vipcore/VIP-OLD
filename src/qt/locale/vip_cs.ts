@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Kopírovat vybranou adresu do schránky</translation>
+        <translation>Kopírovat vybranou adresu do mezipaměti</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
@@ -62,12 +62,12 @@
         <translation>Adresy pro přijetí peněz</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Toto jsou Vaše VIP adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
+        <source>These are your Vip addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Toto jsou Vaše Vip adresy pro poslání platby. Vždy si překontrolujte množství peněz a cílovou adresu než platbu odešlete.</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Toto jsou Vaše VIP adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
+        <source>These are your Vip addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Toto jsou Vaše Vip adresy pro přijetí plateb. Je doporučeno použít novou adresu pro každou novou transakci.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,6 +136,10 @@
         <translation>Slouží k neumožnění zaslání jednoduché platby, pokud je učet OS kompromitován. Neposkytuje tak reálné zabezpeční.</translation>
     </message>
     <message>
+        <source>For anonymization and staking only</source>
+        <translation>Pouze pro anonymizaci a sázení</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Zadejte nové frázové heslo pro Vaši peněženku &lt;br/&gt; Prosím, použijte frázové heslo z &lt;b&gt; nebo více náhodných znaků &lt;/b&gt;, nebo&lt;b&gt;z osmi nebo více slov&lt;/b&gt;  .</translation>
     </message>
@@ -172,8 +176,8 @@
         <translation>Potvrdit zašifrování peněženky</translation>
     </message>
     <message>
-        <source>VIP will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
-        <translation>VIP se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše VIPy před krádží, pokud je Váš počítač infikován malwarem.</translation>
+        <source>Vip will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
+        <translation>Vip se teď zavře pro dokončení šifrovacího procesu. Prosím, vemte na vědomí, že zašifrování Vaší peněženky plně neochrání Vaše VIPy před krádží, pokud je Váš počítač infikován malwarem.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -225,9 +229,6 @@
     </message>
 </context>
 <context>
-    <name>BanTableModel</name>
-    </context>
-<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -238,8 +239,16 @@
         <translation>&amp;BIP 38 Šifrovat</translation>
     </message>
     <message>
+        <source>Enter a Vip Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>Zadejte Vip adresu, kterou si přejete zašifrovat pomocí BIP38. Frázové heslo zadejte do prostředního boxu. Stiskněte šifrovat pro výpočet šifrovaného privátního klíče.</translation>
+    </message>
+    <message>
         <source>Address:</source>
         <translation>Adresa:</translation>
+    </message>
+    <message>
+        <source>The Vip address to sign the message with</source>
+        <translation>Vip adresa pro podepsání zprávy</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -270,8 +279,16 @@
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto Vip adresu</translation>
+    </message>
+    <message>
         <source>Encrypt &amp;Key</source>
         <translation>Šifrovat &amp;Klíč</translation>
+    </message>
+    <message>
+        <source>Reset all sign message fields</source>
+        <translation>Resetovat všechny položky podepsání zprávy</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -286,8 +303,20 @@
         <translation>Vložte BIP 38 šifrovaný privítní klíc. Frázové heslo vložte do prostředního boxu. Kliknětě na Dešifrovat Klíč pro výpočet privátního klíče. Poté co bude klíč dešifrován, kliknutím na 'Importovat Adresu' přidáte privátní klíč do Vaší peněženky.</translation>
     </message>
     <message>
+        <source>The Vip address the message was signed with</source>
+        <translation>Vip adresa zprávy byla podpsána</translation>
+    </message>
+    <message>
+        <source>Verify the message to ensure it was signed with the specified Vip address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou Vip adresou</translation>
+    </message>
+    <message>
         <source>Decrypt &amp;Key</source>
         <translation>Dešifrovat &amp;Klíč</translation>
+    </message>
+    <message>
+        <source>Reset all verify message fields</source>
+        <translation>Resetovat všechny položky pro ověření zprávy</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -395,10 +424,6 @@
     <message>
         <source>Browse transaction history</source>
         <translation>Procházet historii transakcí</translation>
-    </message>
-    <message>
-        <source>Privacy Actions for zVIP</source>
-        <translation>Řešení soukromí pro zVIP</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
@@ -541,30 +566,6 @@
         <translation>Zobrazit seznam použitých adres  a popisků pro přijetí plateb</translation>
     </message>
     <message>
-        <source>&amp;Multisignature creation...</source>
-        <translation>&amp;Vytvoření multisignatury</translation>
-    </message>
-    <message>
-        <source>Create a new multisignature address and add it to this wallet</source>
-        <translation>Vytvořit novou multisignaturní adresu a přidat ji do této peněženky</translation>
-    </message>
-    <message>
-        <source>&amp;Multisignature spending...</source>
-        <translation>&amp;Multisignaturní výdaje...</translation>
-    </message>
-    <message>
-        <source>Spend from a multisignature address</source>
-        <translation>Uhradit z multisignaturní adresy</translation>
-    </message>
-    <message>
-        <source>&amp;Multisignature signing...</source>
-        <translation>&amp;Multisignaturní podepisování...</translation>
-    </message>
-    <message>
-        <source>Sign with a multisignature address</source>
-        <translation>Podepsat multisignaturní adresou</translation>
-    </message>
-    <message>
         <source>Open &amp;URI...</source>
         <translation>Otevřít &amp;URI...</translation>
     </message>
@@ -575,10 +576,6 @@
     <message>
         <source>Synchronizing additional data: %p%</source>
         <translation>Synchronizuji přídavná data: %p%</translation>
-    </message>
-    <message>
-        <source>%1 behind. Scanning block %2</source>
-        <translation>Zbývá %1 bloků. Skenuji blok %2</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -601,20 +598,16 @@
         <translation>Nástrojová lišta záložek</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     <message>
-        <source>Send coins to a VIP address</source>
-        <translation>Odeslat platbuna VIP adresu</translation>
+        <source>Send coins to a Vip address</source>
+        <translation>Odeslat platbuna Vip adresu</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and vip: URIs)</source>
         <translation>Vyžádat platbu (generování QK kódu a vip: URIs)</translation>
-    </message>
-    <message>
-        <source>&amp;Privacy</source>
-        <translation>&amp;Soukromí</translation>
     </message>
     <message>
         <source>&amp;Masternodes</source>
@@ -625,24 +618,24 @@
         <translation>Procházet masternody</translation>
     </message>
     <message>
-        <source>&amp;About VIP Core</source>
-        <translation>&amp;O VIP Core</translation>
+        <source>&amp;About Vip Core</source>
+        <translation>&amp;O Vip Core</translation>
     </message>
     <message>
-        <source>Show information about VIP Core</source>
-        <translation>Zobraz informace o VIP Core</translation>
+        <source>Show information about Vip Core</source>
+        <translation>Zobraz informace o Vip Core</translation>
     </message>
     <message>
-        <source>Modify configuration options for VIP</source>
-        <translation>Upravit možnosti konfigurace pro VIP</translation>
+        <source>Modify configuration options for Vip</source>
+        <translation>Upravit možnosti konfigurace pro Vip</translation>
     </message>
     <message>
-        <source>Sign messages with your VIP addresses to prove you own them</source>
-        <translation>Podepsat zprávy Vaší VIP adresou pro prokázaní, že jste jejich vlastníkem</translation>
+        <source>Sign messages with your Vip addresses to prove you own them</source>
+        <translation>Podepsat zprávy Vaší Vip adresou pro prokázaní, že jste jejich vlastníkem</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified VIP addresses</source>
-        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými VIP adresami</translation>
+        <source>Verify messages to ensure they were signed with specified Vip addresses</source>
+        <translation>Ověřit zprávy k zajištění, že bylypodepsány vybranými Vip adresami</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -673,8 +666,8 @@
         <translation>Otevřít Masternodový konfigurační soubor</translation>
     </message>
     <message>
-        <source>Open a VIP: URI or payment request</source>
-        <translation>Otevřít VIP: URI nebo platební žádost</translation>
+        <source>Open a Vip: URI or payment request</source>
+        <translation>Otevřít Vip: URI nebo platební žádost</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -685,12 +678,12 @@
         <translation>Okno blokového průzkumníka</translation>
     </message>
     <message>
-        <source>Show the VIP Core help message to get a list with possible VIP command-line options</source>
-        <translation>Zobrazit VIP Core pomocnou zpráv pro získání seznamu možných parametrů VIP pro příkazy do příkazové řádky</translation>
+        <source>Show the Vip Core help message to get a list with possible Vip command-line options</source>
+        <translation>Zobrazit Vip Core pomocnou zpráv pro získání seznamu možných parametrů Vip pro příkazy do příkazové řádky</translation>
     </message>
     <message>
-        <source>VIP Core client</source>
-        <translation>VIP Core klient</translation>
+        <source>Vip Core client</source>
+        <translation>Vip Core klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -717,8 +710,8 @@
         <translation>%1 a %2</translation>
     </message>
     <message>
-        <source>Catching up...</source>
-        <translation>Doháníme co se dá...</translation>
+        <source>%1 behind</source>
+        <translation>%1 za</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
@@ -765,9 +758,9 @@ Adresa: %4
 </translation>
     </message>
     <message>
-        <source>Staking is active
+        <source>Staking: Active
  MultiSend: %1</source>
-        <translation>Sázení je aktivní
+        <translation>Sázení: Aktivní
 MultiSend: %1</translation>
     </message>
     <message>
@@ -779,14 +772,18 @@ MultiSend: %1</translation>
         <translation>Neaktivní</translation>
     </message>
     <message>
-        <source>Staking is not active
+        <source>Staking: Not active
  MultiSend: %1</source>
-        <translation>Sázení není aktivní
+        <translation>Sázení: Není aktivní
 MultiSend: %1</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Peněženka je &lt;b&gt;zašifrovaná&lt;/b&gt; a momentálně je &lt;b&gt;odemčená&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt; for anonimization and staking only</source>
+        <translation>Peněženka je &lt;b&gt;zašifrovaná&lt;/b&gt; a momentálně je &lt;b&gt;odemčená&lt;/b&gt; pouze pro anonimizace a sázení</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
@@ -798,14 +795,6 @@ MultiSend: %1</translation>
     <message>
         <source>Blockchain Explorer</source>
         <translation>Blockchainový průzkumník</translation>
-    </message>
-    <message>
-        <source>Back</source>
-        <translation>Zpět</translation>
-    </message>
-    <message>
-        <source>Forward</source>
-        <translation>Dále</translation>
     </message>
     <message>
         <source>Address / Block / Transaction</source>
@@ -826,10 +815,6 @@ MultiSend: %1</translation>
 </context>
 <context>
     <name>ClientModel</name>
-    <message>
-        <source>Total: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / Unknown: %5)</source>
-        <translation>Celkem: %1 (IPv4: %2 / IPv6: %3 / Tor: %4 / neznámé: %5)</translation>
-    </message>
     <message>
         <source>Network Alert</source>
         <translation>Upozornění sítě</translation>
@@ -1081,8 +1066,8 @@ MultiSend: %1</translation>
         <translation>Upravit adresu k odeslání platby</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid VIP address.</source>
-        <translation>Zadaná adresa "%1" není validní VIP adresa.</translation>
+        <source>The entered address "%1" is not a valid Vip address.</source>
+        <translation>Zadaná adresa "%1" není validní Vip adresa.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book.</source>
@@ -1127,12 +1112,12 @@ MultiSend: %1</translation>
         <translation>verze</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     <message>
-        <source>About VIP Core</source>
-        <translation>O VIP Core</translation>
+        <source>About Vip Core</source>
+        <translation>O Vip Core</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1166,16 +1151,16 @@ MultiSend: %1</translation>
         <translation>Vítejte</translation>
     </message>
     <message>
-        <source>Welcome to VIP Core.</source>
-        <translation>Vítejte v VIP Core.</translation>
+        <source>Welcome to Vip Core.</source>
+        <translation>Vítejte v Vip Core.</translation>
     </message>
     <message>
-        <source>As this is the first time the program is launched, you can choose where VIP Core will store its data.</source>
-        <translation>Při prvním spuštění programu si můžete vybrat, kam bude VIP Core ukládat svá data.</translation>
+        <source>As this is the first time the program is launched, you can choose where Vip Core will store its data.</source>
+        <translation>Při prvním spuštění programu si můžete vybrat, kam bude Vip Core ukládat svá data.</translation>
     </message>
     <message>
-        <source>VIP Core will download and store a copy of the VIP block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>VIP Core stáhne a uloží kopii VIP blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
+        <source>Vip Core will download and store a copy of the Vip block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <translation>Vip Core stáhne a uloží kopii Vip blockchainu. Nejméně %1GB dat bude do této složky uloženo a v průběhu času bude ukládat další data. Peněženka bude v této složce uložena také.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1186,8 +1171,8 @@ MultiSend: %1</translation>
         <translation>Použít vlastní složku pro data</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1211,6 +1196,10 @@ MultiSend: %1</translation>
     <message>
         <source>Form</source>
         <translation>Od</translation>
+    </message>
+    <message>
+        <source>My Masternodes</source>
+        <translation>Moje Masternody</translation>
     </message>
     <message>
         <source>Alias</source>
@@ -1388,10 +1377,6 @@ MultiSend: %1</translation>
         <translation>Poslat pro odměny masternodů</translation>
     </message>
     <message>
-        <source>(no label)</source>
-        <translation>(bez popisku)</translation>
-    </message>
-    <message>
         <source>The entered address:
 </source>
         <translation>Zadaná adresa:
@@ -1430,21 +1415,6 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
 </translation>
     </message>
 </context>
-<context>
-    <name>MultisigDialog</name>
-    <message>
-        <source>Status:</source>
-        <translation>Stav:</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation>0</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Hodnota:</translation>
-    </message>
-    </context>
 <context>
     <name>ObfuscationConfig</name>
     <message>
@@ -1550,12 +1520,12 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Expert</translation>
     </message>
     <message>
-        <source>Automatically start VIP after logging in to the system.</source>
-        <translation>Automaticky spustit VIP po přihlášení do systému</translation>
+        <source>Automatically start Vip after logging in to the system.</source>
+        <translation>Automaticky spustit Vip po přihlášení do systému</translation>
     </message>
     <message>
-        <source>&amp;Start VIP on system login</source>
-        <translation>&amp;Spusti VIP při přihlášení do systému</translation>
+        <source>&amp;Start Vip on system login</source>
+        <translation>&amp;Spusti Vip při přihlášení do systému</translation>
     </message>
     <message>
         <source>Show Masternodes Tab</source>
@@ -1641,6 +1611,10 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Celkem:</translation>
     </message>
     <message>
+        <source>Your current total balance</source>
+        <translation>Vaše aktuální celková balance</translation>
+    </message>
+    <message>
         <source>Spendable:</source>
         <translation>Disponibilní:</translation>
     </message>
@@ -1708,10 +1682,6 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
     <message>
         <source>Priority:</source>
         <translation>Priorita:</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>TextPopisku</translation>
     </message>
     <message>
         <source>Fee:</source>
@@ -2131,6 +2101,10 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Přidat &amp;Příjemce</translation>
     </message>
     <message>
+        <source>SwiftTX</source>
+        <translation>SwiftTX</translation>
+    </message>
+    <message>
         <source>Balance:</source>
         <translation>Balance:</translation>
     </message>
@@ -2212,8 +2186,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The VIP address to sign the message with</source>
-        <translation>VIP adresa pro podepsání zprávy</translation>
+        <source>The Vip address to sign the message with</source>
+        <translation>Vip adresa pro podepsání zprávy</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2240,16 +2214,16 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
         <translation>Kopírovat aktuální podpis do systémové mezipaměti</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this VIP address</source>
-        <translation>Podepsat zprávu k prokázání, že vlastníte tuto VIP adresu</translation>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>Podepsat zprávu k prokázání, že vlastníte tuto Vip adresu</translation>
     </message>
     <message>
-        <source>The VIP address the message was signed with</source>
-        <translation>VIP adresa zprávy byla podpsána</translation>
+        <source>The Vip address the message was signed with</source>
+        <translation>Vip adresa zprávy byla podpsána</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified VIP address</source>
-        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou VIP adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified Vip address</source>
+        <translation>Verifikujte zprávu pro ujištění, že byla podepsána zmíněnou Vip adresou</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2291,8 +2265,8 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     </context>
 <context>
@@ -2395,7 +2369,7 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
     </message>
     </context>
 <context>
-    <name>ZVipControlDialog</name>
+    <name>ZSnoControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>
@@ -2410,6 +2384,10 @@ Prosím zkontrolujte adresu a zkuste to znovu.</translation>
     <message>
         <source>Information</source>
         <translation>Informace</translation>
+    </message>
+    <message>
+        <source>SwiftTX options:</source>
+        <translation>SwiftTX možnosti:</translation>
     </message>
     <message>
         <source>Synchronization failed</source>

@@ -1,12 +1,13 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "addresstablemodel.h"
 
+#include "guiconstants.h"
 #include "guiutil.h"
 #include "walletmodel.h"
 
@@ -252,6 +253,8 @@ QVariant AddressTableModel::data(const QModelIndex& index, int role) const
         default:
             break;
         }
+    } else if (role == Qt::ForegroundRole) {
+        return COLOR_BLACK;
     }
     return QVariant();
 }

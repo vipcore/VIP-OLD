@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,12 +15,9 @@
 
 #include "chainparams.h"
 #include "main.h"
-#include "rpcclient.h"
-#include "rpcserver.h"
+#include "rpc/client.h"
+#include "rpc/server.h"
 #include "util.h"
-#ifdef ENABLE_WALLET
-#include "wallet.h"
-#endif // ENABLE_WALLET
 
 #include <openssl/crypto.h>
 
@@ -259,7 +256,7 @@ void RPCExecutor::request(const QString& command)
     }
 }
 
-RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint),
+RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent),
                                           ui(new Ui::RPCConsole),
                                           clientModel(0),
                                           historyPtr(0),
@@ -293,32 +290,9 @@ RPCConsole::RPCConsole(QWidget* parent) : QDialog(parent, Qt::WindowSystemMenuHi
     // set library version labels
     ui->openSSLVersion->setText(SSLeay_version(SSLEAY_VERSION));
 #ifdef ENABLE_WALLET
-    std::string strPathCustom = GetArg("-backuppath", "");
-    std::string strzVIPPathCustom = GetArg("-zpivbackuppath", "");
-    int nCustomBackupThreshold = GetArg("-custombackupthreshold", DEFAULT_CUSTOMVIPKUPTHRESHOLD);
-
-    if(!strPathCustom.empty()) {
-        ui->wallet_custombackuppath->setText(QString::fromStdString(strPathCustom));
-        ui->wallet_custombackuppath_label->show();
-        ui->wallet_custombackuppath->show();
-    }
-
-    if(!strzVIPPathCustom.empty()) {
-        ui->wallet_customzpivbackuppath->setText(QString::fromStdString(strzVIPPathCustom));
-        ui->wallet_customzpivbackuppath_label->setVisible(true);
-        ui->wallet_customzpivbackuppath->setVisible(true);
-    }
-
-    if((!strPathCustom.empty() || !strzVIPPathCustom.empty()) && nCustomBackupThreshold > 0) {
-        ui->wallet_custombackupthreshold->setText(QString::fromStdString(std::to_string(nCustomBackupThreshold)));
-        ui->wallet_custombackupthreshold_label->setVisible(true);
-        ui->wallet_custombackupthreshold->setVisible(true);
-    }
-
     ui->berkeleyDBVersion->setText(DbEnv::version(0, 0, 0));
     ui->wallet_path->setText(QString::fromStdString(GetDataDir().string() + QDir::separator().toLatin1() + GetArg("-wallet", "wallet.dat")));
 #else
-
     ui->label_berkeleyDBVersion->hide();
     ui->berkeleyDBVersion->hide();
 #endif
@@ -573,10 +547,22 @@ void RPCConsole::walletResync()
         resyncWarning +=   tr("This needs quite some time and downloads a lot of data.<br /><br />");
         resyncWarning +=   tr("Your transactions and funds will be visible again after the download has completed.<br /><br />");
         resyncWarning +=   tr("Do you want to continue?.<br />");
+/*        
+    QMessageBox box;
+    box.setIconPixmap(QPixmap(":/res/icons/confirm.png"));
+    box.setText(tr("Confirm resync Blockchain"));   
+    box.setInformativeText(resyncWarning);
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel); 
+    box.setDefaultButton(QMessageBox::Cancel);    
+    box.show();
+    int retval = box.exec();
+*/
+
     QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm resync Blockchain"),
         resyncWarning,
         QMessageBox::Yes | QMessageBox::Cancel,
         QMessageBox::Cancel);
+
 
     if (retval != QMessageBox::Yes) {
         // Resync canceled
@@ -631,11 +617,11 @@ void RPCConsole::clear()
         "table { }"
         "td.time { color: #808080; padding-top: 3px; } "
         "td.message { font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
-        "td.cmd-request { color: #006060; } "
-        "td.cmd-error { color: red; } "
-        "b { color: #006060; } ");
+        "td.cmd-request { color: #3caef0; } "
+        "td.cmd-error { color: #ee2f77; } "
+        "b { color: #3caef0; } ");
 
-    message(CMD_REPLY, (tr("Welcome to the VIP RPC console.") + "<br>" +
+    message(CMD_REPLY, (tr("Welcome to the Vip RPC console.") + "<br>" +
                            tr("Use up and down arrows to navigate history, and <b>Ctrl-L</b> to clear screen.") + "<br>" +
                            tr("Type <b>help</b> for an overview of available commands.")),
         true);

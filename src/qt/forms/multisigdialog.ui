@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="multisigTabWidget">
      <property name="styleSheet">
-      <string notr="true">QScrollArea{border: 1px solid #5b4c7c;}</string>
+      <string notr="true">QScrollArea{border: 1px solid #1f1f1f;}</string>
      </property>
      <property name="currentIndex">
       <number>1</number>
@@ -269,7 +269,7 @@ Please be patient after clicking import.</string>
            </property>
            <property name="icon">
             <iconset resource="../vip.qrc">
-             <normaloff>:/icons/receiving_addresses</normaloff>:/icons/receiving_addresses</iconset>
+             <normaloff>:/icons/import</normaloff>:/icons/import</iconset>
            </property>
           </widget>
          </item>
@@ -593,13 +593,13 @@ Please be patient after clicking import.</string>
      <widget class="QWidget" name="signMultisigTransaction">
       <property name="styleSheet">
        <string notr="true">txScrollArea:{
-	border: 1px solid #5b4c7c;
+	border: 1px solid #1f1f1f;
 }
 keyScrollArea:{
-	border: 1px solid #5b4c7c;
+	border: 1px solid #1f1f1f;
 }
 txScrollArea:{
-	border: 1px solid #5b4c7c;
+	border: 1px solid #1f1f1f;
 }</string>
       </property>
       <attribute name="title">
@@ -684,7 +684,7 @@ txScrollArea:{
                </property>
                <property name="icon">
                 <iconset resource="../vip.qrc">
-                 <normaloff>:/icons/send</normaloff>:/icons/send</iconset>
+                 <normaloff>:/icons/commit</normaloff>:/icons/commit</iconset>
                </property>
                <property name="autoDefault">
                 <bool>true</bool>

@@ -213,6 +213,7 @@
                   <property name="bottomMargin">
                    <number>0</number>
                   </property>
+                  <!--
                   <item>
                    <widget class="QFrame" name="frame_CombinedBalances">
                     <property name="minimumSize">
@@ -229,7 +230,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_5">
                      <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0,0">
+                      <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
                        <item>
                         <widget class="QLabel" name="label_5z">
                          <property name="minimumSize">
@@ -259,10 +260,10 @@
                           <cursorShape>WhatsThisCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the VIP network after a connection is established, but this process has not completed yet.</string>
+                          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the Vip network after a connection is established, but this process has not completed yet.</string>
                          </property>
                          <property name="styleSheet">
-                          <string notr="true">QLabel { color: red; }</string>
+                          <string notr="true">QLabel { color: #ee2f77; }</string>
                          </property>
                          <property name="text">
                           <string notr="true">(out of sync)</string>
@@ -333,7 +334,7 @@
                           <string>Your current spendable balance</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -365,7 +366,7 @@
                           <string>Total Balance, including all unavailable coins.</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -406,6 +407,7 @@
                     </layout>
                    </widget>
                   </item>
+              -->
                   <item>
                    <widget class="QFrame" name="frame_Balances">
                     <property name="frameShape">
@@ -437,13 +439,13 @@
                          </property>
                         </widget>
                        </item>
-                       <item>
+                       <!-- <item>
                         <widget class="QLabel" name="labelVIPPercent">
                          <property name="text">
                           <string notr="true">0 %</string>
                          </property>
                         </widget>
-                       </item>
+                       </item> -->
                        <item>
                         <spacer name="horizontalSpacer_3">
                          <property name="orientation">
@@ -525,7 +527,7 @@
                           <string>Your current spendable balance</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -550,7 +552,7 @@
                           <string>Your current balance in watch-only addresses</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -582,7 +584,7 @@
                           <string>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -607,7 +609,7 @@
                           <string>Unconfirmed transactions to watch-only addresses</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -639,7 +641,7 @@
                           <string>Staked or masternode rewards that has not yet matured</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -664,7 +666,7 @@
                           <string>Staked or masternode rewards in watch-only addresses that has not yet matured</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -677,7 +679,7 @@
                        <item row="4" column="0">
                         <widget class="QLabel" name="labelLockedBalanceText">
                          <property name="toolTip">
-                          <string>Locked VIP or Masternode collaterals. These are excluded from zVIP minting.</string>
+                          <string>Locked VIP or Masternode collaterals.</string>
                          </property>
                          <property name="text">
                           <string>Locked:</string>
@@ -696,10 +698,10 @@
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Locked VIP or Masternode collaterals. These are excluded from zVIP minting.</string>
+                          <string>Locked VIP or Masternode collaterals.</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -724,7 +726,7 @@
                           <string>Current locked balance in watch-only addresses</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -736,11 +738,11 @@
                        </item>
                        <item row="5" column="0">
                         <widget class="QLabel" name="labelTotalText">
-                         <property name="toolTip">
-                          <string>Your current VIP balance, unconfirmed and immature transactions included</string>
-                         </property>
                          <property name="text">
                           <string>Total:</string>
+                         </property>
+                         <property name="toolTip">
+                          <string>Your current Vip balance, unconfirmed and immature transactions included</string>
                          </property>
                         </widget>
                        </item>
@@ -756,10 +758,10 @@
                           <cursorShape>IBeamCursor</cursorShape>
                          </property>
                          <property name="toolTip">
-                          <string>Your current VIP balance, unconfirmed and immature transactions included</string>
+                          <string>Your current Vip balance, unconfirmed and immature transactions included</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -784,7 +786,7 @@
                           <string>Current total balance in watch-only addresses</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -825,6 +827,7 @@
                     </layout>
                    </widget>
                   </item>
+                  <!--
                   <item>
                    <widget class="QFrame" name="frame_ZerocoinBalances">
                     <property name="frameShape">
@@ -835,7 +838,7 @@
                     </property>
                     <layout class="QVBoxLayout" name="verticalLayout_7">
                      <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0,0">
+                      <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0">
                        <item>
                         <widget class="QLabel" name="label_5z_3">
                          <property name="minimumSize">
@@ -905,7 +908,7 @@
                        <item row="1" column="0">
                         <widget class="QLabel" name="labelzBalanceMatureText">
                          <property name="toolTip">
-                          <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
+                          <string>Mature: more than 20 confirmation and more than 3 mints of the same denomination after it was minted.
 These zVIP are spendable.</string>
                          </property>
                          <property name="text">
@@ -922,11 +925,11 @@ These zVIP are spendable.</string>
                           </font>
                          </property>
                          <property name="toolTip">
-                          <string>Mature: more than 20 confirmation and more than 1 mint of the same denomination after it was minted.
+                          <string>Mature: more than 20 confirmation and more than 3 mints of the same denomination after it was minted.
 These zVIP are spendable.</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -937,7 +940,7 @@ These zVIP are spendable.</string>
                         <widget class="QLabel" name="labelzBalanceUnconfirmedText">
                          <property name="toolTip">
                           <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+Immature: confirmed, but less than 3 mints of the same denomination after it was minted</string>
                          </property>
                          <property name="text">
                           <string>Unconfirmed:</string>
@@ -954,10 +957,10 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                          </property>
                          <property name="toolTip">
                           <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+Immature: confirmed, but less than 3 mints of the same denomination after it was minted</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -968,7 +971,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                         <widget class="QLabel" name="labelzBalanceImmatureText">
                          <property name="toolTip">
                           <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+Immature: confirmed, but less than 3 mints of the same denomination after it was minted</string>
                          </property>
                          <property name="text">
                           <string>Immature:</string>
@@ -985,10 +988,10 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                          </property>
                          <property name="toolTip">
                           <string>Unconfirmed: less than 20 confirmations
-Immature: confirmed, but less than 1 mint of the same denomination after it was minted</string>
+Immature: confirmed, but less than 3 mints of the same denomination after it was minted</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1020,7 +1023,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                           <string>Your current zVIP balance, unconfirmed and immature zVIP included.</string>
                          </property>
                          <property name="text">
-                          <string notr="true">0.000???000???00 VIP</string>
+                          <string notr="true">0.000 000 00 VIP</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1061,6 +1064,7 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                     </layout>
                    </widget>
                   </item>
+              -->
                  </layout>
                 </widget>
                </item>
@@ -1111,10 +1115,10 @@ Immature: confirmed, but less than 1 mint of the same denomination after it was 
                        <cursorShape>WhatsThisCursor</cursorShape>
                       </property>
                       <property name="toolTip">
-                       <string>The displayed information may be out of date. Your wallet automatically synchronizes with the VIP network after a connection is established, but this process has not completed yet.</string>
+                       <string>The displayed information may be out of date. Your wallet automatically synchronizes with the Vip network after a connection is established, but this process has not completed yet.</string>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">QLabel { color: red; }</string>
+                       <string notr="true">QLabel { color: #ee2f77; }</string>
                       </property>
                       <property name="text">
                        <string notr="true">(out of sync)</string>

@@ -1,8 +1,9 @@
 ---
-name: "vip-osx-3.1"
+name: "vip-osx-3.1.0"
 enable_cache: true
+sudo: true
 suites:
-- "trusty"
+- "bionic"
 architectures:
 - "amd64"
 packages:
@@ -27,8 +28,10 @@ packages:
 - "python-dev"
 - "python-setuptools"
 - "fonts-tuffy"
+- "xutils-dev"
+reference_datetime: "2019-01-25 10:00:00"
 remotes:
-- "url": "https://github.com/vip-project/vip.git"
+- "url": "https://github.com/vipcore/vip.git"
   "dir": "vip"
 files:
 - "MacOSX10.11.sdk.tar.gz"
@@ -90,9 +93,12 @@ script: |
   tar -C ${BASEPREFIX}/SDKs -xf ${BUILD_DIR}/MacOSX10.11.sdk.tar.gz
 
   # Build dependencies for each host
+  ORIGPATH="$PATH"
   for i in $HOSTS; do
+    export PATH=${BASEPREFIX}/${i}/native/bin:${ORIGPATH}
     make ${MAKEOPTS} -C ${BASEPREFIX} HOST="${i}"
   done
+  export PATH=${ORIGPATH}
 
   # Faketime for binaries
   export PATH=${PATH_orig}

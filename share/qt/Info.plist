@@ -17,22 +17,22 @@
   <string>APPL</string>
 
   <key>CFBundleGetInfoString</key>
-  <string>1.0.0, Copyright © 2009-2020 The Bitcoin Core developers, 2014-2020 The Dash Core developers, 2015-2020 The PIVX Core developers, 2020 The VIP Core developers</string>
+  <string>3.1.0, Copyright © 2009-2019 The Bitcoin Core developers, 2014-2019 The Dash Core developers, 2015-2019 The PIVX Core developers, 2018 The Vip Core developers</string>
 
   <key>CFBundleShortVersionString</key>
-  <string>1.0.0</string>
+  <string>3.1.0</string>
 
   <key>CFBundleVersion</key>
-  <string>1.0.0</string>
+  <string>3.1.0</string>
 
   <key>CFBundleSignature</key>
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>VIP-Qt</string>
+  <string>Vip-Qt</string>
   
   <key>CFBundleName</key>
-  <string>VIP-Qt</string>
+  <string>Vip-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>

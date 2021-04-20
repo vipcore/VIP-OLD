@@ -1,6 +1,4 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,9 +83,10 @@ private:
 
     UnitDisplayStatusBarControl* unitDisplayControl;
     QLabel* labelStakingIcon;
-    QPushButton* labelAutoMintIcon;
+#ifdef ENABLE_ZEROCOIN
+//    QPushButton* labelAutoMintIcon;
+#endif
     QPushButton* labelEncryptionIcon;
-    QLabel* labelTorIcon;
     QPushButton* labelConnectionsIcon;
     QLabel* labelBlocksIcon;
     QLabel* progressBarLabel;
@@ -110,7 +109,9 @@ private:
     QAction* multisigSignAction;
     QAction* aboutAction;
     QAction* receiveCoinsAction;
+#ifdef ENABLE_ZEROCOIN
     QAction* privacyAction;
+#endif
     QAction* optionsAction;
     QAction* toggleHideAction;
     QAction* encryptWalletAction;
@@ -186,7 +187,9 @@ public slots:
 
 #ifdef ENABLE_WALLET
     void setStakingStatus();
-    void setAutoMintStatus();
+#ifdef ENABLE_ZEROCOIN
+//    void setAutoMintStatus();
+#endif
 
     /** Set the encryption status as shown in the UI.
        @param[in] status            current encryption status
@@ -200,10 +203,6 @@ public slots:
     void incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address);
 #endif // ENABLE_WALLET
 
-private:
-    /** Set the Tor-enabled icon as shown in the UI. */
-    void updateTorIcon();
-
 private slots:
 #ifdef ENABLE_WALLET
     /** Switch to overview (home) page */
@@ -216,8 +215,10 @@ private slots:
     void gotoMasternodePage();
     /** Switch to privacy page */
     void gotoReceiveCoinsPage();
+#ifdef ENABLE_ZEROCOIN
     /** Switch to receive coins page */
-    void gotoPrivacyPage();
+//    void gotoPrivacyPage();
+#endif
     /** Switch to send coins page */
     void gotoSendCoinsPage(QString addr = "");
 

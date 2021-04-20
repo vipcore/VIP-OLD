@@ -1,13 +1,13 @@
 ---
 name: "vip-dmg-signer"
 suites:
-- "trusty"
+- "artful"
 architectures:
 - "amd64"
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/vip-project/vip-detached-sigs.git"
+- "url": "https://github.com/vipcore/vip.detached-sigs.git"
   "dir": "signature"
 files:
 - "vip-osx-unsigned.tar.gz"

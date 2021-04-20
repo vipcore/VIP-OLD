@@ -1,14 +1,14 @@
 ---
 name: "vip-win-signer"
 suites:
-- "trusty"
+- "artful"
 architectures:
 - "amd64"
 packages:
 - "libssl-dev"
 - "autoconf"
 remotes:
-- "url": "https://github.com/vip-project/vip-detached-sigs.git"
+- "url": "https://github.com/vipcore/vip.detached-sigs.git"
   "dir": "signature"
 files:
 - "osslsigncode-1.7.1.tar.gz"

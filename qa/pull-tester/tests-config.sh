@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-BUILDDIR="/mnt/ALANG-PROJECT/VIP-master"
+BUILDDIR="/media/wins/DATA/COMPARE VIP LUX/snovip"
 EXEEXT=""
 
 # These will turn into comments if they were disabled when configuring.

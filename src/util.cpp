@@ -1,8 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2015-2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -106,14 +106,15 @@ std::string to_internal(const std::string&);
 
 using namespace std;
 
-// VIP only features
+// Vip only features
 // Masternode
 bool fMasterNode = false;
 string strMasterNodePrivKey = "";
 string strMasterNodeAddr = "";
 bool fLiteMode = false;
-// SwiftX
-bool fEnableSwiftTX = true;
+// SwiftTX
+//bool fEnableSwiftTX = true;
+bool fEnableSwiftTX = false;
 int nSwiftTXDepth = 5;
 // Automatic Zerocoin minting
 bool fEnableZeromint = false;
@@ -144,7 +145,7 @@ volatile bool fReopenDebugLog = false;
 
 /** Init OpenSSL library multithreading support */
 static CCriticalSection** ppmutexOpenSSL;
-void locking_callback(int mode, int i, const char* file, int line) NO_THREAD_SAFETY_ANALYSIS
+void locking_callback(int mode, int i, const char* file, int line)
 {
     if (mode & CRYPTO_LOCK) {
         ENTER_CRITICAL_SECTION(*ppmutexOpenSSL[i]);
@@ -238,10 +239,10 @@ bool LogAcceptCategory(const char* category)
             const vector<string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "vip" is a composite category enabling all VIP-related debug output
+            // "vip" is a composite category enabling all Vip-related debug output
             if (ptrCategory->count(string("vip"))) {
                 ptrCategory->insert(string("obfuscation"));
-                ptrCategory->insert(string("swiftx"));
+                ptrCategory->insert(string("swifttx"));
                 ptrCategory->insert(string("masternode"));
                 ptrCategory->insert(string("mnpayments"));
                 ptrCategory->insert(string("zero"));
@@ -307,7 +308,7 @@ static bool InterpretBool(const std::string& strValue)
 /** Turn -noX into -X=0 */
 static void InterpretNegativeSetting(std::string& strKey, std::string& strValue)
 {
-    if (strKey.length() > 3 && strKey[0] == '-' && strKey[1] == 'n' && strKey[2] == 'o') {
+    if (strKey.length()>3 && strKey[0]=='-' && strKey[1]=='n' && strKey[2]=='o') {
         strKey = "-" + strKey.substr(3);
         strValue = InterpretBool(strValue) ? "0" : "1";
     }
@@ -387,15 +388,13 @@ static const int screenWidth = 79;
 static const int optIndent = 2;
 static const int msgIndent = 7;
 
-std::string HelpMessageGroup(const std::string& message)
-{
+std::string HelpMessageGroup(const std::string &message) {
     return std::string(message) + std::string("\n\n");
 }
 
-std::string HelpMessageOpt(const std::string& option, const std::string& message)
-{
-    return std::string(optIndent, ' ') + std::string(option) +
-           std::string("\n") + std::string(msgIndent, ' ') +
+std::string HelpMessageOpt(const std::string &option, const std::string &message) {
+    return std::string(optIndent,' ') + std::string(option) +
+           std::string("\n") + std::string(msgIndent,' ') +
            FormatParagraph(message, screenWidth - msgIndent, msgIndent) +
            std::string("\n\n");
 }
@@ -427,13 +426,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\VIP
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\VIP
-// Mac: ~/Library/Application Support/VIP
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\Vip
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\Vip
+// Mac: ~/Library/Application Support/Vip
 // Unix: ~/.vip
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "VIP";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Vip";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -445,7 +444,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "VIP";
+    return pathRet / "Vip";
 #else
     // Unix
     return pathRet / ".vip";
@@ -516,36 +515,9 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
     if (!streamConfig.good()) {
         // Create empty vip.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
-        if (configFile != NULL) {
-            unsigned char rand_pwd[32];
-            char rpc_passwd[32];
-            GetRandBytes(rand_pwd, 32);
-            for (int i = 0; i < 32; i++) {
-                rpc_passwd[i] = (rand_pwd[i] % 26) + 97;
-            }
-            rpc_passwd[31] = '\0';
-            unsigned char rand_user[16];
-            char rpc_user[16];
-            GetRandBytes(rand_user, 16);
-            for (int i = 0; i < 16; i++) {
-                rpc_user[i] = (rand_user[i] % 26) + 97;
-            }
-            rpc_user[15] = '\0';
-            std::string strHeader = "rpcuser=";
-            strHeader += rpc_user;
-            strHeader += "\nrpcpassword=";
-            strHeader += rpc_passwd;
-            strHeader += "\naddnode=107.161.26.12:19450\naddnode=168.235.93.113:19450\naddnode=168.235.93.110:19450\naddnode=168.235.82.33:19450\n";
-            strHeader += "txindex=1\nvipstake=1\nserver=1\ndaemon=1\n";
-            fwrite(strHeader.c_str(), std::strlen(strHeader.c_str()), 1, configFile);
+        if (configFile != NULL)
             fclose(configFile);
-
-
-
-
-        }
-        // return; // Nothing to read, so just return
-        streamConfig.open(GetConfigFile());
+        return; // Nothing to read, so just return
     }
 
     set<string> setOptions;
@@ -843,8 +815,8 @@ bool SetupNetworking()
 #ifdef WIN32
     // Initialize Windows Sockets
     WSADATA wsadata;
-    int ret = WSAStartup(MAKEWORD(2, 2), &wsadata);
-    if (ret != NO_ERROR || LOBYTE(wsadata.wVersion) != 2 || HIBYTE(wsadata.wVersion) != 2)
+    int ret = WSAStartup(MAKEWORD(2,2), &wsadata);
+    if (ret != NO_ERROR || LOBYTE(wsadata.wVersion ) != 2 || HIBYTE(wsadata.wVersion) != 2)
         return false;
 #endif
     return true;

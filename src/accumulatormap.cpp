@@ -1,5 +1,5 @@
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,11 +13,10 @@ using namespace libzerocoin;
 using namespace std;
 
 //Construct accumulators for all denominations
-AccumulatorMap::AccumulatorMap(libzerocoin::ZerocoinParams* params)
+AccumulatorMap::AccumulatorMap()
 {
-    this->params = params;
     for (auto& denom : zerocoinDenomList) {
-        unique_ptr<Accumulator> uptr(new Accumulator(params, denom));
+        unique_ptr<Accumulator> uptr(new Accumulator(Params().Zerocoin_Params(), denom));
         mapAccumulators.insert(make_pair(denom, std::move(uptr)));
     }
 }
@@ -25,15 +24,9 @@ AccumulatorMap::AccumulatorMap(libzerocoin::ZerocoinParams* params)
 //Reset each accumulator to its default state
 void AccumulatorMap::Reset()
 {
-    Reset(params);
-}
-
-void AccumulatorMap::Reset(libzerocoin::ZerocoinParams* params2)
-{
-    this->params = params2;
     mapAccumulators.clear();
     for (auto& denom : zerocoinDenomList) {
-        unique_ptr<Accumulator> uptr(new Accumulator(params2, denom));
+        unique_ptr<Accumulator> uptr(new Accumulator(Params().Zerocoin_Params(), denom));
         mapAccumulators.insert(make_pair(denom, std::move(uptr)));
     }
 }
@@ -45,23 +38,18 @@ bool AccumulatorMap::Load(uint256 nCheckpoint)
         uint32_t nChecksum = ParseChecksum(nCheckpoint, denom);
 
         CBigNum bnValue;
-        if (!zerocoinDB->ReadAccumulatorValue(nChecksum, bnValue))
-            return error("%s : cannot find checksum %d", __func__, nChecksum);
+        if (!zerocoinDB->ReadAccumulatorValue(nChecksum, bnValue)) {
+            LogPrintf("%s : cannot find checksum %d\n", __func__, nChecksum);
+            return false;
+        }
 
         mapAccumulators.at(denom)->setValue(bnValue);
     }
     return true;
 }
 
-//Load accumulator map from a hard-checkpoint
-void AccumulatorMap::Load(const AccumulatorCheckpoints::Checkpoint& checkpoint)
-{
-     for (auto it : checkpoint)
-         mapAccumulators.at(it.first)->setValue(it.second);
-}
-
 //Add a zerocoin to the accumulator of its denomination.
-bool AccumulatorMap::Accumulate(const PublicCoin& pubCoin, bool fSkipValidation)
+bool AccumulatorMap::Accumulate(PublicCoin pubCoin, bool fSkipValidation)
 {
     CoinDenomination denom = pubCoin.getDenomination();
     if (denom == CoinDenomination::ZQ_ERROR)
@@ -97,5 +85,3 @@ uint256 AccumulatorMap::GetCheckpoint()
 
     return nCheckpoint;
 }
-
-

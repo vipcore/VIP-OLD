@@ -1,6 +1,4 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -130,6 +128,8 @@ QVariant BanTableModel::data(const QModelIndex &index, int role) const
             date = date.addSecs(rec->banEntry.nBanUntil);
             return date.toString(Qt::SystemLocaleLongDate);
         }
+    } else if (role == Qt::ForegroundRole) {
+        return COLOR_BLACK;
     }
 
     return QVariant();

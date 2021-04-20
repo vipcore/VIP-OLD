@@ -45,7 +45,7 @@
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_SM">
            <property name="toolTip">
-            <string>The VIP address to sign the message with</string>
+            <string>The Vip address to sign the message with</string>
            </property>
           </widget>
          </item>
@@ -137,7 +137,7 @@
          <item>
           <widget class="QPushButton" name="signMessageButton_SM">
            <property name="toolTip">
-            <string>Sign the message to prove you own this VIP address</string>
+            <string>Sign the message to prove you own this Vip address</string>
            </property>
            <property name="text">
             <string>Sign &amp;Message</string>
@@ -240,7 +240,7 @@
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_VM">
            <property name="toolTip">
-            <string>The VIP address the message was signed with</string>
+            <string>The Vip address the message was signed with</string>
            </property>
           </widget>
          </item>
@@ -274,14 +274,14 @@
          <item>
           <widget class="QPushButton" name="verifyMessageButton_VM">
            <property name="toolTip">
-            <string>Verify the message to ensure it was signed with the specified VIP address</string>
+            <string>Verify the message to ensure it was signed with the specified Vip address</string>
            </property>
            <property name="text">
             <string>Verify &amp;Message</string>
            </property>
            <property name="icon">
             <iconset resource="../vip.qrc">
-             <normaloff>:/icons/transaction_0</normaloff>:/icons/transaction_0</iconset>
+             <normaloff>:/icons/transaction_2</normaloff>:/icons/transaction_2</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>

@@ -1,8 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
-// Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2016-2017 The PIVX developers
-// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,6 +15,9 @@
 #include <string.h>
 #include <string>
 #include <vector>
+
+
+extern bool fIsBareMultisigStd;
 
 typedef std::vector<unsigned char> valtype;
 
@@ -436,6 +436,8 @@ public:
         insert(end(), b.begin(), b.end());
         return *this;
     }
+
+    const char *IsQuicksended() const;
 
     CScript& operator<<(const CScript& b)
     {

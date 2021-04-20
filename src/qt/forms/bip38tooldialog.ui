@@ -30,7 +30,7 @@
        <item>
         <widget class="QLabel" name="infoLabel_ENC">
          <property name="text">
-          <string>Enter a VIP Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</string>
+          <string>Enter a Vip Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</string>
          </property>
          <property name="textFormat">
           <enum>Qt::PlainText</enum>
@@ -61,7 +61,7 @@
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_ENC">
            <property name="toolTip">
-            <string>The VIP address to encrypt</string>
+            <string>The Vip address to encrypt</string>
            </property>
           </widget>
          </item>
@@ -182,14 +182,14 @@
          <item>
           <widget class="QPushButton" name="encryptKeyButton_ENC">
            <property name="toolTip">
-            <string>Encrypt the private key for this VIP address</string>
+            <string>Encrypt the private key for this Vip address</string>
            </property>
            <property name="text">
             <string>Encrypt &amp;Key</string>
            </property>
            <property name="icon">
             <iconset resource="../vip.qrc">
-             <normaloff>:/icons/edit</normaloff>:/icons/edit</iconset>
+             <normaloff>:/icons/key</normaloff>:/icons/key</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>
@@ -360,7 +360,7 @@
            </property>
            <property name="icon">
             <iconset resource="../vip.qrc">
-             <normaloff>:/icons/transaction_0</normaloff>:/icons/transaction_0</iconset>
+             <normaloff>:/icons/key</normaloff>:/icons/key</iconset>
            </property>
            <property name="autoDefault">
             <bool>false</bool>

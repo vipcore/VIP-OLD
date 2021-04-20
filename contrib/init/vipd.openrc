@@ -16,8 +16,8 @@ BITCOIND_USER=${BITCOIND_USER:-vip}
 BITCOIND_GROUP=${BITCOIND_GROUP:-vip}
 BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/vipd}
 
-name="VIP Core Daemon"
-description="VIP crypto-currency p2p network daemon"
+name="Vip Core Daemon"
+description="Vip crypto-currency p2p network daemon"
 
 command="/usr/bin/vipd"
 command_args="-pid=\"${BITCOIND_PIDFILE}\" \
@@ -78,7 +78,7 @@ checkconfig()
 		eerror "It is also recommended that you also set alertnotify so you are "
 		eerror "notified of problems:"
 		eerror ""
-		eerror "ie: alertnotify=echo %%s | mail -s \"VIP Alert\"" \
+		eerror "ie: alertnotify=echo %%s | mail -s \"Vip Alert\"" \
 			"admin@foo.com"
 		eerror ""
 		return 1

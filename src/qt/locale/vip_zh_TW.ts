@@ -1,4 +1,4 @@
-﻿<TS language="zh_TW" version="2.1">
+<TS language="zh_TW" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>選擇要匯出VIP幣的位址</translation>
+        <translation>選擇要匯出Vip幣的位址</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>選擇要接收VIP幣的位址</translation>
+        <translation>選擇要接收Vip幣的位址</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -62,12 +62,12 @@
         <translation>接收的位址</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>這是你用來付款的 VIP 位址, 送出前, 請務必確認金額及接收位址是否正確.</translation>
+        <source>These are your Vip addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>這是你用來付款的 Vip 位址, 送出前, 請務必確認金額及接收位址是否正確.</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>這是你用來接收款項的 VIP 位址, 建議你每次付款都使用新的位址.</translation>
+        <source>These are your Vip addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>這是你用來接收款項的 Vip 位址, 建議你每次付款都使用新的位址.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -164,8 +164,8 @@
         <translation>錢包確認加密</translation>
     </message>
     <message>
-        <source>VIP will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
-        <translation>VIP 現在會關閉程式來處理加密流程, 請注意, 僅僅是加密你的錢包並不能完全保護你的 VIP 幣被可疑軟體或病毒偷走的風險.</translation>
+        <source>Vip will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
+        <translation>Vip 現在會關閉程式來處理加密流程, 請注意, 僅僅是加密你的錢包並不能完全保護你的 VIP 幣被可疑軟體或病毒偷走的風險.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -217,9 +217,6 @@
     </message>
 </context>
 <context>
-    <name>BanTableModel</name>
-    </context>
-<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -230,8 +227,16 @@
         <translation>&amp;BIP 38 加密</translation>
     </message>
     <message>
+        <source>Enter a Vip Address that you would like to encrypt using BIP 38. Enter a passphrase in the middle box. Press encrypt to compute the encrypted private key.</source>
+        <translation>輸入你想 BIP 38 加密的 Vip 位址, 輸入密碼在中間欄, 按下加密按鈕來產生加密私鑰.</translation>
+    </message>
+    <message>
         <source>Address:</source>
         <translation>位址:</translation>
+    </message>
+    <message>
+        <source>The Vip address to sign the message with</source>
+        <translation>對訊息簽名的 Vip 位址</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -262,8 +267,16 @@
         <translation>拷貝目前的簽章到系統剪貼簿</translation>
     </message>
     <message>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>使用簽章來證明你是該  Vip 位址的擁有者,</translation>
+    </message>
+    <message>
         <source>Encrypt &amp;Key</source>
         <translation>加密 &amp;鑰匙</translation>
+    </message>
+    <message>
+        <source>Reset all sign message fields</source>
+        <translation>重設所有已簽章訊息</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -274,8 +287,20 @@
         <translation>&amp;BIP 38 解密</translation>
     </message>
     <message>
+        <source>The Vip address the message was signed with</source>
+        <translation>此訊息之 Vip 位址已簽章於</translation>
+    </message>
+    <message>
+        <source>Verify the message to ensure it was signed with the specified Vip address</source>
+        <translation>驗證訊息以確保該  Vip 位址已被簽章</translation>
+    </message>
+    <message>
         <source>Decrypt &amp;Key</source>
         <translation>解密 &amp;鑰匙</translation>
+    </message>
+    <message>
+        <source>Reset all verify message fields</source>
+        <translation>重設所有驗證訊息的欄位</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -557,12 +582,12 @@
         <translation>Tabs 工具列</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     <message>
-        <source>Send coins to a VIP address</source>
-        <translation>送出錢幣到 VIP 地址</translation>
+        <source>Send coins to a Vip address</source>
+        <translation>送出錢幣到 Vip 地址</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and vip: URIs)</source>
@@ -577,24 +602,24 @@
         <translation>瀏覽 Masternodes</translation>
     </message>
     <message>
-        <source>&amp;About VIP Core</source>
-        <translation>&amp;關於 VIP Core</translation>
+        <source>&amp;About Vip Core</source>
+        <translation>&amp;關於 Vip Core</translation>
     </message>
     <message>
-        <source>Show information about VIP Core</source>
-        <translation>顯示 VIP Core 相關資訊</translation>
+        <source>Show information about Vip Core</source>
+        <translation>顯示 Vip Core 相關資訊</translation>
     </message>
     <message>
-        <source>Modify configuration options for VIP</source>
-        <translation>修改 VIP 設定</translation>
+        <source>Modify configuration options for Vip</source>
+        <translation>修改 Vip 設定</translation>
     </message>
     <message>
-        <source>Sign messages with your VIP addresses to prove you own them</source>
-        <translation>使用你的 VIP 位址對訊息簽章, 來證明你是擁有者</translation>
+        <source>Sign messages with your Vip addresses to prove you own them</source>
+        <translation>使用你的 Vip 位址對訊息簽章, 來證明你是擁有者</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified VIP addresses</source>
-        <translation>驗證訊息簽章與 VIP 位址吻合</translation>
+        <source>Verify messages to ensure they were signed with specified Vip addresses</source>
+        <translation>驗證訊息簽章與 Vip 位址吻合</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -625,8 +650,8 @@
         <translation>打開Masternode設定檔</translation>
     </message>
     <message>
-        <source>Open a VIP: URI or payment request</source>
-        <translation>打開VIP: 位址或付款請求 </translation>
+        <source>Open a Vip: URI or payment request</source>
+        <translation>打開Vip: 位址或付款請求 </translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -637,12 +662,12 @@
         <translation>區塊鏈瀏覽視窗</translation>
     </message>
     <message>
-        <source>Show the VIP Core help message to get a list with possible VIP command-line options</source>
-        <translation>顯示 VIP Core 幫助訊息以取得 VIP 命令列表選項</translation>
+        <source>Show the Vip Core help message to get a list with possible Vip command-line options</source>
+        <translation>顯示 Vip Core 幫助訊息以取得 Vip 命令列表選項</translation>
     </message>
     <message>
-        <source>VIP Core client</source>
-        <translation>VIP Core 客戶端</translation>
+        <source>Vip Core client</source>
+        <translation>Vip Core 客戶端</translation>
     </message>
     </context>
 <context>
@@ -671,15 +696,15 @@
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     </context>
 <context>
     <name>Intro</name>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     </context>
 <context>
@@ -699,13 +724,6 @@
         <source>Address:</source>
         <translation>位址:</translation>
     </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(沒有標記)</translation>
-    </message>
-    </context>
-<context>
-    <name>MultisigDialog</name>
     </context>
 <context>
     <name>ObfuscationConfig</name>
@@ -742,10 +760,6 @@
     <message>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation>文字標籤</translation>
     </message>
     </context>
 <context>
@@ -822,8 +836,8 @@
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>The VIP address to sign the message with</source>
-        <translation>對訊息簽名的 VIP 位址</translation>
+        <source>The Vip address to sign the message with</source>
+        <translation>對訊息簽名的 Vip 位址</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -846,16 +860,16 @@
         <translation>拷貝目前的簽章到系統剪貼簿</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this VIP address</source>
-        <translation>使用簽章來證明你是該  VIP 位址的擁有者,</translation>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>使用簽章來證明你是該  Vip 位址的擁有者,</translation>
     </message>
     <message>
-        <source>The VIP address the message was signed with</source>
-        <translation>此訊息之 VIP 位址已簽章於</translation>
+        <source>The Vip address the message was signed with</source>
+        <translation>此訊息之 Vip 位址已簽章於</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified VIP address</source>
-        <translation>驗證訊息以確保該  VIP 位址已被簽章</translation>
+        <source>Verify the message to ensure it was signed with the specified Vip address</source>
+        <translation>驗證訊息以確保該  Vip 位址已被簽章</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
@@ -893,8 +907,8 @@
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>VIP Core</source>
-        <translation>VIP Core</translation>
+        <source>Vip Core</source>
+        <translation>Vip Core</translation>
     </message>
     </context>
 <context>
@@ -957,7 +971,7 @@
     </message>
     </context>
 <context>
-    <name>ZVipControlDialog</name>
+    <name>ZSnoControlDialog</name>
     </context>
 <context>
     <name>vip-core</name>

@@ -14,18 +14,12 @@ QT_TS = \
   qt/locale/vip_de.ts \
   qt/locale/vip_en.ts \
   qt/locale/vip_en_US.ts \
-  qt/locale/vip_eo.ts \
   qt/locale/vip_es.ts \
-  qt/locale/vip_es_ES.ts \
   qt/locale/vip_fi.ts \
   qt/locale/vip_fr_FR.ts \
-  qt/locale/vip_hi_IN.ts \
-  qt/locale/vip_hr.ts \
-  qt/locale/vip_hr_HR.ts \
   qt/locale/vip_it.ts \
   qt/locale/vip_ja.ts \
   qt/locale/vip_ko_KR.ts \
-  qt/locale/vip_lt_LT.ts \
   qt/locale/vip_nl.ts \
   qt/locale/vip_pl.ts \
   qt/locale/vip_pt.ts \
@@ -36,7 +30,6 @@ QT_TS = \
   qt/locale/vip_sv.ts \
   qt/locale/vip_tr.ts \
   qt/locale/vip_uk.ts \
-  qt/locale/vip_vi.ts \
   qt/locale/vip_zh_CN.ts \
   qt/locale/vip_zh_TW.ts
 
@@ -64,7 +57,7 @@ QT_FORMS_UI = \
   qt/forms/sendcoinsentry.ui \
   qt/forms/signverifymessagedialog.ui \
   qt/forms/transactiondescdialog.ui \
-  qt/forms/zpivcontroldialog.ui
+  qt/forms/zsnocontroldialog.ui
 
 QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
@@ -118,7 +111,7 @@ QT_MOC_CPP = \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
-  qt/moc_zpivcontroldialog.cpp
+  qt/moc_zsnocontroldialog.cpp
 
 BITCOIN_MM = \
   qt/macdockiconhandler.mm \
@@ -199,7 +192,7 @@ BITCOIN_QT_H = \
   qt/walletmodeltransaction.h \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
-  qt/zpivcontroldialog.h
+  qt/zsnocontroldialog.h
 
 RES_ICONS = \
   qt/res/icons/add.png \
@@ -216,6 +209,7 @@ RES_ICONS = \
   qt/res/icons/clock3.png \
   qt/res/icons/clock4.png \
   qt/res/icons/clock5.png \
+  qt/res/icons/commit.png \
   qt/res/icons/configure.png \
   qt/res/icons/connect0_16.png \
   qt/res/icons/connect1_16.png \
@@ -233,11 +227,11 @@ RES_ICONS = \
   qt/res/icons/eye_plus.png \
   qt/res/icons/filesave.png \
   qt/res/icons/history.png \
+  qt/res/icons/import_0.png \
   qt/res/icons/key.png \
   qt/res/icons/lock_closed.png \
   qt/res/icons/lock_open.png \
   qt/res/icons/masternodes.png \
-  qt/res/icons/onion.png \
   qt/res/icons/overview.png \
   qt/res/icons/qrcode.png \
   qt/res/icons/quit.png \
@@ -329,7 +323,7 @@ BITCOIN_QT_CPP += \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
-  qt/zpivcontroldialog.cpp
+  qt/zsnocontroldialog.cpp
 
 endif
 

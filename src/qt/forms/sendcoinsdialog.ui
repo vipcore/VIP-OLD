@@ -302,7 +302,7 @@
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">color:red;font-weight:bold;</string>
+                   <string notr="true">color: #ee2f77;font-weight:bold;</string>
                   </property>
                   <property name="text">
                    <string>Insufficient funds!</string>
@@ -1242,7 +1242,7 @@
                       <item>
                        <widget class="QCheckBox" name="checkBoxMinimumFee">
                         <property name="toolTip">
-                         <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for VIP transactions than the network can process.</string>
+                         <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for Vip transactions than the network can process.</string>
                         </property>
                         <property name="text">
                          <string/>
@@ -1255,7 +1255,7 @@
                          <bool>true</bool>
                         </property>
                         <property name="toolTip">
-                         <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for VIP transactions than the network can process.</string>
+                         <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks.&lt;br /&gt;But be aware that this can end up in a never confirming transaction once there is more demand for Vip transactions than the network can process.</string>
                         </property>
                         <property name="text">
                          <string>(read the tooltip)</string>
@@ -1636,10 +1636,10 @@
              <property name="text">
               <string>Clear &amp;All</string>
              </property>
-             <!-- <property name="icon">
+             <property name="icon">
               <iconset resource="../vip.qrc">
                <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
-             </property> -->
+             </property>
              <property name="autoDefault">
               <bool>false</bool>
              </property>
@@ -1653,10 +1653,10 @@
              <property name="text">
               <string>Add &amp;Recipient</string>
              </property>
-             <!-- <property name="icon">
+             <property name="icon">
               <iconset resource="../vip.qrc">
                <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
-             </property> -->
+             </property>
              <property name="autoDefault">
               <bool>false</bool>
              </property>
@@ -1702,7 +1702,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>SwiftX</string>
+                <string>SwiftTX</string>
                </property>
               </widget>
              </item>

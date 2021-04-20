@@ -1,7 +1,5 @@
-// Copyright (c) 2011-2014 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
-// Distributed under the MIT software license, see the accompanying
+// Copyright (c) 2011-2013 The Bitcoin developers
+// Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_WALLETVIEW_H
@@ -12,13 +10,14 @@
 #include "masternodelist.h"
 
 #include <QStackedWidget>
-#include <ui_interface.h>
 
 class BitcoinGUI;
 class ClientModel;
 class OverviewPage;
 class ReceiveCoinsDialog;
-class PrivacyDialog;
+#ifdef ENABLE_ZEROCOIN
+//class PrivacyDialog;
+#endif
 class SendCoinsDialog;
 class SendCoinsRecipient;
 class TransactionView;
@@ -67,7 +66,9 @@ private:
     OverviewPage* overviewPage;
     QWidget* transactionsPage;
     ReceiveCoinsDialog* receiveCoinsPage;
-    PrivacyDialog* privacyPage;
+#ifdef ENABLE_ZEROCOIN
+//    PrivacyDialog* privacyPage;
+#endif
     SendCoinsDialog* sendCoinsPage;
     BlockExplorer* explorerWindow;
     MasternodeList* masternodeListPage;
@@ -86,8 +87,10 @@ public slots:
     void gotoMasternodePage();
     /** Switch to explorer page */
     void gotoBlockExplorerPage();
+#ifdef ENABLE_ZEROCOIN
     /** Switch to privacy page */
-    void gotoPrivacyPage();
+    //void gotoPrivacyPage();
+#endif    
     /** Switch to receive coins page */
     void gotoReceiveCoinsPage();
     /** Switch to send coins page */

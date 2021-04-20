@@ -1,4 +1,4 @@
-﻿<TS language="ja" version="2.1">
+<TS language="ja" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
@@ -109,9 +109,6 @@
     </message>
     </context>
 <context>
-    <name>BanTableModel</name>
-    </context>
-<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>Address:</source>
@@ -163,9 +160,6 @@
         <source>Address:</source>
         <translation>アドレス：</translation>
     </message>
-    </context>
-<context>
-    <name>MultisigDialog</name>
     </context>
 <context>
     <name>ObfuscationConfig</name>
@@ -269,7 +263,7 @@
     </message>
     </context>
 <context>
-    <name>ZVipControlDialog</name>
+    <name>ZSnoControlDialog</name>
     </context>
 <context>
     <name>vip-core</name>

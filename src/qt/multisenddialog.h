@@ -1,11 +1,6 @@
-// Copyright (c) 2017 The PIVX developers
-// Copyright (c) 2018 The VIP developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #ifndef MULTISENDDIALOG_H
 #define MULTISENDDIALOG_H
-
+#include <QStyle>
 #include <QDialog>
 
 namespace Ui

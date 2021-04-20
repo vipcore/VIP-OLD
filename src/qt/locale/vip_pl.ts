@@ -108,6 +108,10 @@
         <translation>Powtórz nowe hasło</translation>
     </message>
     <message>
+        <source>For anonymization and staking only</source>
+        <translation>Tylko dla anonimizacji i stakingu</translation>
+    </message>
+    <message>
         <source>Encrypt wallet</source>
         <translation>Zakoduj portfel</translation>
     </message>
@@ -185,9 +189,6 @@
     </message>
 </context>
 <context>
-    <name>BanTableModel</name>
-    </context>
-<context>
     <name>Bip38ToolDialog</name>
     <message>
         <source>BIP 38 Tool</source>
@@ -226,6 +227,10 @@
         <translation>Zakodowany klucz:</translation>
     </message>
     <message>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres Vip jest w twoim posiadaniu</translation>
+    </message>
+    <message>
         <source>Encrypt &amp;Key</source>
         <translation>Kodowanie &amp;klucz</translation>
     </message>
@@ -236,6 +241,10 @@
     <message>
         <source>&amp;BIP 38 Decrypt</source>
         <translation>&amp;BIP 38 Zakoduj</translation>
+    </message>
+    <message>
+        <source>Reset all verify message fields</source>
+        <translation>Resetuj wszystkie zweryfikowane pola tekstowe</translation>
     </message>
     <message>
         <source>Decrypted Key:</source>
@@ -406,11 +415,11 @@
     </message>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>&amp;Zatwierdź wiavipść</translation>
+        <translation>&amp;Zatwierdź wiadomość</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Zweryfikuj wiavipść</translation>
+        <translation>&amp;Zweryfikuj wiadomość</translation>
     </message>
     <message>
         <source>&amp;Information</source>
@@ -509,12 +518,12 @@
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>&amp;Rdzeń VIP</translation>
+        <source>Vip Core</source>
+        <translation>&amp;Rdzeń Vip</translation>
     </message>
     <message>
-        <source>Send coins to a VIP address</source>
-        <translation>Wyślij monety do adresu VIP</translation>
+        <source>Send coins to a Vip address</source>
+        <translation>Wyślij monety do adresu Vip</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and vip: URIs)</source>
@@ -529,24 +538,24 @@
         <translation>Przeglądaj masternodes</translation>
     </message>
     <message>
-        <source>&amp;About VIP Core</source>
+        <source>&amp;About Vip Core</source>
         <translation>&amp;O rdzeniu bitcoina</translation>
     </message>
     <message>
-        <source>Show information about VIP Core</source>
+        <source>Show information about Vip Core</source>
         <translation>Pokaż informacje o rdzeniu bitcoina</translation>
     </message>
     <message>
-        <source>Modify configuration options for VIP</source>
-        <translation>Modyfikuj opcje konfiguracji VIP</translation>
+        <source>Modify configuration options for Vip</source>
+        <translation>Modyfikuj opcje konfiguracji Vip</translation>
     </message>
     <message>
-        <source>Sign messages with your VIP addresses to prove you own them</source>
-        <translation>Zatwierdź wiavipść z twoimi adresami VIP, by udowodnić, że jesteś w ich posiadaniu</translation>
+        <source>Sign messages with your Vip addresses to prove you own them</source>
+        <translation>Zatwierdź wiadomość z twoimi adresami Vip, by udowodnić, że jesteś w ich posiadaniu</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified VIP addresses</source>
-        <translation>Zweryfikuj wiavipści by upewnić się, że zostały zatwierdzone z podanego adresu VIP</translation>
+        <source>Verify messages to ensure they were signed with specified Vip addresses</source>
+        <translation>Zweryfikuj wiadomości by upewnić się, że zostały zatwierdzone z podanego adresu Vip</translation>
     </message>
     <message>
         <source>&amp;BIP38 tool</source>
@@ -573,8 +582,8 @@
         <translation>Otwórz &amp;Plik konfiguracji Masternode</translation>
     </message>
     <message>
-        <source>Open a VIP: URI or payment request</source>
-        <translation>Otwórz VIP: URI i żądanie zapłaty</translation>
+        <source>Open a Vip: URI or payment request</source>
+        <translation>Otwórz Vip: URI i żądanie zapłaty</translation>
     </message>
     <message>
         <source>&amp;Blockchain explorer</source>
@@ -585,12 +594,12 @@
         <translation>Okno eksplorera bloków</translation>
     </message>
     <message>
-        <source>Show the VIP Core help message to get a list with possible VIP command-line options</source>
-        <translation>Pokaż wiavipść pomocy rdzenia VIP, aby dostać listę możliwych opcji VIP command-line</translation>
+        <source>Show the Vip Core help message to get a list with possible Vip command-line options</source>
+        <translation>Pokaż wiadomość pomocy rdzenia Vip, aby dostać listę możliwych opcji Vip command-line</translation>
     </message>
     <message>
-        <source>VIP Core client</source>
-        <translation>Rdzeń VIP klient</translation>
+        <source>Vip Core client</source>
+        <translation>Rdzeń Vip klient</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -657,9 +666,9 @@ Adres: %4
 </translation>
     </message>
     <message>
-        <source>Staking is active
+        <source>Staking: Active
  MultiSend: %1</source>
-        <translation>Staking aktywny
+        <translation>Staking: Aktywny
 MultiWysyłka: %1</translation>
     </message>
     <message>
@@ -671,14 +680,18 @@ MultiWysyłka: %1</translation>
         <translation>Nieaktywny</translation>
     </message>
     <message>
-        <source>Staking is not active
+        <source>Staking: Not active
  MultiSend: %1</source>
-        <translation>Staking nieaktywny
+        <translation>Staking: Nieaktywny
 MultiWysyłlka: %1</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
         <translation>Portfel jest 1Zakodowany1 i obecnie 2Odblokowany2</translation>
+    </message>
+    <message>
+        <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt; for anonimization and staking only</source>
+        <translation>Portfel jest 1Zakodowany1 i obecnie 2Odblokowany2 tylko dla anonimizacji i stakingu</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
@@ -899,8 +912,8 @@ MultiWysyłlka: %1</translation>
 <context>
     <name>HelpMessageDialog</name>
     <message>
-        <source>VIP Core</source>
-        <translation>&amp;Rdzeń VIP</translation>
+        <source>Vip Core</source>
+        <translation>&amp;Rdzeń Vip</translation>
     </message>
     </context>
 <context>
@@ -914,8 +927,8 @@ MultiWysyłlka: %1</translation>
         <translation>Użyj niestandardowej ścieżki danych</translation>
     </message>
     <message>
-        <source>VIP Core</source>
-        <translation>&amp;Rdzeń VIP</translation>
+        <source>Vip Core</source>
+        <translation>&amp;Rdzeń Vip</translation>
     </message>
     <message>
         <source>Error</source>
@@ -931,6 +944,10 @@ MultiWysyłlka: %1</translation>
     <message>
         <source>Form</source>
         <translation>Forma</translation>
+    </message>
+    <message>
+        <source>My Masternodes</source>
+        <translation>Moje Masternode</translation>
     </message>
     <message>
         <source>Address</source>
@@ -1084,10 +1101,6 @@ MultiWysyłlka: %1</translation>
         <translation>Podgląd MultiWysyłki</translation>
     </message>
     <message>
-        <source>(no label)</source>
-        <translation>(brak zakładki)</translation>
-    </message>
-    <message>
         <source>The entered address:
 </source>
         <translation>Wprowadzony adres:
@@ -1114,21 +1127,6 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
 </translation>
     </message>
 </context>
-<context>
-    <name>MultisigDialog</name>
-    <message>
-        <source>Status:</source>
-        <translation>Status:</translation>
-    </message>
-    <message>
-        <source>0</source>
-        <translation>0</translation>
-    </message>
-    <message>
-        <source>Amount:</source>
-        <translation>Liczba:</translation>
-    </message>
-    </context>
 <context>
     <name>ObfuscationConfig</name>
     <message>
@@ -1190,12 +1188,12 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
         <translation>Zezwól na przychodzące połączenia</translation>
     </message>
     <message>
-        <source>Automatically start VIP after logging in to the system.</source>
-        <translation>Automatycznie uruchom VIP po zalogowaniu do systemu</translation>
+        <source>Automatically start Vip after logging in to the system.</source>
+        <translation>Automatycznie uruchom Vip po zalogowaniu do systemu</translation>
     </message>
     <message>
-        <source>&amp;Start VIP on system login</source>
-        <translation>&amp;Uruchom VIP podczas logowania do systemu</translation>
+        <source>&amp;Start Vip on system login</source>
+        <translation>&amp;Uruchom Vip podczas logowania do systemu</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1214,8 +1212,8 @@ Proszę sprawdzić adres i spróbować ponownie</translation>
         <translation>&amp;Sieć</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting VIP.</source>
-        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie VIP</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting Vip.</source>
+        <translation>Język interfejsu użytkownika może być wybrany tutaj. Ustawienia ulegną zmianie po restarcie Vip</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
@@ -1224,8 +1222,8 @@ https://www.transifex.com/vip-project/vip-project-translations</source>
 https://www.transifex.com/vip-project/vip-project-translations </translation>
     </message>
     <message>
-        <source>Connect to the VIP network through a SOCKS5 proxy.</source>
-        <translation>Połącz z siecią VIP poprzez SOCKS5 proxy.</translation>
+        <source>Connect to the Vip network through a SOCKS5 proxy.</source>
+        <translation>Połącz z siecią Vip poprzez SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1315,7 +1313,7 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <source>The supplied proxy address is invalid.</source>
         <translation>Podany adres proxy jest nieprawidłowy</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>OverviewPage</name>
     <message>
@@ -1343,6 +1341,10 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <translation>Całość:</translation>
     </message>
     <message>
+        <source>Your current total balance</source>
+        <translation>Twój całkowity bilans</translation>
+    </message>
+    <message>
         <source>Current total balance in watch-only addresses</source>
         <translation>Obecny całkowity bilans w adresach tylko do obejrzenia</translation>
     </message>
@@ -1362,7 +1364,7 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <source>out of sync</source>
         <translation>Brak synchronizacji</translation>
     </message>
-    </context>
+</context>
 <context>
     <name>PaymentServer</name>
     <message>
@@ -1424,10 +1426,6 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <translation>Priorytet:</translation>
     </message>
     <message>
-        <source>TextLabel</source>
-        <translation>TekstZakładka</translation>
-    </message>
-    <message>
         <source>Fee:</source>
         <translation>Opłata:</translation>
     </message>
@@ -1463,8 +1461,8 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <translation>Liczba</translation>
     </message>
     <message>
-        <source>Enter a VIP address (e.g. %1)</source>
-        <translation>Wprowadź adres VIP (np. %1)</translation>
+        <source>Enter a Vip address (e.g. %1)</source>
+        <translation>Wprowadź adres Vip (np. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1649,6 +1647,14 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <translation>Usługi</translation>
     </message>
     <message>
+        <source>Starting Height</source>
+        <translation>Wysokość rozpoczęcia</translation>
+    </message>
+    <message>
+        <source>Sync Height</source>
+        <translation>Wysokość synchronizacji</translation>
+    </message>
+    <message>
         <source>Connection Time</source>
         <translation>Czas połączenia</translation>
     </message>
@@ -1736,12 +1742,12 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <source>Unknown</source>
         <translation>Nieznane</translation>
     </message>
-</context>
+    </context>
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
         <source>&amp;Message:</source>
-        <translation>&amp;Wiavipść:</translation>
+        <translation>&amp;Wiadomość:</translation>
     </message>
     <message>
         <source>Copy label</source>
@@ -1894,8 +1900,8 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this VIP address</source>
-        <translation>Zatwierdź wiavipść, aby udowodnić, że podany adres VIP jest w twoim posiadaniu</translation>
+        <source>Sign the message to prove you own this Vip address</source>
+        <translation>Zatwierdź wiadomość, aby udowodnić, że podany adres Vip jest w twoim posiadaniu</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -1929,8 +1935,8 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
 <context>
     <name>SplashScreen</name>
     <message>
-        <source>VIP Core</source>
-        <translation>&amp;Rdzeń VIP</translation>
+        <source>Vip Core</source>
+        <translation>&amp;Rdzeń Vip</translation>
     </message>
     </context>
 <context>
@@ -2021,7 +2027,7 @@ https://www.transifex.com/vip-project/vip-project-translations </translation>
     </message>
     </context>
 <context>
-    <name>ZVipControlDialog</name>
+    <name>ZSnoControlDialog</name>
     <message>
         <source>0</source>
         <translation>0</translation>

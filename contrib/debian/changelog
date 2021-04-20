@@ -229,7 +229,7 @@ bitcoin (0.4.0-1) unstable; urgency=low
     + Build and invoke test binary unless tests are disabled.
   * Tighten build-dependency on cdbs: Recent version needed to support
     debhelper 7.
-  * Relax build-depend unversioned on debhelper: needed version
+  * Resno build-depend unversioned on debhelper: needed version
     satisfied even in oldstable.
   * Stop suppress optional build-dependencies: Satisfied in stable.
     Build-depend on devscripts (enabling copyright-check).

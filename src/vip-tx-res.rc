@@ -16,8 +16,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "VIP"
-            VALUE "FileDescription",    "vip-tx (CLI VIP transaction editor utility)"
+            VALUE "CompanyName",        "Vip"
+            VALUE "FileDescription",    "vip-tx (CLI Vip transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "vip-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

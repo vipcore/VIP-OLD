@@ -1,6 +1,4 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -169,6 +167,8 @@ QVariant PeerTableModel::data(const QModelIndex& index, int role) const
     } else if (role == Qt::TextAlignmentRole) {
         if (index.column() == Ping)
             return (int)(Qt::AlignRight | Qt::AlignVCenter);
+    } else if (role == Qt::ForegroundRole) {
+        return COLOR_BLACK;
     }
 
     return QVariant();

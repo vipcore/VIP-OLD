@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -110,13 +110,13 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
     case VIP:
-        return 100000000;
+        return COIN;
     case mVIP:
-        return 100000;
+        return COIN / 1000;
     case uVIP:
-        return 100;
+        return COIN / 1000000;
     default:
-        return 100000000;
+        return COIN;
     }
 }
 
@@ -124,11 +124,11 @@ int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
     case VIP:
-        return 8;
+        return 6;
     case mVIP:
-        return 5;
+        return 3;
     case uVIP:
-        return 2;
+        return 0;
     default:
         return 0;
     }

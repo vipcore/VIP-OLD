@@ -5,16 +5,16 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 1.0.0
+!define VERSION 3.1.0
 !define COMPANY "Vip Core project"
-!define URL https://www.vip.org
+!define URL https://vipcore.vip
 
 # MUI Symbol Definitions
-!define MUI_ICON "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/media/wins/DATA/COMPARE VIP LUX/snovip/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/media/wins/DATA/COMPARE VIP LUX/snovip/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/media/wins/DATA/COMPARE VIP LUX/snovip/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,7 +22,7 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "Vip Core"
 !define MUI_FINISHPAGE_RUN $INSTDIR\vip-qt
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/ALANG-PROJECT/VIP-master/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/media/wins/DATA/COMPARE VIP LUX/snovip/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,7 +48,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /mnt/ALANG-PROJECT/VIP-master/vip-${VERSION}-win-setup.exe
+OutFile /media/wins/DATA/COMPARE VIP LUX/snovip/vip-${VERSION}-win-setup.exe
 !if "" == "64"
 InstallDir $PROGRAMFILES64\Vip
 !else
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /mnt/ALANG-PROJECT/VIP-master/release/vip-qt
-    File /oname=COPYING.txt /mnt/ALANG-PROJECT/VIP-master/COPYING
-    File /oname=readme.txt /mnt/ALANG-PROJECT/VIP-master/doc/README_windows.txt
+    File /media/wins/DATA/COMPARE VIP LUX/snovip/release/vip-qt
+    File /oname=COPYING.txt /media/wins/DATA/COMPARE VIP LUX/snovip/COPYING
+    File /oname=readme.txt /media/wins/DATA/COMPARE VIP LUX/snovip/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /mnt/ALANG-PROJECT/VIP-master/release/vipd
-    File /mnt/ALANG-PROJECT/VIP-master/release/vip-cli
+    File /media/wins/DATA/COMPARE VIP LUX/snovip/release/vipd
+    File /media/wins/DATA/COMPARE VIP LUX/snovip/release/vip-cli
     SetOutPath $INSTDIR\doc
-    File /r /mnt/ALANG-PROJECT/VIP-master/doc\*.*
+    File /r /media/wins/DATA/COMPARE VIP LUX/snovip/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd

@@ -106,6 +106,8 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
   dnl Qt4 and Qt5. With Qt5, languages moved into core and the WindowsIntegration
   dnl plugin was added. Since we can't tell if Qt4 is static or not, it is
   dnl assumed for windows builds.
+  dnl TU.20180324: After Qt5.6, pkgconfig from Qt5 is unreliable, Qt5PlatformSupport.pc
+  dnl is no longer emitted despite the patch. Qt devs refuse to support pkgconfig. 
   dnl _BITCOIN_QT_CHECK_STATIC_PLUGINS does a quick link-check and appends the
   dnl results to QT_LIBS.
   BITCOIN_QT_CHECK([
@@ -137,19 +139,27 @@ AC_DEFUN([BITCOIN_QT_CONFIGURE],[
       if test "x$bitcoin_cv_need_acc_widget" = xyes; then
         _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(AccessibleFactory)], [-lqtaccessiblewidgets])
       fi
-      _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QMinimalIntegrationPlugin)],[-lqminimal])
-      AC_DEFINE(QT_QPA_PLATFORM_MINIMAL, 1, [Define this symbol if the minimal qt platform exists])
       if test "x$TARGET_OS" = xwindows; then
+        QT_LIBS="-lQt5EventDispatcherSupport -lQt5ThemeSupport -lQt5FontDatabaseSupport -lQt5AccessibilitySupport $QT_LIBS"
+        LIBS="-lqtpcre2 -lversion -lqtharfbuzz -ldwmapi -lqtlibpng -luxtheme $LIBS"
         _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin)],[-lqwindows])
         AC_DEFINE(QT_QPA_PLATFORM_WINDOWS, 1, [Define this symbol if the qt platform is windows])
       elif test "x$TARGET_OS" = xlinux; then
+        QT_LIBS="-lQt5ThemeSupport -lQt5FontDatabaseSupport -lQt5AccessibilitySupport $QT_LIBS"
         _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QXcbIntegrationPlugin)],[-lqxcb -lxcb-static])
         AC_DEFINE(QT_QPA_PLATFORM_XCB, 1, [Define this symbol if the qt platform is xcb])
       elif test "x$TARGET_OS" = xdarwin; then
+        dnl (Qt 5.10.1) QT_LIBS="-lQt5ClipboardSupport -lQt5ThemeSupport -lQt5GraphicsSupport -lQt5FontDatabaseSupport -lQt5AccessibilitySupport -lQt5EventDispatcherSupport $QT_LIBS"
+        QT_LIBS="-lQt5ClipboardSupport -lQt5CglSupport -lQt5ThemeSupport -lQt5GraphicsSupport -lQt5FontDatabaseSupport -lQt5AccessibilitySupport -lQt5EventDispatcherSupport $QT_LIBS"
+        LIBS="-lcups $LIBS"
         AX_CHECK_LINK_FLAG([[-framework IOKit]],[QT_LIBS="$QT_LIBS -framework IOKit"],[AC_MSG_ERROR(could not iokit framework)])
+        dnl (Qt 5.10.1) AX_CHECK_LINK_FLAG([[-framework Carbon]],[QT_LIBS="$QT_LIBS -framework Carbon"],[AC_MSG_ERROR(could not carbon framework)])
+        dnl (Qt 5.10.1) AX_CHECK_LINK_FLAG([[-framework QuartzCore]],[QT_LIBS="$QT_LIBS -framework QuartzCore"],[AC_MSG_ERROR(could not quartzcore framework)])
         _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin)],[-lqcocoa])
         AC_DEFINE(QT_QPA_PLATFORM_COCOA, 1, [Define this symbol if the qt platform is cocoa])
       fi
+      _BITCOIN_QT_CHECK_STATIC_PLUGINS([Q_IMPORT_PLUGIN(QMinimalIntegrationPlugin)],[-lqminimal])
+      AC_DEFINE(QT_QPA_PLATFORM_MINIMAL, 1, [Define this symbol if the minimal qt platform exists])
     fi
   else
     if test "x$TARGET_OS" = xwindows; then
@@ -335,7 +345,7 @@ dnl Output: QT_LIBS is prepended or configure exits.
 AC_DEFUN([_BITCOIN_QT_CHECK_STATIC_PLUGINS],[
   AC_MSG_CHECKING(for static Qt plugins: $2)
   CHECK_STATIC_PLUGINS_TEMP_LIBS="$LIBS"
-  LIBS="$2 $QT_LIBS $LIBS"
+  LIBS="-L$qt_plugin_path/platforms $2 $QT_LIBS $LIBS"
   AC_LINK_IFELSE([AC_LANG_PROGRAM([[
     #define QT_STATICPLUGIN
     #include <QtPlugin>
@@ -361,15 +371,20 @@ AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
      if test "x$use_pkgconfig" = xyes; then
      : dnl
      m4_ifdef([PKG_CHECK_MODULES],[
-       PKG_CHECK_MODULES([QTPLATFORM], [Qt5PlatformSupport], [QT_LIBS="$QTPLATFORM_LIBS $QT_LIBS"])
-       if test "x$TARGET_OS" = xlinux; then
-         PKG_CHECK_MODULES([X11XCB], [x11-xcb], [QT_LIBS="$X11XCB_LIBS $QT_LIBS"])
-         if ${PKG_CONFIG} --exists "Qt5Core >= 5.5" 2>/dev/null; then
-           PKG_CHECK_MODULES([QTXCBQPA], [Qt5XcbQpa], [QT_LIBS="$QTXCBQPA_LIBS $QT_LIBS"])
-         fi
-       elif test "x$TARGET_OS" = xdarwin; then
-         PKG_CHECK_MODULES([QTPRINT], [Qt5PrintSupport], [QT_LIBS="$QTPRINT_LIBS $QT_LIBS"])
-       fi
+        dnl Qt5PlatformSupport gets stripped somewhere on the way to 5.9 (even with the patch)   
+        dnl We can no longer: PKG_CHECK_MODULES([QTPLATFORM], [Qt5PlatformSupport], [QT_LIBS="$QTPLATFORM_LIBS $QT_LIBS"])1        
+        if test x$TARGET_OS = xlinux; then
+          AC_MSG_NOTICE([check for linux modules])
+          PKG_CHECK_MODULES([X11XCB], [x11-xcb], [QT_LIBS="$X11XCB_LIBS $QT_LIBS"])
+          if ${PKG_CONFIG} --exists "Qt5Core >= 5.5" 2>/dev/null; then
+            PKG_CHECK_MODULES([QTXCBQPA], [Qt5XcbQpa], [QT_LIBS="$QTXCBQPA_LIBS $QT_LIBS"])
+          fi
+        elif test x$TARGET_OS = xdarwin; then
+          AC_MSG_NOTICE([check for darwin modules])
+          PKG_CHECK_MODULES([QTPRINT], [Qt5PrintSupport], [QT_LIBS="$QTPRINT_LIBS $QT_LIBS"])
+        elif test x$TARGET_OS = xwindows; then
+          AC_MSG_NOTICE([check for windows modules])
+        fi
      ])
      else
        if test "x$TARGET_OS" = xwindows; then
@@ -388,9 +403,10 @@ AC_DEFUN([_BITCOIN_QT_FIND_STATIC_PLUGINS],[
            [bitcoin_cv_need_platformsupport=yes],
            [bitcoin_cv_need_platformsupport=no])
          ])
-         if test "x$bitcoin_cv_need_platformsupport" = xyes; then
-           BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}PlatformSupport],[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}PlatformSupport not found)))
-         fi
+dnl Qt 5.9 does not support pkgconfig so this next section is gone... in particular PlatformSupport fails
+dnl         if test "x$bitcoin_cv_need_platformsupport" = xyes; then
+dnl           BITCOIN_QT_CHECK(AC_CHECK_LIB([${QT_LIB_PREFIX}PlatformSupport],[main],,BITCOIN_QT_FAIL(lib${QT_LIB_PREFIX}PlatformSupport not found)))
+dnl         fi
        fi
      fi
   else
@@ -537,4 +553,3 @@ AC_DEFUN([_BITCOIN_QT_FIND_LIBS_WITHOUT_PKGCONFIG],[
   CXXFLAGS="$TEMP_CXXFLAGS"
   LIBS="$TEMP_LIBS"
 ])
-

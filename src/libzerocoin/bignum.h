@@ -1,10 +1,9 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2017-2018 The PIVX developers
-// Copyright (c) 2018 The VIP developers
+// Copyright (c) 2017 The PIVX developers
+// Copyright (c) 2018-2021 The Vip developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 #ifndef BITCOIN_BIGNUM_H
 #define BITCOIN_BIGNUM_H
 
@@ -60,6 +59,13 @@ public:
     {
         bn = BN_new();
     }
+
+    // Initialize from a Hex String (for zerocoin modulus)
+    CBigNum(const std::string& str) {
+        bn = BN_new();
+        SetHexBool(str);
+    }
+    
 
     CBigNum(const CBigNum& b)
     {
@@ -355,7 +361,7 @@ public:
         {
             CBigNum cbn;
             BN_rshift(cbn.bn, bn, 8*(nSize-3));
-            nCompact = BN_get_word(cbn.bn);
+            nCompact = BN_get_word(bn);
         }
         // The 0x00800000 bit denotes the sign.
         // Thus, if it is already set, divide the mantissa by 256 and increase the exponent.
@@ -369,14 +375,34 @@ public:
         return nCompact;
     }
 
-    void SetDec(const std::string& str)
-    {
-        BN_dec2bn(&bn, str.c_str());
-    }
-
     void SetHex(const std::string& str)
     {
-        SetHexBool(str);
+        // skip 0x
+        const char* psz = str.c_str();
+        while (isspace(*psz))
+            psz++;
+        bool fNegative = false;
+        if (*psz == '-')
+        {
+            fNegative = true;
+            psz++;
+        }
+        if (psz[0] == '0' && tolower(psz[1]) == 'x')
+            psz += 2;
+        while (isspace(*psz))
+            psz++;
+
+        // hex string to bignum
+        static const signed char phexdigit[256] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,1,2,3,4,5,6,7,8,9,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, 0,0xa,0xb,0xc,0xd,0xe,0xf,0,0,0,0,0,0,0,0,0 };
+        *this = 0;
+        while (isxdigit(*psz))
+        {
+            *this <<= 4;
+            int n = phexdigit[(unsigned char)*psz++];
+            *this += n;
+        }
+        if (fNegative)
+            *this = 0 - *this;
     }
 
     bool SetHexBool(const std::string& str)
@@ -417,7 +443,7 @@ public:
         CAutoBN_CTX pctx;
         CBigNum bnBase = nBase;
         CBigNum bn0 = 0;
-        CBigNum locBn = *this;
+	CBigNum locBn = *this;
         std::string str;
         BN_set_negative(locBn.bn, false);
         CBigNum dv;
@@ -441,11 +467,6 @@ public:
     std::string GetHex() const
     {
         return ToString(16);
-    }
-
-    std::string GetDec() const
-    {
-        return ToString(10);
     }
 
     unsigned int GetSerializeSize(int nType=0, int nVersion=PROTOCOL_VERSION) const
@@ -614,13 +635,17 @@ public:
 
     CBigNum& operator/=(const CBigNum& b)
     {
-        *this = *this / b;
+	CAutoBN_CTX pctx;
+        if (!BN_div(bn, NULL, bn, b.bn, pctx))
+	    throw bignum_error("CBigNum::operator/= : BN_div failed");
         return *this;
     }
 
     CBigNum& operator%=(const CBigNum& b)
     {
-        *this = *this % b;
+	CAutoBN_CTX pctx;
+        if (!BN_mod(bn, b.bn, bn, pctx))
+	    throw bignum_error("CBigNum::operator%= : BN_mod failed");
         return *this;
     }
 

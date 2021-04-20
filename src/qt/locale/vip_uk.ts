@@ -62,12 +62,12 @@
         <translation>Адреса отримання</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Це ваші VIP-адреси для надсилання платежів. Завжди перевіряйте суму та адресу одержувача перед відправленням монет.</translation>
+        <source>These are your Vip addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Це ваші Vip-адреси для надсилання платежів. Завжди перевіряйте суму та адресу одержувача перед відправленням монет.</translation>
     </message>
     <message>
-        <source>These are your VIP addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>Це ваші VIP адреси для отримання платежів. Для кожної транзакції рекомендується використовувати нову адресу одержувача.</translation>
+        <source>These are your Vip addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <translation>Це ваші Vip адреси для отримання платежів. Для кожної транзакції рекомендується використовувати нову адресу одержувача.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -136,6 +136,10 @@
         <translation>Для ввімкнення тривіальної відправки коштів при скомпрометуванні операційної системи. Не забезпечує реальної безпеки.</translation>
     </message>
     <message>
+        <source>For anonymization and staking only</source>
+        <translation>Лише для анонімності</translation>
+    </message>
+    <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
         <translation>Введіть нове кодове слово гамамнця. &lt;br/&gt;Будь ласка, використовуйте кодове слово з &lt;b&gt;десяти і більше хаотичних символів&lt;/b&gt;, або &lt;b&gt;восьми і більше слів &lt;/b&gt;.</translation>
     </message>
@@ -172,8 +176,8 @@
         <translation>Підтвердження шифрування гаманця</translation>
     </message>
     <message>
-        <source>VIP will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
-        <translation>VIP зараз закриється, щоб завершити процес шифрування. Пам'ятайте, що шифрування гаманця не може повністю захистити ваші VIP'и від крадіжки зловмисним програмним забезпеченням, що заражає ваш комп'ютер.</translation>
+        <source>Vip will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your VIPs from being stolen by malware infecting your computer.</source>
+        <translation>Vip зараз закриється, щоб завершити процес шифрування. Пам'ятайте, що шифрування гаманця не може повністю захистити ваші VIP'и від крадіжки зловмисним програмним забезпеченням, що заражає ваш комп'ютер.</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -187,9 +191,6 @@
         <source>Wallet encrypted</source>
         <translation>Гаманець зашифровано</translation>
     </message>
-    </context>
-<context>
-    <name>BanTableModel</name>
     </context>
 <context>
     <name>Bip38ToolDialog</name>
@@ -235,13 +236,6 @@
     </context>
 <context>
     <name>MultiSendDialog</name>
-    <message>
-        <source>(no label)</source>
-        <translation>(без міток)</translation>
-    </message>
-    </context>
-<context>
-    <name>MultisigDialog</name>
     </context>
 <context>
     <name>ObfuscationConfig</name>
@@ -373,7 +367,7 @@
     </message>
     </context>
 <context>
-    <name>ZVipControlDialog</name>
+    <name>ZSnoControlDialog</name>
     </context>
 <context>
     <name>vip-core</name>

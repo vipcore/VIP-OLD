@@ -30,10 +30,10 @@
        <item>
         <widget class="QCheckBox" name="bitcoinAtStartup">
          <property name="toolTip">
-          <string>Automatically start VIP after logging in to the system.</string>
+          <string>Automatically start Vip after logging in to the system.</string>
          </property>
          <property name="text">
-          <string>&amp;Start VIP on system login</string>
+          <string>&amp;Start Vip on system login</string>
          </property>
         </widget>
        </item>
@@ -130,6 +130,7 @@
          </property>
         </spacer>
        </item>
+       <!--
        <item>
         <widget class="QCheckBox" name="checkBoxZeromintEnable">
          <property name="toolTip">
@@ -209,6 +210,7 @@
          </item>
         </layout>
        </item>
+   -->
       </layout>
      </widget>
      <widget class="QWidget" name="tabWallet">
@@ -299,7 +301,7 @@
        <item>
         <widget class="QCheckBox" name="mapPortUpnp">
          <property name="toolTip">
-          <string>Automatically open the VIP client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+          <string>Automatically open the Vip client port on the router. This only works when your router supports UPnP and it is enabled.</string>
          </property>
          <property name="text">
           <string>Map port using &amp;UPnP</string>
@@ -319,7 +321,7 @@
        <item>
         <widget class="QCheckBox" name="connectSocks">
          <property name="toolTip">
-          <string>Connect to the VIP network through a SOCKS5 proxy.</string>
+          <string>Connect to the Vip network through a SOCKS5 proxy.</string>
          </property>
          <property name="text">
           <string>&amp;Connect through SOCKS5 proxy (default proxy):</string>
@@ -485,7 +487,7 @@
          <item>
           <widget class="QValueComboBox" name="lang">
            <property name="toolTip">
-            <string>The user interface language can be set here. This setting will take effect after restarting VIP.</string>
+            <string>The user interface language can be set here. This setting will take effect after restarting Vip.</string>
            </property>
           </widget>
          </item>
