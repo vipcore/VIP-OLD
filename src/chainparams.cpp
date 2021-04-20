@@ -54,6 +54,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
     (0, uint256("0x00000b586fcc1602de66f9a2733d0ba9fda25002eaf8f941a15569182c6e6cee"));
+    (8, uint256("0x0000004cd8e124bd3281cc348daef1d64044e9fde653686980e7036f3da55b7e"));
 
     
 static const Checkpoints::CCheckpointData data = {
@@ -162,21 +163,13 @@ public:
 
         // DNS Seeders maintaining a dynamic list of active nodes
         vSeeds.push_back(CDNSSeedData("vipcore.vip", "seed.vipcore.vip"));      // Primary DNS Seeder, need to have a domain name
-        vSeeds.push_back(CDNSSeedData("165.227.136.34", "165.227.136.34"));
-        vSeeds.push_back(CDNSSeedData("142.93.163.217", "142.93.163.217"));
-        vSeeds.push_back(CDNSSeedData("51.15.231.174", "51.15.231.174"));
-        vSeeds.push_back(CDNSSeedData("138.68.97.16", "138.68.97.16"));
-        vSeeds.push_back(CDNSSeedData("51.15.231.79", "51.15.231.79"));
-        vSeeds.push_back(CDNSSeedData("51.158.70.229", "51.158.70.229"));
-        vSeeds.push_back(CDNSSeedData("51.15.231.79", "51.15.231.79"));
-        vSeeds.push_back(CDNSSeedData("51.15.112.87", "51.15.112.87"));
-        vSeeds.push_back(CDNSSeedData("51.15.96.177", "51.15.96.177"));
-        vSeeds.push_back(CDNSSeedData("51.15.37.133", "51.15.37.133"));
-        vSeeds.push_back(CDNSSeedData("51.15.98.254", "51.15.98.254"));
-        vSeeds.push_back(CDNSSeedData("51.15.207.32", "51.15.207.32"));
-        vSeeds.push_back(CDNSSeedData("51.158.76.73", "51.158.76.73"));
-        vSeeds.push_back(CDNSSeedData("51.158.64.246", "51.158.64.246"));
-
+        vSeeds.push_back(CDNSSeedData("95.216.112.67:11945", "95.216.112.67"));
+        vSeeds.push_back(CDNSSeedData("155.138.162.108", "155.138.162.108"));
+        vSeeds.push_back(CDNSSeedData("46.151.159.53", "46.151.159.53"));
+        vSeeds.push_back(CDNSSeedData("82.169.168.31", "82.169.168.31"));
+        vSeeds.push_back(CDNSSeedData("95.216.118.219", "95.216.118.219"));
+        vSeeds.push_back(CDNSSeedData("116.202.172.79", "116.202.172.79"));
+ 
         // Base58prefixes Information:  https://en.bitcoin.it/wiki/List_of_address_prefixes      
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 58);   
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 14);    
@@ -192,7 +185,7 @@ public:
         // Hardcoded seed node generated in chainparamsseeds.h
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
