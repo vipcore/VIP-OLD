@@ -43,34 +43,5 @@
 	<tr><th>Premine Phase</th><th>Block Height</th><th>Block Reward</th><th>Total Premine</th></tr>
 	<tr><td>Ended</td><td>1 - 7</td><td>100 000 VIP</td><td>700 000 VIP</th></tr>
 </tbody>
-<tbody>
-	<tr><th>Kickstart Phase</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Miners</th></tr>	
-	<tr><td>Ended</td><td>16 - 9 000</td><td>0.001 VIP</td><td>0 VIP</td><td>0.001 VIP</td></tr>
-</tbody>
-<tbody>
-	<tr><th>POW Presale Phase</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Miners</th></tr>	
-	<tr><td>Ended</td><td>9 001 - 13 000</td><td>80.001 VIP</td><td>80 VIP</td><td>0.001 VIP</td></tr>
-</tbody>
-</table>
-
-<h3>PoS Rewards Breakdown</h3>
-<table>
-<tbody>
-	<tr><th>POS Presale Phase</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Stakers</th></tr>	
-	<tr><td>Ongoing</td><td>13 001 - 15 000</td><td>80.001 VIP</td><td>80 VIP</td><td>0.001 VIP</td></tr>
-</tbody>
-<tbody>
-	<tr><th>PoS Phase I</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Stakers</th></tr>	
-	<tr><td></td><td>15 001 - 350 400</td><td>100 VIP</td><td>80 VIP</td><td>20 VIP</td></tr>
-</tbody>
-<tbody>
-	<tr><th>PoS Phase II</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Stakers</th></tr>
-	<tr><td></td><td>350 401 - 700 800</td><td>50 VIP</td><td>40 VIP</td><td>10 VIP</td></tr>
-</tbody>
-<tbody>
-	<tr><th>PoS Phase III</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Stakers</th></tr>
-	<tr><td></td><td>700 801 - </td><td>25 VIP</td><td>20 VIP</td><td>10 VIP</td></tr>
-</tbody>
-</table>
 
 <a href="https://vipcore.vip" title="Vip Website" target="_blank">View our website for more details</a>
