@@ -22,7 +22,7 @@
 	<tr><td>Coin Type</td><td>PoW/PoS/MN</td></tr>
 	<tr><td>Coin Ticker</td><td>VIP</td></tr>	
 	<tr><td>Algo</td><td>Neoscrypt</td></tr>
-	<tr><td>P2P/RPC Ports</td><td>11945/18989</td></tr>
+	<tr><td>P2P/RPC Ports</td><td>11945/11940</td></tr>
 	<tr><td>Block Time</td><td>90 Seconds</td></tr>
 	<tr><td>Block Reward</td><td>100 VIP</td></tr>
 	<tr><td>PoW Difficulty Retargeting</td><td>DarkGravity v3</td></tr>
