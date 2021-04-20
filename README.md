@@ -23,17 +23,17 @@
 	<tr><td>Coin Ticker</td><td>VIP</td></tr>	
 	<tr><td>Algo</td><td>Neoscrypt</td></tr>
 	<tr><td>P2P/RPC Ports</td><td>11945/11940</td></tr>
-	<tr><td>Block Time</td><td>90 Seconds</td></tr>
-	<tr><td>Block Reward</td><td>100 VIP</td></tr>
+	<tr><td>Block Time</td><td>60 Seconds</td></tr>
+	<tr><td>Block Reward</td><td>0.2 VIP</td></tr>
 	<tr><td>PoW Difficulty Retargeting</td><td>DarkGravity v3</td></tr>
-	<tr><td>Coin Maturity</td><td>101</td></tr>
+	<tr><td>Coin Maturity</td><td>60</td></tr>
 	<tr><td>Stake Maturity</td><td>12 hours</td></tr>
 	<tr><td>PoS Difficulty Retargeting</td><td>Every Block</td></tr>
-	<tr><td>Max Coin Supply</td><td>60 000 000 VIP</td></tr> 
-	<tr><td>Premine</td><td>1 500 000 VIP</td></tr>
+	<tr><td>Max Coin Supply</td><td>1 000 000 VIP</td></tr> 
+	<tr><td>Premine</td><td>700 000 VIP</td></tr>
 	<tr><td>Halving factor</td><td>Every 350 400 Blocks</td></tr>
 	<tr><td>Masternode Collateral</td><td>10 000 VIP</td></tr>
-	<tr><td>Masternode Reward</td><td>80 VIP</td></tr>
+	<tr><td>Masternode Reward</td><td>0.14 VIP</td></tr>
 </tbody>
 </table>
 
@@ -41,7 +41,7 @@
 <table>
 <tbody>
 	<tr><th>Premine Phase</th><th>Block Height</th><th>Block Reward</th><th>Total Premine</th></tr>
-	<tr><td>Ended</td><td>1 - 15</td><td>100 000 VIP</td><td>1 500 000 VIP</th></tr>
+	<tr><td>Ended</td><td>1 - 7</td><td>100 000 VIP</td><td>700 000 VIP</th></tr>
 </tbody>
 <tbody>
 	<tr><th>Kickstart Phase</th><th>Block Height</th><th>Block Reward</th><th>Masternodes</th><th>Miners</th></tr>	
