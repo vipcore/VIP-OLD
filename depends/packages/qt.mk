@@ -1,47 +1,31 @@
 PACKAGE=qt
-#$(package)_version=5.11.1
-#$(package)_download_path=http://download.qt.io/official_releases/qt/5.11/$($(package)_version)/submodules
-#$(package)_qttype=everywhere
-#$(package)_sha256_hash=a0d047b2da5782c8332c59ae203984b64e4d5dc5f4ba9c0884fdbe753d0afb46
-#$(package)_qttranslations_sha256_hash=12d89b2afa64dce4d32c9e680135243c579d99aa9279d2aafc5602c15a697106
-#$(package)_qttools_sha256_hash=b7fb186f92aedb922c4e7f57ff276bbf90caf0087a2a980f704bad9ac44514fe
-
-
-
-#$(package)_version=5.9.4
-#$(package)_download_path=http://download.qt.io/official_releases/qt/5.9/$($(package)_version)/submodules
-#$(package)_qttype=opensource
-#$(package)_sha256_hash=69e6bde3ab00673a77e1506173551fec7d0cd899fcbf9b1260517db1b61004cf
-#$(package)_qttranslations_sha256_hash=e5cf81f88cc6811166ea631e6b7faa869a578a910dce61e951f98ff83f27bad6
-#$(package)_qttools_sha256_hash=95aa5782d5a79be22fba36cea4dc2319cf2a2060a3cc1e24e6585b8d98996e87
-
-$(package)_version=5.9.6
-$(package)_download_path=http://download.qt.io/official_releases/qt/5.9/$($(package)_version)/submodules
-$(package)_qttype=opensource
-$(package)_sha256_hash=eed620cb268b199bd83b3fc6a471c51d51e1dc2dbb5374fc97a0cc75facbe36f
-$(package)_qttranslations_sha256_hash=9822084f8e2d2939ba39f4af4c0c2320e45d5996762a9423f833055607604ed8
-$(package)_qttools_sha256_hash=50e75417ec0c74bb8b1989d1d8e981ee83690dce7dfc0c2169f7c00f397e5117
-
-#$(package)_version=5.8.0
-#$(package)_download_path=https://download.qt.io/archive/qt/5.8/$($(package)_version)/submodules
-#$(package)_qttype=opensource
-#$(package)_sha256_hash= c17111ae02a44dc7be1ec2cf979a47ee9e58edf4904041a525c21f4fa53fc005
-#$(package)_qttranslations_sha256_hash= 3b7cf72ec50bc2a02bf4e4427b184febac909dba0e02e1861321ca1629c3fc2e
-#$(package)_qttools_sha256_hash= 95ec8e76d393b6ba26ffff5041fce41946d2bf3aec1402c6533e24d9fc269d83
-
-$(package)_suffix=$($(package)_qttype)-src-$($(package)_version).tar.xz
+$(package)_version=5.9.7
+$(package)_download_path=https://download.qt.io/official_releases/qt/5.9/$($(package)_version)/submodules
+$(package)_suffix=opensource-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
+$(package)_sha256_hash=36dd9574f006eaa1e5af780e4b33d11fe39d09fd7c12f3b9d83294174bd28f00
 $(package)_dependencies=openssl zlib
 $(package)_linux_dependencies=freetype fontconfig libxcb libX11 xproto libXext
 $(package)_build_subdir=qtbase
-$(package)_qt_libs=corelib network widgets gui plugins xml testlib 
-$(package)_patches=mac-qmake.conf aarch32-qmake.conf aarch64-qmake.conf mingw-uuidof.patch fix_qt_pkgconfig.patch fix_mac_configure.patch fix_mac_sdk_prf.patch fix_win_pcre_permission.patch
- 
+$(package)_qt_libs=corelib network widgets gui plugins testlib concurrent
+$(package)_patches=fix_qt_pkgconfig.patch mac-qmake.conf fix_configure_mac.patch fix_no_printer.patch fix_rcc_determinism.patch fix_riscv64_arch.patch fix_s390x_powerpc_mips_mipsel_architectures.patch xkb-default.patch
+
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
+$(package)_qttranslations_sha256_hash=b36da7d93c3ab6fca56b32053bb73bc619c8b192bb89b74e3bcde2705f1c2a14
+
 $(package)_qttools_file_name=qttools-$($(package)_suffix)
+$(package)_qttools_sha256_hash=d62e0f70d99645d6704dbb8976fb2222443061743689943d40970c52c49367a1
+
+$(package)_qtsvg_file_name=qtsvg-$($(package)_suffix)
+$(package)_qtsvg_sha256_hash=628f22b8472e96ed8033d5491286ce2ab5b2c7b9fe0fe468acd78b458dc75564
+
+$(package)_qtcharts_file_name=qtcharts-$($(package)_suffix)
+$(package)_qtcharts_sha256_hash=16cd367241b2e0cd3bc8aea6f874598cd18ad83b72eed89f2713b777272572e6
 
 $(package)_extra_sources  = $($(package)_qttranslations_file_name)
 $(package)_extra_sources += $($(package)_qttools_file_name)
+$(package)_extra_sources += $($(package)_qtsvg_file_name)
+$(package)_extra_sources += $($(package)_qtcharts_file_name)
 
 define $(package)_set_vars
 $(package)_config_opts_release = -release
@@ -51,6 +35,8 @@ $(package)_config_opts += -c++std c++11
 $(package)_config_opts += -confirm-license
 $(package)_config_opts += -dbus-runtime
 $(package)_config_opts += -hostprefix $(build_prefix)
+$(package)_config_opts += -no-compile-examples
+$(package)_config_opts += -no-cups
 $(package)_config_opts += -no-egl
 $(package)_config_opts += -no-eglfs
 $(package)_config_opts += -no-freetype
@@ -87,10 +73,26 @@ $(package)_config_opts += -prefix $(host_prefix)
 $(package)_config_opts += -qt-libpng
 $(package)_config_opts += -qt-libjpeg
 $(package)_config_opts += -qt-pcre
+$(package)_config_opts += -qt-harfbuzz
 $(package)_config_opts += -system-zlib
 $(package)_config_opts += -static
 $(package)_config_opts += -silent
 $(package)_config_opts += -v
+$(package)_config_opts += -no-feature-dial
+$(package)_config_opts += -no-feature-ftp
+$(package)_config_opts += -no-feature-lcdnumber
+$(package)_config_opts += -no-feature-pdf
+$(package)_config_opts += -no-feature-printer
+$(package)_config_opts += -no-feature-printdialog
+$(package)_config_opts += -feature-concurrent
+$(package)_config_opts += -no-feature-sql
+$(package)_config_opts += -no-feature-statemachine
+$(package)_config_opts += -no-feature-syntaxhighlighter
+$(package)_config_opts += -no-feature-textbrowser
+$(package)_config_opts += -no-feature-textodfwriter
+$(package)_config_opts += -no-feature-udpsocket
+$(package)_config_opts += -no-feature-wizard
+$(package)_config_opts += -no-feature-xml
 
 ifneq ($(build_os),darwin)
 $(package)_config_opts_darwin = -xplatform macx-clang-linux
@@ -100,27 +102,36 @@ $(package)_config_opts_darwin += -device-option CROSS_COMPILE="$(host)-"
 $(package)_config_opts_darwin += -device-option MAC_MIN_VERSION=$(OSX_MIN_VERSION)
 $(package)_config_opts_darwin += -device-option MAC_TARGET=$(host)
 $(package)_config_opts_darwin += -device-option MAC_LD64_VERSION=$(LD64_VERSION)
-$(package)_config_opts_darwin += -reduce-exports
 endif
 
-$(package)_config_opts_linux  = -qt-xkbcommon
+$(package)_config_opts_linux  = -qt-xkbcommon-x11
 $(package)_config_opts_linux += -qt-xcb
 $(package)_config_opts_linux += -system-freetype
-$(package)_config_opts_linux += -no-sm
+$(package)_config_opts_linux += -no-feature-sessionmanager
 $(package)_config_opts_linux += -fontconfig
 $(package)_config_opts_linux += -no-opengl
-$(package)_config_opts_linux += -reduce-exports
-$(package)_config_opts_arm_linux  = -platform linux-g++ -xplatform $(host)
-$(package)_config_opts_aarch64_linux = -platform linux-g++ -xplatform $(host)
+$(package)_config_opts_arm_linux += -platform linux-g++ -xplatform pivx-linux-g++
 $(package)_config_opts_i686_linux  = -xplatform linux-g++-32
+$(package)_config_opts_x86_64_linux = -xplatform linux-g++-64
+$(package)_config_opts_aarch64_linux = -xplatform linux-aarch64-gnu-g++
+$(package)_config_opts_riscv64_linux = -platform linux-g++ -xplatform pivx-linux-g++
+$(package)_config_opts_s390x_linux += -platform linux-g++ -xplatform linux-g++-64
+$(package)_config_opts_powerpc_linux += -platform linux-g++ -xplatform linux-g++-32
+$(package)_config_opts_powerpc64le_linux += -platform linux-g++ -xplatform linux-g++-64
+$(package)_config_opts_sparc64_linux += -platform linux-g++ -xplatform linux-g++-64
+$(package)_config_opts_alpha_linux += -platform linux-g++ -xplatform linux-g++-64
+$(package)_config_opts_m68k_linux += -platform linux-g++ -xplatform linux-g++-32
 $(package)_config_opts_mingw32  = -no-opengl -xplatform win32-g++ -device-option CROSS_COMPILE="$(host)-"
 $(package)_build_env  = QT_RCC_TEST=1
+$(package)_build_env += QT_RCC_SOURCE_DATE_OVERRIDE=1
 endef
 
 define $(package)_fetch_cmds
 $(call fetch_file,$(package),$($(package)_download_path),$($(package)_download_file),$($(package)_file_name),$($(package)_sha256_hash)) && \
 $(call fetch_file,$(package),$($(package)_download_path),$($(package)_qttranslations_file_name),$($(package)_qttranslations_file_name),$($(package)_qttranslations_sha256_hash)) && \
-$(call fetch_file,$(package),$($(package)_download_path),$($(package)_qttools_file_name),$($(package)_qttools_file_name),$($(package)_qttools_sha256_hash))
+$(call fetch_file,$(package),$($(package)_download_path),$($(package)_qttools_file_name),$($(package)_qttools_file_name),$($(package)_qttools_sha256_hash)) && \
+$(call fetch_file,$(package),$($(package)_download_path),$($(package)_qtsvg_file_name),$($(package)_qtsvg_file_name),$($(package)_qtsvg_sha256_hash)) && \
+$(call fetch_file,$(package),$($(package)_download_path),$($(package)_qtcharts_file_name),$($(package)_qtcharts_file_name),$($(package)_qtcharts_sha256_hash))
 endef
 
 define $(package)_extract_cmds
@@ -128,49 +139,56 @@ define $(package)_extract_cmds
   echo "$($(package)_sha256_hash)  $($(package)_source)" > $($(package)_extract_dir)/.$($(package)_file_name).hash && \
   echo "$($(package)_qttranslations_sha256_hash)  $($(package)_source_dir)/$($(package)_qttranslations_file_name)" >> $($(package)_extract_dir)/.$($(package)_file_name).hash && \
   echo "$($(package)_qttools_sha256_hash)  $($(package)_source_dir)/$($(package)_qttools_file_name)" >> $($(package)_extract_dir)/.$($(package)_file_name).hash && \
+  echo "$($(package)_qtsvg_sha256_hash)  $($(package)_source_dir)/$($(package)_qtsvg_file_name)" >> $($(package)_extract_dir)/.$($(package)_file_name).hash && \
+  echo "$($(package)_qtcharts_sha256_hash)  $($(package)_source_dir)/$($(package)_qtcharts_file_name)" >> $($(package)_extract_dir)/.$($(package)_file_name).hash && \
   $(build_SHA256SUM) -c $($(package)_extract_dir)/.$($(package)_file_name).hash && \
   mkdir qtbase && \
-  tar --strip-components=1 -xf $($(package)_source) -C qtbase && \
+  tar --no-same-owner --strip-components=1 -xf $($(package)_source) -C qtbase && \
   mkdir qttranslations && \
-  tar --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qttranslations_file_name) -C qttranslations && \
+  tar --no-same-owner --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qttranslations_file_name) -C qttranslations && \
   mkdir qttools && \
-  tar --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qttools_file_name) -C qttools
+  tar --no-same-owner --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qttools_file_name) -C qttools && \
+  mkdir qtsvg && \
+  tar --no-same-owner --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qtsvg_file_name) -C qtsvg && \
+  mkdir qtcharts && \
+  tar --no-same-owner --strip-components=1 -xf $($(package)_source_dir)/$($(package)_qtcharts_file_name) -C qtcharts
 endef
 
-
 define $(package)_preprocess_cmds
+  sed -i.old "s|FT_Get_Font_Format|FT_Get_X11_Font_Format|" qtbase/src/platformsupport/fontdatabases/freetype/qfontengine_ft.cpp && \
   sed -i.old "s|updateqm.commands = \$$$$\$$$$LRELEASE|updateqm.commands = $($(package)_extract_dir)/qttools/bin/lrelease|" qttranslations/translations/translations.pro && \
   sed -i.old "/updateqm.depends =/d" qttranslations/translations/translations.pro && \
-  sed -i.old "s/src_plugins.depends = src_sql src_xml src_network/src_plugins.depends = src_xml src_network/" qtbase/src/src.pro && \
+  sed -i.old "s/src_plugins.depends = src_sql src_network/src_plugins.depends = src_network/" qtbase/src/src.pro && \
   sed -i.old "s|X11/extensions/XIproto.h|X11/X.h|" qtbase/src/plugins/platforms/xcb/qxcbxsettings.cpp && \
-  sed -i.old 's/if \[ "$$$$XPLATFORM_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/if \[ "$$$$BUILD_ON_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/' qtbase/configure && \
+  sed -i.old -e 's/if \[ "$$$$XPLATFORM_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/if \[ "$$$$BUILD_ON_MAC" = "yes" \]; then xspecvals=$$$$(macSDKify/' -e 's|/bin/pwd|pwd|' qtbase/configure && \
   sed -i.old 's/CGEventCreateMouseEvent(0, kCGEventMouseMoved, pos, 0)/CGEventCreateMouseEvent(0, kCGEventMouseMoved, pos, kCGMouseButtonLeft)/' qtbase/src/plugins/platforms/cocoa/qcocoacursor.mm && \
   mkdir -p qtbase/mkspecs/macx-clang-linux &&\
   cp -f qtbase/mkspecs/macx-clang/Info.plist.lib qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f qtbase/mkspecs/macx-clang/Info.plist.app qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f qtbase/mkspecs/macx-clang/qplatformdefs.h qtbase/mkspecs/macx-clang-linux/ &&\
   cp -f $($(package)_patch_dir)/mac-qmake.conf qtbase/mkspecs/macx-clang-linux/qmake.conf && \
-  mkdir -p qtbase/mkspecs/arm-linux-gnueabihf &&\
-  cp -f qtbase/mkspecs/linux-arm-gnueabi-g++/qplatformdefs.h qtbase/mkspecs/arm-linux-gnueabihf/ &&\
-  cp -f $($(package)_patch_dir)/aarch32-qmake.conf qtbase/mkspecs/arm-linux-gnueabihf/qmake.conf &&\
-  mkdir -p qtbase/mkspecs/aarch64-linux-gnu &&\
-  cp -f qtbase/mkspecs/linux-arm-gnueabi-g++/qplatformdefs.h qtbase/mkspecs/aarch64-linux-gnu/ &&\
-  cp -f $($(package)_patch_dir)/aarch64-qmake.conf qtbase/mkspecs/aarch64-linux-gnu/qmake.conf &&\
-  patch -p1 < $($(package)_patch_dir)/mingw-uuidof.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix_qt_pkgconfig.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix_mac_configure.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix_mac_sdk_prf.patch && \
-  patch -p1 < $($(package)_patch_dir)/fix_win_pcre_permission.patch && \
+  echo "!host_build: QMAKE_INCDIR += $(host_prefix)/native/include/c++/v1" >> qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+  sed -i.old "s|QMAKE_AR = \$$$$\$$$${CROSS_COMPILE}|QMAKE_AR = $(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+  sed -i.old "s|QMAKE_RANLIB=\$$$$\$$$${CROSS_COMPILE}|QMAKE_RANLIB=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+  sed -i.old "s|QMAKE_LIBTOOL=\$$$$\$$$${CROSS_COMPILE}|QMAKE_LIBTOOL=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+  sed -i.old "s|QMAKE_INSTALL_NAME_TOOL=\$$$$\$$$${CROSS_COMPILE}|QMAKE_INSTALL_NAME_TOOL=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+  cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/pivx-linux-g++ && \
+  sed -i.old "s/arm-linux-gnueabi-/$(host)-/g" qtbase/mkspecs/pivx-linux-g++/qmake.conf && \
+  patch -p1 -i $($(package)_patch_dir)/fix_qt_pkgconfig.patch &&\
+  patch -p1 -i $($(package)_patch_dir)/fix_configure_mac.patch &&\
+  patch -p1 -i $($(package)_patch_dir)/fix_no_printer.patch &&\
+  patch -p1 -i $($(package)_patch_dir)/fix_rcc_determinism.patch &&\
+  patch -p1 -i $($(package)_patch_dir)/xkb-default.patch &&\
   echo "!host_build: QMAKE_CFLAGS     += $($(package)_cflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_CXXFLAGS   += $($(package)_cxxflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
   echo "!host_build: QMAKE_LFLAGS     += $($(package)_ldflags)" >> qtbase/mkspecs/common/gcc-base.conf && \
+  patch -p1 -i $($(package)_patch_dir)/fix_riscv64_arch.patch &&\
+  patch -p1 -i $($(package)_patch_dir)/fix_s390x_powerpc_mips_mipsel_architectures.patch &&\
+  echo "QMAKE_LINK_OBJECT_MAX = 10" >> qtbase/mkspecs/win32-g++/qmake.conf &&\
+  echo "QMAKE_LINK_OBJECT_SCRIPT = object_script" >> qtbase/mkspecs/win32-g++/qmake.conf &&\
   sed -i.old "s|QMAKE_CFLAGS            = |!host_build: QMAKE_CFLAGS            = $($(package)_cflags) $($(package)_cppflags) |" qtbase/mkspecs/win32-g++/qmake.conf && \
   sed -i.old "s|QMAKE_LFLAGS            = |!host_build: QMAKE_LFLAGS            = $($(package)_ldflags) |" qtbase/mkspecs/win32-g++/qmake.conf && \
-  sed -i.old "s|QMAKE_CXXFLAGS          = |!host_build: QMAKE_CXXFLAGS            = $($(package)_cxxflags) $($(package)_cppflags) |" qtbase/mkspecs/win32-g++/qmake.conf && \
-  if `test "$(host)" = x86_64-linux-gnu`; then echo "building on host"; fi && \
-  if `test "$(host)" = x86_64-linux-gnu`; then echo "QMAKE_CFLAGS     += $($(package)_cflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf; fi && \
-  if `test "$(host)" = x86_64-linux-gnu`; then echo "QMAKE_CXXFLAGS   += $($(package)_cxxflags) $($(package)_cppflags)" >> qtbase/mkspecs/common/gcc-base.conf; fi && \
-  if `test "$(host)" = x86_64-linux-gnu`; then echo "QMAKE_LFLAGS     += $($(package)_ldflags)" >> qtbase/mkspecs/common/gcc-base.conf; fi
+  sed -i.old "s|QMAKE_CXXFLAGS          = |!host_build: QMAKE_CXXFLAGS            = $($(package)_cxxflags) $($(package)_cppflags) |" qtbase/mkspecs/win32-g++/qmake.conf
 endef
 
 define $(package)_config_cmds
@@ -182,19 +200,35 @@ define $(package)_config_cmds
   echo "CONFIG += force_bootstrap" >> mkspecs/qconfig.pri && \
   $(MAKE) sub-src-clean && \
   cd ../qttranslations && ../qtbase/bin/qmake qttranslations.pro -o Makefile && \
-  cd translations && ../../qtbase/bin/qmake translations.pro -o Makefile && cd ../.. &&\
-  cd qttools/src/linguist/lrelease/ && ../../../../qtbase/bin/qmake lrelease.pro -o Makefile
+  cd translations && ../../qtbase/bin/qmake translations.pro -o Makefile && cd ../.. && \
+  cd qttools/src/linguist/lrelease/ && ../../../../qtbase/bin/qmake lrelease.pro -o Makefile && \
+  cd ../lupdate/ && ../../../../qtbase/bin/qmake lupdate.pro -o Makefile && cd ../../../.. && \
+  cd qtsvg && ../qtbase/bin/qmake qtsvg.pro -o Makefile && \
+  cd src/svg && ../../../qtbase/bin/qmake svg.pro -o Makefile && cd ../../.. && \
+  cd qtsvg/src/plugins && ../../../qtbase/bin/qmake plugins.pro -o Makefile && cd ../../.. && \
+  cd qtsvg/src/plugins/imageformats && ../../../../qtbase/bin/qmake imageformats.pro -o Makefile && cd ../../../.. && \
+  cd qtsvg/src/plugins/imageformats/svg && ../../../../../qtbase/bin/qmake svg.pro -o Makefile && cd ../../../../.. && \
+  cd qtcharts && ../qtbase/bin/qmake qtcharts.pro -o Makefile
 endef
 
 define $(package)_build_cmds
+  export PATH=$(build_prefix)/bin:$(PATH) && \
   $(MAKE) -C src $(addprefix sub-,$($(package)_qt_libs)) && \
   $(MAKE) -C ../qttools/src/linguist/lrelease && \
-  $(MAKE) -C ../qttranslations
+  $(MAKE) -C ../qttools/src/linguist/lupdate && \
+  $(MAKE) -C ../qttranslations && \
+  $(MAKE) -C ../qtsvg/ && \
+  $(MAKE) -C ../qtsvg/src/svg && \
+  $(MAKE) -C ../qtsvg/src/plugins/imageformats && \
+  $(MAKE) -C ../qtcharts/
 endef
 
 define $(package)_stage_cmds
-  $(MAKE) -C src INSTALL_ROOT=$($(package)_staging_dir) $(addsuffix -install_subtargets,$(addprefix sub-,$($(package)_qt_libs))) && cd .. &&\
+  $(MAKE) -C src INSTALL_ROOT=$($(package)_staging_dir) $(addsuffix -install_subtargets,$(addprefix sub-,$($(package)_qt_libs))) && cd .. && \
   $(MAKE) -C qttools/src/linguist/lrelease INSTALL_ROOT=$($(package)_staging_dir) install_target && \
+  $(MAKE) -C qttools/src/linguist/lupdate INSTALL_ROOT=$($(package)_staging_dir) install_target && \
+  $(MAKE) -C qtsvg INSTALL_ROOT=$($(package)_staging_dir) install_subtargets && \
+  $(MAKE) -C qtcharts INSTALL_ROOT=$($(package)_staging_dir) install_subtargets && \
   $(MAKE) -C qttranslations INSTALL_ROOT=$($(package)_staging_dir) install_subtargets && \
   if `test -f qtbase/src/plugins/platforms/xcb/xcb-static/libxcb-static.a`; then \
     cp qtbase/src/plugins/platforms/xcb/xcb-static/libxcb-static.a $($(package)_staging_prefix_dir)/lib; \
